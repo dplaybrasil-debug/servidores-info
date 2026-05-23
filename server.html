@@ -263,6 +263,18 @@
 
     <script src="data.js?v=1"></script>
     <script>
+        function slugify(text) {
+            return (text || '').toString()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .toLowerCase()
+                .replace(/\s+/g, '-')
+                .replace(/[^\w\-]+/g, '')
+                .replace(/\-\-+/g, '-')
+                .replace(/^-+/, '')
+                .replace(/-+$/, '');
+        }
+
         document.addEventListener('DOMContentLoaded', async () => {
             const urlParams = new URLSearchParams(window.location.search);
             const serverId = urlParams.get('id');
@@ -308,6 +320,16 @@
             if (!data) {
                 document.getElementById('loader').innerText = 'Servidor não encontrado ou inativo.';
                 return;
+            }
+
+            // Atualiza barra de endereço silenciosamente com o nome amigável do servidor
+            if (data.name) {
+                const correctSlug = slugify(data.name);
+                if (urlParams.get('nome') !== correctSlug) {
+                    urlParams.set('nome', correctSlug);
+                    const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+                    window.history.replaceState({}, '', newUrl);
+                }
             }
 
             try {
