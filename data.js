@@ -1,10 +1,10 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-05-23 17:38:36
+ * Gerado em: 2026-05-23 17:50:23
  * NÃO edite manualmente. Regenere via: php generate_data.php
  */
 window.STATIC_DATA = {
-    servers:  [
+    servers:     [
     {
         "id": 102,
         "name": "ADAM PLAY",
@@ -1662,7 +1662,7 @@ window.STATIC_DATA = {
         "server_type": "hybrid"
     }
 ],
-    apps:     [
+    apps:        [
     {
         "id": 13,
         "name": "4KIPTV",
@@ -2056,7 +2056,7 @@ window.STATIC_DATA = {
         "created_at": "2026-04-27 07:15:00"
     }
 ],
-    contacts: [
+    contacts:    [
     {
         "id": 2,
         "name": "SUOIRTE RÁPIDO",
@@ -2086,6 +2086,896 @@ window.STATIC_DATA = {
         "active": 1,
         "sort_order": 3,
         "created_at": "2026-04-29 02:57:43"
+    }
+],
+    server_apps: [
+    {
+        "server_id": 102,
+        "app_id": 2
+    },
+    {
+        "server_id": 102,
+        "app_id": 3
+    },
+    {
+        "server_id": 102,
+        "app_id": 4
+    },
+    {
+        "server_id": 102,
+        "app_id": 5
+    },
+    {
+        "server_id": 102,
+        "app_id": 29
+    },
+    {
+        "server_id": 102,
+        "app_id": 28
+    },
+    {
+        "server_id": 102,
+        "app_id": 11
+    },
+    {
+        "server_id": 102,
+        "app_id": 40
+    },
+    {
+        "server_id": 102,
+        "app_id": 41
+    },
+    {
+        "server_id": 6,
+        "app_id": 2
+    },
+    {
+        "server_id": 6,
+        "app_id": 43
+    },
+    {
+        "server_id": 6,
+        "app_id": 11
+    },
+    {
+        "server_id": 6,
+        "app_id": 12
+    },
+    {
+        "server_id": 9,
+        "app_id": 2
+    },
+    {
+        "server_id": 9,
+        "app_id": 3
+    },
+    {
+        "server_id": 9,
+        "app_id": 21
+    },
+    {
+        "server_id": 9,
+        "app_id": 43
+    },
+    {
+        "server_id": 9,
+        "app_id": 4
+    },
+    {
+        "server_id": 9,
+        "app_id": 5
+    },
+    {
+        "server_id": 9,
+        "app_id": 28
+    },
+    {
+        "server_id": 9,
+        "app_id": 11
+    },
+    {
+        "server_id": 9,
+        "app_id": 12
+    },
+    {
+        "server_id": 9,
+        "app_id": 36
+    },
+    {
+        "server_id": 9,
+        "app_id": 40
+    },
+    {
+        "server_id": 94,
+        "app_id": 13
+    },
+    {
+        "server_id": 94,
+        "app_id": 2
+    },
+    {
+        "server_id": 94,
+        "app_id": 3
+    },
+    {
+        "server_id": 94,
+        "app_id": 22
+    },
+    {
+        "server_id": 94,
+        "app_id": 21
+    },
+    {
+        "server_id": 94,
+        "app_id": 6
+    },
+    {
+        "server_id": 94,
+        "app_id": 8
+    },
+    {
+        "server_id": 94,
+        "app_id": 27
+    },
+    {
+        "server_id": 94,
+        "app_id": 7
+    },
+    {
+        "server_id": 94,
+        "app_id": 10
+    },
+    {
+        "server_id": 94,
+        "app_id": 44
+    },
+    {
+        "server_id": 94,
+        "app_id": 11
+    },
+    {
+        "server_id": 94,
+        "app_id": 34
+    },
+    {
+        "server_id": 94,
+        "app_id": 14
+    },
+    {
+        "server_id": 94,
+        "app_id": 36
+    },
+    {
+        "server_id": 94,
+        "app_id": 15
+    },
+    {
+        "server_id": 94,
+        "app_id": 41
+    },
+    {
+        "server_id": 106,
+        "app_id": 13
+    },
+    {
+        "server_id": 106,
+        "app_id": 2
+    },
+    {
+        "server_id": 106,
+        "app_id": 3
+    },
+    {
+        "server_id": 106,
+        "app_id": 22
+    },
+    {
+        "server_id": 106,
+        "app_id": 25
+    },
+    {
+        "server_id": 106,
+        "app_id": 4
+    },
+    {
+        "server_id": 106,
+        "app_id": 8
+    },
+    {
+        "server_id": 106,
+        "app_id": 27
+    },
+    {
+        "server_id": 106,
+        "app_id": 7
+    },
+    {
+        "server_id": 106,
+        "app_id": 5
+    },
+    {
+        "server_id": 106,
+        "app_id": 10
+    },
+    {
+        "server_id": 106,
+        "app_id": 11
+    },
+    {
+        "server_id": 106,
+        "app_id": 14
+    },
+    {
+        "server_id": 106,
+        "app_id": 36
+    },
+    {
+        "server_id": 106,
+        "app_id": 15
+    },
+    {
+        "server_id": 106,
+        "app_id": 40
+    },
+    {
+        "server_id": 106,
+        "app_id": 41
+    },
+    {
+        "server_id": 11,
+        "app_id": 33
+    },
+    {
+        "server_id": 11,
+        "app_id": 41
+    },
+    {
+        "server_id": 14,
+        "app_id": 40
+    },
+    {
+        "server_id": 15,
+        "app_id": 2
+    },
+    {
+        "server_id": 15,
+        "app_id": 11
+    },
+    {
+        "server_id": 15,
+        "app_id": 40
+    },
+    {
+        "server_id": 16,
+        "app_id": 2
+    },
+    {
+        "server_id": 16,
+        "app_id": 3
+    },
+    {
+        "server_id": 16,
+        "app_id": 4
+    },
+    {
+        "server_id": 16,
+        "app_id": 5
+    },
+    {
+        "server_id": 16,
+        "app_id": 9
+    },
+    {
+        "server_id": 16,
+        "app_id": 11
+    },
+    {
+        "server_id": 16,
+        "app_id": 41
+    },
+    {
+        "server_id": 17,
+        "app_id": 2
+    },
+    {
+        "server_id": 17,
+        "app_id": 3
+    },
+    {
+        "server_id": 17,
+        "app_id": 5
+    },
+    {
+        "server_id": 20,
+        "app_id": 23
+    },
+    {
+        "server_id": 24,
+        "app_id": 23
+    },
+    {
+        "server_id": 22,
+        "app_id": 2
+    },
+    {
+        "server_id": 22,
+        "app_id": 11
+    },
+    {
+        "server_id": 31,
+        "app_id": 17
+    },
+    {
+        "server_id": 31,
+        "app_id": 30
+    },
+    {
+        "server_id": 31,
+        "app_id": 31
+    },
+    {
+        "server_id": 31,
+        "app_id": 16
+    },
+    {
+        "server_id": 31,
+        "app_id": 19
+    },
+    {
+        "server_id": 31,
+        "app_id": 18
+    },
+    {
+        "server_id": 31,
+        "app_id": 20
+    },
+    {
+        "server_id": 32,
+        "app_id": 2
+    },
+    {
+        "server_id": 32,
+        "app_id": 43
+    },
+    {
+        "server_id": 32,
+        "app_id": 4
+    },
+    {
+        "server_id": 32,
+        "app_id": 5
+    },
+    {
+        "server_id": 32,
+        "app_id": 11
+    },
+    {
+        "server_id": 32,
+        "app_id": 12
+    },
+    {
+        "server_id": 33,
+        "app_id": 42
+    },
+    {
+        "server_id": 33,
+        "app_id": 4
+    },
+    {
+        "server_id": 33,
+        "app_id": 5
+    },
+    {
+        "server_id": 33,
+        "app_id": 41
+    },
+    {
+        "server_id": 36,
+        "app_id": 13
+    },
+    {
+        "server_id": 36,
+        "app_id": 6
+    },
+    {
+        "server_id": 36,
+        "app_id": 8
+    },
+    {
+        "server_id": 36,
+        "app_id": 27
+    },
+    {
+        "server_id": 36,
+        "app_id": 7
+    },
+    {
+        "server_id": 36,
+        "app_id": 5
+    },
+    {
+        "server_id": 36,
+        "app_id": 10
+    },
+    {
+        "server_id": 36,
+        "app_id": 44
+    },
+    {
+        "server_id": 36,
+        "app_id": 35
+    },
+    {
+        "server_id": 36,
+        "app_id": 14
+    },
+    {
+        "server_id": 36,
+        "app_id": 15
+    },
+    {
+        "server_id": 36,
+        "app_id": 38
+    },
+    {
+        "server_id": 107,
+        "app_id": 2
+    },
+    {
+        "server_id": 107,
+        "app_id": 3
+    },
+    {
+        "server_id": 107,
+        "app_id": 45
+    },
+    {
+        "server_id": 107,
+        "app_id": 21
+    },
+    {
+        "server_id": 107,
+        "app_id": 6
+    },
+    {
+        "server_id": 107,
+        "app_id": 8
+    },
+    {
+        "server_id": 107,
+        "app_id": 27
+    },
+    {
+        "server_id": 107,
+        "app_id": 7
+    },
+    {
+        "server_id": 107,
+        "app_id": 46
+    },
+    {
+        "server_id": 107,
+        "app_id": 10
+    },
+    {
+        "server_id": 107,
+        "app_id": 11
+    },
+    {
+        "server_id": 107,
+        "app_id": 14
+    },
+    {
+        "server_id": 107,
+        "app_id": 15
+    },
+    {
+        "server_id": 107,
+        "app_id": 39
+    },
+    {
+        "server_id": 46,
+        "app_id": 9
+    },
+    {
+        "server_id": 103,
+        "app_id": 3
+    },
+    {
+        "server_id": 103,
+        "app_id": 21
+    },
+    {
+        "server_id": 103,
+        "app_id": 4
+    },
+    {
+        "server_id": 103,
+        "app_id": 26
+    },
+    {
+        "server_id": 103,
+        "app_id": 5
+    },
+    {
+        "server_id": 103,
+        "app_id": 46
+    },
+    {
+        "server_id": 56,
+        "app_id": 3
+    },
+    {
+        "server_id": 48,
+        "app_id": 2
+    },
+    {
+        "server_id": 48,
+        "app_id": 4
+    },
+    {
+        "server_id": 48,
+        "app_id": 5
+    },
+    {
+        "server_id": 48,
+        "app_id": 29
+    },
+    {
+        "server_id": 48,
+        "app_id": 11
+    },
+    {
+        "server_id": 104,
+        "app_id": 2
+    },
+    {
+        "server_id": 104,
+        "app_id": 22
+    },
+    {
+        "server_id": 104,
+        "app_id": 25
+    },
+    {
+        "server_id": 104,
+        "app_id": 46
+    },
+    {
+        "server_id": 104,
+        "app_id": 11
+    },
+    {
+        "server_id": 52,
+        "app_id": 2
+    },
+    {
+        "server_id": 52,
+        "app_id": 28
+    },
+    {
+        "server_id": 52,
+        "app_id": 11
+    },
+    {
+        "server_id": 54,
+        "app_id": 29
+    },
+    {
+        "server_id": 54,
+        "app_id": 47
+    },
+    {
+        "server_id": 60,
+        "app_id": 2
+    },
+    {
+        "server_id": 60,
+        "app_id": 4
+    },
+    {
+        "server_id": 60,
+        "app_id": 5
+    },
+    {
+        "server_id": 60,
+        "app_id": 11
+    },
+    {
+        "server_id": 62,
+        "app_id": 5
+    },
+    {
+        "server_id": 65,
+        "app_id": 48
+    },
+    {
+        "server_id": 65,
+        "app_id": 40
+    },
+    {
+        "server_id": 71,
+        "app_id": 2
+    },
+    {
+        "server_id": 71,
+        "app_id": 4
+    },
+    {
+        "server_id": 71,
+        "app_id": 5
+    },
+    {
+        "server_id": 71,
+        "app_id": 11
+    },
+    {
+        "server_id": 71,
+        "app_id": 49
+    },
+    {
+        "server_id": 93,
+        "app_id": 2
+    },
+    {
+        "server_id": 93,
+        "app_id": 43
+    },
+    {
+        "server_id": 93,
+        "app_id": 28
+    },
+    {
+        "server_id": 93,
+        "app_id": 11
+    },
+    {
+        "server_id": 93,
+        "app_id": 40
+    },
+    {
+        "server_id": 74,
+        "app_id": 13
+    },
+    {
+        "server_id": 74,
+        "app_id": 6
+    },
+    {
+        "server_id": 74,
+        "app_id": 8
+    },
+    {
+        "server_id": 74,
+        "app_id": 27
+    },
+    {
+        "server_id": 74,
+        "app_id": 7
+    },
+    {
+        "server_id": 74,
+        "app_id": 10
+    },
+    {
+        "server_id": 74,
+        "app_id": 44
+    },
+    {
+        "server_id": 74,
+        "app_id": 14
+    },
+    {
+        "server_id": 74,
+        "app_id": 15
+    },
+    {
+        "server_id": 75,
+        "app_id": 4
+    },
+    {
+        "server_id": 75,
+        "app_id": 5
+    },
+    {
+        "server_id": 78,
+        "app_id": 2
+    },
+    {
+        "server_id": 78,
+        "app_id": 3
+    },
+    {
+        "server_id": 78,
+        "app_id": 25
+    },
+    {
+        "server_id": 78,
+        "app_id": 28
+    },
+    {
+        "server_id": 78,
+        "app_id": 11
+    },
+    {
+        "server_id": 78,
+        "app_id": 40
+    },
+    {
+        "server_id": 99,
+        "app_id": 26
+    },
+    {
+        "server_id": 99,
+        "app_id": 46
+    },
+    {
+        "server_id": 99,
+        "app_id": 41
+    },
+    {
+        "server_id": 80,
+        "app_id": 26
+    },
+    {
+        "server_id": 80,
+        "app_id": 41
+    },
+    {
+        "server_id": 110,
+        "app_id": 2
+    },
+    {
+        "server_id": 110,
+        "app_id": 3
+    },
+    {
+        "server_id": 110,
+        "app_id": 9
+    },
+    {
+        "server_id": 110,
+        "app_id": 46
+    },
+    {
+        "server_id": 110,
+        "app_id": 11
+    },
+    {
+        "server_id": 8,
+        "app_id": 2
+    },
+    {
+        "server_id": 8,
+        "app_id": 21
+    },
+    {
+        "server_id": 8,
+        "app_id": 4
+    },
+    {
+        "server_id": 8,
+        "app_id": 5
+    },
+    {
+        "server_id": 8,
+        "app_id": 28
+    },
+    {
+        "server_id": 8,
+        "app_id": 9
+    },
+    {
+        "server_id": 8,
+        "app_id": 11
+    },
+    {
+        "server_id": 42,
+        "app_id": 2
+    },
+    {
+        "server_id": 42,
+        "app_id": 22
+    },
+    {
+        "server_id": 42,
+        "app_id": 25
+    },
+    {
+        "server_id": 42,
+        "app_id": 26
+    },
+    {
+        "server_id": 42,
+        "app_id": 11
+    },
+    {
+        "server_id": 47,
+        "app_id": 4
+    },
+    {
+        "server_id": 47,
+        "app_id": 5
+    },
+    {
+        "server_id": 47,
+        "app_id": 35
+    },
+    {
+        "server_id": 59,
+        "app_id": 9
+    },
+    {
+        "server_id": 101,
+        "app_id": 2
+    },
+    {
+        "server_id": 101,
+        "app_id": 3
+    },
+    {
+        "server_id": 101,
+        "app_id": 5
+    },
+    {
+        "server_id": 101,
+        "app_id": 9
+    },
+    {
+        "server_id": 101,
+        "app_id": 11
+    },
+    {
+        "server_id": 49,
+        "app_id": 37
+    },
+    {
+        "server_id": 49,
+        "app_id": 41
+    }
+],
+    plans:       [
+    {
+        "id": 1,
+        "server_id": 6,
+        "name": "10 a 59",
+        "screens": "R$ 6",
+        "price": "6"
+    },
+    {
+        "id": 5,
+        "server_id": 102,
+        "name": "10 a 49",
+        "screens": "-",
+        "price": "R$ 8,00"
+    },
+    {
+        "id": 6,
+        "server_id": 102,
+        "name": "50 a 99",
+        "screens": "-",
+        "price": "R$ 7,00"
+    },
+    {
+        "id": 7,
+        "server_id": 102,
+        "name": "100 a 499",
+        "screens": "-",
+        "price": "R$ 6,00"
+    },
+    {
+        "id": 8,
+        "server_id": 102,
+        "name": "500 a 999",
+        "screens": "-",
+        "price": "R$ 5,00"
+    },
+    {
+        "id": 9,
+        "server_id": 102,
+        "name": "1000 a 4999",
+        "screens": "-",
+        "price": "R$ 4,00"
     }
 ]
 };

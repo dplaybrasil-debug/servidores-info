@@ -3,6 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let activeApps = [];
     let currentTab = 'servers';
 
+    // Mapa de hash <-> tab interna (para roteamento por URL)
+    const hashToTab = { '#servidores': 'servers', '#apps': 'apps', '#apoio': 'support' };
+    const tabToHash = { 'servers': '#servidores', 'apps': '#apps', 'support': '#apoio' };
+
     // --- FUNÇÕES DE LIMPEZA E FORMATAÇÃO ---
     const escapeHtml = (str) => {
         return (str || '').replace(/[&<"'>]/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m]));
@@ -37,10 +41,17 @@ document.addEventListener('DOMContentLoaded', () => {
             renderServers(activeServers);
             renderApps(activeApps);
 
-            // Verifica se deve abrir a aba de apoio automaticamente via URL
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('tab') === 'support' || urlParams.get('page') === 'support') {
-                switchTab('support');
+            // Verifica a aba via hash na URL (ex: #servidores, #apps, #apoio)
+            const initialHash = window.location.hash;
+            const initialTab = hashToTab[initialHash];
+            if (initialTab) {
+                switchTab(initialTab, false);
+            } else {
+                // Compatibilidade: verifica query string antiga
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.get('tab') === 'support' || urlParams.get('page') === 'support') {
+                    switchTab('support');
+                }
             }
         } catch(e) {
             // --- FALLBACK: Dados estáticos (GitHub Pages) ---
@@ -56,9 +67,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderServers(activeServers);
                 renderApps(activeApps);
 
-                const urlParams = new URLSearchParams(window.location.search);
-                if (urlParams.get('tab') === 'support' || urlParams.get('page') === 'support') {
-                    switchTab('support');
+                // Verifica a aba via hash na URL
+                const initialHashFb = window.location.hash;
+                const initialTabFb = hashToTab[initialHashFb];
+                if (initialTabFb) {
+                    switchTab(initialTabFb, false);
+                } else {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    if (urlParams.get('tab') === 'support' || urlParams.get('page') === 'support') {
+                        switchTab('support');
+                    }
                 }
                 return; // Sucesso com dados estáticos
             }
@@ -189,11 +207,23 @@ document.addEventListener('DOMContentLoaded', () => {
         
         try {
             const res = await fetch(`api.php?action=get_app_details&id=${id}`);
+            if (!res.ok) throw new Error('API indisponível');
             const data = await res.json();
             
             openInfoModal('app', data.name, extractImageUrl(data.logo), data.url, '', 0, 0, 0, data.linked_servers || []);
         } catch(e) {
-            console.error('Erro ao buscar detalhes do app', e);
+            // --- FALLBACK: Dados estáticos (GitHub Pages) ---
+            console.warn('API indisponível para app, usando dados estáticos', e);
+            let linked_servers = [];
+            if (window.STATIC_DATA && window.STATIC_DATA.server_apps) {
+                const serverIds = window.STATIC_DATA.server_apps
+                    .filter(sa => String(sa.app_id) === String(id))
+                    .map(sa => sa.server_id);
+                linked_servers = (window.STATIC_DATA.servers || [])
+                    .filter(s => serverIds.includes(s.id) && s.status === 'active')
+                    .map(s => ({ id: s.id, name: s.name, logo: s.logo }));
+            }
+            openInfoModal('app', app.name, extractImageUrl(app.logo), app.url, '', 0, 0, 0, linked_servers);
         }
     };
 
@@ -303,7 +333,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // --- NAVEGAÇÃO DE ABAS ---
-    window.switchTab = (tab) => {
+
+    window.switchTab = (tab, updateHash = true) => {
         currentTab = tab;
         document.getElementById('btnServidores').classList.toggle('active', tab === 'servers');
         document.getElementById('btnApps').classList.toggle('active', tab === 'apps');
@@ -325,7 +356,20 @@ document.addEventListener('DOMContentLoaded', () => {
         updatePublicFilterHighlight();
         renderServers(activeServers);
         renderApps(activeApps);
+
+        // Atualizar o endereço no navegador (hash)
+        if (updateHash && tabToHash[tab]) {
+            history.pushState(null, '', tabToHash[tab]);
+        }
     };
+
+    // Escuta o botão voltar/avançar do navegador
+    window.addEventListener('hashchange', () => {
+        const tab = hashToTab[window.location.hash] || 'servers';
+        if (tab !== currentTab) {
+            switchTab(tab, false);
+        }
+    });
 
     // --- CONTATOS DE APOIO (Portal Público) ---
     const contactTypeColors = {

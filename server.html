@@ -285,7 +285,22 @@
                 if (window.STATIC_DATA && window.STATIC_DATA.servers) {
                     const srv = window.STATIC_DATA.servers.find(s => String(s.id) === String(serverId));
                     if (srv) {
-                        data = { ...srv, plans: [], linked_apps: [] };
+                        // Buscar apps vinculados
+                        let linked_apps = [];
+                        if (window.STATIC_DATA.server_apps && window.STATIC_DATA.apps) {
+                            const appIds = window.STATIC_DATA.server_apps
+                                .filter(sa => String(sa.server_id) === String(serverId))
+                                .map(sa => sa.app_id);
+                            linked_apps = window.STATIC_DATA.apps
+                                .filter(a => appIds.includes(a.id) && a.status === 'active')
+                                .map(a => ({ id: a.id, name: a.name, logo: a.logo }));
+                        }
+                        // Buscar planos
+                        let plans = [];
+                        if (window.STATIC_DATA.plans) {
+                            plans = window.STATIC_DATA.plans.filter(p => String(p.server_id) === String(serverId));
+                        }
+                        data = { ...srv, plans: plans, linked_apps: linked_apps };
                     }
                 }
             }
