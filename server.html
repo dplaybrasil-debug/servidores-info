@@ -363,31 +363,24 @@
                 }
 
                 // Botões de Ação (Painel e Loja)
-                const panelUrl = data.panel_url || '';
                 const storeUrl = data.app_store_url || '';
                 const panelBtn = document.getElementById('sPanelBtn');
                 const storeBtn = document.getElementById('sStoreBtn');
                 const btnRow = document.getElementById('actionButtonsRow');
 
-                let showRow = false;
-
-                if (panelUrl && panelUrl.trim() !== '') {
-                    panelBtn.href = panelUrl;
-                    panelBtn.style.display = 'flex';
-                    showRow = true;
-                } else {
-                    panelBtn.style.display = 'none';
-                }
+                // Sempre exibe o botão do painel, mas sem link externo (apenas visual)
+                panelBtn.href = '#';
+                panelBtn.removeAttribute('target');
+                panelBtn.style.display = 'flex';
 
                 if (storeUrl && storeUrl.trim() !== '') {
                     storeBtn.href = storeUrl;
                     storeBtn.style.display = 'flex';
-                    showRow = true;
                 } else {
                     storeBtn.style.display = 'none';
                 }
 
-                btnRow.style.display = showRow ? 'flex' : 'none';
+                btnRow.style.display = 'flex';
 
                 // Data de Atualização (Badge de Cor)
                 const updatedAt = data.updated_at || data.created_at;
