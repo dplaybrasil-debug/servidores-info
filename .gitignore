@@ -1,0 +1,10 @@
+# PHP Portátil (Binários do Windows)
+/php/
+
+# Banco de dados local (SQLite)
+/database.sqlite
+
+# Logs e arquivos temporários
+*.log
+.DS_Store
+Thumbs.db

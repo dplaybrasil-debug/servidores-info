@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Servidor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .server-container {
+            max-width: 800px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .header-card {
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .server-logo {
+            width: 150px;
+            height: 150px;
+            border-radius: 24px;
+            object-fit: cover;
+            margin: 0 auto 1.5rem auto;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            display: block;
+        }
+
+        .server-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .server-desc {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+            line-height: 1.6;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-box {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .stat-box h4 { margin: 0; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+        .stat-box span { display: block; font-size: 2rem; font-weight: bold; margin-top: 0.5rem; color: white; }
+
+        .btn-access {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 1rem 3rem;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(220, 20, 60, 0.3);
+        }
+
+        .btn-access:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(220, 20, 60, 0.5);
+        }
+
+        .plans-card {
+            padding: 2rem;
+        }
+
+        .plans-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .plans-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .plans-table th, .plans-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .plans-table th {
+            color: var(--text-muted);
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .plans-table tr:last-child td { border-bottom: none; }
+        .price-col { font-weight: bold; color: var(--primary); font-size: 1.1rem; }
+
+        /* Apps Suportados */
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 1.5rem;
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .app-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .app-logo {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            background: rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .app-name {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+        }
+
+        /* Scroll na tabela */
+        .table-wrapper {
+            max-height: 350px;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+        }
+
+        .table-wrapper::-webkit-scrollbar { width: 6px; }
+        .table-wrapper::-webkit-scrollbar-track { background: transparent; }
+        .table-wrapper::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
+
+        /* Loader */
+        .loader { text-align: center; padding: 5rem; color: var(--text-muted); font-size: 1.2rem; }
+    </style>
+</head>
+<body>
+
+    <div id="loader" class="loader">Carregando informações...</div>
+
+    <div id="serverContainer" class="server-container" style="display: none;">
+        <!-- Card Principal -->
+        <div class="glass-panel header-card">
+            <a href="index.html" class="back-btn">← Voltar</a>
+            
+            <img id="sLogo" class="server-logo" src="" alt="Logo" style="display: none;">
+            <div id="sNoLogo" style="font-size: 5rem; margin-bottom: 1rem; display: none;">🖥️</div>
+            
+            <h1 id="sTitle" class="server-title">Nome do Servidor</h1>
+            <p id="sDesc" class="server-desc"></p>
+            
+            <div id="sUpdateBadge" style="text-align: center; margin-bottom: 2rem; font-size: 0.9rem; color: var(--text-muted); background: rgba(0,0,0,0.3); display: none; padding: 0.5rem 1.5rem; border-radius: 20px;"></div>
+            
+            <h2 style="font-size: 1.3rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px;">Quantidade de Conteúdos</h2>
+            <div id="noContentMsg" style="display: none; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: var(--danger); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; font-weight: 500;">
+                ⚠️ Conteúdo Indisponível no Momento
+            </div>
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-box"><h4>Canais</h4><span id="sChannels">0</span></div>
+                <div class="stat-box"><h4>Filmes</h4><span id="sMovies">0</span></div>
+                <div class="stat-box"><h4>Séries</h4><span id="sSeries">0</span></div>
+            </div>
+
+            <!-- Botões de Ação (Painel e Loja) -->
+            <div id="actionButtonsRow" style="display: none; gap: 1rem; margin-top: 1.5rem; width: 100%; justify-content: center; flex-wrap: wrap;">
+                <a href="#" id="sPanelBtn" class="btn-access" style="flex: 1; min-width: 200px; max-width: 320px; background: #2ecc71; padding: 0.8rem; font-size: 1.05rem; display: none; align-items: center; justify-content: center; gap: 0.6rem; box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);" target="_blank">Acessar o Painel 🚀</a>
+                <a href="#" id="sStoreBtn" class="btn-access" style="flex: 1; min-width: 200px; max-width: 320px; background: #3498db; padding: 0.8rem; font-size: 1.05rem; display: none; align-items: center; justify-content: center; gap: 0.6rem; box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);" target="_blank">Loja Aplicativos 📥</a>
+            </div>
+
+            <!-- Badge de Telas Simultâneas -->
+            <div id="screensInfo" style="display:none; margin-top: 1.5rem; text-align:center;">
+                <span style="display:inline-flex; align-items:center; gap:0.5rem; background:rgba(59,130,246,0.15);
+                             border:1px solid rgba(59,130,246,0.4); color:#60a5fa; padding:0.5rem 1.2rem;
+                             border-radius:20px; font-size:0.95rem; font-weight:600;">
+                    📺 <span id="sScreens">1</span> tela(s) simultânea(s)
+                </span>
+            </div>
+        </div>
+
+        <!-- Botão Ver Tabela -->
+        <div id="tableContainer" style="display: none; text-align: center; margin-bottom: 2rem;">
+            <button onclick="openTableModal()" style="background: var(--primary); width: 100%; max-width: 400px; padding: 1.2rem; font-size: 1.2rem; border-radius: 16px; border: none; color: white; font-weight: bold; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin: 0 auto; box-shadow: 0 8px 25px rgba(220, 20, 60, 0.4);">
+                <span style="font-size: 1.5rem;">👁️</span> Ver Tabela de Valores
+            </button>
+        </div>
+
+        <!-- Apps Suportados -->
+        <div class="glass-panel plans-card" id="appsCard" style="display: none; margin-bottom: 2rem; padding: 2rem;">
+            <h3>Aplicativos Parceiros</h3>
+            <div class="apps-grid" id="sAppsBody" style="margin-top: 0;">
+                <!-- Apps serão inseridos aqui -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal da Imagem da Tabela -->
+    <div id="modalTable" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; padding: 1rem; backdrop-filter: blur(10px);">
+        <div style="position: relative; max-width: 95vw; max-height: 95vh; display: flex; justify-content: center; align-items: center;">
+            <button onclick="closeTableModal()" style="position: absolute; top: -40px; right: 0; background: none; border: none; color: white; font-size: 2.5rem; cursor: pointer; transition: color 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='white'">&times;</button>
+            <img id="tableImg" src="" style="max-width: 100%; max-height: 90vh; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); user-select: none; -webkit-user-drag: none;" oncontextmenu="return false;" draggable="false">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const serverId = urlParams.get('id');
+
+            if (!serverId) {
+                document.getElementById('loader').innerText = 'Servidor não encontrado.';
+                return;
+            }
+
+            try {
+                const res = await fetch(`api.php?action=get_server_details&id=${serverId}`);
+                const data = await res.json();
+
+                if (data.error) {
+                    document.getElementById('loader').innerText = 'Servidor não encontrado ou inativo.';
+                    return;
+                }
+
+                // Renderizar Dados
+                document.getElementById('sTitle').innerText = data.name;
+                
+                if (data.description) {
+                    document.getElementById('sDesc').innerText = data.description;
+                } else {
+                    document.getElementById('sDesc').style.display = 'none';
+                }
+
+                const channelsCount = Number(data.channels || 0);
+                const moviesCount = Number(data.movies || 0);
+                const seriesCount = Number(data.series || 0);
+
+                if (channelsCount === 0 && moviesCount === 0 && seriesCount === 0) {
+                    document.getElementById('statsGrid').style.display = 'none';
+                    document.getElementById('noContentMsg').style.display = 'block';
+                } else {
+                    document.getElementById('sChannels').innerText = channelsCount.toLocaleString('pt-BR');
+                    document.getElementById('sMovies').innerText = moviesCount.toLocaleString('pt-BR');
+                    document.getElementById('sSeries').innerText = seriesCount.toLocaleString('pt-BR');
+                }
+
+                // Telas Simultâneas
+                const screensCount = Number(data.screens || 1);
+                if (screensCount > 1) {
+                    document.getElementById('sScreens').innerText = screensCount;
+                    document.getElementById('screensInfo').style.display = 'block';
+                }
+
+                // Botões de Ação (Painel e Loja)
+                const panelUrl = data.panel_url || '';
+                const storeUrl = data.app_store_url || '';
+                const panelBtn = document.getElementById('sPanelBtn');
+                const storeBtn = document.getElementById('sStoreBtn');
+                const btnRow = document.getElementById('actionButtonsRow');
+
+                let showRow = false;
+
+                if (panelUrl && panelUrl.trim() !== '') {
+                    panelBtn.href = panelUrl;
+                    panelBtn.style.display = 'flex';
+                    showRow = true;
+                } else {
+                    panelBtn.style.display = 'none';
+                }
+
+                if (storeUrl && storeUrl.trim() !== '') {
+                    storeBtn.href = storeUrl;
+                    storeBtn.style.display = 'flex';
+                    showRow = true;
+                } else {
+                    storeBtn.style.display = 'none';
+                }
+
+                btnRow.style.display = showRow ? 'flex' : 'none';
+
+                // Data de Atualização (Badge de Cor)
+                const updatedAt = data.updated_at || data.created_at;
+                if (updatedAt) {
+                    // Trata data SQL (UTC) para JS local
+                    const updateDate = new Date(updatedAt.replace(' ', 'T') + 'Z'); 
+                    const now = new Date();
+                    const diffTime = Math.abs(now - updateDate);
+                    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                    
+                    // Verde: < 7 dias | Azul: 7 a 30 dias | Vermelho: > 30 dias
+                    let color = 'var(--success)';
+                    let colorHex = '#2ecc71'; // Fallback verde
+                    
+                    if (diffDays > 15) {
+                        color = 'var(--danger)';
+                        colorHex = '#e74c3c'; // Fallback vermelho
+                    } else if (diffDays >= 7) {
+                        color = '#3498db'; // Azul
+                        colorHex = '#3498db';
+                    }
+
+                    const dateStr = updateDate.toLocaleDateString('pt-BR');
+                    const timeStr = updateDate.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+                    
+                    let diasText = '';
+                    if (diffDays === 0) {
+                        diasText = '(Hoje)';
+                    } else if (diffDays === 1) {
+                        diasText = '(Há 1 dia)';
+                    } else {
+                        diasText = `(Há ${diffDays} dias)`;
+                    }
+
+                    const badge = document.getElementById('sUpdateBadge');
+                    // Hide the update badge if there's no content
+                    if (channelsCount === 0 && moviesCount === 0 && seriesCount === 0) {
+                        badge.style.display = 'none';
+                    } else {
+                        badge.innerHTML = `Conteúdos atualizados em: <strong style="color: ${colorHex};">${dateStr} às ${timeStr} ${diasText}</strong>`;
+                        badge.style.border = `1px solid ${colorHex}55`;
+                        badge.style.display = 'inline-block';
+                    }
+                }
+
+                // Logo
+                let logoUrl = data.logo ? data.logo.replace(/\[\/?img\]/gi, '').trim() : '';
+                if (logoUrl) {
+                    document.getElementById('sLogo').src = logoUrl;
+                    document.getElementById('sLogo').style.display = 'block';
+                } else {
+                    document.getElementById('sNoLogo').style.display = 'block';
+                }
+
+                // Tabela em Imagem
+                if (data.table_image_url && data.table_image_url.trim() !== '') {
+                    document.getElementById('tableImg').src = data.table_image_url.replace(/\[\/?img\]/gi, '').trim();
+                    document.getElementById('tableContainer').style.display = 'block';
+                }
+
+                // Apps Vinculados
+                if (data.linked_apps && data.linked_apps.length > 0) {
+                    const appsContainer = document.getElementById('sAppsBody');
+                    document.querySelector('#appsCard h3').innerHTML = `Aplicativos Parceiros <span style="background: var(--primary); color: white; padding: 4px 12px; border-radius: 20px; font-size: 1rem; vertical-align: middle; margin-left: 0.5rem; box-shadow: 0 4px 10px rgba(59, 130, 246, 0.4);">${data.linked_apps.length}</span>`;
+                    
+                    data.linked_apps.forEach(app => {
+                        const appLogoUrl = app.logo ? app.logo.replace(/\[\/?img\]/gi, '').trim() : '';
+                        const logoHtml = appLogoUrl 
+                            ? `<img src="${appLogoUrl}" class="app-logo">` 
+                            : `<div class="app-logo">📱</div>`;
+                            
+                        appsContainer.innerHTML += `
+                            <div class="app-item">
+                                ${logoHtml}
+                                <span class="app-name">${app.name}</span>
+                            </div>
+                        `;
+                    });
+                    document.getElementById('appsCard').style.display = 'block';
+                }
+
+                // Mostrar
+                document.getElementById('loader').style.display = 'none';
+                document.getElementById('serverContainer').style.display = 'flex';
+
+            } catch(e) {
+                document.getElementById('loader').innerText = 'Erro ao carregar dados do servidor.';
+                console.error(e);
+            }
+        });
+
+        // Funções do Modal da Tabela
+        function openTableModal() {
+            document.getElementById('modalTable').style.display = 'flex';
+        }
+        function closeTableModal() {
+            document.getElementById('modalTable').style.display = 'none';
+        }
+    </script>
+    <!-- Marca d'água Repetida (Sobreposta para proteção) -->
+    <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+                z-index: 9999; opacity: 0.12; pointer-events: none;
+                background-image: url('assets/logo-central-v2.png');
+                background-repeat: repeat; background-size: 250px;">
+    </div>
+</body>
+</html>

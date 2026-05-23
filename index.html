@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal - Servidores e Apps</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .portal-layout {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        
+        .portal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .portal-nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .portal-nav button {
+            background: transparent;
+            color: var(--text-muted);
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .portal-nav button:hover {
+            color: white;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .portal-nav button.active {
+            color: white;
+            background: var(--primary);
+            box-shadow: 0 4px 15px rgba(220, 20, 60, 0.4);
+        }
+
+        .portal-content {
+            padding: 2rem;
+            flex: 1;
+            min-height: 0;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            overflow-y: auto;
+        }
+
+        .search-container {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-container input {
+            width: 100%;
+            max-width: 600px;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+            background: rgba(0,0,0,0.4);
+            color: white;
+            font-size: 1.1rem;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .search-container input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(220, 20, 60, 0.2);
+        }
+
+        /* Modal Info */
+        .info-stats {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            background: rgba(0,0,0,0.2);
+            padding: 1rem;
+            border-radius: 12px;
+        }
+        
+        .stat-item {
+            flex: 1;
+            text-align: center;
+            background: rgba(255,255,255,0.05);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        
+        .stat-item h4 {
+            margin: 0 0 0.5rem 0;
+            color: var(--text-muted);
+            font-weight: normal;
+            font-size: 0.9rem;
+        }
+        
+        .stat-item span {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .btn-link {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-weight: 500;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .btn-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(220, 20, 60, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="portal-layout">
+        <!-- Cabeçalho -->
+        <header class="portal-header">
+            <div class="logo">
+                <img src="assets/logo-central-v2.png" alt="Central de Servidores" style="height: 50px; width: auto; filter: drop-shadow(0 0 8px rgba(0,255,255,0.4));">
+            </div>
+            <nav class="portal-nav">
+                <button class="active" id="btnServidores" onclick="switchTab('servers')">Servidores</button>
+                <button id="btnApps" onclick="switchTab('apps')">Apps Parceiros</button>
+                <button id="btnApoio" onclick="switchTab('support')">📞 Apoio</button>
+            </nav>
+        </header>
+
+        <!-- Conteúdo -->
+        <main class="portal-content">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Pesquisar...">
+            </div>
+
+            <!-- Pills de filtro (visíveis só na aba Servidores) -->
+            <div id="publicServerFilterBar" style="display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin-bottom: 1.5rem;">
+                <button id="pubSrvFilterAll" onclick="filterPublicServers('all')"
+                    style="display:flex; align-items:center; gap:0.4rem; padding:0.4rem 1.1rem; border-radius:20px; border:none; cursor:pointer; font-size:0.85rem; font-weight:600; background:rgba(255,255,255,0.18); color:white; outline:2px solid rgba(255,255,255,0.55); transition:all 0.2s;">
+                    🔍 Todos <span id="pubSrvCnt-all" style="background:rgba(255,255,255,0.2); padding:1px 7px; border-radius:10px;">0</span>
+                </button>
+                <button id="pubSrvFilterHybrid" onclick="filterPublicServers('hybrid')"
+                    style="display:flex; align-items:center; gap:0.4rem; padding:0.4rem 1.1rem; border-radius:20px; border:none; cursor:pointer; font-size:0.85rem; font-weight:600; background:rgba(251,191,36,0.15); color:#fde68a; outline:none; transition:all 0.2s;">
+                    🔀 Híbrido <span id="pubSrvCnt-hybrid" style="background:rgba(251,191,36,0.25); padding:1px 7px; border-radius:10px;">0</span>
+                </button>
+                <button id="pubSrvFilterIptv" onclick="filterPublicServers('iptv')"
+                    style="display:flex; align-items:center; gap:0.4rem; padding:0.4rem 1.1rem; border-radius:20px; border:none; cursor:pointer; font-size:0.85rem; font-weight:600; background:rgba(99,102,241,0.15); color:#a5b4fc; outline:none; transition:all 0.2s;">
+                    📡 IPTV <span id="pubSrvCnt-iptv" style="background:rgba(99,102,241,0.25); padding:1px 7px; border-radius:10px;">0</span>
+                </button>
+                <button id="pubSrvFilterAndroid" onclick="filterPublicServers('android')"
+                    style="display:flex; align-items:center; gap:0.4rem; padding:0.4rem 1.1rem; border-radius:20px; border:none; cursor:pointer; font-size:0.85rem; font-weight:600; background:rgba(52,211,153,0.15); color:#6ee7b7; outline:none; transition:all 0.2s;">
+                    🤖 Android <span id="pubSrvCnt-android" style="background:rgba(52,211,153,0.25); padding:1px 7px; border-radius:10px;">0</span>
+                </button>
+            </div>
+
+            <div id="section-servers" style="display: block;">
+                <div class="grid" id="publicServersGrid" style="grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1.2rem;"></div>
+            </div>
+
+            <div id="section-apps" style="display: none;">
+                <div class="grid" id="publicAppsGrid" style="grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 1rem;"></div>
+            </div>
+
+            <div id="section-support" style="display: none; padding: 2rem 0;">
+                <div style="text-align:center; margin-bottom:4rem;">
+                    <h1 style="font-size:3rem; font-weight:900; color:white;
+                               text-transform:uppercase; letter-spacing:0.25em; margin:0;
+                               font-family: 'Outfit', sans-serif; text-shadow: 0 0 20px rgba(255,255,255,0.15);">
+                        Central de Ajuda
+                    </h1>
+                </div>
+                <div id="publicContactsGrid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:2rem; max-width:1100px; margin:0 auto;"></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal de Informações -->
+    <div class="modal-overlay" id="modalInfo">
+        <div class="modal glass-panel" style="max-width: 850px; width: 95%;">
+            <div class="modal-header">
+                <h2 id="infoTitle">Detalhes</h2>
+                <button class="close-btn" onclick="closeModal('modalInfo')">&times;</button>
+            </div>
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <img id="infoLogo" src="" style="width: 120px; height: 120px; object-fit: cover; border-radius: 20px; display: none; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            </div>
+            <p id="infoDesc" style="color: var(--text-muted); text-align: center; margin-bottom: 1.5rem; max-width: 650px; margin-left: auto; margin-right: auto;"></p>
+            
+            <div id="infoStatsContainer" class="info-stats" style="display: none;">
+                <div class="stat-item">
+                    <h4>Canais</h4>
+                    <span id="infoChannels">0</span>
+                </div>
+                <div class="stat-item">
+                    <h4>Filmes</h4>
+                    <span id="infoMovies">0</span>
+                </div>
+                <div class="stat-item">
+                    <h4>Séries</h4>
+                    <span id="infoSeries">0</span>
+                </div>
+            </div>
+
+            <!-- Servidores Compatíveis -->
+            <div id="infoLinkedContainer" style="display: none; margin-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem;">
+                <h4 id="infoLinkedTitle" style="color: var(--text-muted); font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem; text-align: center;">Servidores Parceiros Compatíveis:</h4>
+                <div id="infoLinkedGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1.2rem;">
+                    <!-- Servidores injetados via JS -->
+                </div>
+            </div>
+
+            <a href="#" id="infoLink" class="btn-link" target="_blank" style="display: none;">Acessar</a>
+            <p id="noLinkMsg" style="text-align: center; color: var(--danger); display: none; margin-top: 1rem;">Link não disponível</p>
+        </div>
+    </div>
+
+    <!-- Marca d'água Repetida (Sobreposta para proteção) -->
+    <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+                z-index: 9999; opacity: 0.12; pointer-events: none;
+                background-image: url('assets/logo-central-v2.png');
+                background-repeat: repeat; background-size: 250px;">
+    </div>
+
+    <script src="data.js?v=1"></script>
+    <script src="portal.js?v=12"></script>
+</body>
+</html>
