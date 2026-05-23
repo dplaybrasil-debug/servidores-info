@@ -1,6 +1,6 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-05-23 17:50:23
+ * Gerado em: 2026-05-23 18:16:38
  * NÃO edite manualmente. Regenere via: php generate_data.php
  */
 window.STATIC_DATA = {
@@ -2056,8 +2056,7 @@ window.STATIC_DATA = {
         "created_at": "2026-04-27 07:15:00"
     }
 ],
-    contacts:    [
-],
+    contacts:    [],
     server_apps: [
     {
         "server_id": 102,
