@@ -2057,36 +2057,6 @@ window.STATIC_DATA = {
     }
 ],
     contacts:    [
-    {
-        "id": 2,
-        "name": "SUOIRTE RÁPIDO",
-        "type": "whatsapp",
-        "value": "5516991004498",
-        "description": "Fale com um atendente agora mesmo. Tireduvidas, renove planos ou peça ajuda Tecnica",
-        "active": 1,
-        "sort_order": 1,
-        "created_at": "2026-04-29 02:54:00"
-    },
-    {
-        "id": 3,
-        "name": "TELEGRAM VIP",
-        "type": "telegram",
-        "value": "@seucanal",
-        "description": "Prefere privacidade do Telegram ? Nosso time tamém está online por lá",
-        "active": 1,
-        "sort_order": 2,
-        "created_at": "2026-04-29 02:56:21"
-    },
-    {
-        "id": 4,
-        "name": "CANAL OFICIAL",
-        "type": "other",
-        "value": "http:\/\/",
-        "description": "Entre no nosso grupo e recebe atualizações manutenções, novidades e ofertas ",
-        "active": 1,
-        "sort_order": 3,
-        "created_at": "2026-04-29 02:57:43"
-    }
 ],
     server_apps: [
     {
