@@ -359,7 +359,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Atualizar o endereço no navegador (hash)
         if (updateHash && tabToHash[tab]) {
-            history.pushState(null, '', tabToHash[tab]);
+            window.location.hash = tabToHash[tab];
         }
     };
 
