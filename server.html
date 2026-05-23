@@ -261,6 +261,7 @@
         </div>
     </div>
 
+    <script src="data.js?v=1"></script>
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             const urlParams = new URLSearchParams(window.location.search);
@@ -271,15 +272,30 @@
                 return;
             }
 
+            let data = null;
+
             try {
                 const res = await fetch(`api.php?action=get_server_details&id=${serverId}`);
-                const data = await res.json();
-
-                if (data.error) {
-                    document.getElementById('loader').innerText = 'Servidor não encontrado ou inativo.';
-                    return;
+                if (!res.ok) throw new Error('API indisponível');
+                data = await res.json();
+                if (data.error) throw new Error('Servidor não encontrado');
+            } catch(e) {
+                // --- FALLBACK: Dados estáticos (GitHub Pages) ---
+                console.warn('API indisponível, usando dados estáticos (data.js)', e);
+                if (window.STATIC_DATA && window.STATIC_DATA.servers) {
+                    const srv = window.STATIC_DATA.servers.find(s => String(s.id) === String(serverId));
+                    if (srv) {
+                        data = { ...srv, plans: [], linked_apps: [] };
+                    }
                 }
+            }
 
+            if (!data) {
+                document.getElementById('loader').innerText = 'Servidor não encontrado ou inativo.';
+                return;
+            }
+
+            try {
                 // Renderizar Dados
                 document.getElementById('sTitle').innerText = data.name;
                 
