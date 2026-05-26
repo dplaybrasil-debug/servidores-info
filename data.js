@@ -1,6 +1,6 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-05-23 18:16:38
+ * Gerado em: 2026-05-26 03:54:56
  * NÃO edite manualmente. Regenere via: php generate_data.php
  */
 window.STATIC_DATA = {
@@ -17,9 +17,9 @@ window.STATIC_DATA = {
         "created_at": "2026-04-27 06:12:24",
         "logo": "https:\/\/i.imgur.com\/YQffPp9.png",
         "table_image_url": "",
-        "updated_at": "2026-05-17 04:52:45",
+        "updated_at": "2026-05-23 18:23:25",
         "screens": 1,
-        "panel_url": "https:\/\/paineladamplay.com\/",
+        "panel_url": "",
         "app_store_url": "",
         "server_type": "hybrid"
     },
@@ -71,9 +71,9 @@ window.STATIC_DATA = {
         "created_at": "2026-04-27 06:09:59",
         "logo": "https:\/\/i.imgur.com\/X5aP8tP.png",
         "table_image_url": "",
-        "updated_at": "2026-05-02 04:45:29",
+        "updated_at": "2026-05-23 18:23:31",
         "screens": 1,
-        "panel_url": "https:\/\/painel.la\/",
+        "panel_url": "",
         "app_store_url": "",
         "server_type": "hybrid"
     },
@@ -107,9 +107,9 @@ window.STATIC_DATA = {
         "created_at": "2026-04-27 06:09:59",
         "logo": "https:\/\/i.imgur.com\/iHk41f6.png",
         "table_image_url": "",
-        "updated_at": "2026-05-02 05:02:32",
+        "updated_at": "2026-05-23 18:23:37",
         "screens": 2,
-        "panel_url": "https:\/\/aplicativoz342.click\/",
+        "panel_url": "",
         "app_store_url": "",
         "server_type": "hybrid"
     },
@@ -147,6 +147,24 @@ window.STATIC_DATA = {
         "screens": 1,
         "panel_url": null,
         "app_store_url": null,
+        "server_type": "hybrid"
+    },
+    {
+        "id": 111,
+        "name": "AURA TV +",
+        "url": "",
+        "status": "active",
+        "description": "",
+        "movies": 0,
+        "series": 0,
+        "channels": 0,
+        "created_at": "2026-05-26 03:23:07",
+        "logo": "[img]https:\/\/i.imgur.com\/rbWkVSP.jpeg[\/img]",
+        "table_image_url": "[img]https:\/\/i.imgur.com\/Ntu6Dpn.jpeg[\/img]",
+        "updated_at": "2026-05-26 03:34:59",
+        "screens": 2,
+        "panel_url": "",
+        "app_store_url": "https:\/\/auratvstore.com\/",
         "server_type": "hybrid"
     },
     {
@@ -870,24 +888,6 @@ window.STATIC_DATA = {
         "server_type": "hybrid"
     },
     {
-        "id": 54,
-        "name": "NINETY TV",
-        "url": "http:\/\/",
-        "status": "active",
-        "description": "",
-        "movies": 0,
-        "series": 0,
-        "channels": 0,
-        "created_at": "2026-04-27 06:09:59",
-        "logo": "[img]https:\/\/i.imgur.com\/nAwf8bD.png[\/img]",
-        "table_image_url": null,
-        "updated_at": null,
-        "screens": 1,
-        "panel_url": null,
-        "app_store_url": null,
-        "server_type": "hybrid"
-    },
-    {
         "id": 55,
         "name": "NOBRE TV",
         "url": "http:\/\/",
@@ -1348,11 +1348,11 @@ window.STATIC_DATA = {
         "channels": 0,
         "created_at": "2026-04-27 06:09:59",
         "logo": "[img]https:\/\/i.imgur.com\/tLsJuPo.png[\/img]",
-        "table_image_url": "",
-        "updated_at": "2026-04-27 11:43:18",
+        "table_image_url": "[img]https:\/\/i.imgur.com\/34n8U58.jpeg[\/img]",
+        "updated_at": "2026-05-26 03:48:55",
         "screens": 1,
-        "panel_url": null,
-        "app_store_url": null,
+        "panel_url": "",
+        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
@@ -1444,6 +1444,24 @@ window.STATIC_DATA = {
         "panel_url": null,
         "app_store_url": null,
         "server_type": "hybrid"
+    },
+    {
+        "id": 112,
+        "name": "TV + EXPRESS",
+        "url": "",
+        "status": "active",
+        "description": "",
+        "movies": 0,
+        "series": 0,
+        "channels": 0,
+        "created_at": "2026-05-26 03:38:43",
+        "logo": "[img]https:\/\/i.imgur.com\/hPH3yGF.png[\/img]",
+        "table_image_url": "[img]https:\/\/i.imgur.com\/3fgbbMi.jpeg[\/img]",
+        "updated_at": "2026-05-26 03:47:46",
+        "screens": 1,
+        "panel_url": "",
+        "app_store_url": "",
+        "server_type": "android"
     },
     {
         "id": 88,
@@ -2900,6 +2918,90 @@ window.STATIC_DATA = {
     },
     {
         "server_id": 49,
+        "app_id": 41
+    },
+    {
+        "server_id": 111,
+        "app_id": 13
+    },
+    {
+        "server_id": 111,
+        "app_id": 2
+    },
+    {
+        "server_id": 111,
+        "app_id": 3
+    },
+    {
+        "server_id": 111,
+        "app_id": 45
+    },
+    {
+        "server_id": 111,
+        "app_id": 21
+    },
+    {
+        "server_id": 111,
+        "app_id": 4
+    },
+    {
+        "server_id": 111,
+        "app_id": 6
+    },
+    {
+        "server_id": 111,
+        "app_id": 8
+    },
+    {
+        "server_id": 111,
+        "app_id": 27
+    },
+    {
+        "server_id": 111,
+        "app_id": 7
+    },
+    {
+        "server_id": 111,
+        "app_id": 5
+    },
+    {
+        "server_id": 111,
+        "app_id": 29
+    },
+    {
+        "server_id": 111,
+        "app_id": 28
+    },
+    {
+        "server_id": 111,
+        "app_id": 10
+    },
+    {
+        "server_id": 111,
+        "app_id": 44
+    },
+    {
+        "server_id": 111,
+        "app_id": 11
+    },
+    {
+        "server_id": 111,
+        "app_id": 34
+    },
+    {
+        "server_id": 111,
+        "app_id": 14
+    },
+    {
+        "server_id": 111,
+        "app_id": 15
+    },
+    {
+        "server_id": 111,
+        "app_id": 40
+    },
+    {
+        "server_id": 111,
         "app_id": 41
     }
 ],
