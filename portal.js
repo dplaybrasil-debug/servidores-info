@@ -512,11 +512,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const hybrid  = activeServers.filter(s => (s.server_type || 'hybrid') === 'hybrid').length;
         const iptv    = activeServers.filter(s => (s.server_type || 'hybrid') === 'iptv').length;
         const android = activeServers.filter(s => (s.server_type || 'hybrid') === 'android').length;
+        const screens = activeServers.filter(s => parseInt(s.screens, 10) >= 2).length;
+        
         const el = (id) => document.getElementById(id);
         if (el('pubSrvCnt-all'))     el('pubSrvCnt-all').textContent     = total;
         if (el('pubSrvCnt-hybrid'))  el('pubSrvCnt-hybrid').textContent  = hybrid;
         if (el('pubSrvCnt-iptv'))    el('pubSrvCnt-iptv').textContent    = iptv;
         if (el('pubSrvCnt-android')) el('pubSrvCnt-android').textContent = android;
+        if (el('pubSrvCnt-screens')) el('pubSrvCnt-screens').textContent = screens;
         updatePublicFilterHighlight();
     };
 
@@ -527,12 +530,14 @@ document.addEventListener('DOMContentLoaded', () => {
             hybrid:  document.getElementById('pubSrvFilterHybrid'),
             iptv:    document.getElementById('pubSrvFilterIptv'),
             android: document.getElementById('pubSrvFilterAndroid'),
+            screens: document.getElementById('pubSrvFilterScreens'),
         };
         const outlines = {
             all:     '2px solid rgba(255,255,255,0.6)',
             hybrid:  '2px solid #fde68a',
             iptv:    '2px solid #a5b4fc',
             android: '2px solid #6ee7b7',
+            screens: '2px solid #a5b4fc',
         };
         Object.keys(pills).forEach(k => {
             if (pills[k]) pills[k].style.outline = k === f ? outlines[k] : 'none';
@@ -546,14 +551,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (filter === 'hybrid' || filter === 'iptv' || filter === 'android') {
             result = result.filter(s => (s.server_type || 'hybrid') === filter);
+        } else if (filter === 'screens') {
+            result = result.filter(s => parseInt(s.screens, 10) >= 2);
         }
 
         if (term) result = result.filter(s => {
             const sc = parseInt(s.screens, 10) || 1;
             const telaLabel = `${sc} tela${sc >= 2 ? 's' : ''}`;
+            const multiTelaLabel = sc >= 2 ? 'multi-tela multitela multi telas' : '';
             const typeLabels = { hybrid: 'híbrido p2p iptv', iptv: 'iptv', android: 'android' };
             const typeLabel  = typeLabels[s.server_type || 'hybrid'] || '';
-            return `${s.name} ${telaLabel} ${typeLabel}`.toLowerCase().includes(term);
+            return `${s.name} ${telaLabel} ${multiTelaLabel} ${typeLabel}`.toLowerCase().includes(term);
         });
 
         renderServers(result);
