@@ -1,6 +1,6 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-05-26 03:54:56
+ * Gerado em: 2026-05-26 04:05:26
  * NÃO edite manualmente. Regenere via: php generate_data.php
  */
 window.STATIC_DATA = {
@@ -888,6 +888,24 @@ window.STATIC_DATA = {
         "server_type": "hybrid"
     },
     {
+        "id": 54,
+        "name": "NINETY TV",
+        "url": "http:\/\/",
+        "status": "active",
+        "description": "",
+        "movies": 0,
+        "series": 0,
+        "channels": 0,
+        "created_at": "2026-04-27 06:09:59",
+        "logo": "[img]https:\/\/i.imgur.com\/nAwf8bD.png[\/img]",
+        "table_image_url": "",
+        "updated_at": "2026-05-26 04:00:43",
+        "screens": 1,
+        "panel_url": "",
+        "app_store_url": "",
+        "server_type": "hybrid"
+    },
+    {
         "id": 55,
         "name": "NOBRE TV",
         "url": "http:\/\/",
@@ -1349,7 +1367,7 @@ window.STATIC_DATA = {
         "created_at": "2026-04-27 06:09:59",
         "logo": "[img]https:\/\/i.imgur.com\/tLsJuPo.png[\/img]",
         "table_image_url": "[img]https:\/\/i.imgur.com\/34n8U58.jpeg[\/img]",
-        "updated_at": "2026-05-26 03:48:55",
+        "updated_at": "2026-05-26 04:00:14",
         "screens": 1,
         "panel_url": "",
         "app_store_url": "",
