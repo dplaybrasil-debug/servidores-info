@@ -211,6 +211,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         exit;
     }
 
+    // Obter quantidade de visitantes
+    if ($action === 'get_visitors') {
+        $stmt = $pdo->prepare("SELECT metric_value FROM site_statistics WHERE metric_name = ?");
+        $stmt->execute(['visitor_count']);
+        $value = $stmt->fetchColumn();
+        echo json_encode(['visitor_count' => (int)($value !== false ? $value : 0)]);
+        exit;
+    }
+
+    // Incrementar quantidade de visitantes
+    if ($action === 'increment_visitors') {
+        $pdo->exec("UPDATE site_statistics SET metric_value = metric_value + 1, updated_at = CURRENT_TIMESTAMP WHERE metric_name = 'visitor_count'");
+        echo json_encode(['success' => true]);
+        exit;
+    }
+
     // Listar contatos de apoio (público)
     if ($action === 'list_contacts') {
         $onlyActive = ($_GET['active_only'] ?? '1') === '1';

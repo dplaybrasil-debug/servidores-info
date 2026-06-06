@@ -6,32 +6,26 @@
  */
 require_once 'db.php';
 
-$pdo = getDB();
+// $pdo is defined in db.php
 
 // Servidores ativos
 $servers = $pdo->query("SELECT * FROM servers WHERE status = 'active' ORDER BY name ASC")->fetchAll(PDO::FETCH_ASSOC);
 
 // Apps ativos
-$apps = $pdo->query("SELECT * FROM apps WHERE status = 'active' ORDER BY name ASC")->fetchAll(PDO::FETCH_ASSOC);
+$apps = $pdo->query("SELECT * FROM partner_apps WHERE status = 'active' ORDER BY name ASC")->fetchAll(PDO::FETCH_ASSOC);
 
 // Contatos
-$contacts = [];
-try {
-    $contacts = $pdo->query("SELECT * FROM contacts ORDER BY id ASC")->fetchAll(PDO::FETCH_ASSOC);
-} catch (Exception $e) { /* tabela pode não existir */ }
+$contacts = $pdo->query("SELECT * FROM support_contacts WHERE active = 1 ORDER BY sort_order ASC, id ASC")->fetchAll(PDO::FETCH_ASSOC);
 
 // Vínculos app-servidor
-$links = [];
-try {
-    $links = $pdo->query("SELECT * FROM app_server_links")->fetchAll(PDO::FETCH_ASSOC);
-} catch (Exception $e) {}
+$server_apps = $pdo->query("SELECT * FROM server_apps")->fetchAll(PDO::FETCH_ASSOC);
 
 // Monta o arquivo JS estático
-$json_servers  = json_encode($servers,  JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-$json_apps     = json_encode($apps,     JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-$json_contacts = json_encode($contacts, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-$json_links    = json_encode($links,    JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-$generated_at  = date('Y-m-d H:i:s');
+$json_servers     = json_encode($servers,     JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+$json_apps        = json_encode($apps,        JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+$json_contacts    = json_encode($contacts,    JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+$json_server_apps = json_encode($server_apps, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+$generated_at     = date('Y-m-d H:i:s');
 
 $content = <<<JS
 /**
@@ -40,10 +34,10 @@ $content = <<<JS
  * NÃO edite manualmente. Regenere via: http://localhost:8000/export_data.php
  */
 window.STATIC_DATA = {
-    servers:  {$json_servers},
-    apps:     {$json_apps},
-    contacts: {$json_contacts},
-    links:    {$json_links}
+    servers:     {$json_servers},
+    apps:        {$json_apps},
+    contacts:    {$json_contacts},
+    server_apps: {$json_server_apps}
 };
 JS;
 

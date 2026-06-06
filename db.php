@@ -62,6 +62,17 @@ try {
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )");
 
+    // Tabela de Estatísticas / Contador de Visitas
+    $pdo->exec("CREATE TABLE IF NOT EXISTS site_statistics (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        metric_name TEXT UNIQUE NOT NULL,
+        metric_value INTEGER DEFAULT 0,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )");
+    
+    // Insere o contador inicial caso não exista
+    $pdo->exec("INSERT OR IGNORE INTO site_statistics (metric_name, metric_value) VALUES ('visitor_count', 0)");
+
     // Atualiza tabela antiga caso já exista, para adicionar colunas de conteúdos
     if (!$is_new) {
         try { $pdo->exec("ALTER TABLE servers ADD COLUMN movies INTEGER DEFAULT 0;"); } catch(Exception $e) {}

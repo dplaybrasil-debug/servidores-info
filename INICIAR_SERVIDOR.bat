@@ -1,4 +1,5 @@
 @echo off
+cd /d "%~dp0"
 title Servidor do Portal
 echo ==========================================
 echo   INICIANDO SERVIDOR LOCAL (PHP)
@@ -8,5 +9,6 @@ echo   Acesse o portal em: http://localhost:8000/index.html
 echo   Acesse o admin em:  http://localhost:8000/admin.php
 echo.
 echo ==========================================
+start http://localhost:8000/index.html
 .\php\php.exe -S localhost:8000
 pause

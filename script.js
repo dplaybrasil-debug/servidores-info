@@ -29,7 +29,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadAllData = async () => {
         await loadServers();
         await loadApps();
-    }    // --- LÓGICA DE SERVIDORES ---
+        await loadVisitors();
+    };
+
+    // --- CARREGAR CONTADOR DE VISITAS ---
+    const loadVisitors = async () => {
+        try {
+            const res = await fetch('api.php?action=get_visitors');
+            const data = await res.json();
+            const counterEl = document.getElementById('visitCounter');
+            if (counterEl && data.visitor_count !== undefined) {
+                counterEl.innerText = Number(data.visitor_count).toLocaleString('pt-BR');
+            }
+        } catch(e) {
+            console.error('Erro ao buscar contador de visitas', e);
+        }
+    };    // --- LÓGICA DE SERVIDORES ---
     const loadServers = async () => {
         const res = await fetch('api.php?action=list_servers');
         const servers = await res.json();

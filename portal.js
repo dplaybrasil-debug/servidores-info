@@ -32,6 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- CARREGAMENTO DE DADOS ---
     const loadAllData = async () => {
         try {
+            // Incrementa contador de visitas de forma silenciosa e assíncrona
+            try { fetch('api.php?action=increment_visitors'); } catch(err) {}
+
             // Tenta usar a API PHP (servidor local)
             const resSrv = await fetch('api.php?action=list_servers');
             if (!resSrv.ok) throw new Error('API indisponível');

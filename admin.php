@@ -64,6 +64,19 @@
                     </div>
                     <button class="btn-primary" onclick="openNewServerModal()">Novo Servidor</button>
                 </header>
+                <!-- Contador de Visitas / Estatísticas -->
+                <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                    <div class="glass-panel" style="flex: 1; min-width: 250px; padding: 1.2rem; display: flex; align-items: center; gap: 1.2rem; border-radius: 16px; background: rgba(13, 17, 23, 0.65); border: 2px solid rgba(255, 255, 255, 0.05); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                        <div style="font-size: 2.2rem; background: rgba(59, 130, 246, 0.15); color: #3b82f6; width: 60px; height: 60px; border-radius: 14px; display: flex; align-items: center; justify-content: center; filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.3));">
+                            👥
+                        </div>
+                        <div>
+                            <div style="font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; font-family: 'Inter', sans-serif;">Visualizações da Plataforma</div>
+                            <div id="visitCounter" style="font-size: 1.8rem; font-weight: 800; color: white; margin-top: 2px; font-family: 'Outfit', sans-serif;">0</div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="grid" id="serversGrid" style="grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 1.5rem;"></div>
             </section>
 
