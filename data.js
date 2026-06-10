@@ -1,6 +1,6 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-06-06 05:05:59
+ * Gerado em: 2026-06-10 00:34:28
  * NÃO edite manualmente. Regenere via: http://localhost:8000/export_data.php
  */
 window.STATIC_DATA = {
@@ -15,9 +15,9 @@ window.STATIC_DATA = {
         "series": 8799,
         "channels": 4991,
         "created_at": "2026-04-27 06:12:24",
-        "logo": "https:\/\/i.imgur.com\/YQffPp9.png",
-        "table_image_url": "",
-        "updated_at": "2026-05-29 16:12:49",
+        "logo": "https:\/\/i.ibb.co\/MxjbSW3c\/ADAM-PLAY.png",
+        "table_image_url": "[img]https:\/\/i.imgur.com\/Bx26HYg.jpeg[\/img]",
+        "updated_at": "2026-06-09 15:56:47",
         "screens": 2,
         "panel_url": "",
         "app_store_url": "",
@@ -33,27 +33,9 @@ window.STATIC_DATA = {
         "series": 0,
         "channels": 0,
         "created_at": "2026-04-27 06:09:59",
-        "logo": "https:\/\/i.imgur.com\/DpWK8wp.png",
+        "logo": "https:\/\/i.ibb.co\/qMhjt0sT\/ALL-PLAYER.png",
         "table_image_url": "[img]https:\/\/i.imgur.com\/gDZWsEy.jpeg[\/img]",
         "updated_at": "2026-06-06 04:48:47",
-        "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
-        "server_type": "hybrid"
-    },
-    {
-        "id": 6,
-        "name": "ALPHA - FLIX HD",
-        "url": "http:\/\/",
-        "status": "active",
-        "description": "",
-        "movies": 22877,
-        "series": 5896,
-        "channels": 2848,
-        "created_at": "2026-04-27 06:09:59",
-        "logo": "https:\/\/i.imgur.com\/X5aP8tP.png",
-        "table_image_url": "",
-        "updated_at": "2026-05-23 18:23:31",
         "screens": 1,
         "panel_url": "",
         "app_store_url": "",
@@ -71,7 +53,7 @@ window.STATIC_DATA = {
         "created_at": "2026-04-27 06:09:59",
         "logo": "https:\/\/i.imgur.com\/mEH9y9l.png",
         "table_image_url": "[img]https:\/\/i.imgur.com\/THn8D8X.jpeg[\/img]",
-        "updated_at": "2026-06-06 04:49:57",
+        "updated_at": "2026-06-09 16:08:37",
         "screens": 2,
         "panel_url": "",
         "app_store_url": "",
@@ -87,10 +69,28 @@ window.STATIC_DATA = {
         "series": 10702,
         "channels": 1885,
         "created_at": "2026-04-27 06:09:59",
-        "logo": "https:\/\/i.imgur.com\/iHk41f6.png",
-        "table_image_url": "[img]https:\/\/i.imgur.com\/X6GBQ6f.jpeg[\/img]",
-        "updated_at": "2026-06-06 04:49:30",
+        "logo": "https:\/\/i.ibb.co\/39F6frYJ\/ALPHA-SERVER.png",
+        "table_image_url": "[img]https:\/\/i.imgur.com\/wH5HceY.jpeg[\/img]",
+        "updated_at": "2026-06-09 15:58:52",
         "screens": 2,
+        "panel_url": "",
+        "app_store_url": "",
+        "server_type": "hybrid"
+    },
+    {
+        "id": 6,
+        "name": "ALPHA STREMING",
+        "url": "http:\/\/",
+        "status": "active",
+        "description": "",
+        "movies": 22877,
+        "series": 5896,
+        "channels": 2848,
+        "created_at": "2026-04-27 06:09:59",
+        "logo": "https:\/\/i.ibb.co\/qLRLRYPt\/ALPHA-STREMING.png",
+        "table_image_url": "",
+        "updated_at": "2026-06-09 16:08:26",
+        "screens": 1,
         "panel_url": "",
         "app_store_url": "",
         "server_type": "hybrid"
@@ -105,7 +105,7 @@ window.STATIC_DATA = {
         "series": 0,
         "channels": 0,
         "created_at": "2026-04-27 06:09:59",
-        "logo": "https:\/\/i.imgur.com\/XRJopX8.png",
+        "logo": "https:\/\/i.ibb.co\/qFpf3Ptt\/AREA-PLAY.png",
         "table_image_url": "[img]https:\/\/i.imgur.com\/8rbK7kt.jpeg[\/img]",
         "updated_at": "2026-06-06 04:50:07",
         "screens": 1,
@@ -123,10 +123,28 @@ window.STATIC_DATA = {
         "series": 0,
         "channels": 0,
         "created_at": "2026-04-27 06:09:59",
-        "logo": "https:\/\/i.imgur.com\/aggKkgM.png",
+        "logo": "https:\/\/i.ibb.co\/YBWqb6Fk\/ATMOS.png",
         "table_image_url": "[img]https:\/\/i.imgur.com\/8uYjJDl.jpeg[\/img]",
         "updated_at": "2026-06-06 04:50:16",
         "screens": 1,
+        "panel_url": "",
+        "app_store_url": "",
+        "server_type": "hybrid"
+    },
+    {
+        "id": 129,
+        "name": "AURA TV +",
+        "url": "",
+        "status": "active",
+        "description": "",
+        "movies": 0,
+        "series": 0,
+        "channels": 0,
+        "created_at": "2026-06-09 15:34:11",
+        "logo": "[img]https:\/\/i.imgur.com\/rbWkVSP.jpeg[\/img]",
+        "table_image_url": "[img]https:\/\/i.imgur.com\/BO488Yv.jpeg[\/img]",
+        "updated_at": "2026-06-09 16:29:30",
+        "screens": 2,
         "panel_url": "",
         "app_store_url": "",
         "server_type": "hybrid"
@@ -141,7 +159,7 @@ window.STATIC_DATA = {
         "series": 19286,
         "channels": 6346,
         "created_at": "2026-04-27 06:09:59",
-        "logo": "https:\/\/i.imgur.com\/ricWHTP.png",
+        "logo": "https:\/\/i.ibb.co\/wNdg8TBf\/BABU-TV.png",
         "table_image_url": "[img]https:\/\/i.imgur.com\/OOWYH8w.jpeg[\/img]",
         "updated_at": "2026-06-06 04:50:57",
         "screens": 1,
@@ -159,7 +177,7 @@ window.STATIC_DATA = {
         "series": 0,
         "channels": 0,
         "created_at": "2026-04-27 06:09:59",
-        "logo": "https:\/\/i.imgur.com\/uAvoslp.png",
+        "logo": "https:\/\/i.ibb.co\/whCjWQzy\/BEEST-TV-CLIENTE-TV.png",
         "table_image_url": "[img]https:\/\/i.imgur.com\/L03Bj4s.jpeg[\/img]",
         "updated_at": "2026-06-06 04:52:19",
         "screens": 1,
@@ -195,12 +213,12 @@ window.STATIC_DATA = {
         "series": 17328,
         "channels": 8515,
         "created_at": "2026-04-27 06:09:59",
-        "logo": "https:\/\/i.imgur.com\/GwtM66U.png",
-        "table_image_url": null,
+        "logo": "https:\/\/i.ibb.co\/Y7qNjQqx\/BLACK-TV.png",
+        "table_image_url": "",
         "updated_at": "2026-04-27 15:30:18",
         "screens": 1,
-        "panel_url": null,
-        "app_store_url": null,
+        "panel_url": "",
+        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
@@ -213,7 +231,7 @@ window.STATIC_DATA = {
         "series": 16415,
         "channels": 3562,
         "created_at": "2026-04-27 06:09:59",
-        "logo": "https:\/\/i.imgur.com\/H7w6kjV.png",
+        "logo": "https:\/\/i.ibb.co\/vCTZpjwN\/BLADE.png",
         "table_image_url": "[img]https:\/\/i.imgur.com\/nPyvHhA.jpeg[\/img]",
         "updated_at": "2026-06-06 04:52:30",
         "screens": 1,
@@ -231,12 +249,12 @@ window.STATIC_DATA = {
         "series": 23210,
         "channels": 5676,
         "created_at": "2026-04-27 06:09:59",
-        "logo": "[img]https:\/\/i.imgur.com\/Am1xHSD.png[\/img]",
+        "logo": "https:\/\/i.ibb.co\/7tmhjsz3\/BLAZE.png",
         "table_image_url": "",
         "updated_at": "2026-04-27 15:48:06",
         "screens": 1,
-        "panel_url": null,
-        "app_store_url": null,
+        "panel_url": "",
+        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
@@ -249,7 +267,7 @@ window.STATIC_DATA = {
         "series": 19105,
         "channels": 8379,
         "created_at": "2026-04-27 06:09:59",
-        "logo": "https:\/\/i.imgur.com\/MuwXUm5.png",
+        "logo": "https:\/\/i.ibb.co\/pjn54n44\/BR-PRO-VIP.png",
         "table_image_url": "[img]https:\/\/i.imgur.com\/aQnT3WY.jpeg[\/img]",
         "updated_at": "2026-06-06 04:52:40",
         "screens": 1,
@@ -268,11 +286,11 @@ window.STATIC_DATA = {
         "channels": 0,
         "created_at": "2026-06-06 05:00:16",
         "logo": "",
-        "table_image_url": null,
+        "table_image_url": "",
         "updated_at": null,
         "screens": 1,
-        "panel_url": null,
-        "app_store_url": null,
+        "panel_url": "",
+        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
@@ -285,7 +303,7 @@ window.STATIC_DATA = {
         "series": 0,
         "channels": 0,
         "created_at": "2026-04-27 06:09:59",
-        "logo": "https:\/\/i.imgur.com\/cp28cD3.png",
+        "logo": "https:\/\/i.ibb.co\/xtwKR9kH\/BYTE-2.png",
         "table_image_url": "[img]https:\/\/i.imgur.com\/eq3doxP.jpeg[\/img]",
         "updated_at": "2026-06-06 04:52:50",
         "screens": 1,
@@ -303,12 +321,12 @@ window.STATIC_DATA = {
         "series": 20242,
         "channels": 7608,
         "created_at": "2026-04-27 06:09:59",
-        "logo": "https:\/\/i.imgur.com\/0N1WVq7.png",
-        "table_image_url": null,
+        "logo": "https:\/\/i.ibb.co\/DfmBS93H\/CENTRAL.png",
+        "table_image_url": "",
         "updated_at": "2026-04-27 17:23:04",
         "screens": 1,
-        "panel_url": null,
-        "app_store_url": null,
+        "panel_url": "",
+        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
@@ -339,12 +357,12 @@ window.STATIC_DATA = {
         "series": 17195,
         "channels": 8762,
         "created_at": "2026-04-27 06:09:59",
-        "logo": "https:\/\/i.imgur.com\/RhVnGfk.png",
+        "logo": "https:\/\/i.ibb.co\/vx6nNY5C\/CINE-PULSE.png",
         "table_image_url": "",
         "updated_at": "2026-04-27 17:33:32",
         "screens": 1,
-        "panel_url": null,
-        "app_store_url": null,
+        "panel_url": "",
+        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
@@ -511,7 +529,7 @@ window.STATIC_DATA = {
     },
     {
         "id": 33,
-        "name": "FIRE TV",
+        "name": "FIRE TV | BLACK",
         "url": "http:\/\/",
         "status": "active",
         "description": "",
@@ -521,7 +539,7 @@ window.STATIC_DATA = {
         "created_at": "2026-04-27 06:09:59",
         "logo": "https:\/\/i.imgur.com\/TbBUpUE.png",
         "table_image_url": "[img]https:\/\/i.imgur.com\/r1SFejM.jpeg[\/img]",
-        "updated_at": "2026-06-06 04:53:52",
+        "updated_at": "2026-06-09 16:17:57",
         "screens": 2,
         "panel_url": "",
         "app_store_url": "",
@@ -789,12 +807,12 @@ window.STATIC_DATA = {
         "series": 0,
         "channels": 0,
         "created_at": "2026-06-06 05:00:16",
-        "logo": "",
-        "table_image_url": null,
+        "logo": "[img]https:\/\/i.imgur.com\/LqyGieV.png[\/img]",
+        "table_image_url": "",
         "updated_at": null,
         "screens": 1,
-        "panel_url": null,
-        "app_store_url": null,
+        "panel_url": "",
+        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
@@ -2113,22 +2131,6 @@ window.STATIC_DATA = {
         "app_id": 41
     },
     {
-        "server_id": 6,
-        "app_id": 2
-    },
-    {
-        "server_id": 6,
-        "app_id": 43
-    },
-    {
-        "server_id": 6,
-        "app_id": 11
-    },
-    {
-        "server_id": 6,
-        "app_id": 12
-    },
-    {
         "server_id": 9,
         "app_id": 2
     },
@@ -2589,10 +2591,6 @@ window.STATIC_DATA = {
         "app_id": 46
     },
     {
-        "server_id": 56,
-        "app_id": 3
-    },
-    {
         "server_id": 48,
         "app_id": 2
     },
@@ -3002,6 +3000,118 @@ window.STATIC_DATA = {
     },
     {
         "server_id": 111,
+        "app_id": 41
+    },
+    {
+        "server_id": 129,
+        "app_id": 13
+    },
+    {
+        "server_id": 129,
+        "app_id": 2
+    },
+    {
+        "server_id": 129,
+        "app_id": 3
+    },
+    {
+        "server_id": 129,
+        "app_id": 45
+    },
+    {
+        "server_id": 129,
+        "app_id": 21
+    },
+    {
+        "server_id": 129,
+        "app_id": 4
+    },
+    {
+        "server_id": 129,
+        "app_id": 6
+    },
+    {
+        "server_id": 129,
+        "app_id": 8
+    },
+    {
+        "server_id": 129,
+        "app_id": 7
+    },
+    {
+        "server_id": 129,
+        "app_id": 5
+    },
+    {
+        "server_id": 129,
+        "app_id": 28
+    },
+    {
+        "server_id": 129,
+        "app_id": 10
+    },
+    {
+        "server_id": 129,
+        "app_id": 11
+    },
+    {
+        "server_id": 129,
+        "app_id": 34
+    },
+    {
+        "server_id": 129,
+        "app_id": 14
+    },
+    {
+        "server_id": 129,
+        "app_id": 15
+    },
+    {
+        "server_id": 129,
+        "app_id": 40
+    },
+    {
+        "server_id": 129,
+        "app_id": 41
+    },
+    {
+        "server_id": 6,
+        "app_id": 2
+    },
+    {
+        "server_id": 6,
+        "app_id": 43
+    },
+    {
+        "server_id": 6,
+        "app_id": 11
+    },
+    {
+        "server_id": 6,
+        "app_id": 12
+    },
+    {
+        "server_id": 6,
+        "app_id": 36
+    },
+    {
+        "server_id": 56,
+        "app_id": 2
+    },
+    {
+        "server_id": 56,
+        "app_id": 3
+    },
+    {
+        "server_id": 56,
+        "app_id": 11
+    },
+    {
+        "server_id": 114,
+        "app_id": 37
+    },
+    {
+        "server_id": 114,
         "app_id": 41
     }
 ]
