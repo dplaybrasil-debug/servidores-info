@@ -1,6 +1,6 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-06-10 00:34:28
+ * Gerado em: 2026-06-10 13:49:04
  * NÃO edite manualmente. Regenere via: http://localhost:8000/export_data.php
  */
 window.STATIC_DATA = {
@@ -69,7 +69,7 @@ window.STATIC_DATA = {
         "series": 10702,
         "channels": 1885,
         "created_at": "2026-04-27 06:09:59",
-        "logo": "https:\/\/i.ibb.co\/39F6frYJ\/ALPHA-SERVER.png",
+        "logo": "https:\/\/i.ibb.co\/SXcd7Pf8\/ALPHA-SERVER.png",
         "table_image_url": "[img]https:\/\/i.imgur.com\/wH5HceY.jpeg[\/img]",
         "updated_at": "2026-06-09 15:58:52",
         "screens": 2,
@@ -87,7 +87,7 @@ window.STATIC_DATA = {
         "series": 5896,
         "channels": 2848,
         "created_at": "2026-04-27 06:09:59",
-        "logo": "https:\/\/i.ibb.co\/qLRLRYPt\/ALPHA-STREMING.png",
+        "logo": "https:\/\/i.ibb.co\/hRP12mgZ\/Aplha-Stremin.png",
         "table_image_url": "",
         "updated_at": "2026-06-09 16:08:26",
         "screens": 1,
@@ -123,7 +123,7 @@ window.STATIC_DATA = {
         "series": 0,
         "channels": 0,
         "created_at": "2026-04-27 06:09:59",
-        "logo": "https:\/\/i.ibb.co\/YBWqb6Fk\/ATMOS.png",
+        "logo": "https:\/\/i.ibb.co\/mVF0ZkYs\/ATMOS.png",
         "table_image_url": "[img]https:\/\/i.imgur.com\/8uYjJDl.jpeg[\/img]",
         "updated_at": "2026-06-06 04:50:16",
         "screens": 1,
@@ -141,7 +141,7 @@ window.STATIC_DATA = {
         "series": 0,
         "channels": 0,
         "created_at": "2026-06-09 15:34:11",
-        "logo": "[img]https:\/\/i.imgur.com\/rbWkVSP.jpeg[\/img]",
+        "logo": "https:\/\/i.ibb.co\/YFTSc0ff\/AURA-TV.png",
         "table_image_url": "[img]https:\/\/i.imgur.com\/BO488Yv.jpeg[\/img]",
         "updated_at": "2026-06-09 16:29:30",
         "screens": 2,
@@ -186,24 +186,6 @@ window.STATIC_DATA = {
         "server_type": "hybrid"
     },
     {
-        "id": 116,
-        "name": "BIT TV",
-        "url": "http:\/\/",
-        "status": "active",
-        "description": "",
-        "movies": 0,
-        "series": 0,
-        "channels": 0,
-        "created_at": "2026-06-06 05:00:16",
-        "logo": "",
-        "table_image_url": null,
-        "updated_at": null,
-        "screens": 1,
-        "panel_url": null,
-        "app_store_url": null,
-        "server_type": "hybrid"
-    },
-    {
         "id": 14,
         "name": "BLACK",
         "url": "http:\/\/",
@@ -213,7 +195,7 @@ window.STATIC_DATA = {
         "series": 17328,
         "channels": 8515,
         "created_at": "2026-04-27 06:09:59",
-        "logo": "https:\/\/i.ibb.co\/Y7qNjQqx\/BLACK-TV.png",
+        "logo": "https:\/\/i.ibb.co\/FqWn6qnw\/BLACK-TV.jpg",
         "table_image_url": "",
         "updated_at": "2026-04-27 15:30:18",
         "screens": 1,
@@ -231,7 +213,7 @@ window.STATIC_DATA = {
         "series": 16415,
         "channels": 3562,
         "created_at": "2026-04-27 06:09:59",
-        "logo": "https:\/\/i.ibb.co\/vCTZpjwN\/BLADE.png",
+        "logo": "https:\/\/i.ibb.co\/x8MMtpGq\/BLADE.jpg",
         "table_image_url": "[img]https:\/\/i.imgur.com\/nPyvHhA.jpeg[\/img]",
         "updated_at": "2026-06-06 04:52:30",
         "screens": 1,
@@ -249,7 +231,7 @@ window.STATIC_DATA = {
         "series": 23210,
         "channels": 5676,
         "created_at": "2026-04-27 06:09:59",
-        "logo": "https:\/\/i.ibb.co\/7tmhjsz3\/BLAZE.png",
+        "logo": "https:\/\/i.ibb.co\/m5PmR8Dj\/BLAZE-1.png",
         "table_image_url": "",
         "updated_at": "2026-04-27 15:48:06",
         "screens": 1,
@@ -303,7 +285,7 @@ window.STATIC_DATA = {
         "series": 0,
         "channels": 0,
         "created_at": "2026-04-27 06:09:59",
-        "logo": "https:\/\/i.ibb.co\/xtwKR9kH\/BYTE-2.png",
+        "logo": "https:\/\/i.ibb.co\/xtwKR9kH\/BYTE.png",
         "table_image_url": "[img]https:\/\/i.imgur.com\/eq3doxP.jpeg[\/img]",
         "updated_at": "2026-06-06 04:52:50",
         "screens": 1,
