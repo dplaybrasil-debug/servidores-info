@@ -15,10 +15,16 @@
                 <img src="assets/logo-central-v2.png" alt="Central de Servidores" style="width: 100%; height: auto; filter: drop-shadow(0 0 5px rgba(0,255,255,0.3));">
             </div>
             <nav class="nav-menu">
-                <a href="#" class="nav-item active" data-target="page-servers">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
-                    Servidores
-                </a>
+                <div class="nav-group">
+                    <a href="#" class="nav-item active" data-target="page-servers">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                        Servidores
+                    </a>
+                    <div class="nav-submenu">
+                        <a href="#" class="nav-subitem active" data-target="page-servers">📦 Catálogo Geral</a>
+                        <a href="#" class="nav-subitem" data-target="page-servers-links">🔗 Links & Logos</a>
+                    </div>
+                </div>
                 <a href="#" class="nav-item" data-target="page-apps">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
                     App Parceiros
@@ -78,6 +84,35 @@
                 </div>
 
                 <div class="grid" id="serversGrid" style="grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 1.5rem;"></div>
+            </section>
+
+            <!-- PÁGINA LINKS & LOGOS DE SERVIDORES -->
+            <section id="page-servers-links" class="page">
+                <header class="page-header" style="flex-wrap: wrap; gap: 1rem; align-items: center;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <h1 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                            Links & Logos de Servidores
+                        </h1>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.75rem;">Edição rápida de nomes, logos e tabelas de preços.</p>
+                        <input type="text" id="searchQuickEdit" class="search-input" placeholder="Pesquisar servidor por nome..." style="width: 100%; max-width: 350px; padding: 0.6rem 1rem; border-radius: 8px; border: 1px solid var(--glass-border); background: rgba(0,0,0,0.3); color: white;">
+                    </div>
+                </header>
+                <div class="glass-panel" style="padding: 1.5rem; border-radius: 16px; background: rgba(13, 17, 23, 0.4); overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left; color: white; min-width: 700px;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid rgba(255,255,255,0.1); font-size: 0.9rem; color: var(--text-muted);">
+                                <th style="padding: 0.75rem 0.5rem; width: 65px; text-align: center;">Miniatura</th>
+                                <th style="padding: 0.75rem 0.5rem; width: 220px;">Nome do Servidor</th>
+                                <th style="padding: 0.75rem 0.5rem;">URL da Imagem / Logo</th>
+                                <th style="padding: 0.75rem 0.5rem;">URL Tabela de Preços</th>
+                                <th style="padding: 0.75rem 0.5rem; width: 110px; text-align: center;">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody id="quickEditTableBody">
+                            <!-- Servidores serão inseridos dinamicamente pelo JS -->
+                        </tbody>
+                    </table>
+                </div>
             </section>
 
             <!-- PÁGINA APP PARCEIROS -->
@@ -184,7 +219,6 @@
                         <option value="android">🤖 Android</option>
                     </select>
                 </div>
-                <div class="form-group"><label>URL da Imagem da Tabela (Opcional)</label><input type="text" id="srvTableImg"></div>
                 <div class="form-group"><label>URL do Painel (Opcional)</label><input type="text" id="srvPanelUrl" placeholder="Ex: http://painel.exemplo.com"></div>
                 <div class="form-group"><label>URL da Loja de Apps (Opcional)</label><input type="text" id="srvAppStoreUrl" placeholder="Ex: http://loja.exemplo.com"></div>
                 <div class="form-group"><label>Descrição</label><textarea id="srvDesc" rows="2"></textarea></div>

@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     // --- SERVIDORES ---
     if ($action === 'update_server') {
-        $stmt = $pdo->prepare("UPDATE servers SET name = ?, url = ?, logo = ?, status = ?, description = ?, table_image_url = ?, screens = ?, panel_url = ?, app_store_url = ?, server_type = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?");
+        $stmt = $pdo->prepare("UPDATE servers SET name = ?, url = ?, logo = ?, status = ?, description = ?, table_image_url = ?, screens = ?, panel_url = ?, app_store_url = ?, server_type = ? WHERE id = ?");
         $stmt->execute([$data['name'], $data['url'], $data['logo'] ?? '', $data['status'], $data['description'], $data['table_image_url'] ?? '', $data['screens'] ?? 1, $data['panel_url'] ?? '', $data['app_store_url'] ?? '', $data['server_type'] ?? 'hybrid', $data['id']]);
         echo json_encode(['success' => true]);
         exit;

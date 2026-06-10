@@ -1,18 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- NAVEGAÇÃO ENTRE PÁGINAS ---
-    const navItems = document.querySelectorAll('.nav-item');
+    const navLinks = document.querySelectorAll('.nav-item, .nav-subitem');
     const pages = document.querySelectorAll('.page');
 
-    navItems.forEach(item => {
+    navLinks.forEach(item => {
         item.addEventListener('click', (e) => {
             e.preventDefault();
             const targetId = item.getAttribute('data-target');
+            if (!targetId) return;
             
-            navItems.forEach(nav => nav.classList.remove('active'));
+            navLinks.forEach(nav => nav.classList.remove('active'));
             item.classList.add('active');
 
+            // Se for subitem, também ativa o item principal correspondente do grupo
+            if (item.classList.contains('nav-subitem')) {
+                const parentGroup = item.closest('.nav-group');
+                if (parentGroup) {
+                    const parentNavItem = parentGroup.querySelector('.nav-item');
+                    if (parentNavItem) parentNavItem.classList.add('active');
+                }
+            }
+
             pages.forEach(page => page.classList.remove('active'));
-            document.getElementById(targetId).classList.add('active');
+            const targetPage = document.getElementById(targetId);
+            if (targetPage) targetPage.classList.add('active');
         });
     });
 
@@ -56,6 +67,11 @@ document.addEventListener('DOMContentLoaded', () => {
         updateServerFilterCounts(window.allServers);
         applyServerFilters();
         renderContentGrid(window.allServers);
+        
+        const qeSearch = document.getElementById('searchQuickEdit');
+        const qeTerm = qeSearch ? qeSearch.value.toLowerCase() : '';
+        const qeFiltered = qeTerm ? window.allServers.filter(s => s.name.toLowerCase().includes(qeTerm)) : window.allServers;
+        renderQuickEditTable(qeFiltered);
     };
 
     const renderServersGrid = (servers) => {
@@ -334,6 +350,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const term = e.target.value.toLowerCase();
         const filtered = window.allServers.filter(s => s.name.toLowerCase().includes(term));
         renderContentGrid(filtered);
+    });
+
+    document.getElementById('searchQuickEdit')?.addEventListener('input', (e) => {
+        const term = e.target.value.toLowerCase();
+        const filtered = window.allServers.filter(s => s.name.toLowerCase().includes(term));
+        renderQuickEditTable(filtered);
     });
 
     document.getElementById('searchServerApps')?.addEventListener('input', (e) => {
@@ -829,6 +851,95 @@ document.addEventListener('DOMContentLoaded', () => {
         loadContacts();
     });
 
+    // --- EDIÇÃO RÁPIDA DE SERVIDORES ---
+    const renderQuickEditTable = (servers) => {
+        const tbody = document.getElementById('quickEditTableBody');
+        if (!tbody) return;
+        
+        tbody.innerHTML = '';
+        if (servers.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:2rem; color:var(--text-muted);">Nenhum servidor cadastrado.</td></tr>';
+            return;
+        }
+
+        servers.forEach(srv => {
+            const logoUrl = srv.logo ? extractImageUrl(srv.logo) : '';
+            const logoHtml = logoUrl 
+                ? `<img src="${escapeHtml(logoUrl)}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">` 
+                : `<div style="width: 40px; height: 40px; border-radius: 8px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">🖥️</div>`;
+
+            tbody.innerHTML += `
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; transition: background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.02)'" onmouseout="this.style.background='transparent'">
+                    <td style="padding: 0.75rem 0.5rem; vertical-align: middle;">
+                        <div style="display: flex; justify-content: center; align-items: center;">
+                            ${logoHtml}
+                        </div>
+                    </td>
+                    <td style="padding: 0.75rem 0.5rem; vertical-align: middle;">
+                        <input type="text" id="qe-name-${srv.id}" value="${escapeHtml(srv.name)}" 
+                               style="width: 100%; padding: 0.6rem 0.8rem; border-radius: 8px; border: 1px solid var(--glass-border); background: rgba(0,0,0,0.3); color: white; outline: none; transition: border-color 0.2s;"
+                               onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--glass-border)'">
+                    </td>
+                    <td style="padding: 0.75rem 0.5rem; vertical-align: middle;">
+                        <input type="text" id="qe-logo-${srv.id}" value="${escapeHtml(srv.logo || '')}" placeholder="URL da Logo (png/jpg)"
+                               style="width: 100%; padding: 0.6rem 0.8rem; border-radius: 8px; border: 1px solid var(--glass-border); background: rgba(0,0,0,0.3); color: white; outline: none; transition: border-color 0.2s;"
+                               onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--glass-border)'">
+                    </td>
+                    <td style="padding: 0.75rem 0.5rem; vertical-align: middle;">
+                        <input type="text" id="qe-table-${srv.id}" value="${escapeHtml(srv.table_image_url || '')}" placeholder="URL da Tabela (Imgur, etc.)"
+                               style="width: 100%; padding: 0.6rem 0.8rem; border-radius: 8px; border: 1px solid var(--glass-border); background: rgba(0,0,0,0.3); color: white; outline: none; transition: border-color 0.2s;"
+                               onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--glass-border)'">
+                    </td>
+                    <td style="padding: 0.75rem 0.5rem; vertical-align: middle; text-align: center;">
+                        <button onclick="saveQuickEdit(${srv.id})" class="btn-primary" 
+                                style="padding: 0.5rem 1rem; font-size: 0.85rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(59, 130, 246, 0.2); font-weight: 600;">
+                            Salvar
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+    };
+
+    window.saveQuickEdit = async (id) => {
+        const srv = window.allServers.find(s => s.id == id);
+        if (!srv) return;
+
+        const nameInput = document.getElementById(`qe-name-${id}`);
+        const logoInput = document.getElementById(`qe-logo-${id}`);
+        const tableInput = document.getElementById(`qe-table-${id}`);
+
+        if (!nameInput.value.trim()) {
+            alert('O nome do servidor é obrigatório.');
+            return;
+        }
+
+        const payload = {
+            ...srv,
+            name: nameInput.value.trim(),
+            logo: logoInput.value.trim(),
+            table_image_url: tableInput.value.trim()
+        };
+
+        const btn = document.querySelector(`button[onclick="saveQuickEdit(${id})"]`);
+        const originalText = btn.textContent;
+        btn.textContent = 'Gravando...';
+        btn.disabled = true;
+
+        await postData(`api.php?action=update_server`, payload);
+        
+        btn.textContent = 'Salvo! ✓';
+        btn.style.backgroundColor = 'var(--success)';
+        
+        setTimeout(() => {
+            btn.textContent = originalText;
+            btn.style.backgroundColor = '';
+            btn.disabled = false;
+        }, 1500);
+
+        loadServers();
+    };
+
     // Iniciar
     loadAllData();
     loadContacts();
@@ -877,4 +988,5 @@ document.addEventListener('DOMContentLoaded', () => {
     addClearBtn('searchServers');
     addClearBtn('searchApps');
     addClearBtn('searchContent');
+    addClearBtn('searchQuickEdit');
 });
