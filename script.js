@@ -758,6 +758,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         }
+        if (cleaned.includes('imgur.com')) {
+            return `https://images.weserv.nl/?url=${encodeURIComponent(cleaned)}`;
+        }
         
         return cleaned;
     };
