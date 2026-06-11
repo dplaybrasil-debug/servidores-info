@@ -276,6 +276,36 @@
                 .replace(/-+$/, '');
         }
 
+        function extractImageUrl(str) {
+            if (!str) return '';
+            let cleaned = str.replace(/\[\/?\bimg\b\]/gi, '').trim();
+            cleaned = cleaned.replace(/\[\/?img\]/gi, '').trim();
+            
+            if (cleaned.includes('|')) {
+                const parts = cleaned.split('|');
+                for (let part of parts) {
+                    const p = part.trim();
+                    if (p.startsWith('http') || p.startsWith('assets') || p.startsWith('.')) {
+                        cleaned = p;
+                        break;
+                    }
+                }
+            }
+            
+            if (cleaned.includes(' ')) {
+                const parts = cleaned.split(/\s+/);
+                for (let part of parts) {
+                    const p = part.trim();
+                    if (p.startsWith('http') || p.startsWith('assets') || p.startsWith('.')) {
+                        cleaned = p;
+                        break;
+                    }
+                }
+            }
+            
+            return cleaned;
+        }
+
         document.addEventListener('DOMContentLoaded', async () => {
             const urlParams = new URLSearchParams(window.location.search);
             const serverId = urlParams.get('id');
@@ -428,7 +458,7 @@
                 }
 
                 // Logo
-                let logoUrl = data.logo ? data.logo.replace(/\[\/?img\]/gi, '').trim() : '';
+                let logoUrl = extractImageUrl(data.logo);
                 if (logoUrl) {
                     document.getElementById('sLogo').src = logoUrl;
                     document.getElementById('sLogo').style.display = 'block';
@@ -438,7 +468,7 @@
 
                 // Tabela em Imagem
                 if (data.table_image_url && data.table_image_url.trim() !== '') {
-                    document.getElementById('tableImg').src = data.table_image_url.replace(/\[\/?img\]/gi, '').trim();
+                    document.getElementById('tableImg').src = extractImageUrl(data.table_image_url);
                     document.getElementById('tableContainer').style.display = 'block';
                 }
 
@@ -448,7 +478,7 @@
                     document.querySelector('#appsCard h3').innerHTML = `Aplicativos Parceiros <span style="background: var(--primary); color: white; padding: 4px 12px; border-radius: 20px; font-size: 1rem; vertical-align: middle; margin-left: 0.5rem; box-shadow: 0 4px 10px rgba(59, 130, 246, 0.4);">${data.linked_apps.length}</span>`;
                     
                     data.linked_apps.forEach(app => {
-                        const appLogoUrl = app.logo ? app.logo.replace(/\[\/?img\]/gi, '').trim() : '';
+                        const appLogoUrl = extractImageUrl(app.logo);
                         const logoHtml = appLogoUrl 
                             ? `<img src="${appLogoUrl}" class="app-logo">` 
                             : `<div class="app-logo">📱</div>`;

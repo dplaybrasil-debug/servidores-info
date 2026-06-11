@@ -734,7 +734,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const extractImageUrl = (str) => {
         if (!str) return '';
-        return str.replace(/\[\/?\bimg\b\]/gi, '').trim();
+        let cleaned = str.replace(/\[\/?\bimg\b\]/gi, '').trim();
+        cleaned = cleaned.replace(/\[\/?img\]/gi, '').trim();
+        
+        if (cleaned.includes('|')) {
+            const parts = cleaned.split('|');
+            for (let part of parts) {
+                const p = part.trim();
+                if (p.startsWith('http') || p.startsWith('assets') || p.startsWith('.')) {
+                    cleaned = p;
+                    break;
+                }
+            }
+        }
+        
+        if (cleaned.includes(' ')) {
+            const parts = cleaned.split(/\s+/);
+            for (let part of parts) {
+                const p = part.trim();
+                if (p.startsWith('http') || p.startsWith('assets') || p.startsWith('.')) {
+                    cleaned = p;
+                    break;
+                }
+            }
+        }
+        
+        return cleaned;
     };
 
     // --- LÓGICA DE CONTATOS DE APOIO ---
