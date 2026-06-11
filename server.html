@@ -203,7 +203,7 @@
         <div class="glass-panel header-card">
             <a href="index.html" class="back-btn">← Voltar</a>
             
-            <img id="sLogo" class="server-logo" src="" alt="Logo" style="display: none;">
+            <img id="sLogo" class="server-logo" src="" alt="Logo" style="display: none;" referrerpolicy="no-referrer">
             <div id="sNoLogo" style="font-size: 5rem; margin-bottom: 1rem; display: none;">🖥️</div>
             
             <h1 id="sTitle" class="server-title">Nome do Servidor</h1>
@@ -257,7 +257,7 @@
     <div id="modalTable" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; padding: 1rem; backdrop-filter: blur(10px);">
         <div style="position: relative; max-width: 95vw; max-height: 95vh; display: flex; justify-content: center; align-items: center;">
             <button onclick="closeTableModal()" style="position: absolute; top: -40px; right: 0; background: none; border: none; color: white; font-size: 2.5rem; cursor: pointer; transition: color 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='white'">&times;</button>
-            <img id="tableImg" src="" style="max-width: 100%; max-height: 90vh; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); user-select: none; -webkit-user-drag: none;" oncontextmenu="return false;" draggable="false">
+            <img id="tableImg" src="" referrerpolicy="no-referrer" style="max-width: 100%; max-height: 90vh; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); user-select: none; -webkit-user-drag: none;" oncontextmenu="return false;" draggable="false">
         </div>
     </div>
 
@@ -301,10 +301,6 @@
                     }
                 }
             }
-            if (cleaned.includes('imgur.com')) {
-                return `https://images.weserv.nl/?url=${encodeURIComponent(cleaned)}`;
-            }
-            
             return cleaned;
         }
 
@@ -482,7 +478,7 @@
                     data.linked_apps.forEach(app => {
                         const appLogoUrl = extractImageUrl(app.logo);
                         const logoHtml = appLogoUrl 
-                            ? `<img src="${appLogoUrl}" class="app-logo">` 
+                            ? `<img src="${appLogoUrl}" class="app-logo" referrerpolicy="no-referrer">` 
                             : `<div class="app-logo">📱</div>`;
                             
                         appsContainer.innerHTML += `

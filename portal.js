@@ -38,10 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         }
-        if (cleaned.includes('imgur.com')) {
-            return `https://images.weserv.nl/?url=${encodeURIComponent(cleaned)}`;
-        }
-        
         return cleaned;
     };
 
@@ -183,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <!-- Imagem / Logo -->
                     <div style="position:relative; width:100%; height:130px; overflow:hidden; background:#0d1117; flex-shrink:0;">
                         ${logoUrl
-                            ? `<img src="${escapeHtml(logoUrl)}" style="width:100%; height:100%; object-fit:cover; display:block;">`
+                            ? `<img src="${escapeHtml(logoUrl)}" style="width:100%; height:100%; object-fit:cover; display:block;" referrerpolicy="no-referrer">`
                             : `<div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:3rem;">🖥️</div>`}
                         ${typeBadge}
                         ${screensBadge}
@@ -228,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             grid.innerHTML += `
                 <div class="card glass-panel" onclick="openAppInfo(${app.id})" style="aspect-ratio: 1; padding: 0; position: relative; overflow: hidden; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                    ${logoUrl ? '<img src="' + escapeHtml(logoUrl) + '" style="width: 100%; height: 100%; object-fit: cover;">' : '<span style="font-size: 3rem;">📱</span>'}
+                    ${logoUrl ? '<img src="' + escapeHtml(logoUrl) + '" style="width: 100%; height: 100%; object-fit: cover;" referrerpolicy="no-referrer">' : '<span style="font-size: 3rem;">📱</span>'}
                     
                     <!-- Tarja com o Nome -->
                     <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.8); padding: 6px; text-align: center; font-size: 0.85rem; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-top: 1px solid rgba(255,255,255,0.1);">
@@ -329,7 +325,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <!-- Imagem / Logo -->
                     <div style="position:relative; width:100%; height:130px; overflow:hidden; background:#0d1117; flex-shrink:0;">
                         ${itemLogo
-                            ? `<img src="${escapeHtml(itemLogo)}" style="width:100%; height:100%; object-fit:cover; display:block;">`
+                            ? `<img src="${escapeHtml(itemLogo)}" style="width:100%; height:100%; object-fit:cover; display:block;" referrerpolicy="no-referrer">`
                             : `<div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:3rem;">🖥️</div>`}
                     </div>
 

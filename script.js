@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const badgeText = srv.status === 'active' ? 'Ativo' : 'Inativo';
             gridSrv.innerHTML += `
                 <div class="card glass-panel" onclick="editServer(${srv.id})" style="aspect-ratio: 1; padding: 0; position: relative; overflow: hidden; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" title="Clique para editar">
-                    ${srv.logo ? '<img src="' + escapeHtml(extractImageUrl(srv.logo)) + '" style="width: 100%; height: 100%; object-fit: cover;">' : '<span style="font-size: 3rem;">🖥️</span>'}
+                    ${srv.logo ? '<img src="' + escapeHtml(extractImageUrl(srv.logo)) + '" referrerpolicy="no-referrer" style="width: 100%; height: 100%; object-fit: cover;">' : '<span style="font-size: 3rem;">🖥️</span>'}
                     
                     <!-- Tarja com o Nome -->
                     <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.8); padding: 6px; text-align: center; font-size: 0.85rem; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-top: 1px solid rgba(255,255,255,0.1);">
@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     title="Clique para ver conteúdos de ${escapeHtml(srv.name)} — ${statusLabel}">
 
                     ${srv.logo
-                        ? `<img src="${escapeHtml(extractImageUrl(srv.logo))}" style="width:100%; height:100%; object-fit:cover;">`
+                        ? `<img src="${escapeHtml(extractImageUrl(srv.logo))}" referrerpolicy="no-referrer" style="width:100%; height:100%; object-fit:cover;">`
                         : `<span style="font-size:3rem;">🖥️</span>`}
 
                     <!-- Badge de Status (canto superior esquerdo) -->
@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const badgeText = app.status === 'active' ? 'Ativo' : 'Inativo';
             grid.innerHTML += `
                 <div class="card glass-panel" onclick="editApp(${app.id})" style="aspect-ratio: 1; padding: 0; position: relative; overflow: hidden; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" title="Clique para editar">
-                    ${app.logo ? '<img src="' + escapeHtml(extractImageUrl(app.logo)) + '" style="width: 100%; height: 100%; object-fit: cover;">' : '<span style="font-size: 3rem;">📱</span>'}
+                    ${app.logo ? '<img src="' + escapeHtml(extractImageUrl(app.logo)) + '" referrerpolicy="no-referrer" style="width: 100%; height: 100%; object-fit: cover;">' : '<span style="font-size: 3rem;">📱</span>'}
                     
                     <!-- Tarja com o Nome -->
                     <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.8); padding: 6px; text-align: center; font-size: 0.85rem; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-top: 1px solid rgba(255,255,255,0.1);">
@@ -552,7 +552,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const isChecked = linkedAppIds.includes(String(app.id)) || linkedAppIds.includes(Number(app.id));
             const appLogoUrl = app.logo ? extractImageUrl(app.logo) : '';
             const logoHtml = appLogoUrl 
-                ? `<img src="${escapeHtml(appLogoUrl)}" style="width: 50px; height: 50px; border-radius: 12px; object-fit: cover;">` 
+                ? `<img src="${escapeHtml(appLogoUrl)}" referrerpolicy="no-referrer" style="width: 50px; height: 50px; border-radius: 12px; object-fit: cover;">` 
                 : `<div style="width: 50px; height: 50px; border-radius: 12px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">📱</div>`;
 
             // A lógica de clique altera os estilos visuais da thumbnail dinamicamente
@@ -758,9 +758,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         }
-        if (cleaned.includes('imgur.com')) {
-            return `https://images.weserv.nl/?url=${encodeURIComponent(cleaned)}`;
-        }
         
         return cleaned;
     };
@@ -893,7 +890,7 @@ document.addEventListener('DOMContentLoaded', () => {
         servers.forEach(srv => {
             const logoUrl = srv.logo ? extractImageUrl(srv.logo) : '';
             const logoHtml = logoUrl 
-                ? `<img src="${escapeHtml(logoUrl)}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">` 
+                ? `<img src="${escapeHtml(logoUrl)}" referrerpolicy="no-referrer" style="width: 40px; height: 40px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">` 
                 : `<div style="width: 40px; height: 40px; border-radius: 8px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">🖥️</div>`;
 
             tbody.innerHTML += `

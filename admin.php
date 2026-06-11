@@ -274,7 +274,7 @@
 
             <!-- Logo -->
             <div style="text-align: center; margin-bottom: 1.2rem;">
-                <img id="contentSrvLogo" src="" style="width: 80px; height: 80px; object-fit: cover; border-radius: 16px; display: none; margin: 0 auto; box-shadow: 0 5px 15px rgba(0,0,0,0.5);">
+                <img id="contentSrvLogo" src="" referrerpolicy="no-referrer" style="width: 80px; height: 80px; object-fit: cover; border-radius: 16px; display: none; margin: 0 auto; box-shadow: 0 5px 15px rgba(0,0,0,0.5);">
             </div>
 
             <!-- MODO VISUALIZAÇÃO -->
