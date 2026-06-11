@@ -58,6 +58,14 @@
                                 style="display:flex; align-items:center; gap:0.4rem; padding:0.35rem 0.9rem; border-radius:20px; border:none; cursor:pointer; font-size:0.82rem; font-weight:600; background:rgba(255,255,255,0.18); color:white; outline:2px solid rgba(255,255,255,0.5); transition:all 0.2s;">
                                 🔍 Todos <span id="srvCnt-all" style="background:rgba(255,255,255,0.2); padding:1px 7px; border-radius:10px;">0</span>
                             </button>
+                            <button id="srvFilterActive" onclick="filterServers('active')"
+                                style="display:flex; align-items:center; gap:0.4rem; padding:0.35rem 0.9rem; border-radius:20px; border:none; cursor:pointer; font-size:0.82rem; font-weight:600; background:rgba(46,204,113,0.15); color:#2ecc71; outline:none; transition:all 0.2s;">
+                                ✅ Ativos <span id="srvCnt-active" style="background:rgba(46,204,113,0.25); padding:1px 7px; border-radius:10px;">0</span>
+                            </button>
+                            <button id="srvFilterInactive" onclick="filterServers('inactive')"
+                                style="display:flex; align-items:center; gap:0.4rem; padding:0.35rem 0.9rem; border-radius:20px; border:none; cursor:pointer; font-size:0.82rem; font-weight:600; background:rgba(231,76,60,0.15); color:#e74c3c; outline:none; transition:all 0.2s;">
+                                ❌ Inativos <span id="srvCnt-inactive" style="background:rgba(231,76,60,0.25); padding:1px 7px; border-radius:10px;">0</span>
+                            </button>
                             <button id="srvFilterScreens" onclick="filterServers('screens')"
                                 style="display:flex; align-items:center; gap:0.4rem; padding:0.35rem 0.9rem; border-radius:20px; border:none; cursor:pointer; font-size:0.82rem; font-weight:600; background:rgba(99,102,241,0.15); color:#a5b4fc; outline:none; transition:all 0.2s;">
                                 🖥️ +1 Tela <span id="srvCnt-screens" style="background:rgba(99,102,241,0.25); padding:1px 7px; border-radius:10px;">0</span>

@@ -286,13 +286,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Atualiza contadores dos pills de filtro de servidores
     const updateServerFilterCounts = (servers) => {
-        const total   = servers.length;
-        const screens = servers.filter(s => parseInt(s.screens, 10) >= 2).length;
-        const android = servers.filter(s => (s.server_type || 'hybrid') === 'android').length;
+        const total    = servers.length;
+        const screens  = servers.filter(s => parseInt(s.screens, 10) >= 2).length;
+        const android  = servers.filter(s => (s.server_type || 'hybrid') === 'android').length;
+        const active   = servers.filter(s => s.status === 'active').length;
+        const inactive = servers.filter(s => s.status === 'inactive').length;
         const el = (id) => document.getElementById(id);
-        if (el('srvCnt-all'))     el('srvCnt-all').textContent     = total;
-        if (el('srvCnt-screens')) el('srvCnt-screens').textContent = screens;
-        if (el('srvCnt-android')) el('srvCnt-android').textContent = android;
+        if (el('srvCnt-all'))      el('srvCnt-all').textContent      = total;
+        if (el('srvCnt-screens'))  el('srvCnt-screens').textContent  = screens;
+        if (el('srvCnt-android'))  el('srvCnt-android').textContent  = android;
+        if (el('srvCnt-active'))   el('srvCnt-active').textContent   = active;
+        if (el('srvCnt-inactive')) el('srvCnt-inactive').textContent = inactive;
     };
 
     // Aplica filtro ativo + termo de busca
@@ -306,6 +310,10 @@ document.addEventListener('DOMContentLoaded', () => {
             result = result.filter(s => parseInt(s.screens, 10) >= 2);
         } else if (filter === 'android') {
             result = result.filter(s => (s.server_type || 'hybrid') === 'android');
+        } else if (filter === 'active') {
+            result = result.filter(s => s.status === 'active');
+        } else if (filter === 'inactive') {
+            result = result.filter(s => s.status === 'inactive');
         }
 
         // Filtro de texto — pesquisa nome + quantidade de telas (ex: "2 telas", "telas", "3 tela")
@@ -320,14 +328,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Highlight do pill ativo
         const pills = {
-            all:     document.getElementById('srvFilterAll'),
-            screens: document.getElementById('srvFilterScreens'),
-            android: document.getElementById('srvFilterAndroid'),
+            all:      document.getElementById('srvFilterAll'),
+            active:   document.getElementById('srvFilterActive'),
+            inactive: document.getElementById('srvFilterInactive'),
+            screens:  document.getElementById('srvFilterScreens'),
+            android:  document.getElementById('srvFilterAndroid'),
         };
         const outlines = {
-            all:     '2px solid rgba(255,255,255,0.6)',
-            screens: '2px solid #a5b4fc',
-            android: '2px solid #6ee7b7',
+            all:      '2px solid rgba(255,255,255,0.6)',
+            active:   '2px solid #2ecc71',
+            inactive: '2px solid #e74c3c',
+            screens:  '2px solid #a5b4fc',
+            android:  '2px solid #6ee7b7',
         };
         Object.keys(pills).forEach(k => {
             if (pills[k]) pills[k].style.outline = k === filter ? outlines[k] : 'none';
