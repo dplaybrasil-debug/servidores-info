@@ -1,6 +1,6 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-06-11 17:04:43
+ * Gerado em: 2026-06-12 18:55:44
  * NÃO edite manualmente. Regenere via: http://localhost:8000/export_data.php
  */
 window.STATIC_DATA = {
@@ -88,7 +88,7 @@ window.STATIC_DATA = {
         "channels": 2848,
         "created_at": "2026-04-27 06:09:59",
         "logo": "https:\/\/i.ibb.co\/hRP12mgZ\/Aplha-Stremin.png",
-        "table_image_url": "",
+        "table_image_url": "https:\/\/i.ibb.co\/N63Z8WtK\/ALPHA-STREAMING.jpg",
         "updated_at": "2026-06-09 16:08:26",
         "screens": 1,
         "panel_url": "",
@@ -528,6 +528,24 @@ window.STATIC_DATA = {
         "server_type": "hybrid"
     },
     {
+        "id": 50,
+        "name": "FUSION",
+        "url": "http:\/\/",
+        "status": "active",
+        "description": "",
+        "movies": 0,
+        "series": 0,
+        "channels": 0,
+        "created_at": "2026-04-27 06:09:59",
+        "logo": "",
+        "table_image_url": "",
+        "updated_at": null,
+        "screens": 1,
+        "panel_url": "",
+        "app_store_url": "",
+        "server_type": "hybrid"
+    },
+    {
         "id": 35,
         "name": "FUSION STREAMING",
         "url": "http:\/\/",
@@ -816,24 +834,6 @@ window.STATIC_DATA = {
         "server_type": "hybrid"
     },
     {
-        "id": 50,
-        "name": "NA TV",
-        "url": "http:\/\/",
-        "status": "active",
-        "description": "",
-        "movies": 0,
-        "series": 0,
-        "channels": 0,
-        "created_at": "2026-04-27 06:09:59",
-        "logo": "https:\/\/i.ibb.co\/LzfBGyq6\/NATV.png",
-        "table_image_url": "",
-        "updated_at": null,
-        "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
-        "server_type": "hybrid"
-    },
-    {
         "id": 84,
         "name": "NATV | TOP TV",
         "url": "http:\/\/",
@@ -987,7 +987,7 @@ window.STATIC_DATA = {
         "series": 0,
         "channels": 0,
         "created_at": "2026-06-06 05:00:16",
-        "logo": "",
+        "logo": "https:\/\/i.ibb.co\/pjmfpH5D\/OPERA.png",
         "table_image_url": "https:\/\/i.ibb.co\/sXy6Ddz\/OPERA.jpg",
         "updated_at": null,
         "screens": 1,
@@ -1132,7 +1132,7 @@ window.STATIC_DATA = {
         "channels": 0,
         "created_at": "2026-04-27 06:09:59",
         "logo": "https:\/\/i.ibb.co\/Gvpgr19V\/PAZ-TV.png",
-        "table_image_url": "",
+        "table_image_url": "https:\/\/i.ibb.co\/9kjwX3VD\/PAZ-TV.png",
         "updated_at": null,
         "screens": 1,
         "panel_url": "",
@@ -1582,7 +1582,7 @@ window.STATIC_DATA = {
         "channels": 0,
         "created_at": "2026-04-27 06:09:59",
         "logo": "https:\/\/i.ibb.co\/PzQtqmSS\/VAPTY-PLAY.png",
-        "table_image_url": "",
+        "table_image_url": "https:\/\/i.ibb.co\/Q7604Y5y\/VAPTY-PLAY.jpg",
         "updated_at": "2026-04-27 10:54:54",
         "screens": 1,
         "panel_url": "",
