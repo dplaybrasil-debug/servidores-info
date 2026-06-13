@@ -1,6 +1,6 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-06-13 04:48:39
+ * Gerado em: 2026-06-13 05:02:53
  * NÃO edite manualmente. Regenere via: http://localhost:8000/export_data.php
  */
 window.STATIC_DATA = {
@@ -1954,14 +1954,6 @@ window.STATIC_DATA = {
         "logo": "https:\/\/i.ibb.co\/W4LKGNvq\/POWER-PIXEL.png",
         "status": "active",
         "created_at": "2026-04-28 03:19:00"
-    },
-    {
-        "id": 12,
-        "name": "POWER PLAYER",
-        "url": "",
-        "logo": "[img]https:\/\/i.imgur.com\/epN9Kjk.png[\/img]",
-        "status": "active",
-        "created_at": "2026-04-27 07:05:40"
     },
     {
         "id": 33,
