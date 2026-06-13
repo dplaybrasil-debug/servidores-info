@@ -1,6 +1,6 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-06-12 18:55:44
+ * Gerado em: 2026-06-13 04:48:39
  * NÃO edite manualmente. Regenere via: http://localhost:8000/export_data.php
  */
 window.STATIC_DATA = {
@@ -528,24 +528,6 @@ window.STATIC_DATA = {
         "server_type": "hybrid"
     },
     {
-        "id": 50,
-        "name": "FUSION",
-        "url": "http:\/\/",
-        "status": "active",
-        "description": "",
-        "movies": 0,
-        "series": 0,
-        "channels": 0,
-        "created_at": "2026-04-27 06:09:59",
-        "logo": "",
-        "table_image_url": "",
-        "updated_at": null,
-        "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
-        "server_type": "hybrid"
-    },
-    {
         "id": 35,
         "name": "FUSION STREAMING",
         "url": "http:\/\/",
@@ -558,7 +540,7 @@ window.STATIC_DATA = {
         "logo": "https:\/\/i.ibb.co\/h1HGYPyd\/FUSION-STREAMING.png",
         "table_image_url": "https:\/\/i.ibb.co\/YFj66hNY\/Fusion-Streming.jpg",
         "updated_at": "2026-06-06 04:51:37",
-        "screens": 1,
+        "screens": 2,
         "panel_url": "",
         "app_store_url": "",
         "server_type": "hybrid"
@@ -880,7 +862,7 @@ window.STATIC_DATA = {
         "channels": 1250,
         "created_at": "2026-04-27 06:09:59",
         "logo": "https:\/\/i.ibb.co\/HDmq67zy\/NEW-LIVE.png",
-        "table_image_url": "",
+        "table_image_url": "https:\/\/i.ibb.co\/vnpTYPN\/NEW-LIVE.jpg",
         "updated_at": "2026-04-27 20:01:36",
         "screens": 1,
         "panel_url": "",
