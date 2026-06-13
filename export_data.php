@@ -45,14 +45,45 @@ JS;
 $output_path = __DIR__ . '/data.js';
 file_put_contents($output_path, $content);
 
+// Backup automático do banco de dados nos Drives de Nuvem
+$db_source = __DIR__ . '/database.sqlite';
+$backup_paths = [
+    'OneDrive' => 'C:/Users/dimil/OneDrive/Backup_Servidores_Info/database.sqlite',
+    'Google Drive' => 'G:/Meu Drive/Backup_Servidores_Info/database.sqlite'
+];
+
+$backup_messages = [];
+foreach ($backup_paths as $name => $dest) {
+    $dest_dir = dirname($dest);
+    if (!is_dir($dest_dir)) {
+        @mkdir($dest_dir, 0777, true);
+    }
+    
+    if (file_exists($db_source)) {
+        if (@copy($db_source, $dest)) {
+            $backup_messages[] = "☁️ <strong>Backup no {$name}:</strong> Copiado com sucesso!";
+        } else {
+            $backup_messages[] = "❌ <strong>Backup no {$name}:</strong> Falha ao copiar (verifique se o drive está conectado/acessível).";
+        }
+    } else {
+        $backup_messages[] = "⚠️ <strong>Backup no {$name}:</strong> Banco de dados original não encontrado.";
+    }
+}
+
 echo "<h2>✅ data.js gerado com sucesso!</h2>";
 echo "<p><strong>" . count($servers) . "</strong> servidores</p>";
 echo "<p><strong>" . count($apps) . "</strong> apps</p>";
 echo "<p><strong>" . count($contacts) . "</strong> contatos</p>";
 echo "<p>Arquivo salvo em: <code>data.js</code></p>";
+
+echo "<h3>📂 Status do Backup do Banco de Dados:</h3>";
+foreach ($backup_messages as $msg) {
+    echo "<p>{$msg}</p>";
+}
+
 echo "<hr>";
-echo "<p>Agora execute no PowerShell:</p>";
-echo "<pre>cd \"C:\\Users\\dimil\\Downloads\\Servidores e App Parceiros\"
+echo "<p>Agora execute no PowerShell (ou peça para o assistente atualizar o GitHub):</p>";
+echo "<pre>cd \"C:\\Users\\dimil\\.gemini\\antigravity\\scratch\\Servidores Info\"
 git add .
 git commit -m \"update: dados estáticos atualizados\"
 git push origin main</pre>";
