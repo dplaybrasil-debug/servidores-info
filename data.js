@@ -1,6 +1,6 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-06-14 00:26:21
+ * Gerado em: 2026-06-14 20:21:44
  * NÃO edite manualmente. Regenere via: http://localhost:8000/export_data.php
  */
 window.STATIC_DATA = {
@@ -250,7 +250,7 @@ window.STATIC_DATA = {
         "channels": 0,
         "created_at": "2026-06-06 05:00:16",
         "logo": "",
-        "table_image_url": "",
+        "table_image_url": "https:\/\/i.ibb.co\/TDcWHfKP\/BRASIL-TV.jpg",
         "updated_at": null,
         "screens": 1,
         "panel_url": "",
@@ -597,7 +597,7 @@ window.STATIC_DATA = {
         "screens": 1,
         "panel_url": "",
         "app_store_url": "",
-        "server_type": "hybrid"
+        "server_type": "android"
     },
     {
         "id": 38,
