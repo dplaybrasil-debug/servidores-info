@@ -1,6 +1,6 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-06-14 20:21:44
+ * Gerado em: 2026-06-14 21:02:26
  * NÃO edite manualmente. Regenere via: http://localhost:8000/export_data.php
  */
 window.STATIC_DATA = {
@@ -150,6 +150,24 @@ window.STATIC_DATA = {
         "server_type": "hybrid"
     },
     {
+        "id": 135,
+        "name": "AZONIX PLAT",
+        "url": "",
+        "status": "active",
+        "description": "",
+        "movies": 0,
+        "series": 0,
+        "channels": 0,
+        "created_at": "2026-06-14 20:59:02",
+        "logo": "https:\/\/i.ibb.co\/5hyvBkD6\/AZONIX-PLAY.png",
+        "table_image_url": "https:\/\/i.ibb.co\/Q3tY8nY9\/AZONIX.jpg",
+        "updated_at": null,
+        "screens": 1,
+        "panel_url": "",
+        "app_store_url": "",
+        "server_type": "iptv"
+    },
+    {
         "id": 11,
         "name": "BABU TV",
         "url": "http:\/\/",
@@ -249,7 +267,7 @@ window.STATIC_DATA = {
         "series": 0,
         "channels": 0,
         "created_at": "2026-06-06 05:00:16",
-        "logo": "",
+        "logo": "https:\/\/i.ibb.co\/ns9g0tx5\/brasil-tv.jpg",
         "table_image_url": "https:\/\/i.ibb.co\/TDcWHfKP\/BRASIL-TV.jpg",
         "updated_at": null,
         "screens": 1,
@@ -664,7 +682,7 @@ window.STATIC_DATA = {
         "channels": 0,
         "created_at": "2026-06-11 14:47:55",
         "logo": "https:\/\/i.ibb.co\/tMkQzLJ1\/INFINITE.png",
-        "table_image_url": "",
+        "table_image_url": "https:\/\/i.ibb.co\/4R5Tp0CC\/INFINITE.jpg",
         "updated_at": null,
         "screens": 1,
         "panel_url": "",
