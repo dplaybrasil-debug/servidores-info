@@ -1,6 +1,6 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-06-13 05:06:08
+ * Gerado em: 2026-06-14 00:26:21
  * NÃO edite manualmente. Regenere via: http://localhost:8000/export_data.php
  */
 window.STATIC_DATA = {
@@ -906,24 +906,6 @@ window.STATIC_DATA = {
         "server_type": "hybrid"
     },
     {
-        "id": 55,
-        "name": "NOBRE TV",
-        "url": "http:\/\/",
-        "status": "active",
-        "description": "",
-        "movies": 0,
-        "series": 0,
-        "channels": 0,
-        "created_at": "2026-04-27 06:09:59",
-        "logo": "[img]https:\/\/i.imgur.com\/H33zl4t.png[\/img]",
-        "table_image_url": null,
-        "updated_at": null,
-        "screens": 1,
-        "panel_url": null,
-        "app_store_url": null,
-        "server_type": "hybrid"
-    },
-    {
         "id": 56,
         "name": "NOW",
         "url": "http:\/\/",
@@ -1024,6 +1006,24 @@ window.STATIC_DATA = {
         "channels": 0,
         "created_at": "2026-04-27 06:09:59",
         "logo": "https:\/\/i.ibb.co\/kgv13LXY\/P2FAST.png",
+        "table_image_url": "",
+        "updated_at": null,
+        "screens": 1,
+        "panel_url": "",
+        "app_store_url": "",
+        "server_type": "hybrid"
+    },
+    {
+        "id": 55,
+        "name": "P2HYBRION",
+        "url": "http:\/\/",
+        "status": "active",
+        "description": "",
+        "movies": 0,
+        "series": 0,
+        "channels": 0,
+        "created_at": "2026-04-27 06:09:59",
+        "logo": "https:\/\/i.ibb.co\/cXsnZhJV\/P2-HYBRION.jpg",
         "table_image_url": "",
         "updated_at": null,
         "screens": 1,
@@ -1137,7 +1137,7 @@ window.STATIC_DATA = {
         "screens": 1,
         "panel_url": "",
         "app_store_url": "",
-        "server_type": "hybrid"
+        "server_type": "android"
     },
     {
         "id": 34,
@@ -1954,6 +1954,14 @@ window.STATIC_DATA = {
         "logo": "https:\/\/i.ibb.co\/W4LKGNvq\/POWER-PIXEL.png",
         "status": "active",
         "created_at": "2026-04-28 03:19:00"
+    },
+    {
+        "id": 51,
+        "name": "POWER PLAY",
+        "url": "",
+        "logo": "https:\/\/i.ibb.co\/9kchpwc3\/POWER-PLAY.png",
+        "status": "active",
+        "created_at": "2026-06-13 21:38:08"
     },
     {
         "id": 33,
@@ -3067,26 +3075,6 @@ window.STATIC_DATA = {
         "app_id": 41
     },
     {
-        "server_id": 6,
-        "app_id": 2
-    },
-    {
-        "server_id": 6,
-        "app_id": 43
-    },
-    {
-        "server_id": 6,
-        "app_id": 11
-    },
-    {
-        "server_id": 6,
-        "app_id": 12
-    },
-    {
-        "server_id": 6,
-        "app_id": 36
-    },
-    {
         "server_id": 56,
         "app_id": 2
     },
@@ -3121,6 +3109,30 @@ window.STATIC_DATA = {
     {
         "server_id": 132,
         "app_id": 40
+    },
+    {
+        "server_id": 6,
+        "app_id": 2
+    },
+    {
+        "server_id": 6,
+        "app_id": 3
+    },
+    {
+        "server_id": 6,
+        "app_id": 43
+    },
+    {
+        "server_id": 6,
+        "app_id": 11
+    },
+    {
+        "server_id": 6,
+        "app_id": 51
+    },
+    {
+        "server_id": 6,
+        "app_id": 36
     }
 ]
 };
