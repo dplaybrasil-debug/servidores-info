@@ -363,7 +363,8 @@
 
             try {
                 // Renderizar Dados
-                document.getElementById('sTitle').innerText = data.name;
+                const screensCount = Number(data.screens || 1);
+                document.getElementById('sTitle').innerText = data.name + (screensCount > 1 ? ` (${screensCount} Telas)` : '');
                 
                 if (data.description) {
                     document.getElementById('sDesc').innerText = data.description;

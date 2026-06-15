@@ -189,8 +189,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div style="padding:10px 12px 11px; display:flex; flex-direction:column; gap:4px; flex:1;">
                         <div style="font-size:0.88rem; color:white; font-weight:700;
                                     white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"
-                             title="${escapeHtml(srv.name)}">
-                            ${escapeHtml(srv.name)}
+                             title="${escapeHtml(srv.name)}${screens > 1 ? ` (${screens} Telas)` : ''}">
+                            ${escapeHtml(srv.name)}${screens > 1 ? ` (${screens} Telas)` : ''}
                         </div>
                         ${desc ? `<div style="font-size:0.75rem; color:rgba(160,170,190,0.85); line-height:1.35;
                                               overflow:hidden; display:-webkit-box; -webkit-line-clamp:2;
