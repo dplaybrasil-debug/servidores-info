@@ -73,6 +73,29 @@
             overflow-y: auto;
         }
 
+        /* Custom scrollbar globally */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+            border: 1px solid transparent;
+            background-clip: padding-box;
+            transition: background 0.3s ease;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
         /* Inline Search Bar Styles */
         .search-inline-container {
             display: flex;
@@ -94,7 +117,7 @@
         .search-trigger-btn {
             background: transparent;
             border: none;
-            color: var(--text-muted);
+            color: rgba(255, 255, 255, 0.7);
             cursor: pointer;
             width: 30px;
             height: 30px;
@@ -108,6 +131,10 @@
         .search-trigger-btn:hover {
             color: white;
             background: rgba(255, 255, 255, 0.08);
+        }
+
+        .search-inline-container.active .search-trigger-btn {
+            color: var(--primary);
         }
 
         .search-inline-wrapper {
@@ -137,6 +164,7 @@
 
         @media (max-width: 600px) {
             .portal-header {
+                display: flex;
                 flex-direction: column;
                 gap: 0.8rem;
                 padding: 0.8rem;
@@ -145,6 +173,11 @@
             .portal-nav {
                 width: 100%;
                 justify-content: center;
+            }
+            .portal-header-search {
+                justify-content: center !important;
+                padding-left: 0 !important;
+                width: 100%;
             }
             .search-inline-container.active .search-inline-wrapper {
                 width: 140px;
@@ -219,7 +252,7 @@
             </nav>
             
             <!-- Direita: Pesquisa -->
-            <div style="display: flex; justify-content: flex-end; align-items: center;">
+            <div class="portal-header-search" style="display: flex; justify-content: flex-start; align-items: center; padding-left: 1.2rem;">
                 <div class="search-inline-container" id="searchInlineContainer">
                     <button class="search-trigger-btn" onclick="toggleSearch()" title="Pesquisar">
                         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="pointer-events: none;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
