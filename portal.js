@@ -387,13 +387,18 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('section-support').style.display = tab === 'support' ? 'block' : 'none';
 
         // Ocultar busca e pills na aba Apoio
-        const searchBox = document.getElementById('searchInput');
+        const searchContainer = document.getElementById('searchInlineContainer');
         const filterBar = document.getElementById('publicServerFilterBar');
-        if (searchBox) searchBox.style.display = tab === 'support' ? 'none' : 'block';
+        if (searchContainer) searchContainer.style.display = tab === 'support' ? 'none' : 'flex';
         if (filterBar) filterBar.style.display  = tab === 'servers'  ? 'flex' : 'none';
 
         // Limpar pesquisa e filtro ao trocar de aba
-        document.getElementById('searchInput').value = '';
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.value = '';
+            searchInput.dispatchEvent(new Event('input'));
+        }
+        if (searchContainer) searchContainer.classList.remove('active');
         window._pubSrvFilter = 'all';
         updatePublicFilterHighlight();
         renderServers(activeServers);
@@ -601,6 +606,20 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // --- PESQUISA ---
+    window.toggleSearch = () => {
+        const container = document.getElementById('searchInlineContainer');
+        const input = document.getElementById('searchInput');
+        if (!container || !input) return;
+
+        container.classList.toggle('active');
+        if (container.classList.contains('active')) {
+            setTimeout(() => input.focus(), 150);
+        } else {
+            input.value = '';
+            input.dispatchEvent(new Event('input'));
+        }
+    };
+
     document.getElementById('searchInput').addEventListener('input', () => {
         const term = (document.getElementById('searchInput').value || '').toLowerCase();
         if (currentTab === 'servers') {
