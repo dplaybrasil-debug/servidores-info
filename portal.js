@@ -620,15 +620,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    document.getElementById('searchInput').addEventListener('input', () => {
-        const term = (document.getElementById('searchInput').value || '').toLowerCase();
-        if (currentTab === 'servers') {
-            applyPublicServerFilters();
-        } else {
-            const filtered = activeApps.filter(a => a.name.toLowerCase().includes(term));
-            renderApps(filtered);
-        }
-    });
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('input', () => {
+            const term = (searchInput.value || '').toLowerCase();
+            if (currentTab === 'servers') {
+                applyPublicServerFilters();
+            } else {
+                const filtered = activeApps.filter(a => a.name.toLowerCase().includes(term));
+                renderApps(filtered);
+            }
+        });
+    }
 
     // Inicia o App
     loadAllData();

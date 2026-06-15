@@ -316,7 +316,22 @@
                 background-repeat: repeat; background-size: 250px;">
     </div>
 
-    <script src="data.js?v=5"></script>
-    <script src="portal.js?v=17"></script>
+    <script>
+        function toggleSearch() {
+            const container = document.getElementById('searchInlineContainer');
+            const input = document.getElementById('searchInput');
+            if (!container || !input) return;
+            
+            container.classList.toggle('active');
+            if (container.classList.contains('active')) {
+                setTimeout(() => input.focus(), 150);
+            } else {
+                input.value = '';
+                input.dispatchEvent(new Event('input'));
+            }
+        }
+    </script>
+    <script src="data.js?v=6"></script>
+    <script src="portal.js?v=18"></script>
 </body>
 </html>
