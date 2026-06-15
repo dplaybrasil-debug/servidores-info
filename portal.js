@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
                              display:flex; flex-direction:column;"
                       onmouseover="this.style.transform='translateY(-4px)'; this.style.borderColor='${tc.border}'; this.style.boxShadow='0 8px 28px rgba(59,130,246,0.35)';"
                       onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.07)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.4)';"
-                      onclick="window.location.href='server.html?id=${srv.id}&nome=${slugify(srv.name)}'">
+                      onclick="window.location.href='server.html?v=18&id=${srv.id}&nome=${slugify(srv.name)}'">
 
                     <!-- Imagem / Logo -->
                     <div style="position:relative; width:100%; height:130px; overflow:hidden; background:#0d1117; flex-shrink:0;">
@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         ${desc ? `<div style="font-size:0.75rem; color:rgba(160,170,190,0.85); line-height:1.35;
                                               overflow:hidden; display:-webkit-box; -webkit-line-clamp:2;
                                               -webkit-box-orient:vertical;">${escapeHtml(desc)}</div>` : ''}
-                        <a href="server.html?id=${srv.id}&nome=${slugify(srv.name)}"
+                        <a href="server.html?v=18&id=${srv.id}&nome=${slugify(srv.name)}"
                            onclick="event.stopPropagation();"
                            style="display:inline-flex; align-items:center; gap:4px; margin-top:4px;
                                   font-size:0.75rem; color:rgba(96,165,250,0.9); text-decoration:none;
@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const srv = activeServers.find(s => String(s.id) === String(id));
         const serverName = srv ? srv.name : '';
         const slug = serverName ? `&nome=${slugify(serverName)}` : '';
-        window.location.href = `server.html?id=${id}${slug}`;
+        window.location.href = `server.html?v=18&id=${id}${slug}`;
     };
 
     window.openAppInfo = async (id) => {
