@@ -263,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     .map(sa => sa.server_id);
                 linked_servers = (window.STATIC_DATA.servers || [])
                     .filter(s => serverIds.includes(s.id) && s.status === 'active')
-                    .map(s => ({ id: s.id, name: s.name, logo: s.logo }));
+                    .map(s => ({ id: s.id, name: s.name, logo: s.logo, screens: s.screens }));
             }
             openInfoModal('app', app.name, extractImageUrl(app.logo), app.url, '', 0, 0, 0, linked_servers);
         }
@@ -312,6 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('infoLinkedTitle').innerHTML = `Servidores Parceiros Compatíveis <span style="background: var(--primary); color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.85rem; font-weight: bold; vertical-align: middle; margin-left: 0.5rem; box-shadow: 0 2px 5px rgba(59, 130, 246, 0.4);">${linked_items.length}</span>`;
             linked_items.forEach(item => {
                 const itemLogo = extractImageUrl(item.logo);
+                const screens = parseInt(item.screens, 10) || 1;
                 linkedGrid.innerHTML += `
                 <div style="border-radius:14px; overflow:hidden; cursor:pointer; text-align: left;
                              background:rgba(20,25,40,0.85); border:2px solid rgba(255,255,255,0.07);
@@ -333,8 +334,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div style="padding:10px 12px 11px; display:flex; flex-direction:column; gap:4px; flex:1;">
                         <div style="font-size:0.88rem; color:white; font-weight:700;
                                     white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"
-                             title="${escapeHtml(item.name)}">
-                            ${escapeHtml(item.name)}
+                             title="${escapeHtml(item.name)}${screens > 1 ? ` (${screens} Telas)` : ''}">
+                            ${escapeHtml(item.name)}${screens > 1 ? ` (${screens} Telas)` : ''}
                         </div>
                         <div style="display:inline-flex; align-items:center; gap:4px; margin-top:4px;
                                    font-size:0.75rem; color:rgba(96,165,250,0.9); font-weight:600;">
