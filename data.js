@@ -1,6 +1,6 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-06-14 21:02:26
+ * Gerado em: 2026-06-16 15:50:43
  * NÃO edite manualmente. Regenere via: http://localhost:8000/export_data.php
  */
 window.STATIC_DATA = {
@@ -186,6 +186,24 @@ window.STATIC_DATA = {
         "server_type": "hybrid"
     },
     {
+        "id": 116,
+        "name": "BIT SYSTEM",
+        "url": "http:\/\/",
+        "status": "active",
+        "description": "",
+        "movies": 0,
+        "series": 0,
+        "channels": 0,
+        "created_at": "2026-06-06 05:00:16",
+        "logo": "https:\/\/i.ibb.co\/jv5PfmmK\/BIT-SYSTEM-logo.jpg",
+        "table_image_url": "https:\/\/i.ibb.co\/BHz8LjWM\/BIT-SYSTEM.jpg",
+        "updated_at": null,
+        "screens": 1,
+        "panel_url": "",
+        "app_store_url": "",
+        "server_type": "hybrid"
+    },
+    {
         "id": 14,
         "name": "BLACK",
         "url": "http:\/\/",
@@ -270,7 +288,7 @@ window.STATIC_DATA = {
         "logo": "https:\/\/i.ibb.co\/ns9g0tx5\/brasil-tv.jpg",
         "table_image_url": "https:\/\/i.ibb.co\/TDcWHfKP\/BRASIL-TV.jpg",
         "updated_at": null,
-        "screens": 1,
+        "screens": 2,
         "panel_url": "",
         "app_store_url": "",
         "server_type": "hybrid"
@@ -360,6 +378,24 @@ window.STATIC_DATA = {
         "logo": "https:\/\/i.ibb.co\/whCjWQzy\/BEEST-TV-CLIENTE-TV.png",
         "table_image_url": "https:\/\/i.ibb.co\/VWFY5CT0\/BEESTV.jpg",
         "updated_at": "2026-06-06 04:52:19",
+        "screens": 1,
+        "panel_url": "",
+        "app_store_url": "",
+        "server_type": "hybrid"
+    },
+    {
+        "id": 23,
+        "name": "CLOUD PLAY",
+        "url": "http:\/\/",
+        "status": "active",
+        "description": "",
+        "movies": 0,
+        "series": 0,
+        "channels": 0,
+        "created_at": "2026-04-27 06:09:59",
+        "logo": "https:\/\/i.ibb.co\/DmNFQ03\/CLOUD-PLAY-1.png",
+        "table_image_url": "https:\/\/i.ibb.co\/NnY4Rt1C\/CLOUD-PLAY.jpg",
+        "updated_at": "2026-06-06 04:53:00",
         "screens": 1,
         "panel_url": "",
         "app_store_url": "",
@@ -654,6 +690,24 @@ window.STATIC_DATA = {
         "server_type": "hybrid"
     },
     {
+        "id": 39,
+        "name": "HORIZON",
+        "url": "http:\/\/",
+        "status": "active",
+        "description": "",
+        "movies": 0,
+        "series": 0,
+        "channels": 0,
+        "created_at": "2026-04-27 06:09:59",
+        "logo": "https:\/\/i.ibb.co\/ZpBnYtzG\/HORIZON-XZ.png",
+        "table_image_url": "https:\/\/i.ibb.co\/7dg912wk\/Horizom.jpg",
+        "updated_at": "2026-04-27 10:52:47",
+        "screens": 1,
+        "panel_url": "",
+        "app_store_url": "",
+        "server_type": "hybrid"
+    },
+    {
         "id": 42,
         "name": "HPLAY",
         "url": "http:\/\/",
@@ -826,7 +880,7 @@ window.STATIC_DATA = {
         "channels": 0,
         "created_at": "2026-06-06 05:00:16",
         "logo": "https:\/\/i.ibb.co\/C3sCyqKr\/MUNDO-GF.png",
-        "table_image_url": "",
+        "table_image_url": "https:\/\/i.ibb.co\/S4Sy4xvk\/MUNDO-GF.jpg",
         "updated_at": null,
         "screens": 1,
         "panel_url": "",
@@ -1122,6 +1176,24 @@ window.STATIC_DATA = {
         "server_type": "hybrid"
     },
     {
+        "id": 66,
+        "name": "P2X",
+        "url": "http:\/\/",
+        "status": "active",
+        "description": "",
+        "movies": 0,
+        "series": 0,
+        "channels": 0,
+        "created_at": "2026-04-27 06:09:59",
+        "logo": "https:\/\/i.ibb.co\/Wp4NFvY4\/P2X.png",
+        "table_image_url": "",
+        "updated_at": null,
+        "screens": 1,
+        "panel_url": "",
+        "app_store_url": "",
+        "server_type": "hybrid"
+    },
+    {
         "id": 67,
         "name": "PAZ TV",
         "url": "http:\/\/",
@@ -1279,6 +1351,24 @@ window.STATIC_DATA = {
         "table_image_url": "https:\/\/i.ibb.co\/XrDCVc3s\/SEVEN.jpg",
         "updated_at": "2026-06-06 04:55:14",
         "screens": 1,
+        "panel_url": "",
+        "app_store_url": "",
+        "server_type": "hybrid"
+    },
+    {
+        "id": 58,
+        "name": "SHAZAN PLAY",
+        "url": "http:\/\/",
+        "status": "active",
+        "description": "",
+        "movies": 0,
+        "series": 0,
+        "channels": 0,
+        "created_at": "2026-04-27 06:09:59",
+        "logo": "",
+        "table_image_url": "https:\/\/i.ibb.co\/9mCQtYhK\/SHAZAN-PLAY.jpg",
+        "updated_at": null,
+        "screens": 2,
         "panel_url": "",
         "app_store_url": "",
         "server_type": "hybrid"
@@ -1591,7 +1681,7 @@ window.STATIC_DATA = {
     },
     {
         "id": 101,
-        "name": "VORTEX - BOX SERVIDOR",
+        "name": "VORTEX",
         "url": "http:\/\/",
         "status": "active",
         "description": "",
@@ -2110,7 +2200,18 @@ window.STATIC_DATA = {
         "created_at": "2026-04-27 07:15:00"
     }
 ],
-    contacts:    [],
+    contacts:    [
+    {
+        "id": 5,
+        "name": "vavavava",
+        "type": "telegram",
+        "value": "vavavava",
+        "description": "",
+        "active": 1,
+        "sort_order": 0,
+        "created_at": "2026-06-15 02:40:11"
+    }
+],
     server_apps: [
     {
         "server_id": 102,
