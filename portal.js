@@ -684,13 +684,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const TOAST_KEY = 'cs_last_seen_version';
 
     window.dismissUpdateToast = () => {
-        const toast = document.getElementById('updateToast');
+        const toast    = document.getElementById('updateToast');
+        const backdrop = document.getElementById('updateToastBackdrop');
         if (!toast) return;
-        toast.style.animation = 'none';
-        toast.style.transition = 'opacity 0.3s, transform 0.3s';
-        toast.style.opacity = '0';
-        toast.style.transform = 'translateY(20px) scale(0.95)';
-        setTimeout(() => toast.style.display = 'none', 300);
+        toast.style.animation   = 'none';
+        toast.style.transition  = 'opacity 0.3s, transform 0.3s';
+        toast.style.opacity     = '0';
+        toast.style.transform   = 'translate(-50%, -50%) scale(0.9)';
+        if (backdrop) {
+            backdrop.style.transition = 'opacity 0.3s';
+            backdrop.style.opacity    = '0';
+        }
+        setTimeout(() => {
+            toast.style.display = 'none';
+            if (backdrop) { backdrop.style.display = 'none'; backdrop.style.opacity = '1'; }
+        }, 300);
         // Salva a versão atual como vista
         const version = window.STATIC_DATA?.version || '';
         if (version) localStorage.setItem(TOAST_KEY, version);
@@ -733,8 +741,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Exibe com delay de 2s para não assustar na entrada
         setTimeout(() => {
-            const toast = document.getElementById('updateToast');
-            if (toast) toast.style.display = 'flex';
+            const toast    = document.getElementById('updateToast');
+            const backdrop = document.getElementById('updateToastBackdrop');
+            if (backdrop) backdrop.style.display = 'block';
+            if (toast)    toast.style.display    = 'flex';
         }, 2000);
     };
 

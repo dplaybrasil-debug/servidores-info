@@ -1,11 +1,11 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-06-23 19:36:57
+ * Gerado em: 2026-06-23 19:42:51
  * NÃO edite manualmente. Regenere via: php generate_data.php
  */
 window.STATIC_DATA = {
-    version:     "20260623-1936",
-    generated_at: "2026-06-23 19:36:57",
+    version:     "20260623-1942",
+    generated_at: "2026-06-23 19:42:51",
     servers:     [
     {
         "id": 102,
@@ -2238,18 +2238,7 @@ window.STATIC_DATA = {
         "created_at": "2026-04-27 07:15:00"
     }
 ],
-    contacts:    [
-    {
-        "id": 5,
-        "name": "vavavava",
-        "type": "telegram",
-        "value": "vavavava",
-        "description": "",
-        "active": 1,
-        "sort_order": 0,
-        "created_at": "2026-06-15 02:40:11"
-    }
-],
+    contacts:    [],
     server_apps: [
     {
         "server_id": 102,
