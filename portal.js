@@ -136,73 +136,88 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Configurações de tipo de servidor
+        // Configurações de tipo de servidor — premium palette
         const typeConfig = {
-            hybrid:  { label: 'Híbrido',  emoji: '🔀', color: 'rgba(251,191,36,0.92)',  border: 'rgba(251,191,36,0.6)' },
-            iptv:    { label: 'IPTV',     emoji: '📡', color: 'rgba(99,102,241,0.92)',  border: 'rgba(99,102,241,0.6)' },
-            android: { label: 'Android',  emoji: '🤖', color: 'rgba(52,211,153,0.92)',  border: 'rgba(52,211,153,0.6)' },
+            hybrid:  { label: 'Híbrido',  emoji: '🔀', glow: 'rgba(251,191,36,0.5)',  border: 'rgba(251,191,36,0.7)',  badgeBg: 'rgba(251,191,36,0.92)' },
+            iptv:    { label: 'IPTV',     emoji: '📡', glow: 'rgba(124,58,237,0.5)',  border: 'rgba(124,58,237,0.7)',  badgeBg: 'rgba(124,58,237,0.92)' },
+            android: { label: 'Android',  emoji: '🤖', glow: 'rgba(52,211,153,0.5)',  border: 'rgba(52,211,153,0.7)',  badgeBg: 'rgba(52,211,153,0.9)'  },
         };
 
         serversList.forEach(srv => {
             const logoUrl = extractImageUrl(srv.logo);
             const screens = parseInt(srv.screens, 10) || 1;
+
             const screensBadge = screens >= 2
-                ? `<div style="position:absolute; top:7px; right:7px; background:rgba(59,130,246,0.92);
-                              color:white; font-size:0.65rem; font-weight:700; padding:2px 7px;
-                              border-radius:10px; z-index:2; backdrop-filter:blur(4px);
-                              border:1px solid rgba(255,255,255,0.25);">
+                ? `<div style="position:absolute; top:8px; right:8px;
+                              background:rgba(6,182,212,0.88); backdrop-filter:blur(6px);
+                              color:white; font-size:0.63rem; font-weight:800; padding:3px 9px;
+                              border-radius:50px; z-index:3; letter-spacing:0.04em;
+                              border:1px solid rgba(255,255,255,0.3);
+                              box-shadow:0 2px 8px rgba(6,182,212,0.4);">
                        📺 ${screens} telas
                    </div>`
                 : '';
 
             const srvType = srv.server_type || 'hybrid';
             const tc = typeConfig[srvType] || typeConfig.hybrid;
-            const typeBadge = `<div style="position:absolute; top:7px; left:7px; background:${tc.color};
-                              color:white; font-size:0.65rem; font-weight:700; padding:2px 7px;
-                              border-radius:10px; z-index:2; backdrop-filter:blur(4px);
-                              border:1px solid rgba(255,255,255,0.25);">
+
+            const typeBadge = `<div style="position:absolute; top:8px; left:8px;
+                              background:${tc.badgeBg}; backdrop-filter:blur(6px);
+                              color:white; font-size:0.63rem; font-weight:800; padding:3px 9px;
+                              border-radius:50px; z-index:3; letter-spacing:0.04em;
+                              border:1px solid rgba(255,255,255,0.25);
+                              box-shadow:0 2px 8px ${tc.glow};">
                        ${tc.emoji} ${tc.label}
                    </div>`;
 
             const desc = (srv.description || '').trim();
 
             grid.innerHTML += `
-                <div style="border-radius:14px; overflow:hidden; cursor:pointer;
-                             background:rgba(20,25,40,0.85); border:2px solid rgba(255,255,255,0.07);
-                             box-shadow:0 4px 15px rgba(0,0,0,0.4);
-                             transition:transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+                <div style="border-radius:16px; overflow:hidden; cursor:pointer;
+                             background:rgba(10,14,26,0.92);
+                             border:1.5px solid rgba(124,58,237,0.15);
+                             box-shadow:0 4px 20px rgba(0,0,0,0.5);
+                             transition:transform 0.28s cubic-bezier(0.34,1.56,0.64,1),
+                                        box-shadow 0.28s ease,
+                                        border-color 0.28s ease;
                              display:flex; flex-direction:column;"
-                      onmouseover="this.style.transform='translateY(-4px)'; this.style.borderColor='${tc.border}'; this.style.boxShadow='0 8px 28px rgba(59,130,246,0.35)';"
-                      onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.07)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.4)';"
+                      onmouseover="this.style.transform='translateY(-6px) scale(1.01)'; this.style.borderColor='${tc.border}'; this.style.boxShadow='0 12px 35px ${tc.glow}, 0 4px 15px rgba(0,0,0,0.5)';"
+                      onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.borderColor='rgba(124,58,237,0.15)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.5)';"
                       onclick="window.location.href='server.html?v=18&id=${srv.id}&nome=${slugify(srv.name)}'">
 
-                    <!-- Imagem / Logo -->
-                    <div style="position:relative; width:100%; height:130px; overflow:hidden; background:#0d1117; flex-shrink:0;">
+                    <!-- Banner com overlay gradiente -->
+                    <div style="position:relative; width:100%; height:135px; overflow:hidden; background:#070b14; flex-shrink:0;">
                         ${logoUrl
-                            ? `<img src="${escapeHtml(logoUrl)}" style="width:100%; height:100%; object-fit:cover; display:block;" referrerpolicy="no-referrer">`
-                            : `<div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:3rem;">🖥️</div>`}
+                            ? `<img src="${escapeHtml(logoUrl)}" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.4s ease;" referrerpolicy="no-referrer"
+                                   onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">`
+                            : `<div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:3.2rem; background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(6,182,212,0.1));">🖥️</div>`}
+                        <!-- Gradiente inferior para legibilidade -->
+                        <div style="position:absolute; bottom:0; left:0; right:0; height:55px;
+                                    background:linear-gradient(to top, rgba(10,14,26,0.95) 0%, transparent 100%);
+                                    pointer-events:none; z-index:2;"></div>
                         ${typeBadge}
                         ${screensBadge}
                     </div>
 
                     <!-- Info Panel -->
-                    <div style="padding:10px 12px 11px; display:flex; flex-direction:column; gap:4px; flex:1;">
-                        <div style="font-size:0.88rem; color:white; font-weight:700;
-                                    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"
+                    <div style="padding:11px 13px 13px; display:flex; flex-direction:column; gap:5px; flex:1;">
+                        <div style="font-size:0.9rem; color:white; font-weight:800;
+                                    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+                                    letter-spacing:0.01em;"
                              title="${escapeHtml(srv.name)}${screens > 1 ? ` (${screens} Telas)` : ''}">
                             ${escapeHtml(srv.name)}${screens > 1 ? ` (${screens} Telas)` : ''}
                         </div>
-                        ${desc ? `<div style="font-size:0.75rem; color:rgba(160,170,190,0.85); line-height:1.35;
+                        ${desc ? `<div style="font-size:0.73rem; color:rgba(150,162,190,0.85); line-height:1.4;
                                               overflow:hidden; display:-webkit-box; -webkit-line-clamp:2;
                                               -webkit-box-orient:vertical;">${escapeHtml(desc)}</div>` : ''}
                         <a href="server.html?v=18&id=${srv.id}&nome=${slugify(srv.name)}"
                            onclick="event.stopPropagation();"
-                           style="display:inline-flex; align-items:center; gap:4px; margin-top:4px;
-                                  font-size:0.75rem; color:rgba(96,165,250,0.9); text-decoration:none;
-                                  font-weight:600; transition:color 0.2s;"
-                           onmouseover="this.style.color='rgb(147,197,253)'"
-                           onmouseout="this.style.color='rgba(96,165,250,0.9)'">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                           style="display:inline-flex; align-items:center; gap:5px; margin-top:5px;
+                                  font-size:0.75rem; color:rgba(6,182,212,0.9); text-decoration:none;
+                                  font-weight:700; transition:color 0.2s; letter-spacing:0.02em;"
+                           onmouseover="this.style.color='rgb(34,211,238)'"
+                           onmouseout="this.style.color='rgba(6,182,212,0.9)'">
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                             Acessar
                         </a>
                     </div>
@@ -223,12 +238,30 @@ document.addEventListener('DOMContentLoaded', () => {
             const logoUrl = extractImageUrl(app.logo);
 
             grid.innerHTML += `
-                <div class="card glass-panel" onclick="openAppInfo(${app.id})" style="aspect-ratio: 1; padding: 0; position: relative; overflow: hidden; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                    ${logoUrl ? '<img src="' + escapeHtml(logoUrl) + '" style="width: 100%; height: 100%; object-fit: cover;" referrerpolicy="no-referrer">' : '<span style="font-size: 3rem;">📱</span>'}
-                    
-                    <!-- Tarja com o Nome -->
-                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.8); padding: 6px; text-align: center; font-size: 0.85rem; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-top: 1px solid rgba(255,255,255,0.1);">
-                        ${escapeHtml(app.name)}
+                <div onclick="openAppInfo(${app.id})"
+                     style="aspect-ratio:1; border-radius:16px; overflow:hidden; cursor:pointer;
+                            position:relative; display:flex; align-items:center; justify-content:center;
+                            background:rgba(10,14,26,0.92); border:1.5px solid rgba(124,58,237,0.15);
+                            box-shadow:0 4px 20px rgba(0,0,0,0.5);
+                            transition:transform 0.28s cubic-bezier(0.34,1.56,0.64,1),
+                                       box-shadow 0.28s ease, border-color 0.28s;"
+                     onmouseover="this.style.transform='scale(1.06) translateY(-3px)'; this.style.borderColor='rgba(6,182,212,0.5)'; this.style.boxShadow='0 10px 30px rgba(6,182,212,0.3), 0 4px 15px rgba(0,0,0,0.5)';"
+                     onmouseout="this.style.transform='scale(1) translateY(0)'; this.style.borderColor='rgba(124,58,237,0.15)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.5)';">
+
+                    ${logoUrl
+                        ? `<img src="${escapeHtml(logoUrl)}" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.4s;" referrerpolicy="no-referrer"
+                               onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">`
+                        : `<span style="font-size:3rem;">📱</span>`}
+
+                    <!-- Overlay gradiente + Nome -->
+                    <div style="position:absolute; bottom:0; left:0; right:0;
+                                background:linear-gradient(to top, rgba(8,12,20,0.95) 0%, rgba(8,12,20,0.6) 60%, transparent 100%);
+                                padding:20px 8px 8px; text-align:center;">
+                        <div style="font-size:0.78rem; font-weight:700; color:white;
+                                    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+                                    letter-spacing:0.02em; text-shadow:0 1px 4px rgba(0,0,0,0.8);">
+                            ${escapeHtml(app.name)}
+                        </div>
                     </div>
                 </div>
             `;
@@ -374,6 +407,15 @@ document.addEventListener('DOMContentLoaded', () => {
     window.closeModal = (id) => {
         document.getElementById(id).classList.remove('active');
     };
+
+    // --- FECHAR MODAL COM TECLA ESC ---
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+                modal.classList.remove('active');
+            });
+        }
+    });
 
     // --- NAVEGAÇÃO DE ABAS ---
 
@@ -558,22 +600,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const updatePublicFilterHighlight = () => {
         const f = window._pubSrvFilter || 'all';
-        const pills = {
-            all:     document.getElementById('pubSrvFilterAll'),
-            hybrid:  document.getElementById('pubSrvFilterHybrid'),
-            iptv:    document.getElementById('pubSrvFilterIptv'),
-            android: document.getElementById('pubSrvFilterAndroid'),
-            screens: document.getElementById('pubSrvFilterScreens'),
+        const pillIds = {
+            all:     'pubSrvFilterAll',
+            hybrid:  'pubSrvFilterHybrid',
+            iptv:    'pubSrvFilterIptv',
+            android: 'pubSrvFilterAndroid',
+            screens: 'pubSrvFilterScreens',
         };
-        const outlines = {
-            all:     '2px solid rgba(255,255,255,0.6)',
-            hybrid:  '2px solid #fde68a',
-            iptv:    '2px solid #a5b4fc',
-            android: '2px solid #6ee7b7',
-            screens: '2px solid #a5b4fc',
-        };
-        Object.keys(pills).forEach(k => {
-            if (pills[k]) pills[k].style.outline = k === f ? outlines[k] : 'none';
+        Object.keys(pillIds).forEach(k => {
+            const el = document.getElementById(pillIds[k]);
+            if (!el) return;
+            // Usa classe CSS 'active' definida no style.css
+            if (k === f) {
+                el.classList.add('active');
+            } else {
+                el.classList.remove('active');
+            }
         });
     };
 
