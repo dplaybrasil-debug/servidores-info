@@ -39,6 +39,9 @@ $json_server_apps = json_encode($server_apps, JSON_UNESCAPED_UNICODE | JSON_PRET
 $json_plans       = json_encode($plans,       JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 $generated_at     = date('Y-m-d H:i:s');
 
+// Versão única baseada no timestamp (ex: "20260623-1432")
+$version = date('Ymd-Hi');
+
 $content = <<<JS
 /**
  * data.js — Dados estáticos exportados automaticamente.
@@ -46,6 +49,8 @@ $content = <<<JS
  * NÃO edite manualmente. Regenere via: php generate_data.php
  */
 window.STATIC_DATA = {
+    version:     "{$version}",
+    generated_at: "{$generated_at}",
     servers:     {$json_servers},
     apps:        {$json_apps},
     contacts:    {$json_contacts},

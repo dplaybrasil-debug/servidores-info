@@ -680,6 +680,67 @@ document.addEventListener('DOMContentLoaded', () => {
     loadAllData();
     loadContacts();
 
+    // --- POPUP DE ATUALIZAÇÃO ---
+    const TOAST_KEY = 'cs_last_seen_version';
+
+    window.dismissUpdateToast = () => {
+        const toast = document.getElementById('updateToast');
+        if (!toast) return;
+        toast.style.animation = 'none';
+        toast.style.transition = 'opacity 0.3s, transform 0.3s';
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(20px) scale(0.95)';
+        setTimeout(() => toast.style.display = 'none', 300);
+        // Salva a versão atual como vista
+        const version = window.STATIC_DATA?.version || '';
+        if (version) localStorage.setItem(TOAST_KEY, version);
+    };
+
+    const checkUpdateToast = () => {
+        const data = window.STATIC_DATA;
+        if (!data || !data.version) return;
+
+        const lastSeen  = localStorage.getItem(TOAST_KEY) || '';
+        if (lastSeen === data.version) return; // já viu essa versão
+
+        // Formata a data
+        const genDate = data.generated_at || '';
+        const dateEl  = document.getElementById('updateToastDate');
+        if (dateEl && genDate) {
+            try {
+                const d = new Date(genDate.replace(' ', 'T') + '-03:00');
+                dateEl.textContent = `Atualizado em ${d.toLocaleDateString('pt-BR')} às ${d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}`;
+            } catch(e) {
+                dateEl.textContent = `Atualizado em ${genDate}`;
+            }
+        }
+
+        // Contadores de servidores e apps
+        const statsEl = document.getElementById('updateToastStats');
+        if (statsEl) {
+            const srvCount = (data.servers || []).filter(s => s.status === 'active').length;
+            const appCount = (data.apps    || []).filter(a => a.status === 'active').length;
+            const pill = (emoji, label, count, color) =>
+                `<span style="display:inline-flex; align-items:center; gap:4px; padding:3px 10px;
+                              border-radius:50px; font-size:0.75rem; font-weight:700;
+                              background:${color}20; border:1px solid ${color}50; color:${color};">
+                    ${emoji} ${count} ${label}
+                 </span>`;
+            statsEl.innerHTML =
+                pill('🖥️', 'Servidores', srvCount, '#a855f7') +
+                pill('📱', 'Apps',       appCount, '#06b6d4');
+        }
+
+        // Exibe com delay de 2s para não assustar na entrada
+        setTimeout(() => {
+            const toast = document.getElementById('updateToast');
+            if (toast) toast.style.display = 'flex';
+        }, 2000);
+    };
+
+    // Checa após carregar os dados estáticos
+    setTimeout(checkUpdateToast, 500);
+
     // --- BOTÃO × NO CAMPO DE PESQUISA ---
     const addClearBtn = (inputId) => {
         const input = document.getElementById(inputId);

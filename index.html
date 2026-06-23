@@ -495,6 +495,82 @@
         </main>
     </div>
 
+    <!-- Popup de Atualização -->
+    <div id="updateToast" style="
+        position: fixed; bottom: 1.8rem; right: 1.8rem; z-index: 9000;
+        max-width: 360px; width: calc(100% - 3rem);
+        background: rgba(10, 14, 26, 0.97);
+        border: 1.5px solid rgba(124, 58, 237, 0.5);
+        border-radius: 20px;
+        padding: 1.2rem 1.4rem;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 0 40px rgba(124,58,237,0.2);
+        backdrop-filter: blur(20px);
+        display: none;
+        flex-direction: column;
+        gap: 0.75rem;
+        animation: slideUpToast 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    ">
+        <!-- Barra superior gradiente -->
+        <div style="position:absolute; top:0; left:0; right:0; height:3px; border-radius:20px 20px 0 0;
+                    background: linear-gradient(90deg, #7c3aed, #06b6d4);"></div>
+
+        <!-- Cabeçalho -->
+        <div style="display:flex; align-items:center; gap:0.75rem; justify-content:space-between;">
+            <div style="display:flex; align-items:center; gap:0.6rem;">
+                <span style="font-size:1.4rem;">🚀</span>
+                <div>
+                    <div style="font-size:0.92rem; font-weight:800; color:white; letter-spacing:0.02em;">
+                        Atualização Disponível!
+                    </div>
+                    <div id="updateToastDate" style="font-size:0.72rem; color:var(--text-muted); margin-top:1px;"></div>
+                </div>
+            </div>
+            <button onclick="dismissUpdateToast()"
+                    style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);
+                           color:rgba(255,255,255,0.5); font-size:1rem; cursor:pointer;
+                           width:28px; height:28px; border-radius:50%;
+                           display:flex; align-items:center; justify-content:center;
+                           transition:all 0.2s; flex-shrink:0;"
+                    onmouseover="this.style.background='rgba(244,63,94,0.15)'; this.style.color='#fb7185'"
+                    onmouseout="this.style.background='rgba(255,255,255,0.06)'; this.style.color='rgba(255,255,255,0.5)'"
+            >&times;</button>
+        </div>
+
+        <!-- Contadores -->
+        <div id="updateToastStats" style="display:flex; gap:0.5rem; flex-wrap:wrap;"></div>
+
+        <!-- Mensagem -->
+        <div style="font-size:0.8rem; color:var(--text-muted); line-height:1.5;">
+            O conteúdo do portal foi atualizado. Recarregue para ver as novidades!
+        </div>
+
+        <!-- Botões -->
+        <div style="display:flex; gap:0.6rem;">
+            <button onclick="location.reload()"
+                    style="flex:1; padding:0.65rem; border-radius:50px; border:none; cursor:pointer;
+                           background:linear-gradient(135deg,#7c3aed,#06b6d4); color:white;
+                           font-size:0.82rem; font-weight:700; letter-spacing:0.04em;
+                           box-shadow:0 4px 15px rgba(124,58,237,0.4); transition:all 0.2s;"
+                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(124,58,237,0.55)'"
+                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(124,58,237,0.4)'"
+            >🔄 Atualizar agora</button>
+            <button onclick="dismissUpdateToast()"
+                    style="padding:0.65rem 1rem; border-radius:50px; cursor:pointer;
+                           background:transparent; color:var(--text-muted);
+                           border:1px solid rgba(255,255,255,0.1); font-size:0.82rem; transition:all 0.2s;"
+                    onmouseover="this.style.borderColor='rgba(255,255,255,0.25)'; this.style.color='white'"
+                    onmouseout="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.color='var(--text-muted)'"
+            >Depois</button>
+        </div>
+    </div>
+
+    <style>
+        @keyframes slideUpToast {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+    </style>
+
     <!-- Modal de Informações -->
     <div class="modal-overlay" id="modalInfo">
         <div class="modal glass-panel" style="max-width: 880px; width: 95%;">
