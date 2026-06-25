@@ -634,7 +634,7 @@
                 // Apps Vinculados
                 if (data.linked_apps && data.linked_apps.length > 0) {
                     const appsContainer = document.getElementById('sAppsBody');
-                    document.querySelector('#appsCard h3').innerHTML = `Aplicativos Parceiros <span style="background: var(--primary); color: white; padding: 4px 12px; border-radius: 20px; font-size: 1rem; vertical-align: middle; margin-left: 0.5rem; box-shadow: 0 4px 10px rgba(59, 130, 246, 0.4);">${data.linked_apps.length}</span>`;
+                    document.querySelector('#appsCard h3').innerHTML = `Aplicativos Parceiros <span style="background: var(--primary); color: white; -webkit-text-fill-color: initial; padding: 4px 12px; border-radius: 20px; font-size: 1rem; vertical-align: middle; margin-left: 0.5rem; box-shadow: 0 4px 10px rgba(59, 130, 246, 0.4);">${data.linked_apps.length}</span>`;
                     
                     data.linked_apps.forEach(app => {
                         const appLogoUrl = extractImageUrl(app.logo);

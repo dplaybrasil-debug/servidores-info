@@ -1,11 +1,11 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-06-23 19:42:51
+ * Gerado em: 2026-06-25 05:15:44
  * NÃO edite manualmente. Regenere via: php generate_data.php
  */
 window.STATIC_DATA = {
-    version:     "20260623-1942",
-    generated_at: "2026-06-23 19:42:51",
+    version:     "20260625-0515",
+    generated_at: "2026-06-25 05:15:44",
     servers:     [
     {
         "id": 102,
@@ -2537,34 +2537,6 @@ window.STATIC_DATA = {
         "app_id": 11
     },
     {
-        "server_id": 31,
-        "app_id": 17
-    },
-    {
-        "server_id": 31,
-        "app_id": 30
-    },
-    {
-        "server_id": 31,
-        "app_id": 31
-    },
-    {
-        "server_id": 31,
-        "app_id": 16
-    },
-    {
-        "server_id": 31,
-        "app_id": 19
-    },
-    {
-        "server_id": 31,
-        "app_id": 18
-    },
-    {
-        "server_id": 31,
-        "app_id": 20
-    },
-    {
         "server_id": 32,
         "app_id": 2
     },
@@ -3275,6 +3247,34 @@ window.STATIC_DATA = {
     {
         "server_id": 74,
         "app_id": 40
+    },
+    {
+        "server_id": 31,
+        "app_id": 17
+    },
+    {
+        "server_id": 31,
+        "app_id": 30
+    },
+    {
+        "server_id": 31,
+        "app_id": 31
+    },
+    {
+        "server_id": 31,
+        "app_id": 16
+    },
+    {
+        "server_id": 31,
+        "app_id": 19
+    },
+    {
+        "server_id": 31,
+        "app_id": 18
+    },
+    {
+        "server_id": 31,
+        "app_id": 20
     }
 ],
     plans:       [
