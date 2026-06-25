@@ -650,17 +650,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- PESQUISA ---
     window.toggleSearch = () => {
-        const container = document.getElementById('searchInlineContainer');
         const input = document.getElementById('searchInput');
-        if (!container || !input) return;
-
-        container.classList.toggle('active');
-        if (container.classList.contains('active')) {
-            setTimeout(() => input.focus(), 150);
-        } else {
-            input.value = '';
-            input.dispatchEvent(new Event('input'));
-        }
+        if (input) input.focus();
     };
 
     const searchInput = document.getElementById('searchInput');

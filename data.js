@@ -1,11 +1,11 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-06-25 05:15:44
+ * Gerado em: 2026-06-25 06:06:49
  * NÃO edite manualmente. Regenere via: php generate_data.php
  */
 window.STATIC_DATA = {
-    version:     "20260625-0515",
-    generated_at: "2026-06-25 05:15:44",
+    version:     "20260625-0606",
+    generated_at: "2026-06-25 06:06:49",
     servers:     [
     {
         "id": 102,
@@ -2238,7 +2238,38 @@ window.STATIC_DATA = {
         "created_at": "2026-04-27 07:15:00"
     }
 ],
-    contacts:    [],
+    contacts:    [
+    {
+        "id": 6,
+        "name": "CANAL OFICIAL",
+        "type": "whatsapp",
+        "value": "https:\/\/whatsapp.com\/channel\/0029Vb8Zts5GZNCrnTYMD20P",
+        "description": "Trabalhamos para oferecer os detalhes dos melhores e mais conceituados servidores do mercado",
+        "active": 1,
+        "sort_order": 1,
+        "created_at": "2026-06-25 05:57:50"
+    },
+    {
+        "id": 7,
+        "name": "CANAL OFICIAL",
+        "type": "telegram",
+        "value": "https:\/\/t.me\/+DekQjG02Y7gwZTAx",
+        "description": "",
+        "active": 1,
+        "sort_order": 2,
+        "created_at": "2026-06-25 05:58:18"
+    },
+    {
+        "id": 8,
+        "name": "contato",
+        "type": "telegram",
+        "value": "@Central_de_Servidores",
+        "description": "Mande suas duvidas, sugestões e reclamações e reporte possiveis erros para aplicarmos a correção",
+        "active": 1,
+        "sort_order": 3,
+        "created_at": "2026-06-25 06:02:13"
+    }
+],
     server_apps: [
     {
         "server_id": 102,

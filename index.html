@@ -130,23 +130,22 @@
         .search-inline-container {
             display: flex;
             align-items: center;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(124,58,237,0.3);
             border-radius: 50px;
             padding: 2px;
             transition: all 0.3s var(--ease-smooth);
         }
 
-        .search-inline-container.active {
-            background: rgba(0, 0, 0, 0.45);
-            border-color: var(--primary);
-            box-shadow: 0 0 15px rgba(124,58,237,0.25);
+        .search-inline-container:focus-within {
+            border-color: var(--cyan);
+            box-shadow: 0 0 15px rgba(6,182,212,0.25);
         }
 
         .search-trigger-btn {
             background: transparent;
             border: none;
-            color: rgba(255,255,255,0.55);
+            color: var(--cyan);
             cursor: pointer;
             width: 32px; height: 32px;
             border-radius: 50%;
@@ -154,17 +153,9 @@
             transition: all 0.3s;
         }
 
-        .search-trigger-btn:hover { color: white; background: rgba(255,255,255,0.08); }
-        .search-inline-container.active .search-trigger-btn { color: var(--cyan); }
-
         .search-inline-wrapper {
-            width: 0; opacity: 0; overflow: hidden;
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex; align-items: center;
-        }
-
-        .search-inline-container.active .search-inline-wrapper {
             width: 190px; opacity: 1; padding-right: 0.5rem;
+            display: flex; align-items: center;
         }
 
         .search-inline-container input {
@@ -177,7 +168,7 @@
             padding: 0.3rem 0.5rem;
         }
 
-        .search-inline-container input::placeholder { color: rgba(255,255,255,0.3); }
+        .search-inline-container input::placeholder { color: rgba(255,255,255,0.4); }
 
         /* =====================================================
            PORTAL CONTENT
