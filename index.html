@@ -500,16 +500,16 @@
         top: 50%; left: 50%;
         transform: translate(-50%, -50%) scale(0.92);
         z-index: 9000;
-        width: min(520px, calc(100vw - 2rem));
+        width: min(600px, calc(100vw - 2rem));
         background: rgba(10, 14, 26, 0.98);
         border: 1.5px solid rgba(124, 58, 237, 0.55);
         border-radius: 28px;
-        padding: 2.5rem 2rem 2rem;
-        box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 60px rgba(124,58,237,0.25);
+        padding: 3rem 2.5rem 2.5rem;
+        box-shadow: 0 40px 100px rgba(0,0,0,0.9), 0 0 80px rgba(124,58,237,0.3);
         backdrop-filter: blur(24px);
         display: none;
         flex-direction: column;
-        gap: 1.2rem;
+        gap: 1.5rem;
         animation: popInCenter 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     ">
         <!-- Barra superior gradiente -->
@@ -520,24 +520,32 @@
 
         <!-- Ícone central grande -->
         <div style="text-align:center; margin-bottom:0.25rem;">
-            <div style="font-size:3.5rem; line-height:1; margin-bottom:0.75rem;">🚀</div>
-            <div style="font-size:1.5rem; font-weight:900; color:white; letter-spacing:0.02em;
+            <div style="font-size:4rem; line-height:1; margin-bottom:1rem; animation: float 3s ease-in-out infinite;">🚀</div>
+            <div style="font-size:1.8rem; font-weight:900; color:white; letter-spacing:0.02em;
                         font-family:'Outfit', sans-serif;">
                 Atualização Disponível!
             </div>
-            <div id="updateToastDate" style="font-size:0.85rem; color:var(--text-muted); margin-top:0.4rem;"></div>
+            <div id="updateToastDate" style="font-size:0.95rem; color:var(--text-muted); margin-top:0.6rem;"></div>
         </div>
 
         <!-- Contadores centralizados -->
-        <div id="updateToastStats" style="display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap;"></div>
+        <div id="updateToastStats" style="display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap; transform: scale(1.1);"></div>
 
         <!-- Divisor -->
         <div style="height:1px; background:linear-gradient(90deg,transparent,rgba(124,58,237,0.3),transparent);"></div>
 
         <!-- Mensagem -->
-        <div style="font-size:0.92rem; color:var(--text-muted); line-height:1.6; text-align:center;">
-            O conteúdo do portal foi atualizado com novidades.<br>
-            Recarregue a página para ver tudo!
+        <div style="font-size:1rem; color:var(--text-muted); line-height:1.6; text-align:center;">
+            O conteúdo do portal foi atualizado com novidades incríveis.<br>
+            Recarregue a página agora para conferir!
+        </div>
+
+        <!-- Checkbox de não perturbe -->
+        <div style="display:flex; justify-content:center; margin-top:-0.5rem; margin-bottom:0.5rem;">
+            <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer; font-size:0.85rem; color:var(--text-muted); transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'">
+                <input type="checkbox" id="hideUpdateCheck" style="accent-color: #7c3aed; width:16px; height:16px; cursor:pointer;">
+                <span>Não exibir novamente por 5 dias</span>
+            </label>
         </div>
 
         <!-- Botões -->

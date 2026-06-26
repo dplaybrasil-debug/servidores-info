@@ -673,10 +673,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- POPUP DE ATUALIZAÇÃO ---
     const TOAST_KEY = 'cs_last_seen_version';
+    const HIDE_UNTIL_KEY = 'cs_toast_hidden_until';
 
     window.dismissUpdateToast = () => {
         const toast    = document.getElementById('updateToast');
         const backdrop = document.getElementById('updateToastBackdrop');
+        const hideCheck = document.getElementById('hideUpdateCheck');
+
         if (!toast) return;
         toast.style.animation   = 'none';
         toast.style.transition  = 'opacity 0.3s, transform 0.3s';
@@ -690,14 +693,27 @@ document.addEventListener('DOMContentLoaded', () => {
             toast.style.display = 'none';
             if (backdrop) { backdrop.style.display = 'none'; backdrop.style.opacity = '1'; }
         }, 300);
+
         // Salva a versão atual como vista
         const version = window.STATIC_DATA?.version || '';
         if (version) localStorage.setItem(TOAST_KEY, version);
+
+        // Verifica se o usuário pediu para não exibir por 5 dias
+        if (hideCheck && hideCheck.checked) {
+            const fiveDaysFromNow = Date.now() + (5 * 24 * 60 * 60 * 1000);
+            localStorage.setItem(HIDE_UNTIL_KEY, fiveDaysFromNow.toString());
+        }
     };
 
     const checkUpdateToast = () => {
         const data = window.STATIC_DATA;
         if (!data || !data.version) return;
+
+        // Se o usuário pediu para esconder por 5 dias
+        const hideUntil = localStorage.getItem(HIDE_UNTIL_KEY);
+        if (hideUntil && Date.now() < parseInt(hideUntil, 10)) {
+            return; // Ainda está no período de silêncio de 5 dias
+        }
 
         const lastSeen  = localStorage.getItem(TOAST_KEY) || '';
         if (lastSeen === data.version) return; // já viu essa versão
@@ -720,8 +736,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const srvCount = (data.servers || []).filter(s => s.status === 'active').length;
             const appCount = (data.apps    || []).filter(a => a.status === 'active').length;
             const pill = (emoji, label, count, color) =>
-                `<span style="display:inline-flex; align-items:center; gap:4px; padding:3px 10px;
-                              border-radius:50px; font-size:0.75rem; font-weight:700;
+                `<span style="display:inline-flex; align-items:center; gap:6px; padding:6px 16px;
+                              border-radius:50px; font-size:0.9rem; font-weight:700;
                               background:${color}20; border:1px solid ${color}50; color:${color};">
                     ${emoji} ${count} ${label}
                  </span>`;
@@ -729,6 +745,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 pill('🖥️', 'Servidores', srvCount, '#a855f7') +
                 pill('📱', 'Apps',       appCount, '#06b6d4');
         }
+
+        // Desmarca o checkbox por padrão ao exibir
+        const hideCheck = document.getElementById('hideUpdateCheck');
+        if (hideCheck) hideCheck.checked = false;
 
         // Exibe com delay de 2s para não assustar na entrada
         setTimeout(() => {
