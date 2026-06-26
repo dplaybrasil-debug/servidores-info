@@ -4,8 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentTab = 'servers';
 
     // Mapa de hash <-> tab interna (para roteamento por URL)
-    const hashToTab = { '#servidores': 'servers', '#apps': 'apps', '#apoio': 'support' };
-    const tabToHash = { 'servers': '#servidores', 'apps': '#apps', 'support': '#apoio' };
+    const tabToHash = { servers: '#Servidores', apps: '#Appsparceiros', support: '#Apoio' };
+    const hashToTab = { 
+        '#Servidores': 'servers', '#Appsparceiros': 'apps', '#Apoio': 'support',
+        '#servidores': 'servers', '#apps': 'apps', '#apoio': 'support' 
+    };
 
     // --- FUNÇÕES DE LIMPEZA E FORMATAÇÃO ---
     const escapeHtml = (str) => {
@@ -80,17 +83,13 @@ document.addEventListener('DOMContentLoaded', () => {
             renderServers(activeServers);
             renderApps(activeApps);
 
-            // Verifica a aba via hash na URL (ex: #servidores, #apps, #apoio)
-            const initialHash = window.location.hash;
-            const initialTab = hashToTab[initialHash];
-            if (initialTab) {
-                switchTab(initialTab, false);
+            // Chama o gerenciador de rotas SPA
+            if (typeof handleRoute === 'function') {
+                handleRoute();
             } else {
-                // Compatibilidade: verifica query string antiga
-                const urlParams = new URLSearchParams(window.location.search);
-                if (urlParams.get('tab') === 'support' || urlParams.get('page') === 'support') {
-                    switchTab('support');
-                }
+                const initialHash = window.location.hash;
+                const initialTab = hashToTab[initialHash] || 'servers';
+                switchTab(initialTab, false);
             }
         } catch(e) {
             // --- FALLBACK: Dados estáticos (GitHub Pages) ---
@@ -106,16 +105,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderServers(activeServers);
                 renderApps(activeApps);
 
-                // Verifica a aba via hash na URL
-                const initialHashFb = window.location.hash;
-                const initialTabFb = hashToTab[initialHashFb];
-                if (initialTabFb) {
-                    switchTab(initialTabFb, false);
+                if (typeof handleRoute === 'function') {
+                    handleRoute();
                 } else {
-                    const urlParams = new URLSearchParams(window.location.search);
-                    if (urlParams.get('tab') === 'support' || urlParams.get('page') === 'support') {
-                        switchTab('support');
-                    }
+                    const initialHashFb = window.location.hash;
+                    const initialTabFb = hashToTab[initialHashFb] || 'servers';
+                    switchTab(initialTabFb, false);
                 }
                 return; // Sucesso com dados estáticos
             }
@@ -183,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
                              display:flex; flex-direction:column;"
                       onmouseover="this.style.transform='translateY(-6px) scale(1.01)'; this.style.borderColor='${tc.border}'; this.style.boxShadow='0 12px 35px ${tc.glow}, 0 4px 15px rgba(0,0,0,0.5)';"
                       onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.borderColor='rgba(124,58,237,0.15)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.5)';"
-                      onclick="window.location.href='server.html?v=18&id=${srv.id}&nome=${slugify(srv.name)}'">
+                      onclick="window.location.hash='#Servidores/${slugify(srv.name)}'">
 
                     <!-- Banner com overlay gradiente -->
                     <div style="position:relative; width:100%; height:135px; overflow:hidden; background:#070b14; flex-shrink:0;">
@@ -238,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const logoUrl = extractImageUrl(app.logo);
 
             grid.innerHTML += `
-                <div onclick="openAppInfo(${app.id})"
+                <div onclick="window.location.hash='#Appsparceiros/${slugify(app.name)}'"
                      style="aspect-ratio:1; border-radius:16px; overflow:hidden; cursor:pointer;
                             position:relative; display:flex; align-items:center; justify-content:center;
                             background:rgba(10,14,26,0.92); border:1.5px solid rgba(124,58,237,0.15);
@@ -453,13 +448,126 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Escuta o botão voltar/avançar do navegador
-    window.addEventListener('hashchange', () => {
-        const tab = hashToTab[window.location.hash] || 'servers';
+    // Função que gerencia o roteamento completo da SPA
+    const handleRoute = () => {
+        let hash = window.location.hash;
+        if (!hash) hash = '#Servidores';
+
+        // 1. Verificar se é rota de Servidor (SPA detalhe)
+        if (hash.toLowerCase().startsWith('#servidores/')) {
+            const slug = hash.split('/')[1];
+            const srv = activeServers.find(s => slugify(s.name) === slug);
+            if (srv) {
+                renderServerDetails(srv);
+                return;
+            }
+        }
+
+        // 2. Verificar se é rota de App Parceiro (Abre o Modal e a aba de apps)
+        if (hash.toLowerCase().startsWith('#appsparceiros/')) {
+            const slug = hash.split('/')[1];
+            const app = activeApps.find(a => slugify(a.name) === slug);
+            if (app) {
+                // Alterna para aba de apps sem alterar o hash
+                if (currentTab !== 'apps') switchTab('apps', false);
+                openAppInfo(app.id);
+                return;
+            }
+        }
+
+        // 3. Caso não seja detalhe, fechar detalhes de servidor se estiverem abertos
+        document.getElementById('section-server-details').style.display = 'none';
+        
+        // 4. Mapear para aba normal
+        // Tenta achar pelo hash exato, senão busca o base em minúsculas
+        let baseHash = hash.split('/')[0];
+        let tab = hashToTab[baseHash] || hashToTab[baseHash.toLowerCase()] || 'servers';
+        
         if (tab !== currentTab) {
             switchTab(tab, false);
+        } else {
+            // Se já está na aba correta, garante que as sessões normais fiquem visíveis
+            document.getElementById('section-servers').style.display = tab === 'servers' ? 'block' : 'none';
+            document.getElementById('section-apps').style.display   = tab === 'apps'    ? 'block' : 'none';
+            document.getElementById('section-support').style.display = tab === 'support' ? 'block' : 'none';
         }
-    });
+    };
+
+    // Escuta o botão voltar/avançar do navegador e mudanças de URL
+    window.addEventListener('hashchange', handleRoute);
+
+    // Função que renderiza o servidor na SPA (copiada da lógica do server.html)
+    window.renderServerDetails = (srv) => {
+        // Ocultar as abas principais
+        document.getElementById('section-servers').style.display = 'none';
+        document.getElementById('section-apps').style.display = 'none';
+        document.getElementById('section-support').style.display = 'none';
+        
+        // Exibir a nova sessão de detalhes
+        document.getElementById('section-server-details').style.display = 'flex';
+
+        // Renderizar conteúdo
+        document.getElementById('sTitle').innerText = srv.name || 'Servidor';
+        document.getElementById('sDesc').innerText = srv.description || 'Sem descrição.';
+
+        if (srv.logo) {
+            document.getElementById('sLogo').src = extractImageUrl(srv.logo);
+            document.getElementById('sLogo').style.display = 'block';
+            document.getElementById('sNoLogo').style.display = 'none';
+        } else {
+            document.getElementById('sLogo').style.display = 'none';
+            document.getElementById('sNoLogo').style.display = 'block';
+        }
+
+        document.getElementById('sChannels').innerText = srv.channels_count || 0;
+        document.getElementById('sMovies').innerText = srv.movies_count || 0;
+        document.getElementById('sSeries').innerText = srv.series_count || 0;
+
+        if (srv.screens && parseInt(srv.screens, 10) > 1) {
+            document.getElementById('sScreens').innerText = srv.screens;
+            document.getElementById('screensInfo').style.display = 'block';
+        } else {
+            document.getElementById('screensInfo').style.display = 'none';
+        }
+
+        // Tabela
+        if (srv.table_image_url) {
+            const extractedUrl = extractImageUrl(srv.table_image_url);
+            if (extractedUrl && extractedUrl.length > 5) {
+                document.getElementById('tableImgSPA').src = extractedUrl;
+                document.getElementById('tableContainer').style.display = 'block';
+            } else {
+                document.getElementById('tableContainer').style.display = 'none';
+            }
+        } else {
+            document.getElementById('tableContainer').style.display = 'none';
+        }
+
+        // Apps Suportados
+        const appsRow = document.getElementById('sAppsBody');
+        appsRow.innerHTML = '';
+        if (srv.supported_apps && Array.isArray(srv.supported_apps) && srv.supported_apps.length > 0) {
+            document.getElementById('appsCard').style.display = 'block';
+            srv.supported_apps.forEach(appId => {
+                const app = activeApps.find(a => a.id == appId);
+                if (app) {
+                    const appLogoUrl = extractImageUrl(app.logo);
+                    appsRow.innerHTML += `
+                        <div class="app-item">
+                            ${appLogoUrl
+                                ? `<img src="${appLogoUrl}" class="app-logo" referrerpolicy="no-referrer">`
+                                : `<div class="app-logo">📱</div>`}
+                            <div class="app-name">${app.name}</div>
+                        </div>
+                    `;
+                }
+            });
+        } else {
+            document.getElementById('appsCard').style.display = 'none';
+        }
+        
+        window.scrollTo(0, 0);
+    };
 
     // --- CONTATOS DE APOIO (Portal Público) ---
     const contactTypeColors = {
