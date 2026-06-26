@@ -626,9 +626,13 @@
                 }
 
                 // Tabela em Imagem
-                if (data.table_image_url && data.table_image_url.trim() !== '') {
-                    document.getElementById('tableImg').src = extractImageUrl(data.table_image_url);
-                    document.getElementById('tableContainer').style.display = 'block';
+                // Tabela
+                if (data.table_image_url) {
+                    const extractedUrl = extractImageUrl(data.table_image_url);
+                    if (extractedUrl && extractedUrl.length > 5) { // Ensure it's a real path/url
+                        document.getElementById('tableImg').src = extractedUrl;
+                        document.getElementById('tableContainer').style.display = 'block';
+                    }
                 }
 
                 // Apps Vinculados
