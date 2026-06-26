@@ -1,11 +1,11 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-06-25 06:06:49
+ * Gerado em: 2026-06-26 02:27:59
  * NÃO edite manualmente. Regenere via: php generate_data.php
  */
 window.STATIC_DATA = {
-    version:     "20260625-0606",
-    generated_at: "2026-06-25 06:06:49",
+    version:     "20260626-0227",
+    generated_at: "2026-06-26 02:27:59",
     servers:     [
     {
         "id": 102,
@@ -129,24 +129,6 @@ window.STATIC_DATA = {
         "table_image_url": "[img]https:\/\/i.imgur.com\/8uYjJDl.jpeg[\/img]",
         "updated_at": "2026-06-06 04:50:16",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
-        "server_type": "hybrid"
-    },
-    {
-        "id": 129,
-        "name": "AURA TV +",
-        "url": "",
-        "status": "active",
-        "description": "",
-        "movies": 51311,
-        "series": 17174,
-        "channels": 4320,
-        "created_at": "2026-06-09 15:34:11",
-        "logo": "https:\/\/i.ibb.co\/YFTSc0ff\/AURA-TV.png",
-        "table_image_url": "https:\/\/i.ibb.co\/sJwz68wc\/Aura-TV.jpg",
-        "updated_at": "2026-06-21 04:31:27",
-        "screens": 2,
         "panel_url": "",
         "app_store_url": "",
         "server_type": "hybrid"
@@ -1136,7 +1118,7 @@ window.STATIC_DATA = {
         "logo": "https:\/\/i.ibb.co\/JWmj64LQ\/P2PLAYER.png",
         "table_image_url": "https:\/\/i.ibb.co\/nM4sVLZY\/P2PLAYER.jpg",
         "updated_at": "2026-06-21 05:46:19",
-        "screens": 1,
+        "screens": 2,
         "panel_url": "",
         "app_store_url": "",
         "server_type": "hybrid"
@@ -3172,82 +3154,6 @@ window.STATIC_DATA = {
         "app_id": 36
     },
     {
-        "server_id": 129,
-        "app_id": 13
-    },
-    {
-        "server_id": 129,
-        "app_id": 2
-    },
-    {
-        "server_id": 129,
-        "app_id": 3
-    },
-    {
-        "server_id": 129,
-        "app_id": 45
-    },
-    {
-        "server_id": 129,
-        "app_id": 21
-    },
-    {
-        "server_id": 129,
-        "app_id": 4
-    },
-    {
-        "server_id": 129,
-        "app_id": 26
-    },
-    {
-        "server_id": 129,
-        "app_id": 6
-    },
-    {
-        "server_id": 129,
-        "app_id": 8
-    },
-    {
-        "server_id": 129,
-        "app_id": 7
-    },
-    {
-        "server_id": 129,
-        "app_id": 5
-    },
-    {
-        "server_id": 129,
-        "app_id": 28
-    },
-    {
-        "server_id": 129,
-        "app_id": 10
-    },
-    {
-        "server_id": 129,
-        "app_id": 11
-    },
-    {
-        "server_id": 129,
-        "app_id": 34
-    },
-    {
-        "server_id": 129,
-        "app_id": 14
-    },
-    {
-        "server_id": 129,
-        "app_id": 15
-    },
-    {
-        "server_id": 129,
-        "app_id": 40
-    },
-    {
-        "server_id": 129,
-        "app_id": 41
-    },
-    {
         "server_id": 59,
         "app_id": 3
     },
@@ -3306,6 +3212,86 @@ window.STATIC_DATA = {
     {
         "server_id": 31,
         "app_id": 20
+    },
+    {
+        "server_id": 129,
+        "app_id": 13
+    },
+    {
+        "server_id": 129,
+        "app_id": 2
+    },
+    {
+        "server_id": 129,
+        "app_id": 3
+    },
+    {
+        "server_id": 129,
+        "app_id": 45
+    },
+    {
+        "server_id": 129,
+        "app_id": 21
+    },
+    {
+        "server_id": 129,
+        "app_id": 4
+    },
+    {
+        "server_id": 129,
+        "app_id": 26
+    },
+    {
+        "server_id": 129,
+        "app_id": 6
+    },
+    {
+        "server_id": 129,
+        "app_id": 8
+    },
+    {
+        "server_id": 129,
+        "app_id": 7
+    },
+    {
+        "server_id": 129,
+        "app_id": 5
+    },
+    {
+        "server_id": 129,
+        "app_id": 28
+    },
+    {
+        "server_id": 129,
+        "app_id": 46
+    },
+    {
+        "server_id": 129,
+        "app_id": 10
+    },
+    {
+        "server_id": 129,
+        "app_id": 11
+    },
+    {
+        "server_id": 129,
+        "app_id": 34
+    },
+    {
+        "server_id": 129,
+        "app_id": 14
+    },
+    {
+        "server_id": 129,
+        "app_id": 15
+    },
+    {
+        "server_id": 129,
+        "app_id": 40
+    },
+    {
+        "server_id": 129,
+        "app_id": 41
     }
 ],
     plans:       [
