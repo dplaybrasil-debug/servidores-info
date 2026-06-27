@@ -546,14 +546,21 @@ document.addEventListener('DOMContentLoaded', () => {
         // Apps Suportados
         const appsRow = document.getElementById('sAppsBody');
         appsRow.innerHTML = '';
-        if (srv.supported_apps && Array.isArray(srv.supported_apps) && srv.supported_apps.length > 0) {
+        
+        // Obter vínculos deste servidor
+        const srvLinks = (window.STATIC_DATA && window.STATIC_DATA.server_apps) 
+            ? window.STATIC_DATA.server_apps.filter(link => link.server_id == srv.id) 
+            : [];
+        const supportedAppsIds = srvLinks.map(l => l.app_id);
+
+        if (supportedAppsIds.length > 0) {
             document.getElementById('appsCard').style.display = 'block';
-            srv.supported_apps.forEach(appId => {
+            supportedAppsIds.forEach(appId => {
                 const app = activeApps.find(a => a.id == appId);
                 if (app) {
                     const appLogoUrl = extractImageUrl(app.logo);
                     appsRow.innerHTML += `
-                        <div class="app-item">
+                        <div class="app-item" onclick="window.location.hash='#Appsparceiros/${slugify(app.name)}'" style="cursor:pointer;">
                             ${appLogoUrl
                                 ? `<img src="${appLogoUrl}" class="app-logo" referrerpolicy="no-referrer">`
                                 : `<div class="app-logo">📱</div>`}
