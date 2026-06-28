@@ -1,11 +1,11 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-06-28 03:16:13
+ * Gerado em: 2026-06-28 16:35:34
  * NÃO edite manualmente. Regenere via: php generate_data.php
  */
 window.STATIC_DATA = {
-    version:     "20260628-0316",
-    generated_at: "2026-06-28 03:16:13",
+    version:     "20260628-1635",
+    generated_at: "2026-06-28 16:35:34",
     servers:     [
     {
         "id": 102,
@@ -129,6 +129,24 @@ window.STATIC_DATA = {
         "table_image_url": "[img]https:\/\/i.imgur.com\/8uYjJDl.jpeg[\/img]",
         "updated_at": "2026-06-06 04:50:16",
         "screens": 1,
+        "panel_url": "",
+        "app_store_url": "",
+        "server_type": "hybrid"
+    },
+    {
+        "id": 129,
+        "name": "AURA TV +",
+        "url": "",
+        "status": "active",
+        "description": "",
+        "movies": 51311,
+        "series": 17174,
+        "channels": 4320,
+        "created_at": "2026-06-09 15:34:11",
+        "logo": "https:\/\/i.ibb.co\/YFTSc0ff\/AURA-TV.png",
+        "table_image_url": "https:\/\/i.ibb.co\/sJwz68wc\/Aura-TV.jpg",
+        "updated_at": "2026-06-21 04:31:27",
+        "screens": 2,
         "panel_url": "",
         "app_store_url": "",
         "server_type": "hybrid"
