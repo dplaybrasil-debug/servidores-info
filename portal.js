@@ -323,9 +323,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Estatísticas (só para Servidores)
         const statsEl = document.getElementById('infoStatsContainer');
         if(type === 'server') {
-            document.getElementById('infoMovies').textContent = movies;
-            document.getElementById('infoSeries').textContent = series;
-            document.getElementById('infoChannels').textContent = channels;
+            document.getElementById('infoMovies').textContent = Number(movies || 0).toLocaleString('pt-BR');
+            document.getElementById('infoSeries').textContent = Number(series || 0).toLocaleString('pt-BR');
+            document.getElementById('infoChannels').textContent = Number(channels || 0).toLocaleString('pt-BR');
             statsEl.style.display = 'flex';
         } else {
             statsEl.style.display = 'none';
@@ -519,9 +519,9 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('sNoLogo').style.display = 'block';
         }
 
-        document.getElementById('sChannels').innerText = srv.channels || 0;
-        document.getElementById('sMovies').innerText = srv.movies || 0;
-        document.getElementById('sSeries').innerText = srv.series || 0;
+        document.getElementById('sChannels').innerText = Number(srv.channels || 0).toLocaleString('pt-BR');
+        document.getElementById('sMovies').innerText = Number(srv.movies || 0).toLocaleString('pt-BR');
+        document.getElementById('sSeries').innerText = Number(srv.series || 0).toLocaleString('pt-BR');
 
         if (srv.screens && parseInt(srv.screens, 10) > 1) {
             document.getElementById('sScreens').innerText = srv.screens;
