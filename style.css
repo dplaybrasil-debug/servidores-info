@@ -537,3 +537,53 @@ body {
     background-clip: text;
     animation: gradientShift 4s ease infinite;
 }
+
+/* =========================================================
+   APPS SUPORTADOS (DETALHES DO SERVIDOR)
+   ========================================================= */
+.apps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 1.5rem;
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.app-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.app-logo {
+    width: 72px;
+    height: 72px;
+    border-radius: 18px;
+    object-fit: cover;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+    background: rgba(124,58,237,0.1);
+    border: 1px solid rgba(124,58,237,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    transition: all 0.3s var(--ease-smooth);
+}
+
+.app-item:hover .app-logo,
+.app-item:hover img.app-logo {
+    transform: scale(1.08) translateY(-3px);
+    box-shadow: 0 10px 30px rgba(124,58,237,0.3);
+    border-color: rgba(124,58,237,0.5);
+}
+
+.app-name {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    text-align: center;
+}

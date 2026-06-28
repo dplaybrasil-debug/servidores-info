@@ -519,9 +519,9 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('sNoLogo').style.display = 'block';
         }
 
-        document.getElementById('sChannels').innerText = srv.channels_count || 0;
-        document.getElementById('sMovies').innerText = srv.movies_count || 0;
-        document.getElementById('sSeries').innerText = srv.series_count || 0;
+        document.getElementById('sChannels').innerText = srv.channels || 0;
+        document.getElementById('sMovies').innerText = srv.movies || 0;
+        document.getElementById('sSeries').innerText = srv.series || 0;
 
         if (srv.screens && parseInt(srv.screens, 10) > 1) {
             document.getElementById('sScreens').innerText = srv.screens;
