@@ -244,9 +244,9 @@ document.addEventListener('DOMContentLoaded', () => {
                      onmouseout="this.style.transform='scale(1) translateY(0)'; this.style.borderColor='rgba(124,58,237,0.15)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.5)';">
 
                     ${logoUrl
-                        ? `<img src="${escapeHtml(logoUrl)}" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.4s;" referrerpolicy="no-referrer"
+                        ? `<img src="${escapeHtml(logoUrl)}" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.4s;" referrerpolicy="no-referrer"
                                onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">`
-                        : `<span style="font-size:3rem;">📱</span>`}
+                        : `<span style="font-size:3rem; position:relative; z-index:1;">📱</span>`}
 
                     <!-- Overlay gradiente + Nome -->
                     <div style="position:absolute; bottom:0; left:0; right:0;
