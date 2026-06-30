@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const screens = parseInt(srv.screens, 10) || 1;
 
             const screensBadge = screens >= 2
-                ? `<div style="position:absolute; top:8px; right:8px;
+                ? `<div style="position:absolute; top:8px; right: ${srv.updated_at ? '100px' : '8px'};
                               background:rgba(6,182,212,0.88); backdrop-filter:blur(6px);
                               color:white; font-size:0.63rem; font-weight:800; padding:3px 9px;
                               border-radius:50px; z-index:3; letter-spacing:0.04em;
@@ -180,6 +180,9 @@ document.addEventListener('DOMContentLoaded', () => {
                       onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.borderColor='rgba(124,58,237,0.15)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.5)';"
                       onclick="window.location.hash='#Servidores/${slugify(srv.name)}'">
 
+                    <!-- Data de Atualização -->
+                    ${srv.updated_at ? `<div style="position:absolute; top:8px; right:8px; background:rgba(0,0,0,0.6); backdrop-filter:blur(4px); color:rgba(255,255,255,0.8); font-size:0.6rem; padding:2px 6px; border-radius:4px; z-index:3;">Atualizado: ${srv.updated_at.split(' ')[0].split('-').reverse().join('/')}</div>` : ''}
+
                     <!-- Banner com overlay gradiente -->
                     <div style="position:relative; width:100%; height:135px; overflow:hidden; background:#070b14; flex-shrink:0;">
                         ${logoUrl
@@ -205,16 +208,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         ${desc ? `<div style="font-size:0.73rem; color:rgba(150,162,190,0.85); line-height:1.4;
                                               overflow:hidden; display:-webkit-box; -webkit-line-clamp:2;
                                               -webkit-box-orient:vertical;">${escapeHtml(desc)}</div>` : ''}
-                        <a href="server.html?v=18&id=${srv.id}&nome=${slugify(srv.name)}"
-                           onclick="event.stopPropagation();"
-                           style="display:inline-flex; align-items:center; gap:5px; margin-top:5px;
-                                  font-size:0.75rem; color:rgba(6,182,212,0.9); text-decoration:none;
-                                  font-weight:700; transition:color 0.2s; letter-spacing:0.02em;"
-                           onmouseover="this.style.color='rgb(34,211,238)'"
-                           onmouseout="this.style.color='rgba(6,182,212,0.9)'">
-                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                            Acessar
-                        </a>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:5px;">
+                            <a href="#Servidores/${slugify(srv.name)}"
+                               onclick="event.stopPropagation(); window.location.hash='#Servidores/${slugify(srv.name)}';"
+                               style="display:inline-flex; align-items:center; gap:5px;
+                                      font-size:0.75rem; color:rgba(6,182,212,0.9); text-decoration:none;
+                                      font-weight:700; transition:color 0.2s; letter-spacing:0.02em;"
+                               onmouseover="this.style.color='rgb(34,211,238)'"
+                               onmouseout="this.style.color='rgba(6,182,212,0.9)'">
+                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                Acessar
+                            </a>
+                        </div>
                     </div>
                 </div>
             `;
@@ -509,6 +514,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // Renderizar conteúdo
         document.getElementById('sTitle').innerText = srv.name || 'Servidor';
         document.getElementById('sDesc').innerText = srv.description || 'Sem descrição.';
+
+        if (srv.updated_at) {
+            const dataParts = srv.updated_at.split(' ')[0].split('-');
+            document.getElementById('sUpdateBadge').innerText = '📅 Atualizado em: ' + dataParts.reverse().join('/');
+            document.getElementById('sUpdateBadge').style.display = 'inline-block';
+        } else {
+            document.getElementById('sUpdateBadge').style.display = 'none';
+        }
 
         if (srv.logo) {
             document.getElementById('sLogo').src = extractImageUrl(srv.logo);
