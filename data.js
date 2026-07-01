@@ -1,11 +1,11 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-07-01 01:44:13
+ * Gerado em: 2026-07-01 23:36:31
  * NÃO edite manualmente. Regenere via: php generate_data.php
  */
 window.STATIC_DATA = {
-    version:     "20260701-0144",
-    generated_at: "2026-07-01 01:44:13",
+    version:     "20260701-2336",
+    generated_at: "2026-07-01 23:36:31",
     servers:     [
     {
         "id": 102,
@@ -3128,30 +3128,6 @@ window.STATIC_DATA = {
         "app_id": 40
     },
     {
-        "server_id": 6,
-        "app_id": 2
-    },
-    {
-        "server_id": 6,
-        "app_id": 3
-    },
-    {
-        "server_id": 6,
-        "app_id": 43
-    },
-    {
-        "server_id": 6,
-        "app_id": 11
-    },
-    {
-        "server_id": 6,
-        "app_id": 51
-    },
-    {
-        "server_id": 6,
-        "app_id": 36
-    },
-    {
         "server_id": 59,
         "app_id": 3
     },
@@ -3301,6 +3277,10 @@ window.STATIC_DATA = {
     },
     {
         "server_id": 101,
+        "app_id": 42
+    },
+    {
+        "server_id": 101,
         "app_id": 4
     },
     {
@@ -3314,6 +3294,46 @@ window.STATIC_DATA = {
     {
         "server_id": 101,
         "app_id": 11
+    },
+    {
+        "server_id": 6,
+        "app_id": 2
+    },
+    {
+        "server_id": 6,
+        "app_id": 17
+    },
+    {
+        "server_id": 6,
+        "app_id": 3
+    },
+    {
+        "server_id": 6,
+        "app_id": 43
+    },
+    {
+        "server_id": 6,
+        "app_id": 11
+    },
+    {
+        "server_id": 6,
+        "app_id": 51
+    },
+    {
+        "server_id": 6,
+        "app_id": 19
+    },
+    {
+        "server_id": 6,
+        "app_id": 18
+    },
+    {
+        "server_id": 6,
+        "app_id": 20
+    },
+    {
+        "server_id": 6,
+        "app_id": 36
     }
 ],
     plans:       [
