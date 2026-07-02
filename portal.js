@@ -786,6 +786,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (searchInput) {
         searchInput.addEventListener('input', () => {
             const term = (searchInput.value || '').toLowerCase();
+            
+            // Se o usuário começar a digitar na tela de detalhes, volta para a grade
+            if (document.getElementById('section-server-details') && document.getElementById('section-server-details').style.display !== 'none') {
+                document.getElementById('section-server-details').style.display = 'none';
+                if (currentTab === 'servers') {
+                    document.getElementById('section-servers').style.display = 'block';
+                    history.replaceState(null, null, '#Servidores');
+                } else if (currentTab === 'apps') {
+                    document.getElementById('section-apps').style.display = 'block';
+                    history.replaceState(null, null, '#Appsparceiros');
+                }
+            }
+
             if (currentTab === 'servers') {
                 applyPublicServerFilters();
             } else {
