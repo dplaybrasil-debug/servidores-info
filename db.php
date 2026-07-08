@@ -5,7 +5,7 @@ $is_new = !file_exists($db_file);
 try {
     $pdo = new PDO('sqlite:' . $db_file);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
+
     // Tabela Servidores
     $pdo->exec("CREATE TABLE IF NOT EXISTS servers (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -69,7 +69,6 @@ try {
         metric_value INTEGER DEFAULT 0,
         updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )");
-    
     // Insere o contador inicial caso não exista
     $pdo->exec("INSERT OR IGNORE INTO site_statistics (metric_name, metric_value) VALUES ('visitor_count', 0)");
 

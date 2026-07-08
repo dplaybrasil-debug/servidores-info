@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro Animada - Central de Servidores</title>
+    <!-- Fonte Outfit: Extremamente moderna, fluida e circular -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #060913; /* Fundo noturno profundo e elegante */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Outfit', sans-serif;
+            overflow: hidden;
+            flex-direction: column;
+        }
+
+        .logo-wrapper {
+            position: relative;
+            width: 400px;
+            height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 5;
+        }
+
+        /* Utilizando tipografia REAL para garantir perfeição no formato */
+        .letter-c, .letter-s {
+            font-size: 150px;
+            font-weight: 300; /* Peso fino e elegante */
+            line-height: 1;
+            position: absolute;
+            opacity: 0;
+            filter: blur(15px);
+        }
+
+        .letter-c {
+            color: #0088ff;
+            text-shadow: 0 0 20px rgba(0, 136, 255, 0.4);
+            left: 20%;
+            /* Fade in suave e desliza pro centro */
+            animation: text-appear-c 2.5s cubic-bezier(0.2, 1, 0.3, 1) 0.5s forwards;
+        }
+
+        .letter-s {
+            color: #00e5ff;
+            text-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+            right: 20%;
+            /* Fade in suave e desliza pro centro */
+            animation: text-appear-s 2.5s cubic-bezier(0.2, 1, 0.3, 1) 0.5s forwards;
+        }
+
+        /* Texto Completo da Marca */
+        .brand-text {
+            position: absolute;
+            bottom: 10px;
+            color: #00e5ff;
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            opacity: 0;
+            white-space: nowrap;
+            animation: brand-reveal 2s cubic-bezier(0.2, 1, 0.2, 1) 2.5s forwards;
+        }
+
+        /* ================= EFEITO DE FUMAÇA ================= */
+        .smoke-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 10;
+            mix-blend-mode: screen;
+            opacity: 0;
+            animation: smoke-fade 6s forwards;
+        }
+
+        .smoke-1 {
+            position: absolute;
+            width: 150vw;
+            height: 150vh;
+            background: radial-gradient(circle at center, rgba(0, 229, 255, 0.08) 0%, transparent 60%);
+            filter: blur(40px);
+            animation: smoke-drift 8s infinite alternate linear;
+            top: -25vh;
+            left: -25vw;
+        }
+
+        .smoke-2 {
+            position: absolute;
+            width: 150vw;
+            height: 150vh;
+            background: radial-gradient(circle at center, rgba(0, 136, 255, 0.08) 0%, transparent 50%);
+            filter: blur(50px);
+            animation: smoke-drift-2 10s infinite alternate-reverse linear;
+            top: -10vh;
+            left: -10vw;
+        }
+
+        /* ================= KEYFRAMES ================= */
+
+        /* Letras aparecendo e deslizando */
+        @keyframes text-appear-c {
+            0% { transform: translateX(-80px) scale(1.2); opacity: 0; filter: blur(15px); }
+            50% { opacity: 1; filter: blur(0px); text-shadow: 0 0 30px rgba(0, 136, 255, 0.8); }
+            100% { transform: translateX(35px) scale(1); opacity: 1; filter: blur(0px); text-shadow: 0 0 15px rgba(0, 136, 255, 0.4); }
+        }
+
+        @keyframes text-appear-s {
+            0% { transform: translateX(80px) scale(1.2); opacity: 0; filter: blur(15px); }
+            50% { opacity: 1; filter: blur(0px); text-shadow: 0 0 30px rgba(0, 229, 255, 0.8); }
+            100% { transform: translateX(-35px) scale(1); opacity: 1; filter: blur(0px); text-shadow: 0 0 15px rgba(0, 229, 255, 0.4); }
+        }
+
+        /* Revelação da marca */
+        @keyframes brand-reveal {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+                letter-spacing: 12px;
+                filter: blur(8px);
+            }
+            40% {
+                opacity: 1;
+                transform: translateY(0px);
+                letter-spacing: 6px;
+                filter: blur(0px);
+                color: #fff;
+                text-shadow: 0 0 15px rgba(0, 229, 255, 0.6);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0px);
+                letter-spacing: 5px;
+                color: #e0ffff;
+                text-shadow: 0 0 5px rgba(0, 229, 255, 0.2);
+            }
+        }
+
+        /* Fumaça */
+        @keyframes smoke-fade {
+            0% { opacity: 0; }
+            30% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { opacity: 0.15; }
+        }
+
+        @keyframes smoke-drift {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-80px, 30px) scale(1.1); }
+        }
+
+        @keyframes smoke-drift-2 {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, -50px) scale(1.2); }
+        }
+
+        /* Flash sutil no encontro */
+        .impact-light {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 80px 30px rgba(0, 229, 255, 0.8);
+            opacity: 0;
+            z-index: 15;
+            animation: flash 1s cubic-bezier(0.1, 1, 0.1, 1) 2.5s forwards;
+        }
+
+        @keyframes flash {
+            0% { transform: scale(0); opacity: 0; }
+            20% { transform: scale(3); opacity: 0.6; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+
+        /* Botão Replay minimalista */
+        .replay-btn {
+            position: absolute;
+            bottom: 30px;
+            background: transparent;
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            color: rgba(0, 229, 255, 0.7);
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 300;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            opacity: 0;
+            animation: fade-in 1s forwards 5s;
+            z-index: 20;
+        }
+        .replay-btn:hover {
+            background: rgba(0, 229, 255, 0.05);
+            border-color: rgba(0, 229, 255, 0.5);
+            color: #00e5ff;
+        }
+        @keyframes fade-in { to { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+    <div class="smoke-container">
+        <div class="smoke-1"></div>
+        <div class="smoke-2"></div>
+    </div>
+
+    <div class="impact-light"></div>
+
+    <div class="logo-wrapper">
+        <!-- Tipografia real e perfeita garantindo fluidez e elegância -->
+        <div class="letter-c">C</div>
+        <div class="letter-s">S</div>
+        
+        <div class="brand-text">CENTRAL DE SERVIDORES</div>
+    </div>
+
+    <button class="replay-btn" onclick="location.reload()">↺ REPLAY DA INTRO</button>
+
+</body>
+</html>
