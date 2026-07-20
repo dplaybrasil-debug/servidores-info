@@ -1,11 +1,11 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-07-09 17:00:38
+ * Gerado em: 2026-07-20 12:28:23
  * NÃO edite manualmente. Regenere via: php generate_data.php
  */
 window.STATIC_DATA = {
-    version:     "20260709-1700",
-    generated_at: "2026-07-09 17:00:38",
+    version:     "20260720-1228",
+    generated_at: "2026-07-20 12:28:23",
     servers:     [
     {
         "id": 102,
@@ -31,13 +31,13 @@ window.STATIC_DATA = {
         "url": "http:\/\/",
         "status": "active",
         "description": "",
-        "movies": 0,
-        "series": 0,
-        "channels": 0,
+        "movies": 19907,
+        "series": 5428,
+        "channels": 994,
         "created_at": "2026-04-27 06:09:59",
         "logo": "https:\/\/i.ibb.co\/qMhjt0sT\/ALL-PLAYER.png",
         "table_image_url": "[img]https:\/\/i.imgur.com\/gDZWsEy.jpeg[\/img]",
-        "updated_at": "2026-06-06 04:48:47",
+        "updated_at": "2026-07-13 13:52:04",
         "screens": 1,
         "panel_url": "",
         "app_store_url": "",
@@ -3354,6 +3354,22 @@ window.STATIC_DATA = {
     {
         "server_id": 129,
         "app_id": 52
+    },
+    {
+        "server_id": 35,
+        "app_id": 2
+    },
+    {
+        "server_id": 35,
+        "app_id": 3
+    },
+    {
+        "server_id": 35,
+        "app_id": 11
+    },
+    {
+        "server_id": 35,
+        "app_id": 41
     }
 ],
     plans:       [
