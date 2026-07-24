@@ -1,11 +1,11 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-07-20 12:28:23
+ * Gerado em: 2026-07-24 13:48:34
  * NÃO edite manualmente. Regenere via: php generate_data.php
  */
 window.STATIC_DATA = {
-    version:     "20260720-1228",
-    generated_at: "2026-07-20 12:28:23",
+    version:     "20260724-1348",
+    generated_at: "2026-07-24 13:48:34",
     servers:     [
     {
         "id": 102,
@@ -42,6 +42,24 @@ window.STATIC_DATA = {
         "panel_url": "",
         "app_store_url": "",
         "server_type": "hybrid"
+    },
+    {
+        "id": 138,
+        "name": "ALL-PLAYE-PLUS",
+        "url": "",
+        "status": "active",
+        "description": "",
+        "movies": 31283,
+        "series": 8422,
+        "channels": 1979,
+        "created_at": "2026-07-23 21:08:14",
+        "logo": "https:\/\/i.ibb.co\/WvQzv929\/ALL-PLAYE-PLUS.jpg",
+        "table_image_url": "https:\/\/i.ibb.co\/pBGFFdHY\/TABELA-ALL-PLAYE-PLUS.jpg",
+        "updated_at": "2026-07-24 13:32:44",
+        "screens": 2,
+        "panel_url": "",
+        "app_store_url": "",
+        "server_type": "iptv"
     },
     {
         "id": 7,
@@ -974,7 +992,7 @@ window.STATIC_DATA = {
         "logo": "https:\/\/i.ibb.co\/FLtwDCHg\/NINETY.png",
         "table_image_url": "https:\/\/i.ibb.co\/d4bNRDNJ\/NINETY.jpg",
         "updated_at": "2026-06-21 05:27:32",
-        "screens": 1,
+        "screens": 2,
         "panel_url": "",
         "app_store_url": "",
         "server_type": "hybrid"
@@ -1746,8 +1764,26 @@ window.STATIC_DATA = {
         "channels": 0,
         "created_at": "2026-06-06 05:00:16",
         "logo": "https:\/\/i.ibb.co\/s9CWvxjS\/X3.png",
-        "table_image_url": "",
+        "table_image_url": "https:\/\/i.ibb.co\/N6qJz1Xq\/Tabela-X3.jpg",
         "updated_at": null,
+        "screens": 1,
+        "panel_url": "",
+        "app_store_url": "",
+        "server_type": "hybrid"
+    },
+    {
+        "id": 50,
+        "name": "XPRIME TV",
+        "url": "http:\/\/",
+        "status": "active",
+        "description": "",
+        "movies": 26620,
+        "series": 8190,
+        "channels": 1838,
+        "created_at": "2026-04-27 06:09:59",
+        "logo": "https:\/\/i.ibb.co\/QFvjsYs8\/XPRIME-TV.png",
+        "table_image_url": "",
+        "updated_at": "2026-07-21 17:18:37",
         "screens": 1,
         "panel_url": "",
         "app_store_url": "",
@@ -1878,12 +1914,28 @@ window.STATIC_DATA = {
         "created_at": "2026-04-27 07:05:40"
     },
     {
+        "id": 55,
+        "name": "BOX LITE",
+        "url": "",
+        "logo": "https:\/\/i.ibb.co\/4nZLZyWd\/BOX-LITE.jpg",
+        "status": "active",
+        "created_at": "2026-07-24 03:26:05"
+    },
+    {
         "id": 45,
         "name": "BOX PLAYER",
         "url": "",
         "logo": "https:\/\/i.ibb.co\/6fqjcYv\/BOX-PLAYER.jpg",
         "status": "active",
         "created_at": "2026-04-27 18:04:14"
+    },
+    {
+        "id": 54,
+        "name": "BOX PRIME",
+        "url": "",
+        "logo": "https:\/\/i.ibb.co\/mVykXJFw\/BOX-PRIME.png",
+        "status": "active",
+        "created_at": "2026-07-24 03:25:49"
     },
     {
         "id": 22,
@@ -1908,6 +1960,14 @@ window.STATIC_DATA = {
         "logo": "https:\/\/i.ibb.co\/DfKZPyHD\/DREAM-TV.jpg",
         "status": "active",
         "created_at": "2026-04-27 07:08:46"
+    },
+    {
+        "id": 53,
+        "name": "DUPLEX MAX",
+        "url": "",
+        "logo": "https:\/\/i.ibb.co\/3yBz1jr8\/DUPLEX-MAX.png",
+        "status": "active",
+        "created_at": "2026-07-23 21:25:55"
     },
     {
         "id": 24,
@@ -3176,102 +3236,6 @@ window.STATIC_DATA = {
         "app_id": 20
     },
     {
-        "server_id": 101,
-        "app_id": 2
-    },
-    {
-        "server_id": 101,
-        "app_id": 3
-    },
-    {
-        "server_id": 101,
-        "app_id": 42
-    },
-    {
-        "server_id": 101,
-        "app_id": 4
-    },
-    {
-        "server_id": 101,
-        "app_id": 5
-    },
-    {
-        "server_id": 101,
-        "app_id": 9
-    },
-    {
-        "server_id": 101,
-        "app_id": 11
-    },
-    {
-        "server_id": 6,
-        "app_id": 2
-    },
-    {
-        "server_id": 6,
-        "app_id": 17
-    },
-    {
-        "server_id": 6,
-        "app_id": 3
-    },
-    {
-        "server_id": 6,
-        "app_id": 43
-    },
-    {
-        "server_id": 6,
-        "app_id": 11
-    },
-    {
-        "server_id": 6,
-        "app_id": 51
-    },
-    {
-        "server_id": 6,
-        "app_id": 19
-    },
-    {
-        "server_id": 6,
-        "app_id": 18
-    },
-    {
-        "server_id": 6,
-        "app_id": 20
-    },
-    {
-        "server_id": 6,
-        "app_id": 36
-    },
-    {
-        "server_id": 59,
-        "app_id": 3
-    },
-    {
-        "server_id": 59,
-        "app_id": 5
-    },
-    {
-        "server_id": 59,
-        "app_id": 29
-    },
-    {
-        "server_id": 59,
-        "app_id": 9
-    },
-    {
-        "server_id": 59,
-        "app_id": 47
-    },
-    {
-        "server_id": 59,
-        "app_id": 40
-    },
-    {
-        "server_id": 59,
-        "app_id": 52
-    },
-    {
         "server_id": 129,
         "app_id": 13
     },
@@ -3370,6 +3334,222 @@ window.STATIC_DATA = {
     {
         "server_id": 35,
         "app_id": 41
+    },
+    {
+        "server_id": 50,
+        "app_id": 2
+    },
+    {
+        "server_id": 50,
+        "app_id": 11
+    },
+    {
+        "server_id": 50,
+        "app_id": 40
+    },
+    {
+        "server_id": 6,
+        "app_id": 13
+    },
+    {
+        "server_id": 6,
+        "app_id": 2
+    },
+    {
+        "server_id": 6,
+        "app_id": 17
+    },
+    {
+        "server_id": 6,
+        "app_id": 3
+    },
+    {
+        "server_id": 6,
+        "app_id": 43
+    },
+    {
+        "server_id": 6,
+        "app_id": 8
+    },
+    {
+        "server_id": 6,
+        "app_id": 27
+    },
+    {
+        "server_id": 6,
+        "app_id": 7
+    },
+    {
+        "server_id": 6,
+        "app_id": 10
+    },
+    {
+        "server_id": 6,
+        "app_id": 44
+    },
+    {
+        "server_id": 6,
+        "app_id": 11
+    },
+    {
+        "server_id": 6,
+        "app_id": 51
+    },
+    {
+        "server_id": 6,
+        "app_id": 19
+    },
+    {
+        "server_id": 6,
+        "app_id": 18
+    },
+    {
+        "server_id": 6,
+        "app_id": 20
+    },
+    {
+        "server_id": 6,
+        "app_id": 14
+    },
+    {
+        "server_id": 6,
+        "app_id": 36
+    },
+    {
+        "server_id": 6,
+        "app_id": 15
+    },
+    {
+        "server_id": 59,
+        "app_id": 3
+    },
+    {
+        "server_id": 59,
+        "app_id": 4
+    },
+    {
+        "server_id": 59,
+        "app_id": 5
+    },
+    {
+        "server_id": 59,
+        "app_id": 29
+    },
+    {
+        "server_id": 59,
+        "app_id": 9
+    },
+    {
+        "server_id": 59,
+        "app_id": 47
+    },
+    {
+        "server_id": 59,
+        "app_id": 40
+    },
+    {
+        "server_id": 59,
+        "app_id": 52
+    },
+    {
+        "server_id": 101,
+        "app_id": 2
+    },
+    {
+        "server_id": 101,
+        "app_id": 3
+    },
+    {
+        "server_id": 101,
+        "app_id": 55
+    },
+    {
+        "server_id": 101,
+        "app_id": 45
+    },
+    {
+        "server_id": 101,
+        "app_id": 54
+    },
+    {
+        "server_id": 101,
+        "app_id": 53
+    },
+    {
+        "server_id": 101,
+        "app_id": 42
+    },
+    {
+        "server_id": 101,
+        "app_id": 4
+    },
+    {
+        "server_id": 101,
+        "app_id": 5
+    },
+    {
+        "server_id": 101,
+        "app_id": 28
+    },
+    {
+        "server_id": 101,
+        "app_id": 9
+    },
+    {
+        "server_id": 101,
+        "app_id": 11
+    },
+    {
+        "server_id": 101,
+        "app_id": 36
+    },
+    {
+        "server_id": 138,
+        "app_id": 2
+    },
+    {
+        "server_id": 138,
+        "app_id": 3
+    },
+    {
+        "server_id": 138,
+        "app_id": 45
+    },
+    {
+        "server_id": 138,
+        "app_id": 53
+    },
+    {
+        "server_id": 138,
+        "app_id": 43
+    },
+    {
+        "server_id": 138,
+        "app_id": 4
+    },
+    {
+        "server_id": 138,
+        "app_id": 5
+    },
+    {
+        "server_id": 138,
+        "app_id": 28
+    },
+    {
+        "server_id": 138,
+        "app_id": 11
+    },
+    {
+        "server_id": 138,
+        "app_id": 51
+    },
+    {
+        "server_id": 138,
+        "app_id": 36
+    },
+    {
+        "server_id": 138,
+        "app_id": 40
     }
 ],
     plans:       [

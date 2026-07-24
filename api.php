@@ -133,11 +133,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $pdo->prepare("UPDATE support_contacts SET active = ? WHERE id = ?");
         $stmt->execute([$data['active'], $data['id']]);
         echo json_encode(['success' => true]);
+        if ($action !== 'increment_visitors') {
+            autoRegenerateDataJs($pdo);
+        }
         exit;
+    }
+
+    if ($action !== 'increment_visitors') {
+        autoRegenerateDataJs($pdo);
     }
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    if ($action === 'get_all_data') {
+        $servers = $pdo->query("SELECT * FROM servers ORDER BY name ASC")->fetchAll(PDO::FETCH_ASSOC);
+        $apps = $pdo->query("SELECT * FROM partner_apps ORDER BY name ASC")->fetchAll(PDO::FETCH_ASSOC);
+        $contacts = [];
+        try {
+            $contacts = $pdo->query("SELECT * FROM support_contacts WHERE active = 1 ORDER BY sort_order ASC, id ASC")->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {}
+        $server_apps = [];
+        try {
+            $server_apps = $pdo->query("SELECT server_id, app_id FROM server_apps")->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {}
+        $plans = [];
+        try {
+            $plans = $pdo->query("SELECT * FROM server_plans ORDER BY server_id ASC, id ASC")->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {}
+        echo json_encode([
+            'servers' => $servers,
+            'apps' => $apps,
+            'contacts' => $contacts,
+            'server_apps' => $server_apps,
+            'plans' => $plans
+        ]);
+        exit;
+    }
+
     if ($action === 'list_servers') {
         $stmt = $pdo->query("SELECT * FROM servers ORDER BY name ASC");
         echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
@@ -238,6 +270,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
         exit;
     }
+}
+
+function autoRegenerateDataJs($pdo) {
+    try {
+        $servers = $pdo->query("SELECT * FROM servers WHERE status = 'active' ORDER BY name ASC")->fetchAll(PDO::FETCH_ASSOC);
+        $apps = $pdo->query("SELECT * FROM partner_apps WHERE status = 'active' ORDER BY name ASC")->fetchAll(PDO::FETCH_ASSOC);
+        $contacts = [];
+        try {
+            $contacts = $pdo->query("SELECT * FROM support_contacts WHERE active = 1 ORDER BY sort_order ASC, id ASC")->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {}
+        $server_apps = [];
+        try {
+            $server_apps = $pdo->query("SELECT server_id, app_id FROM server_apps")->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {}
+        $plans = [];
+        try {
+            $plans = $pdo->query("SELECT * FROM server_plans ORDER BY server_id ASC, id ASC")->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {}
+
+        $json_servers     = json_encode($servers,     JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        $json_apps        = json_encode($apps,        JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        $json_contacts    = json_encode($contacts,    JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        $json_server_apps = json_encode($server_apps, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        $json_plans       = json_encode($plans,       JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        $generated_at     = date('Y-m-d H:i:s');
+        $version          = date('Ymd-Hi');
+
+        $content = <<<JS
+/**
+ * data.js — Dados estáticos exportados automaticamente.
+ * Gerado em: {$generated_at}
+ * NÃO edite manualmente. Regenere via: php generate_data.php
+ */
+window.STATIC_DATA = {
+    version:     "{$version}",
+    generated_at: "{$generated_at}",
+    servers:     {$json_servers},
+    apps:        {$json_apps},
+    contacts:    {$json_contacts},
+    server_apps: {$json_server_apps},
+    plans:       {$json_plans}
+};
+JS;
+        file_put_contents(__DIR__ . '/data.js', $content);
+    } catch (Exception $e) {}
 }
 
 echo json_encode(['error' => 'Invalid action']);

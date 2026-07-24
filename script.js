@@ -525,6 +525,7 @@ document.addEventListener('DOMContentLoaded', () => {
         await fetch('api.php?action=create_plan', {
             method: 'POST', body: JSON.stringify(data)
         });
+        notifyPortalUpdates();
         document.getElementById('formAddPlan').reset();
         loadPlans(serverId);
     });
@@ -534,6 +535,7 @@ document.addEventListener('DOMContentLoaded', () => {
             await fetch('api.php?action=delete_plan', {
                 method: 'POST', body: JSON.stringify({id: planId})
             });
+            notifyPortalUpdates();
             loadPlans(serverId);
         }
     };
@@ -594,6 +596,7 @@ document.addEventListener('DOMContentLoaded', () => {
             method: 'POST', 
             body: JSON.stringify({ server_id: serverId, app_ids: appIds })
         });
+        notifyPortalUpdates();
         
         closeModal('modalServerApps');
         alert('Apps vinculados com sucesso!');
@@ -729,6 +732,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if(type === 'server') loadServers(); else loadApps();
     };
 
+    const syncChannel = typeof BroadcastChannel !== 'undefined' ? new BroadcastChannel('central_servidores_sync') : null;
+    const notifyPortalUpdates = () => {
+        if (syncChannel) {
+            syncChannel.postMessage({ type: 'data_updated', time: Date.now() });
+        }
+    };
+    window.notifyPortalUpdates = notifyPortalUpdates;
+
     const postData = async (url, data) => {
         try {
             const res = await fetch(url, {
@@ -736,7 +747,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             });
-            return await res.json();
+            const result = await res.json();
+            notifyPortalUpdates();
+            return result;
         } catch(e) { console.error('Erro na requisição', e); }
     };
 

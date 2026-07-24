@@ -62,26 +62,37 @@ document.addEventListener('DOMContentLoaded', () => {
             // Incrementa contador de visitas de forma silenciosa e assíncrona
             try { fetch('api.php?action=increment_visitors'); } catch(err) {}
 
-            // Tenta usar a API PHP (servidor local)
-            const resSrv = await fetch('api.php?action=list_servers');
-            if (!resSrv.ok) throw new Error('API indisponível');
-            const servers = await resSrv.json();
-            activeServers = servers.filter(s => s.status === 'active');
-            
-            // Carrega Apps
-            const resApp = await fetch('api.php?action=list_apps');
-            const apps = await resApp.json();
-            activeApps = apps.filter(a => a.status === 'active');
+            // Tenta buscar TODOS os dados atualizados da API PHP (servidor local)
+            const res = await fetch('api.php?action=get_all_data');
+            if (!res.ok) throw new Error('API indisponível');
+            const data = await res.json();
+
+            // Sincroniza o STATIC_DATA global em memória com os dados mais recentes do SQLite
+            window.STATIC_DATA = window.STATIC_DATA || {};
+            window.STATIC_DATA.servers = data.servers || [];
+            window.STATIC_DATA.apps = data.apps || [];
+            window.STATIC_DATA.contacts = data.contacts || [];
+            window.STATIC_DATA.server_apps = data.server_apps || [];
+            window.STATIC_DATA.plans = data.plans || [];
+
+            activeServers = (data.servers || []).filter(s => s.status === 'active');
+            activeApps    = (data.apps    || []).filter(a => a.status === 'active');
 
             // Atualiza Contadores nas Abas
-            document.getElementById('btnServidores').innerText = `Servidores (${activeServers.length})`;
-            document.getElementById('btnApps').innerText = `Apps Parceiros (${activeApps.length})`;
+            const btnSrv = document.getElementById('btnServidores');
+            const btnApp = document.getElementById('btnApps');
+            if (btnSrv) btnSrv.innerText = `Servidores (${activeServers.length})`;
+            if (btnApp) btnApp.innerText = `Apps Parceiros (${activeApps.length})`;
 
             // Atualiza contadores dos pills
             updatePublicFilterCounts();
 
             renderServers(activeServers);
             renderApps(activeApps);
+
+            if (typeof renderContacts === 'function' && data.contacts) {
+                renderContacts(data.contacts);
+            }
 
             // Chama o gerenciador de rotas SPA
             if (typeof handleRoute === 'function') {
@@ -98,8 +109,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 activeServers = (window.STATIC_DATA.servers || []).filter(s => s.status === 'active');
                 activeApps    = (window.STATIC_DATA.apps    || []).filter(a => a.status === 'active');
 
-                document.getElementById('btnServidores').innerText = `Servidores (${activeServers.length})`;
-                document.getElementById('btnApps').innerText = `Apps Parceiros (${activeApps.length})`;
+                const btnSrv = document.getElementById('btnServidores');
+                const btnApp = document.getElementById('btnApps');
+                if (btnSrv) btnSrv.innerText = `Servidores (${activeServers.length})`;
+                if (btnApp) btnApp.innerText = `Apps Parceiros (${activeApps.length})`;
 
                 updatePublicFilterCounts();
                 renderServers(activeServers);
@@ -138,9 +151,31 @@ document.addEventListener('DOMContentLoaded', () => {
             android: { label: 'Android',  emoji: '🤖', glow: 'rgba(52,211,153,0.5)',  border: 'rgba(52,211,153,0.7)',  badgeBg: 'rgba(52,211,153,0.9)'  },
         };
 
+        const activeAppIds = new Set((activeApps || []).map(a => String(a.id)));
+
         serversList.forEach(srv => {
             const logoUrl = extractImageUrl(srv.logo);
             const screens = parseInt(srv.screens, 10) || 1;
+
+            // Quantidade de apps parceiros ativos vinculados a este servidor
+            const srvLinks = (window.STATIC_DATA && window.STATIC_DATA.server_apps)
+                ? window.STATIC_DATA.server_apps.filter(link => String(link.server_id) === String(srv.id) && activeAppIds.has(String(link.app_id)))
+                : [];
+            const partnerAppsCount = srvLinks.length;
+
+            const appsBadge = partnerAppsCount > 0
+                ? `<div style="display:inline-flex; align-items:center; gap:4px;
+                              background:rgba(168,85,247,0.18); border:1px solid rgba(168,85,247,0.4);
+                              color:rgb(216,180,254); font-size:0.68rem; font-weight:700;
+                              padding:2px 8px; border-radius:50px;" title="${partnerAppsCount} Aplicativo(s) Parceiro(s) disponível(is)">
+                       📱 ${partnerAppsCount} App${partnerAppsCount > 1 ? 's' : ''}
+                   </div>`
+                : `<div style="display:inline-flex; align-items:center; gap:4px;
+                              background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1);
+                              color:rgba(255,255,255,0.4); font-size:0.68rem; font-weight:600;
+                              padding:2px 8px; border-radius:50px;">
+                       📱 0 Apps
+                   </div>`;
 
             const screensBadge = screens >= 2
                 ? `<div style="position:absolute; top:8px; right: ${srv.updated_at ? '100px' : '8px'};
@@ -209,6 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                               overflow:hidden; display:-webkit-box; -webkit-line-clamp:2;
                                               -webkit-box-orient:vertical;">${escapeHtml(desc)}</div>` : ''}
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-top:5px;">
+                            ${appsBadge}
                             <a href="#Servidores/${slugify(srv.name)}"
                                onclick="event.stopPropagation(); window.location.hash='#Servidores/${slugify(srv.name)}';"
                                style="display:inline-flex; align-items:center; gap:5px;
@@ -562,14 +598,20 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Obter vínculos deste servidor
         const srvLinks = (window.STATIC_DATA && window.STATIC_DATA.server_apps) 
-            ? window.STATIC_DATA.server_apps.filter(link => link.server_id == srv.id) 
+            ? window.STATIC_DATA.server_apps.filter(link => String(link.server_id) === String(srv.id)) 
             : [];
-        const supportedAppsIds = srvLinks.map(l => l.app_id);
+        const activeAppIds = new Set((activeApps || []).map(a => String(a.id)));
+        const supportedAppsIds = srvLinks.map(l => String(l.app_id)).filter(id => activeAppIds.has(id));
+
+        const appsHeader = document.querySelector('#appsCard h3');
+        if (appsHeader) {
+            appsHeader.innerText = `Aplicativos Parceiros Disponíveis (${supportedAppsIds.length})`;
+        }
 
         if (supportedAppsIds.length > 0) {
             document.getElementById('appsCard').style.display = 'block';
             supportedAppsIds.forEach(appId => {
-                const app = activeApps.find(a => a.id == appId);
+                const app = activeApps.find(a => String(a.id) === String(appId));
                 if (app) {
                     const appLogoUrl = extractImageUrl(app.logo);
                     appsRow.innerHTML += `
@@ -942,4 +984,30 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     addClearBtn('searchInput');
+
+    // --- SINCRONIZAÇÃO EM TEMPO REAL (ADMIN <-> PORTAL) ---
+    if (typeof BroadcastChannel !== 'undefined') {
+        const syncChannel = new BroadcastChannel('central_servidores_sync');
+        syncChannel.onmessage = (event) => {
+            if (event.data && event.data.type === 'data_updated') {
+                console.log('🔄 Sincronizando dados com o Admin...');
+                loadAllData();
+            }
+        };
+    }
+
+    // Auto recarregar ao focar/retornar à aba
+    window.addEventListener('focus', () => loadAllData());
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
+            loadAllData();
+        }
+    });
+
+    // Polling automático no servidor local (a cada 10 segundos)
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        setInterval(() => {
+            loadAllData();
+        }, 10000);
+    }
 });
