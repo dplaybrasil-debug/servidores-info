@@ -1,11 +1,11 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-07-24 13:48:34
+ * Gerado em: 2026-07-24 14:03:49
  * NÃO edite manualmente. Regenere via: php generate_data.php
  */
 window.STATIC_DATA = {
-    version:     "20260724-1348",
-    generated_at: "2026-07-24 13:48:34",
+    version:     "20260724-1403",
+    generated_at: "2026-07-24 14:03:49",
     servers:     [
     {
         "id": 102,
@@ -45,7 +45,7 @@ window.STATIC_DATA = {
     },
     {
         "id": 138,
-        "name": "ALL-PLAYE-PLUS",
+        "name": "ALL PLAY PLUS +",
         "url": "",
         "status": "active",
         "description": "",
@@ -53,7 +53,7 @@ window.STATIC_DATA = {
         "series": 8422,
         "channels": 1979,
         "created_at": "2026-07-23 21:08:14",
-        "logo": "https:\/\/i.ibb.co\/WvQzv929\/ALL-PLAYE-PLUS.jpg",
+        "logo": "https:\/\/i.ibb.co\/WvrXw25h\/ALL-PLAY-PLUS.png",
         "table_image_url": "https:\/\/i.ibb.co\/pBGFFdHY\/TABELA-ALL-PLAYE-PLUS.jpg",
         "updated_at": "2026-07-24 13:32:44",
         "screens": 2,
