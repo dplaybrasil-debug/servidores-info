@@ -1,11 +1,11 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-07-24 14:03:49
+ * Gerado em: 2026-07-24 19:40:16
  * NÃO edite manualmente. Regenere via: php generate_data.php
  */
 window.STATIC_DATA = {
-    version:     "20260724-1403",
-    generated_at: "2026-07-24 14:03:49",
+    version:     "20260724-1940",
+    generated_at: "2026-07-24 19:40:16",
     servers:     [
     {
         "id": 102,
@@ -272,7 +272,7 @@ window.STATIC_DATA = {
         "logo": "https:\/\/i.ibb.co\/m5PmR8Dj\/BLAZE-1.png",
         "table_image_url": "",
         "updated_at": "2026-06-21 04:39:19",
-        "screens": 1,
+        "screens": 3,
         "panel_url": "",
         "app_store_url": "",
         "server_type": "hybrid"

@@ -660,6 +660,26 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const renderContacts = (contacts) => {
+        // Sincroniza links dos botões de canal do cabeçalho com os contatos do banco
+        if (contacts && contacts.length > 0) {
+            const waContact = contacts.find(c => c.type === 'whatsapp' && (c.value || '').includes('whatsapp.com'));
+            const tgContact = contacts.find(c => c.type === 'telegram' && (c.value || '').includes('t.me'));
+            
+            const waBtn = document.getElementById('headerWaBtn');
+            const modalWaBtn = document.getElementById('modalWaBtn');
+            if (waContact && waContact.value) {
+                if (waBtn) waBtn.href = waContact.value;
+                if (modalWaBtn) modalWaBtn.href = waContact.value;
+            }
+            
+            const tgBtn = document.getElementById('headerTgBtn');
+            const modalTgBtn = document.getElementById('modalTgBtn');
+            if (tgContact && tgContact.value) {
+                if (tgBtn) tgBtn.href = tgContact.value;
+                if (modalTgBtn) modalTgBtn.href = tgContact.value;
+            }
+        }
+
         const grid = document.getElementById('publicContactsGrid');
         grid.innerHTML = '';
 
@@ -984,6 +1004,33 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     addClearBtn('searchInput');
+
+    // --- MODAL POPUP DE ENTRADA (CANAIS WHATSAPP & TELEGRAM) ---
+    window.openChannelModal = () => {
+        const hideUntil = localStorage.getItem('hideChannelModalUntil');
+        if (hideUntil && Date.now() < parseInt(hideUntil, 10)) {
+            return;
+        }
+        const modalBackdrop = document.getElementById('channelModalBackdrop');
+        if (modalBackdrop) {
+            modalBackdrop.style.display = 'flex';
+        }
+    };
+
+    window.closeChannelModal = () => {
+        const dontShow = document.getElementById('dontShowChannelModal')?.checked;
+        if (dontShow) {
+            const threeDays = 3 * 24 * 60 * 60 * 1000;
+            localStorage.setItem('hideChannelModalUntil', (Date.now() + threeDays).toString());
+        }
+        const modalBackdrop = document.getElementById('channelModalBackdrop');
+        if (modalBackdrop) {
+            modalBackdrop.style.display = 'none';
+        }
+    };
+
+    // Dispara o modal popup dos canais na entrada
+    setTimeout(openChannelModal, 600);
 
     // --- SINCRONIZAÇÃO EM TEMPO REAL (ADMIN <-> PORTAL) ---
     if (typeof BroadcastChannel !== 'undefined') {
