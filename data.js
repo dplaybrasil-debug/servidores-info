@@ -1,11 +1,11 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-08-13 04:22:42
+ * Gerado em: 2026-08-13 04:28:27
  * NÃO edite manualmente. Regenere via: php generate_data.php
  */
 window.STATIC_DATA = {
-    version:     "20260813-0422",
-    generated_at: "2026-08-13 04:22:42",
+    version:     "20260813-0428",
+    generated_at: "2026-08-13 04:28:27",
     servers:     [
     {
         "id": 102,

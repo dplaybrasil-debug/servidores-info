@@ -662,112 +662,76 @@
         justify-content: center;
         padding: 1rem;
     " onclick="if(event.target === this) closeChannelModal();">
-        <div id="channelModalCard" style="
-            position: relative;
-            margin: auto;
-            max-height: 90vh;
-            overflow-y: auto;
-            width: min(680px, 94vw);
-            background: linear-gradient(145deg, rgba(15, 23, 42, 0.98) 0%, rgba(10, 14, 26, 0.99) 100%);
-            border: 1.5px solid rgba(124, 58, 237, 0.45);
-            border-radius: 28px;
-            padding: 2.2rem;
-            box-shadow: 0 30px 90px rgba(0,0,0,0.9), 0 0 60px rgba(37, 211, 102, 0.15), 0 0 60px rgba(42, 171, 238, 0.15);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            gap: 1.4rem;
-            animation: popInCenter 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        ">
+        <div id="channelModalCard" class="channel-modal-card">
             <!-- Botão Fechar Topo Direita -->
-            <button onclick="closeChannelModal()" title="Fechar" style="
-                position: absolute; top: 1.2rem; right: 1.2rem;
-                background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
-                color: rgba(255,255,255,0.8); width: 36px; height: 36px;
-                border-radius: 50%; display: flex; align-items: center; justify-content: center;
-                font-size: 1.2rem; cursor: pointer; transition: all 0.2s; z-index: 5;
-            " onmouseover="this.style.background='rgba(255,255,255,0.2)'; this.style.color='white'" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.color='rgba(255,255,255,0.8)'">✕</button>
+            <button onclick="closeChannelModal()" title="Fechar" class="channel-modal-close">✕</button>
 
             <!-- Topo: Logo + Ícone Megafone -->
-            <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
-                <img src="assets/logo-central-v2.png" alt="Central de Servidores" style="height: 38px; width: auto; filter: drop-shadow(0 0 10px rgba(6,182,212,0.5));">
-                <span style="font-size: 2.2rem; animation: float 3s ease-in-out infinite;">📢</span>
+            <div class="channel-modal-header">
+                <div class="channel-modal-logo-wrapper">
+                    <img src="assets/logo-central-v2.png" alt="Central de Servidores" class="channel-modal-logo">
+                    <span class="channel-modal-megaphone">📢</span>
+                </div>
             </div>
 
             <!-- Título e Subtítulo -->
             <div>
-                <h2 style="font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 900; margin: 0 0 0.6rem 0; font-family: 'Outfit', sans-serif; letter-spacing: -0.02em;">
-                    Fique por dentro de <span style="background: linear-gradient(135deg, #25D366 0%, #22d3ee 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">tudo!</span>
+                <h2 class="channel-modal-title">
+                    Fique por dentro de <span class="gradient-text-cyan">tudo!</span>
                 </h2>
-                <p style="color: rgba(255, 255, 255, 0.78); font-size: 0.95rem; line-height: 1.55; margin: 0;">
+                <p class="channel-modal-subtitle">
                     Participe dos nossos <strong>canais oficiais</strong> no WhatsApp e Telegram e receba informações importantes sobre os servidores, novidades e melhorias.
                 </p>
             </div>
 
             <!-- Botões de Ação Principais (WhatsApp & Telegram) -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1rem;">
+            <div class="channel-modal-actions">
                 <!-- Botão WhatsApp -->
-                <a href="https://whatsapp.com/channel/0029Vb8Zts5GZNCrnTYMD20P" target="_blank" id="modalWaBtn" onclick="closeChannelModal()" style="
-                    display: flex; align-items: center; justify-content: space-between;
-                    padding: 1rem 1.4rem; border-radius: 18px;
-                    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-                    border: 1px solid rgba(37, 211, 102, 0.6);
-                    color: white; text-decoration: none; font-weight: 800; font-size: 0.95rem;
-                    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
-                    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-                " onmouseover="this.style.transform='translateY(-3px) scale(1.02)'; this.style.boxShadow='0 14px 35px rgba(37, 211, 102, 0.6)';" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 25px rgba(37, 211, 102, 0.4)';">
-                    <div style="display: flex; align-items: center; gap: 0.75rem;">
-                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.634 1.437h.005c6.558 0 11.894-5.335 11.897-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                <a href="https://whatsapp.com/channel/0029Vb8Zts5GZNCrnTYMD20P" target="_blank" id="modalWaBtn" onclick="closeChannelModal()" class="channel-modal-btn channel-modal-btn-wa">
+                    <div class="channel-modal-btn-content">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.634 1.437h.005c6.558 0 11.894-5.335 11.897-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                         <span>Entrar no WhatsApp</span>
                     </div>
-                    <span style="font-size: 1.2rem;">→</span>
+                    <span class="channel-modal-arrow">→</span>
                 </a>
 
                 <!-- Botão Telegram -->
-                <a href="https://t.me/+DekQjG02Y7gwZTAx" target="_blank" id="modalTgBtn" onclick="closeChannelModal()" style="
-                    display: flex; align-items: center; justify-content: space-between;
-                    padding: 1rem 1.4rem; border-radius: 18px;
-                    background: linear-gradient(135deg, #2AABEE 0%, #1787c7 100%);
-                    border: 1px solid rgba(42, 171, 238, 0.6);
-                    color: white; text-decoration: none; font-weight: 800; font-size: 0.95rem;
-                    box-shadow: 0 8px 25px rgba(42, 171, 238, 0.4);
-                    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-                " onmouseover="this.style.transform='translateY(-3px) scale(1.02)'; this.style.boxShadow='0 14px 35px rgba(42, 171, 238, 0.6)';" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 25px rgba(42, 171, 238, 0.4)';">
-                    <div style="display: flex; align-items: center; gap: 0.75rem;">
-                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.14-.26.26-.53.26l.204-3.04 5.54-5.006c.24-.21-.054-.33-.375-.12l-6.85 4.314-2.94-.92c-.64-.2-.65-.64.134-.946l11.5-4.43c.53-.2.99.11.817.906z"/></svg>
+                <a href="https://t.me/+DekQjG02Y7gwZTAx" target="_blank" id="modalTgBtn" onclick="closeChannelModal()" class="channel-modal-btn channel-modal-btn-tg">
+                    <div class="channel-modal-btn-content">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.14-.26.26-.53.26l.204-3.04 5.54-5.006c.24-.21-.054-.33-.375-.12l-6.85 4.314-2.94-.92c-.64-.2-.65-.64.134-.946l11.5-4.43c.53-.2.99.11.817.906z"/></svg>
                         <span>Entrar no Telegram</span>
                     </div>
-                    <span style="font-size: 1.2rem;">→</span>
+                    <span class="channel-modal-arrow">→</span>
                 </a>
             </div>
 
             <!-- 4 Cards de Recursos / Vantagens na parte inferior -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 0.6rem; margin-top: 0.2rem;">
-                <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 0.8rem 0.4rem; border-radius: 14px; text-align: center;">
-                    <div style="font-size: 1.3rem; margin-bottom: 0.3rem;">🔔</div>
-                    <div style="font-size: 0.72rem; color: rgba(255,255,255,0.85); font-weight: 600; line-height: 1.25;">Atualizações do Sistema</div>
+            <div class="channel-modal-features">
+                <div class="channel-modal-feature-card">
+                    <div class="channel-modal-feature-icon">🔔</div>
+                    <div class="channel-modal-feature-text">Atualizações do Sistema</div>
                 </div>
-                <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 0.8rem 0.4rem; border-radius: 14px; text-align: center;">
-                    <div style="font-size: 1.3rem; margin-bottom: 0.3rem;">📱</div>
-                    <div style="font-size: 0.72rem; color: rgba(255,255,255,0.85); font-weight: 600; line-height: 1.25;">Melhorias nos Apps</div>
+                <div class="channel-modal-feature-card">
+                    <div class="channel-modal-feature-icon">📱</div>
+                    <div class="channel-modal-feature-text">Melhorias nos Apps</div>
                 </div>
-                <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 0.8rem 0.4rem; border-radius: 14px; text-align: center;">
-                    <div style="font-size: 1.3rem; margin-bottom: 0.3rem;">⚙️</div>
-                    <div style="font-size: 0.72rem; color: rgba(255,255,255,0.85); font-weight: 600; line-height: 1.25;">Novidades e Lançamentos</div>
+                <div class="channel-modal-feature-card">
+                    <div class="channel-modal-feature-icon">⚙️</div>
+                    <div class="channel-modal-feature-text">Novidades e Lançamentos</div>
                 </div>
-                <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 0.8rem 0.4rem; border-radius: 14px; text-align: center;">
-                    <div style="font-size: 1.3rem; margin-bottom: 0.3rem;">💬</div>
-                    <div style="font-size: 0.72rem; color: rgba(255,255,255,0.85); font-weight: 600; line-height: 1.25;">Informações Importantes</div>
+                <div class="channel-modal-feature-card">
+                    <div class="channel-modal-feature-icon">💬</div>
+                    <div class="channel-modal-feature-text">Informações Importantes</div>
                 </div>
             </div>
 
             <!-- Opção de Não Exibir Novamente por 3 Dias -->
-            <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; color: rgba(255,255,255,0.5); padding-top: 0.4rem; border-top: 1px solid rgba(255,255,255,0.08);">
-                <label style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">
-                    <input type="checkbox" id="dontShowChannelModal" style="accent-color: #7c3aed; cursor: pointer;">
+            <div class="channel-modal-footer">
+                <label class="channel-modal-checkbox-label">
+                    <input type="checkbox" id="dontShowChannelModal" class="channel-modal-checkbox">
                     <span>Não mostrar novamente por 3 dias</span>
                 </label>
-                <span onclick="closeChannelModal()" style="cursor: pointer; text-decoration: underline;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Continuar navegando</span>
+                <span onclick="closeChannelModal()" class="channel-modal-skip">Continuar navegando</span>
             </div>
         </div>
     </div>

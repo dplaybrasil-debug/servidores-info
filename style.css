@@ -587,3 +587,300 @@ body {
     width: 100%;
     text-align: center;
 }
+
+/* =========================================================
+   MODAL DE CANAIS (POPUP ENTRADA) - RESPONSIVO E ELEGANTE
+   ========================================================= */
+.channel-modal-card {
+    position: relative;
+    margin: auto;
+    max-height: calc(100vh - 2.5rem);
+    overflow-y: auto;
+    width: min(650px, 94vw);
+    background: linear-gradient(145deg, rgba(15, 23, 42, 0.98) 0%, rgba(10, 14, 26, 0.99) 100%);
+    border: 1.5px solid rgba(124, 58, 237, 0.45);
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 30px 90px rgba(0,0,0,0.9), 0 0 60px rgba(37, 211, 102, 0.15), 0 0 60px rgba(42, 171, 238, 0.15);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    animation: popInCenter 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(124, 58, 237, 0.4) transparent;
+}
+
+.channel-modal-card::-webkit-scrollbar {
+    width: 6px;
+}
+.channel-modal-card::-webkit-scrollbar-thumb {
+    background: rgba(124, 58, 237, 0.4);
+    border-radius: 10px;
+}
+
+/* Botão Fechar no Topo Direita */
+.channel-modal-close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.8);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+.channel-modal-close:hover {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    transform: scale(1.08);
+}
+
+/* Topo / Header */
+.channel-modal-header {
+    display: flex;
+    align-items: center;
+    padding-right: 3.5rem; /* Impede colisão com o botão fechar (X) */
+}
+
+.channel-modal-logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.channel-modal-logo {
+    height: 36px;
+    width: auto;
+    filter: drop-shadow(0 0 10px rgba(6,182,212,0.5));
+}
+
+.channel-modal-megaphone {
+    font-size: 1.6rem;
+    animation: float 3s ease-in-out infinite;
+    display: inline-block;
+}
+
+/* Título e Texto */
+.channel-modal-title {
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-weight: 900;
+    margin: 0 0 0.5rem 0;
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: -0.02em;
+}
+
+.gradient-text-cyan {
+    background: linear-gradient(135deg, #25D366 0%, #22d3ee 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.channel-modal-subtitle {
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.92rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Botões de Ação */
+.channel-modal-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.9rem;
+}
+
+.channel-modal-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.9rem 1.25rem;
+    border-radius: 16px;
+    color: white;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 0.92rem;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.channel-modal-btn-content {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+.channel-modal-arrow {
+    font-size: 1.1rem;
+}
+
+.channel-modal-btn-wa {
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    border: 1px solid rgba(37, 211, 102, 0.6);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+}
+.channel-modal-btn-wa:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 14px 35px rgba(37, 211, 102, 0.6);
+}
+
+.channel-modal-btn-tg {
+    background: linear-gradient(135deg, #2AABEE 0%, #1787c7 100%);
+    border: 1px solid rgba(42, 171, 238, 0.6);
+    box-shadow: 0 8px 25px rgba(42, 171, 238, 0.4);
+}
+.channel-modal-btn-tg:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 14px 35px rgba(42, 171, 238, 0.6);
+}
+
+/* Feature Cards */
+.channel-modal-features {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.6rem;
+}
+
+.channel-modal-feature-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 0.75rem 0.4rem;
+    border-radius: 14px;
+    text-align: center;
+}
+
+.channel-modal-feature-icon {
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.channel-modal-feature-text {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.85);
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+/* Footer / Checkbox */
+.channel-modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.55);
+    padding-top: 0.4rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.channel-modal-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.channel-modal-checkbox-label:hover {
+    color: white;
+}
+
+.channel-modal-checkbox {
+    accent-color: #7c3aed;
+    cursor: pointer;
+}
+
+.channel-modal-skip {
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+.channel-modal-skip:hover {
+    color: white;
+}
+
+/* Ajustes Responsivos em Telas Menores e Celulares */
+@media (max-width: 640px) {
+    .channel-modal-card {
+        padding: 1.25rem 1rem;
+        gap: 0.9rem;
+        border-radius: 20px;
+        width: 95vw;
+        max-height: calc(100vh - 1.5rem);
+    }
+    .channel-modal-close {
+        top: 0.85rem;
+        right: 0.85rem;
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+    .channel-modal-header {
+        padding-right: 2.8rem;
+    }
+    .channel-modal-logo {
+        height: 30px;
+    }
+    .channel-modal-megaphone {
+        font-size: 1.3rem;
+    }
+    .channel-modal-subtitle {
+        font-size: 0.84rem;
+    }
+    .channel-modal-actions {
+        grid-template-columns: 1fr;
+        gap: 0.65rem;
+    }
+    .channel-modal-btn {
+        padding: 0.75rem 1rem;
+        font-size: 0.88rem;
+    }
+    .channel-modal-features {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+    .channel-modal-feature-card {
+        padding: 0.6rem 0.3rem;
+    }
+    .channel-modal-feature-icon {
+        font-size: 1.1rem;
+        margin-bottom: 0.15rem;
+    }
+    .channel-modal-feature-text {
+        font-size: 0.68rem;
+    }
+    .channel-modal-footer {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-height: 680px) {
+    .channel-modal-card {
+        padding: 1rem;
+        gap: 0.75rem;
+    }
+    .channel-modal-title {
+        font-size: 1.3rem;
+        margin-bottom: 0.25rem;
+    }
+    .channel-modal-subtitle {
+        font-size: 0.8rem;
+    }
+    .channel-modal-features {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
