@@ -1,11 +1,11 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-07-24 19:40:16
+ * Gerado em: 2026-08-13 04:22:42
  * NÃO edite manualmente. Regenere via: php generate_data.php
  */
 window.STATIC_DATA = {
-    version:     "20260724-1940",
-    generated_at: "2026-07-24 19:40:16",
+    version:     "20260813-0422",
+    generated_at: "2026-08-13 04:22:42",
     servers:     [
     {
         "id": 102,
@@ -2676,54 +2676,6 @@ window.STATIC_DATA = {
         "app_id": 41
     },
     {
-        "server_id": 36,
-        "app_id": 13
-    },
-    {
-        "server_id": 36,
-        "app_id": 6
-    },
-    {
-        "server_id": 36,
-        "app_id": 8
-    },
-    {
-        "server_id": 36,
-        "app_id": 27
-    },
-    {
-        "server_id": 36,
-        "app_id": 7
-    },
-    {
-        "server_id": 36,
-        "app_id": 5
-    },
-    {
-        "server_id": 36,
-        "app_id": 10
-    },
-    {
-        "server_id": 36,
-        "app_id": 44
-    },
-    {
-        "server_id": 36,
-        "app_id": 35
-    },
-    {
-        "server_id": 36,
-        "app_id": 14
-    },
-    {
-        "server_id": 36,
-        "app_id": 15
-    },
-    {
-        "server_id": 36,
-        "app_id": 38
-    },
-    {
         "server_id": 107,
         "app_id": 2
     },
@@ -2944,30 +2896,6 @@ window.STATIC_DATA = {
         "app_id": 5
     },
     {
-        "server_id": 78,
-        "app_id": 2
-    },
-    {
-        "server_id": 78,
-        "app_id": 3
-    },
-    {
-        "server_id": 78,
-        "app_id": 25
-    },
-    {
-        "server_id": 78,
-        "app_id": 28
-    },
-    {
-        "server_id": 78,
-        "app_id": 11
-    },
-    {
-        "server_id": 78,
-        "app_id": 40
-    },
-    {
         "server_id": 99,
         "app_id": 26
     },
@@ -3033,26 +2961,6 @@ window.STATIC_DATA = {
     },
     {
         "server_id": 8,
-        "app_id": 11
-    },
-    {
-        "server_id": 42,
-        "app_id": 2
-    },
-    {
-        "server_id": 42,
-        "app_id": 22
-    },
-    {
-        "server_id": 42,
-        "app_id": 25
-    },
-    {
-        "server_id": 42,
-        "app_id": 26
-    },
-    {
-        "server_id": 42,
         "app_id": 11
     },
     {
@@ -3452,6 +3360,138 @@ window.STATIC_DATA = {
         "app_id": 52
     },
     {
+        "server_id": 138,
+        "app_id": 2
+    },
+    {
+        "server_id": 138,
+        "app_id": 3
+    },
+    {
+        "server_id": 138,
+        "app_id": 45
+    },
+    {
+        "server_id": 138,
+        "app_id": 53
+    },
+    {
+        "server_id": 138,
+        "app_id": 43
+    },
+    {
+        "server_id": 138,
+        "app_id": 4
+    },
+    {
+        "server_id": 138,
+        "app_id": 5
+    },
+    {
+        "server_id": 138,
+        "app_id": 28
+    },
+    {
+        "server_id": 138,
+        "app_id": 11
+    },
+    {
+        "server_id": 138,
+        "app_id": 51
+    },
+    {
+        "server_id": 138,
+        "app_id": 36
+    },
+    {
+        "server_id": 138,
+        "app_id": 40
+    },
+    {
+        "server_id": 78,
+        "app_id": 2
+    },
+    {
+        "server_id": 78,
+        "app_id": 3
+    },
+    {
+        "server_id": 78,
+        "app_id": 25
+    },
+    {
+        "server_id": 78,
+        "app_id": 28
+    },
+    {
+        "server_id": 78,
+        "app_id": 11
+    },
+    {
+        "server_id": 78,
+        "app_id": 40
+    },
+    {
+        "server_id": 78,
+        "app_id": 52
+    },
+    {
+        "server_id": 36,
+        "app_id": 13
+    },
+    {
+        "server_id": 36,
+        "app_id": 4
+    },
+    {
+        "server_id": 36,
+        "app_id": 6
+    },
+    {
+        "server_id": 36,
+        "app_id": 8
+    },
+    {
+        "server_id": 36,
+        "app_id": 27
+    },
+    {
+        "server_id": 36,
+        "app_id": 7
+    },
+    {
+        "server_id": 36,
+        "app_id": 5
+    },
+    {
+        "server_id": 36,
+        "app_id": 10
+    },
+    {
+        "server_id": 36,
+        "app_id": 44
+    },
+    {
+        "server_id": 36,
+        "app_id": 34
+    },
+    {
+        "server_id": 36,
+        "app_id": 35
+    },
+    {
+        "server_id": 36,
+        "app_id": 14
+    },
+    {
+        "server_id": 36,
+        "app_id": 15
+    },
+    {
+        "server_id": 36,
+        "app_id": 38
+    },
+    {
         "server_id": 101,
         "app_id": 2
     },
@@ -3504,52 +3544,28 @@ window.STATIC_DATA = {
         "app_id": 36
     },
     {
-        "server_id": 138,
+        "server_id": 42,
         "app_id": 2
     },
     {
-        "server_id": 138,
-        "app_id": 3
+        "server_id": 42,
+        "app_id": 22
     },
     {
-        "server_id": 138,
-        "app_id": 45
+        "server_id": 42,
+        "app_id": 25
     },
     {
-        "server_id": 138,
-        "app_id": 53
+        "server_id": 42,
+        "app_id": 26
     },
     {
-        "server_id": 138,
-        "app_id": 43
-    },
-    {
-        "server_id": 138,
-        "app_id": 4
-    },
-    {
-        "server_id": 138,
-        "app_id": 5
-    },
-    {
-        "server_id": 138,
-        "app_id": 28
-    },
-    {
-        "server_id": 138,
+        "server_id": 42,
         "app_id": 11
     },
     {
-        "server_id": 138,
-        "app_id": 51
-    },
-    {
-        "server_id": 138,
-        "app_id": 36
-    },
-    {
-        "server_id": 138,
-        "app_id": 40
+        "server_id": 42,
+        "app_id": 41
     }
 ],
     plans:       [
