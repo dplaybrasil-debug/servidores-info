@@ -2,479 +2,142 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Central de Servidores - Catálogo Oficial</title>
-    <link rel="icon" type="image/png" href="assets/logo-central-v2.png">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <link rel="stylesheet" href="style.css?v=20260724">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal - Servidores e Apps</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <style>
-        /* Proteção contra cópias */
-        * {
-            user-select: none !important;
-            -webkit-user-select: none !important;
-            -moz-user-select: none !important;
-            -ms-user-select: none !important;
-        }
-        
-        input, textarea {
-            user-select: text !important;
-            -webkit-user-select: text !important;
-            -moz-user-select: text !important;
-            -ms-user-select: text !important;
-        }
-
-        img {
-            -webkit-user-drag: none !important;
-            user-drag: none !important;
-        }
-
-        /* =====================================================
-           PORTAL LAYOUT
-           ===================================================== */
         .portal-layout {
             display: flex;
             flex-direction: column;
             height: 100vh;
         }
-
-        /* =====================================================
-           HEADER
-           ===================================================== */
+        
         .portal-header {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            padding: 0.6rem 2rem;
-            background: rgba(8, 12, 20, 0.75);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 1px 0 rgba(124,58,237,0.1), 0 4px 30px rgba(0,0,0,0.4);
-            transition: border-color 0.3s;
         }
 
-        .portal-header::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 5%; right: 5%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(124,58,237,0.5), rgba(6,182,212,0.5), transparent);
-            opacity: 0.7;
-        }
-
-        /* --- Logo --- */
-        .portal-logo {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-        }
-
-        .portal-logo img {
-            height: 38px;
-            width: auto;
-            filter: drop-shadow(0 0 10px rgba(6,182,212,0.55)) drop-shadow(0 0 4px rgba(124,58,237,0.4));
-            transition: filter 0.3s;
-        }
-
-        .portal-logo img:hover {
-            filter: drop-shadow(0 0 18px rgba(6,182,212,0.9)) drop-shadow(0 0 8px rgba(124,58,237,0.6));
-        }
-
-        /* --- Nav --- */
         .portal-nav {
             display: flex;
-            gap: 0.25rem;
-            align-items: center;
-            background: rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 50px;
-            padding: 4px;
+            gap: 1rem;
         }
 
         .portal-nav button {
             background: transparent;
             color: var(--text-muted);
             border: none;
-            font-size: 0.85rem;
-            font-weight: 600;
+            font-size: 1.1rem;
+            font-weight: 500;
             cursor: pointer;
-            padding: 0.45rem 1rem;
-            border-radius: 50px;
-            transition: all 0.3s var(--ease-smooth);
-            white-space: nowrap;
-            letter-spacing: 0.02em;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
         }
 
         .portal-nav button:hover {
             color: white;
-            background: rgba(255,255,255,0.07);
+            background: rgba(255,255,255,0.05);
         }
 
         .portal-nav button.active {
             color: white;
-            background: linear-gradient(135deg, var(--primary) 0%, rgba(6,182,212,0.85) 100%);
-            box-shadow: 0 3px 12px rgba(124,58,237,0.45), 0 1px 3px rgba(0,0,0,0.3);
+            background: var(--primary);
+            box-shadow: 0 4px 15px rgba(220, 20, 60, 0.4);
         }
 
-        /* --- Botões de Canais no Cabeçalho --- */
-        .header-channel-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.45rem;
-            padding: 0.42rem 0.9rem;
-            border-radius: 50px;
-            font-size: 0.78rem;
-            font-weight: 700;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            position: relative;
-            white-space: nowrap;
-            letter-spacing: 0.02em;
-        }
-
-        .header-channel-btn.whatsapp-btn {
-            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-            border: 1px solid rgba(37, 211, 102, 0.5);
-            box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
-        }
-
-        .header-channel-btn.whatsapp-btn:hover {
-            transform: translateY(-2px) scale(1.04);
-            box-shadow: 0 8px 22px rgba(37, 211, 102, 0.6);
-            color: white;
-        }
-
-        .header-channel-btn.telegram-btn {
-            background: linear-gradient(135deg, #2AABEE 0%, #1787c7 100%);
-            border: 1px solid rgba(42, 171, 238, 0.5);
-            box-shadow: 0 4px 14px rgba(42, 171, 238, 0.35);
-        }
-
-        .header-channel-btn.telegram-btn:hover {
-            transform: translateY(-2px) scale(1.04);
-            box-shadow: 0 8px 22px rgba(42, 171, 238, 0.6);
-            color: white;
-        }
-
-        .pulse-badge {
-            font-size: 0.58rem;
-            font-weight: 800;
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(4px);
-            padding: 1px 6px;
-            border-radius: 20px;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            animation: pulseBadge 2s infinite;
-        }
-
-        @keyframes pulseBadge {
-            0% { opacity: 0.85; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.08); background: rgba(255,255,255,0.4); }
-            100% { opacity: 0.85; transform: scale(1); }
-        }
-
-        /* --- Search --- */
-        .portal-header-search {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            padding-right: 0.2rem;
-        }
-
-        .search-inline-container {
-            display: flex;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.45);
-            border: 1px solid rgba(124,58,237,0.3);
-            border-radius: 50px;
-            padding: 2px;
-            transition: all 0.3s var(--ease-smooth);
-        }
-
-        .search-inline-container:focus-within {
-            border-color: var(--cyan);
-            box-shadow: 0 0 15px rgba(6,182,212,0.25);
-        }
-
-        .search-trigger-btn {
-            background: transparent;
-            border: none;
-            color: var(--cyan);
-            cursor: pointer;
-            width: 32px; height: 32px;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            transition: all 0.3s;
-        }
-
-        .search-inline-wrapper {
-            width: 190px; opacity: 1; padding-right: 0.5rem;
-            display: flex; align-items: center;
-        }
-
-        .search-inline-container input {
-            background: transparent;
-            border: none;
-            color: white;
-            font-size: 0.84rem;
-            width: 100%;
-            outline: none;
-            padding: 0.3rem 0.5rem;
-        }
-
-        .search-inline-container input::placeholder { color: rgba(255,255,255,0.4); }
-
-        /* =====================================================
-           PORTAL CONTENT
-           ===================================================== */
         .portal-content {
             padding: 2rem;
             flex: 1;
             min-height: 0;
-            max-width: 1440px;
+            max-width: 1400px;
             margin: 0 auto;
             width: 100%;
             overflow-y: auto;
         }
 
-        /* =====================================================
-           FILTER PILLS
-           ===================================================== */
-        #publicServerFilterBar {
+        .search-container {
+            margin-bottom: 2rem;
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.55rem;
             justify-content: center;
-            margin-bottom: 1.8rem;
         }
 
-        .filter-pill {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            padding: 0.42rem 1.1rem;
+        .search-container input {
+            width: 100%;
+            max-width: 600px;
+            padding: 1rem 1.5rem;
             border-radius: 50px;
-            border: 1.5px solid transparent;
-            cursor: pointer;
-            font-size: 0.82rem;
-            font-weight: 700;
-            letter-spacing: 0.03em;
-            transition: all 0.25s var(--ease-smooth);
-            position: relative;
-        }
-
-        .filter-pill:hover { transform: translateY(-2px); }
-
-        .filter-pill .pill-count {
-            font-size: 0.72rem;
-            padding: 1px 7px;
-            border-radius: 50px;
-            font-weight: 700;
-            background: rgba(255,255,255,0.15);
-            transition: background 0.2s;
-        }
-
-        /* Variantes de cor */
-        .pill-all {
-            background: rgba(255,255,255,0.07);
-            color: rgba(255,255,255,0.85);
-            border-color: rgba(255,255,255,0.2);
-        }
-        .pill-all.active, .pill-all:hover {
-            background: rgba(255,255,255,0.14);
-            border-color: rgba(255,255,255,0.5);
+            border: 1px solid var(--glass-border);
+            background: rgba(0,0,0,0.4);
             color: white;
-            box-shadow: 0 4px 14px rgba(255,255,255,0.1);
+            font-size: 1.1rem;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
         }
 
-        .pill-hybrid {
-            background: rgba(251,191,36,0.1);
-            color: #fde68a;
-            border-color: rgba(251,191,36,0.25);
-        }
-        .pill-hybrid.active, .pill-hybrid:hover {
-            background: rgba(251,191,36,0.2);
-            border-color: rgba(251,191,36,0.6);
-            box-shadow: 0 4px 14px rgba(251,191,36,0.2);
+        .search-container input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(220, 20, 60, 0.2);
         }
 
-        .pill-iptv {
-            background: rgba(124,58,237,0.12);
-            color: #c4b5fd;
-            border-color: rgba(124,58,237,0.3);
-        }
-        .pill-iptv.active, .pill-iptv:hover {
-            background: rgba(124,58,237,0.22);
-            border-color: rgba(124,58,237,0.6);
-            box-shadow: 0 4px 14px rgba(124,58,237,0.25);
-        }
-
-        .pill-android {
-            background: rgba(52,211,153,0.1);
-            color: #6ee7b7;
-            border-color: rgba(52,211,153,0.25);
-        }
-        .pill-android.active, .pill-android:hover {
-            background: rgba(52,211,153,0.2);
-            border-color: rgba(52,211,153,0.55);
-            box-shadow: 0 4px 14px rgba(52,211,153,0.2);
-        }
-
-        .pill-screens {
-            background: rgba(6,182,212,0.1);
-            color: #67e8f9;
-            border-color: rgba(6,182,212,0.25);
-        }
-        .pill-screens.active, .pill-screens:hover {
-            background: rgba(6,182,212,0.2);
-            border-color: rgba(6,182,212,0.55);
-            box-shadow: 0 4px 14px rgba(6,182,212,0.2);
-        }
-
-        /* =====================================================
-           SECTION SUPPORT — Central de Ajuda
-           ===================================================== */
-        #section-support {
-            display: none;
-            padding: 2rem 0;
-        }
-
-        .support-hero {
-            text-align: center;
-            margin-bottom: 3.5rem;
-        }
-
-        .support-hero h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 900;
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            margin: 0 0 0.75rem;
-            font-family: 'Outfit', sans-serif;
-            background: linear-gradient(270deg, #7c3aed, #06b6d4, #a855f7, #22d3ee);
-            background-size: 400% 400%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientShift 5s ease infinite;
-        }
-
-        .support-hero p {
-            color: var(--text-muted);
-            font-size: 1rem;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        /* =====================================================
-           MODAL DE INFORMAÇÕES (Info)
-           ===================================================== */
+        /* Modal Info */
         .info-stats {
             display: flex;
-            gap: 0.75rem;
-            margin-top: 1.25rem;
+            gap: 1rem;
+            margin-top: 1rem;
+            background: rgba(0,0,0,0.2);
+            padding: 1rem;
+            border-radius: 12px;
         }
-
+        
         .stat-item {
             flex: 1;
             text-align: center;
-            background: rgba(124,58,237,0.08);
-            border: 1px solid rgba(124,58,237,0.2);
-            padding: 1rem 0.5rem;
-            border-radius: var(--radius-md);
-            transition: all 0.25s;
+            background: rgba(255,255,255,0.05);
+            padding: 1rem;
+            border-radius: 8px;
         }
-
-        .stat-item:hover {
-            background: rgba(124,58,237,0.15);
-            border-color: rgba(124,58,237,0.4);
-            transform: translateY(-2px);
-        }
-
+        
         .stat-item h4 {
-            margin: 0 0 0.4rem;
+            margin: 0 0 0.5rem 0;
             color: var(--text-muted);
-            font-weight: 500;
-            font-size: 0.78rem;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
+            font-weight: normal;
+            font-size: 0.9rem;
         }
-
+        
         .stat-item span {
-            font-size: 1.6rem;
-            font-weight: 800;
-            background: var(--grad-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
         }
 
-        /* --- Botão Acessar no Modal --- */
         .btn-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            background: var(--grad-primary);
+            display: inline-block;
+            background: var(--primary);
             color: white;
             text-decoration: none;
-            padding: 0.9rem 2rem;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.9rem;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-weight: 500;
             margin-top: 1.5rem;
+            transition: all 0.3s ease;
             text-align: center;
             width: 100%;
-            transition: all 0.3s var(--ease-smooth);
-            box-shadow: 0 6px 20px rgba(124,58,237,0.35);
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-link::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%);
-            transform: translateX(-100%);
-            transition: transform 0.5s;
         }
 
         .btn-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(124,58,237,0.55), 0 0 20px rgba(6,182,212,0.2);
-        }
-
-        .btn-link:hover::before { transform: translateX(100%); }
-
-        /* =====================================================
-           RESPONSIVE
-           ===================================================== */
-        @media (max-width: 600px) {
-            .portal-header {
-                display: flex;
-                flex-direction: column;
-                gap: 0.75rem;
-                padding: 0.75rem 1rem;
-                align-items: center;
-            }
-            .portal-nav { width: 100%; justify-content: center; }
-            .portal-nav button { font-size: 0.78rem; padding: 0.4rem 0.75rem; }
-            .portal-header-search { justify-content: center !important; width: 100%; padding: 0; }
-            .search-inline-container.active .search-inline-wrapper { width: 150px; }
-            .portal-content { padding: 1rem; }
-            .info-stats { flex-direction: column; }
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(220, 20, 60, 0.4);
         }
     </style>
 </head>
@@ -482,375 +145,74 @@
     <div class="portal-layout">
         <!-- Cabeçalho -->
         <header class="portal-header">
-            <!-- Esquerda: Logo -->
-            <div class="portal-logo">
-                <img src="assets/logo-central-v2.png" alt="Central de Servidores">
+            <div class="logo">
+                <img src="assets/logo-central-v2.png" alt="Central de Servidores" style="height: 50px; width: auto; filter: drop-shadow(0 0 8px rgba(0,255,255,0.4));">
             </div>
-            
-            <!-- Centro: Navegação -->
             <nav class="portal-nav">
                 <button class="active" id="btnServidores" onclick="switchTab('servers')">Servidores</button>
                 <button id="btnApps" onclick="switchTab('apps')">Apps Parceiros</button>
                 <button id="btnApoio" onclick="switchTab('support')">📞 Apoio</button>
             </nav>
-            
-            <!-- Direita: Canais em Destaque & Pesquisa -->
-            <div class="portal-header-right" style="display: flex; align-items: center; justify-content: flex-end; gap: 0.55rem;">
-                <!-- Botão Canal WhatsApp -->
-                <a href="https://whatsapp.com/channel/0029Vb8Zts5GZNCrnTYMD20P" target="_blank" id="headerWaBtn" class="header-channel-btn whatsapp-btn" title="Entrar no Canal Oficial do WhatsApp">
-                    <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.634 1.437h.005c6.558 0 11.894-5.335 11.897-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    <span>Canal WhatsApp</span>
-                    <span class="pulse-badge">OFICIAL</span>
-                </a>
-
-                <!-- Botão Canal Telegram -->
-                <a href="https://t.me/+DekQjG02Y7gwZTAx" target="_blank" id="headerTgBtn" class="header-channel-btn telegram-btn" title="Entrar no Canal Oficial do Telegram">
-                    <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.14-.26.26-.53.26l.204-3.04 5.54-5.006c.24-.21-.054-.33-.375-.12l-6.85 4.314-2.94-.92c-.64-.2-.65-.64.134-.946l11.5-4.43c.53-.2.99.11.817.906z"/></svg>
-                    <span>Canal Telegram</span>
-                    <span class="pulse-badge">CANAL</span>
-                </a>
-
-                <!-- Pesquisa -->
-                <div class="portal-header-search">
-                    <div class="search-inline-container" id="searchInlineContainer">
-                        <button class="search-trigger-btn" onclick="toggleSearch()" title="Pesquisar">
-                            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="pointer-events:none"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                        </button>
-                        <div class="search-inline-wrapper">
-                            <input type="text" id="searchInput" placeholder="Pesquisar...">
-                        </div>
-                    </div>
-                </div>
-            </div>
         </header>
 
         <!-- Conteúdo -->
         <main class="portal-content">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Pesquisar...">
+            </div>
 
             <!-- Pills de filtro (visíveis só na aba Servidores) -->
-            <div id="publicServerFilterBar">
-                <button id="pubSrvFilterAll" class="filter-pill pill-all active" onclick="filterPublicServers('all')">
-                    🔍 Todos <span id="pubSrvCnt-all" class="pill-count">0</span>
+            <div id="publicServerFilterBar" style="display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin-bottom: 1.5rem;">
+                <button id="pubSrvFilterAll" onclick="filterPublicServers('all')"
+                    style="display:flex; align-items:center; gap:0.4rem; padding:0.4rem 1.1rem; border-radius:20px; border:none; cursor:pointer; font-size:0.85rem; font-weight:600; background:rgba(255,255,255,0.18); color:white; outline:2px solid rgba(255,255,255,0.55); transition:all 0.2s;">
+                    🔍 Todos <span id="pubSrvCnt-all" style="background:rgba(255,255,255,0.2); padding:1px 7px; border-radius:10px;">0</span>
                 </button>
-                <button id="pubSrvFilterHybrid" class="filter-pill pill-hybrid" onclick="filterPublicServers('hybrid')">
-                    🔀 Híbrido <span id="pubSrvCnt-hybrid" class="pill-count">0</span>
+                <button id="pubSrvFilterHybrid" onclick="filterPublicServers('hybrid')"
+                    style="display:flex; align-items:center; gap:0.4rem; padding:0.4rem 1.1rem; border-radius:20px; border:none; cursor:pointer; font-size:0.85rem; font-weight:600; background:rgba(251,191,36,0.15); color:#fde68a; outline:none; transition:all 0.2s;">
+                    🔀 Híbrido <span id="pubSrvCnt-hybrid" style="background:rgba(251,191,36,0.25); padding:1px 7px; border-radius:10px;">0</span>
                 </button>
-                <button id="pubSrvFilterIptv" class="filter-pill pill-iptv" onclick="filterPublicServers('iptv')">
-                    📡 IPTV <span id="pubSrvCnt-iptv" class="pill-count">0</span>
+                <button id="pubSrvFilterIptv" onclick="filterPublicServers('iptv')"
+                    style="display:flex; align-items:center; gap:0.4rem; padding:0.4rem 1.1rem; border-radius:20px; border:none; cursor:pointer; font-size:0.85rem; font-weight:600; background:rgba(99,102,241,0.15); color:#a5b4fc; outline:none; transition:all 0.2s;">
+                    📡 IPTV <span id="pubSrvCnt-iptv" style="background:rgba(99,102,241,0.25); padding:1px 7px; border-radius:10px;">0</span>
                 </button>
-                <button id="pubSrvFilterAndroid" class="filter-pill pill-android" onclick="filterPublicServers('android')">
-                    🤖 Android <span id="pubSrvCnt-android" class="pill-count">0</span>
-                </button>
-                <button id="pubSrvFilterScreens" class="filter-pill pill-screens" onclick="filterPublicServers('screens')">
-                    📺 Multi-tela <span id="pubSrvCnt-screens" class="pill-count">0</span>
+                <button id="pubSrvFilterAndroid" onclick="filterPublicServers('android')"
+                    style="display:flex; align-items:center; gap:0.4rem; padding:0.4rem 1.1rem; border-radius:20px; border:none; cursor:pointer; font-size:0.85rem; font-weight:600; background:rgba(52,211,153,0.15); color:#6ee7b7; outline:none; transition:all 0.2s;">
+                    🤖 Android <span id="pubSrvCnt-android" style="background:rgba(52,211,153,0.25); padding:1px 7px; border-radius:10px;">0</span>
                 </button>
             </div>
 
             <div id="section-servers" style="display: block;">
-                <div class="grid" id="publicServersGrid" style="grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); gap: 1.2rem;"></div>
+                <div class="grid" id="publicServersGrid" style="grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1.2rem;"></div>
             </div>
 
             <div id="section-apps" style="display: none;">
-                <div class="grid" id="publicAppsGrid" style="grid-template-columns: repeat(auto-fill, minmax(125px, 1fr)); gap: 1rem;"></div>
+                <div class="grid" id="publicAppsGrid" style="grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 1rem;"></div>
             </div>
 
-            <div id="section-support">
-                <div class="support-hero">
-                    <h1>Central de Ajuda</h1>
-                    <p>Escolha um canal e nossa equipe vai te atender rapidinho.</p>
+            <div id="section-support" style="display: none; padding: 2rem 0;">
+                <div style="text-align:center; margin-bottom:4rem;">
+                    <h1 style="font-size:3rem; font-weight:900; color:white;
+                               text-transform:uppercase; letter-spacing:0.25em; margin:0;
+                               font-family: 'Outfit', sans-serif; text-shadow: 0 0 20px rgba(255,255,255,0.15);">
+                        Central de Ajuda
+                    </h1>
                 </div>
-                <div id="publicContactsGrid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.8rem; max-width:1100px; margin:0 auto;"></div>
-            </div>
-
-            <!-- Detalhes do Servidor (SPA) -->
-            <div id="section-server-details" class="server-container" style="display: none; max-width:800px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; gap: 2rem;">
-                <!-- Card Principal -->
-                <div class="glass-panel header-card" style="padding: 3rem 2rem; text-align: center; position: relative;">
-                    <a href="#Servidores" class="back-btn" style="position: absolute; top: 1.5rem; left: 1.5rem; background: rgba(124, 58, 237, 0.12); color: var(--text-muted); text-decoration: none; padding: 0.55rem 1.1rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; border: 1px solid rgba(124, 58, 237, 0.25); display: flex; align-items: center; gap: 0.5rem; backdrop-filter: blur(8px);">← Voltar</a>
-                    
-                    <img id="sLogo" class="server-logo" src="" alt="Logo" style="display: none; width: 150px; height: 150px; border-radius: 26px; object-fit: cover; margin: 0 auto 1.5rem auto; box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 40px rgba(124,58,237,0.3); border: 2px solid rgba(124,58,237,0.25);" referrerpolicy="no-referrer">
-                    <div id="sNoLogo" style="font-size: 5rem; margin-bottom: 1rem; display: none;">🖥️</div>
-                    
-                    <h1 id="sTitle" class="server-title" style="margin-bottom: 0.5rem; font-family: 'Outfit', sans-serif; font-weight: 900; background: linear-gradient(135deg, #ffffff 0%, rgba(167,139,250,0.9) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.2rem;">Nome do Servidor</h1>
-                    <p id="sDesc" class="server-desc" style="color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem auto; line-height: 1.6;"></p>
-                    
-                    <div id="sUpdateBadge" style="text-align: center; margin-bottom: 2rem; font-size: 0.9rem; color: var(--text-muted); background: rgba(0,0,0,0.3); display: none; padding: 0.5rem 1.5rem; border-radius: 20px;"></div>
-                    
-                    <h2 style="font-size: 1.3rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px;">Quantidade de Conteúdos</h2>
-                    <div id="noContentMsg" style="display: none; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: var(--danger); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; font-weight: 500;">
-                        ⚠️ Conteúdo Indisponível no Momento
-                    </div>
-                    <div class="stats-grid" id="statsGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
-                        <div class="stat-box" style="background: rgba(124,58,237,0.08); border: 1px solid rgba(124,58,237,0.2); padding: 1.5rem; border-radius: 18px; text-align: center;">
-                            <h4 style="margin: 0; color: var(--text-muted); font-size: 0.8rem; font-weight: 600; text-transform: uppercase;">Canais</h4>
-                            <span id="sChannels" style="display: block; font-size: 2.2rem; font-weight: 800; margin-top: 0.5rem; font-family: 'Outfit', sans-serif; background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">0</span>
-                        </div>
-                        <div class="stat-box" style="background: rgba(124,58,237,0.08); border: 1px solid rgba(124,58,237,0.2); padding: 1.5rem; border-radius: 18px; text-align: center;">
-                            <h4 style="margin: 0; color: var(--text-muted); font-size: 0.8rem; font-weight: 600; text-transform: uppercase;">Filmes</h4>
-                            <span id="sMovies" style="display: block; font-size: 2.2rem; font-weight: 800; margin-top: 0.5rem; font-family: 'Outfit', sans-serif; background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">0</span>
-                        </div>
-                        <div class="stat-box" style="background: rgba(124,58,237,0.08); border: 1px solid rgba(124,58,237,0.2); padding: 1.5rem; border-radius: 18px; text-align: center;">
-                            <h4 style="margin: 0; color: var(--text-muted); font-size: 0.8rem; font-weight: 600; text-transform: uppercase;">Séries</h4>
-                            <span id="sSeries" style="display: block; font-size: 2.2rem; font-weight: 800; margin-top: 0.5rem; font-family: 'Outfit', sans-serif; background: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">0</span>
-                        </div>
-                    </div>
-
-                    <!-- Botões de Ação (Painel e Loja) -->
-                    <div id="actionButtonsRow" style="display: none; gap: 1rem; margin-top: 1.5rem; width: 100%; justify-content: center; flex-wrap: wrap;">
-                        <a href="#" id="sPanelBtn" class="btn-access"
-                           style="flex:1; min-width:200px; max-width:320px; text-decoration:none; padding:0.9rem 2.5rem; border-radius:50px; font-weight:700; color:white;
-                                  background:linear-gradient(135deg,#10b981,#059669);
-                                  box-shadow:0 6px 20px rgba(16,185,129,0.35); display:none;"
-                           target="_blank">Acessar o Painel 🚀</a>
-                        <a href="#" id="sStoreBtn" class="btn-access"
-                           style="flex:1; min-width:200px; max-width:320px; text-decoration:none; padding:0.9rem 2.5rem; border-radius:50px; font-weight:700; color:white;
-                                  background:linear-gradient(135deg,#7c3aed,#06b6d4);
-                                  box-shadow:0 6px 20px rgba(124,58,237,0.35); display:none;"
-                           target="_blank">Loja Aplicativos 📥</a>
-                    </div>
-
-                    <!-- Badge de Telas Simultâneas -->
-                    <div id="screensInfo" style="display:none; margin-top: 1.5rem; text-align:center;">
-                        <span style="display:inline-flex; align-items:center; gap:0.5rem;
-                                     background:rgba(6,182,212,0.12); border:1px solid rgba(6,182,212,0.35);
-                                     color:#22d3ee; padding:0.5rem 1.4rem;
-                                     border-radius:50px; font-size:0.92rem; font-weight:700;
-                                     letter-spacing:0.03em;">
-                            📺 <span id="sScreens">1</span> tela(s) simultânea(s)
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Botão Ver Tabela -->
-                <div id="tableContainer" style="display: none; text-align: center; margin-bottom: 2rem;">
-                    <button onclick="document.getElementById('modalTableSPA').style.display='flex';"
-                            style="background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%);
-                                   width: 100%; max-width: 400px; padding: 1.1rem;
-                                   font-size: 1.1rem; border-radius: 50px; border: none;
-                                   color: white; font-weight: 700; cursor: pointer;
-                                   transition: all 0.3s var(--ease-smooth);
-                                   display: flex; align-items: center; justify-content: center;
-                                   gap: 0.6rem; margin: 0 auto;
-                                   box-shadow: 0 8px 30px rgba(124,58,237,0.4);
-                                   letter-spacing: 0.03em;">
-                        <span style="font-size: 1.3rem;">👁️</span> Ver Tabela de Valores
-                    </button>
-                </div>
-
-                <!-- Apps Suportados -->
-                <div class="glass-panel plans-card" id="appsCard" style="display: none; margin-bottom: 2rem; padding: 2rem;">
-                    <h3 style="text-align:center; margin-bottom:1.5rem; font-size:1.3rem; font-weight:700;
-                               background:linear-gradient(135deg,#a855f7,#06b6d4);
-                               -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-                               background-clip:text;">Aplicativos Parceiros</h3>
-                    <div class="apps-grid" id="sAppsBody" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 1.5rem; text-align: center; margin-top: 0;">
-                        <!-- Apps serão inseridos aqui -->
-                    </div>
-                </div>
+                <div id="publicContactsGrid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:2rem; max-width:1100px; margin:0 auto;"></div>
             </div>
         </main>
     </div>
 
-    <!-- Modal Popup de Entrada (Canais WhatsApp e Telegram) -->
-    <div id="channelModalBackdrop" style="
-        position: fixed; inset: 0; z-index: 9998;
-        background: rgba(0, 0, 0, 0.82);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        display: none;
-        align-items: center;
-        justify-content: center;
-        padding: 1rem;
-    " onclick="if(event.target === this) closeChannelModal();">
-        <div id="channelModalCard" class="channel-modal-card">
-            <!-- Botão Fechar Topo Direita -->
-            <button onclick="closeChannelModal()" title="Fechar" class="channel-modal-close">✕</button>
-
-            <!-- Topo: Logo + Ícone Megafone -->
-            <div class="channel-modal-header">
-                <div class="channel-modal-logo-wrapper">
-                    <img src="assets/logo-central-v2.png" alt="Central de Servidores" class="channel-modal-logo">
-                    <span class="channel-modal-megaphone">📢</span>
-                </div>
-            </div>
-
-            <!-- Título e Subtítulo -->
-            <div>
-                <h2 class="channel-modal-title">
-                    Fique por dentro de <span class="gradient-text-cyan">tudo!</span>
-                </h2>
-                <p class="channel-modal-subtitle">
-                    Participe dos nossos <strong>canais oficiais</strong> no WhatsApp e Telegram e receba informações importantes sobre os servidores, novidades e melhorias.
-                </p>
-            </div>
-
-            <!-- Botões de Ação Principais (WhatsApp & Telegram) -->
-            <div class="channel-modal-actions">
-                <!-- Botão WhatsApp -->
-                <a href="https://whatsapp.com/channel/0029Vb8Zts5GZNCrnTYMD20P" target="_blank" id="modalWaBtn" onclick="closeChannelModal()" class="channel-modal-btn channel-modal-btn-wa">
-                    <div class="channel-modal-btn-content">
-                        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.634 1.437h.005c6.558 0 11.894-5.335 11.897-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                        <span>Entrar no WhatsApp</span>
-                    </div>
-                    <span class="channel-modal-arrow">→</span>
-                </a>
-
-                <!-- Botão Telegram -->
-                <a href="https://t.me/+DekQjG02Y7gwZTAx" target="_blank" id="modalTgBtn" onclick="closeChannelModal()" class="channel-modal-btn channel-modal-btn-tg">
-                    <div class="channel-modal-btn-content">
-                        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.14-.26.26-.53.26l.204-3.04 5.54-5.006c.24-.21-.054-.33-.375-.12l-6.85 4.314-2.94-.92c-.64-.2-.65-.64.134-.946l11.5-4.43c.53-.2.99.11.817.906z"/></svg>
-                        <span>Entrar no Telegram</span>
-                    </div>
-                    <span class="channel-modal-arrow">→</span>
-                </a>
-            </div>
-
-            <!-- 4 Cards de Recursos / Vantagens na parte inferior -->
-            <div class="channel-modal-features">
-                <div class="channel-modal-feature-card">
-                    <div class="channel-modal-feature-icon">🔔</div>
-                    <div class="channel-modal-feature-text">Atualizações do Sistema</div>
-                </div>
-                <div class="channel-modal-feature-card">
-                    <div class="channel-modal-feature-icon">📱</div>
-                    <div class="channel-modal-feature-text">Melhorias nos Apps</div>
-                </div>
-                <div class="channel-modal-feature-card">
-                    <div class="channel-modal-feature-icon">⚙️</div>
-                    <div class="channel-modal-feature-text">Novidades e Lançamentos</div>
-                </div>
-                <div class="channel-modal-feature-card">
-                    <div class="channel-modal-feature-icon">💬</div>
-                    <div class="channel-modal-feature-text">Informações Importantes</div>
-                </div>
-            </div>
-
-            <!-- Opção de Não Exibir Novamente por 3 Dias -->
-            <div class="channel-modal-footer">
-                <label class="channel-modal-checkbox-label">
-                    <input type="checkbox" id="dontShowChannelModal" class="channel-modal-checkbox">
-                    <span>Não mostrar novamente por 3 dias</span>
-                </label>
-                <span onclick="closeChannelModal()" class="channel-modal-skip">Continuar navegando</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Popup de Atualização (Centralizado) -->
-    <div id="updateToastBackdrop" style="
-        position: fixed; inset: 0; z-index: 8999;
-        background: rgba(0, 0, 0, 0.75);
-        backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px);
-        display: none;
-    "></div>
-
-    <div id="updateToast" style="
-        position: fixed;
-        top: 50%; left: 50%;
-        transform: translate(-50%, -50%) scale(0.92);
-        z-index: 9000;
-        width: min(600px, calc(100vw - 2rem));
-        background: rgba(10, 14, 26, 0.98);
-        border: 1.5px solid rgba(124, 58, 237, 0.55);
-        border-radius: 28px;
-        padding: 3rem 2.5rem 2.5rem;
-        box-shadow: 0 40px 100px rgba(0,0,0,0.9), 0 0 80px rgba(124,58,237,0.3);
-        backdrop-filter: blur(24px);
-        display: none;
-        flex-direction: column;
-        gap: 1.5rem;
-        animation: popInCenter 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    ">
-        <!-- Barra superior gradiente -->
-        <div style="position:absolute; top:0; left:0; right:0; height:4px; border-radius:28px 28px 0 0;
-                    background: linear-gradient(90deg, #7c3aed, #06b6d4, #7c3aed);
-                    background-size: 200% 100%;
-                    animation: gradientShift 3s ease infinite;"></div>
-
-        <!-- Ícone central grande -->
-        <div style="text-align:center; margin-bottom:0.25rem;">
-            <div style="font-size:4rem; line-height:1; margin-bottom:1rem; animation: float 3s ease-in-out infinite;">🚀</div>
-            <div style="font-size:1.8rem; font-weight:900; color:white; letter-spacing:0.02em;
-                        font-family:'Outfit', sans-serif;">
-                Atualização Disponível!
-            </div>
-            <div id="updateToastDate" style="font-size:0.95rem; color:var(--text-muted); margin-top:0.6rem;"></div>
-        </div>
-
-        <!-- Contadores centralizados -->
-        <div id="updateToastStats" style="display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap; transform: scale(1.1);"></div>
-
-        <!-- Divisor -->
-        <div style="height:1px; background:linear-gradient(90deg,transparent,rgba(124,58,237,0.3),transparent);"></div>
-
-        <!-- Mensagem -->
-        <div style="font-size:1rem; color:var(--text-muted); line-height:1.6; text-align:center;">
-            O conteúdo do portal foi atualizado com novidades incríveis.<br>
-            Recarregue a página agora para conferir!
-        </div>
-
-        <!-- Checkbox de não perturbe -->
-        <div style="display:flex; justify-content:center; margin-top:-0.5rem; margin-bottom:0.5rem;">
-            <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer; font-size:0.85rem; color:var(--text-muted); transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'">
-                <input type="checkbox" id="hideUpdateCheck" style="accent-color: #7c3aed; width:16px; height:16px; cursor:pointer;">
-                <span>Não exibir novamente por 5 dias</span>
-            </label>
-        </div>
-
-        <!-- Botões -->
-        <div style="display:flex; gap:0.75rem; margin-top:0.25rem;">
-            <button onclick="location.reload()"
-                    style="flex:1; padding:0.9rem; border-radius:50px; border:none; cursor:pointer;
-                           background:linear-gradient(135deg,#7c3aed,#06b6d4); color:white;
-                           font-size:0.95rem; font-weight:700; letter-spacing:0.04em;
-                           box-shadow:0 6px 20px rgba(124,58,237,0.45); transition:all 0.25s;"
-                    onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 12px 35px rgba(124,58,237,0.65)'"
-                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 6px 20px rgba(124,58,237,0.45)'"
-            >🔄 Atualizar agora</button>
-            <button onclick="dismissUpdateToast()"
-                    style="padding:0.9rem 1.5rem; border-radius:50px; cursor:pointer;
-                           background:transparent; color:var(--text-muted);
-                           border:1px solid rgba(255,255,255,0.12); font-size:0.95rem; transition:all 0.25s;"
-                    onmouseover="this.style.borderColor='rgba(255,255,255,0.3)'; this.style.color='white'"
-                    onmouseout="this.style.borderColor='rgba(255,255,255,0.12)'; this.style.color='var(--text-muted)'"
-            >Depois</button>
-        </div>
-
-        <!-- Fechar (X) -->
-        <button onclick="dismissUpdateToast()"
-                style="position:absolute; top:1.2rem; right:1.2rem;
-                       background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);
-                       color:rgba(255,255,255,0.5); font-size:1.1rem; cursor:pointer;
-                       width:34px; height:34px; border-radius:50%;
-                       display:flex; align-items:center; justify-content:center; transition:all 0.2s;"
-                onmouseover="this.style.background='rgba(244,63,94,0.15)'; this.style.color='#fb7185'; this.style.borderColor='rgba(244,63,94,0.3)'"
-                onmouseout="this.style.background='rgba(255,255,255,0.06)'; this.style.color='rgba(255,255,255,0.5)'; this.style.borderColor='rgba(255,255,255,0.1)'"
-        >&times;</button>
-    </div>
-
-    <style>
-        @keyframes popInCenter {
-            from { opacity: 0; transform: translate(-50%, -50%) scale(0.85); }
-            to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-        }
-    </style>
-
     <!-- Modal de Informações -->
     <div class="modal-overlay" id="modalInfo">
-        <div class="modal glass-panel" style="max-width: 880px; width: 95%;">
+        <div class="modal glass-panel" style="max-width: 850px; width: 95%;">
             <div class="modal-header">
                 <h2 id="infoTitle">Detalhes</h2>
                 <button class="close-btn" onclick="closeModal('modalInfo')">&times;</button>
             </div>
-            <div style="text-align: center; margin-bottom: 1.25rem;">
-                <img id="infoLogo" src="" referrerpolicy="no-referrer"
-                     style="width: 110px; height: 110px; object-fit: cover; border-radius: 22px;
-                            display: none; margin: 0 auto;
-                            box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 30px rgba(124,58,237,0.25);
-                            border: 2px solid rgba(124,58,237,0.25);">
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <img id="infoLogo" src="" style="width: 120px; height: 120px; object-fit: cover; border-radius: 20px; display: none; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
             </div>
-            <p id="infoDesc" style="color: var(--text-muted); text-align: center; margin-bottom: 1.5rem; max-width: 650px; margin-left: auto; margin-right: auto; line-height: 1.6;"></p>
+            <p id="infoDesc" style="color: var(--text-muted); text-align: center; margin-bottom: 1.5rem; max-width: 650px; margin-left: auto; margin-right: auto;"></p>
             
             <div id="infoStatsContainer" class="info-stats" style="display: none;">
                 <div class="stat-item">
@@ -868,67 +230,26 @@
             </div>
 
             <!-- Servidores Compatíveis -->
-            <div id="infoLinkedContainer" style="display: none; margin-top: 1.5rem; border-top: 1px solid var(--glass-border); padding-top: 1.5rem;">
-                <h4 id="infoLinkedTitle" style="color: var(--text-muted); font-size: 1rem; font-weight: 600; margin-bottom: 1.25rem; text-align: center;"></h4>
-                <div id="infoLinkedGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem;">
+            <div id="infoLinkedContainer" style="display: none; margin-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem;">
+                <h4 id="infoLinkedTitle" style="color: var(--text-muted); font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem; text-align: center;">Servidores Parceiros Compatíveis:</h4>
+                <div id="infoLinkedGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1.2rem;">
                     <!-- Servidores injetados via JS -->
                 </div>
             </div>
 
-            <a href="#" id="infoLink" class="btn-link" target="_blank" style="display: none;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                Acessar
-            </a>
-            <p id="noLinkMsg" style="text-align: center; color: var(--danger); display: none; margin-top: 1rem; font-size: 0.9rem;">Link não disponível</p>
+            <a href="#" id="infoLink" class="btn-link" target="_blank" style="display: none;">Acessar</a>
+            <p id="noLinkMsg" style="text-align: center; color: var(--danger); display: none; margin-top: 1rem;">Link não disponível</p>
         </div>
     </div>
 
     <!-- Marca d'água Repetida (Sobreposta para proteção) -->
     <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-                z-index: 9999; opacity: 0.06; pointer-events: none;
+                z-index: 9999; opacity: 0.12; pointer-events: none;
                 background-image: url('assets/logo-central-v2.png');
-                background-repeat: repeat; background-size: 220px;">
+                background-repeat: repeat; background-size: 250px;">
     </div>
 
-    <script>
-        function toggleSearch() {
-            const container = document.getElementById('searchInlineContainer');
-            const input = document.getElementById('searchInput');
-            if (!container || !input) return;
-            
-            container.classList.toggle('active');
-            if (container.classList.contains('active')) {
-                setTimeout(() => input.focus(), 150);
-            } else {
-                input.value = '';
-                input.dispatchEvent(new Event('input'));
-            }
-        }
-
-        // Proteção contra cópias e inspeção de código
-        document.addEventListener('contextmenu', e => e.preventDefault());
-        document.addEventListener('dragstart', e => {
-            if (e.target.nodeName === 'IMG') e.preventDefault();
-        });
-        document.addEventListener('keydown', e => {
-            if (
-                (e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 'C' || e.key === 'U' || e.key === 'a' || e.key === 'A')) ||
-                (e.ctrlKey && e.shiftKey && (e.key === 'i' || e.key === 'I' || e.key === 'j' || e.key === 'J' || e.key === 'c' || e.key === 'C')) ||
-                e.key === 'F12'
-            ) {
-                e.preventDefault();
-            }
-        });
-    </script>
-    <!-- Modal da Imagem da Tabela (SPA) -->
-    <div id="modalTableSPA" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 9999; justify-content: center; align-items: center; padding: 1rem; backdrop-filter: blur(10px);">
-        <div style="position: relative; max-width: 95vw; max-height: 95vh; display: flex; justify-content: center; align-items: center;">
-            <button onclick="document.getElementById('modalTableSPA').style.display='none';" style="position: absolute; top: -40px; right: 0; background: none; border: none; color: white; font-size: 2.5rem; cursor: pointer; transition: color 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='white'">&times;</button>
-            <img id="tableImgSPA" src="" referrerpolicy="no-referrer" style="max-width: 100%; max-height: 90vh; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); user-select: none; -webkit-user-drag: none;" oncontextmenu="return false;" draggable="false">
-        </div>
-    </div>
-
-    <script src="data.js?v=7"></script>
-    <script src="portal.js?v=19"></script>
+    <script src="data.js?v=1"></script>
+    <script src="portal.js?v=12"></script>
 </body>
 </html>

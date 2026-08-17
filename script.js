@@ -1,29 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- NAVEGAÇÃO ENTRE PÁGINAS ---
-    const navLinks = document.querySelectorAll('.nav-item, .nav-subitem');
+    const navItems = document.querySelectorAll('.nav-item');
     const pages = document.querySelectorAll('.page');
 
-    navLinks.forEach(item => {
+    navItems.forEach(item => {
         item.addEventListener('click', (e) => {
             e.preventDefault();
             const targetId = item.getAttribute('data-target');
-            if (!targetId) return;
             
-            navLinks.forEach(nav => nav.classList.remove('active'));
+            navItems.forEach(nav => nav.classList.remove('active'));
             item.classList.add('active');
 
-            // Se for subitem, também ativa o item principal correspondente do grupo
-            if (item.classList.contains('nav-subitem')) {
-                const parentGroup = item.closest('.nav-group');
-                if (parentGroup) {
-                    const parentNavItem = parentGroup.querySelector('.nav-item');
-                    if (parentNavItem) parentNavItem.classList.add('active');
-                }
-            }
-
             pages.forEach(page => page.classList.remove('active'));
-            const targetPage = document.getElementById(targetId);
-            if (targetPage) targetPage.classList.add('active');
+            document.getElementById(targetId).classList.add('active');
         });
     });
 
@@ -40,22 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadAllData = async () => {
         await loadServers();
         await loadApps();
-        await loadVisitors();
-    };
-
-    // --- CARREGAR CONTADOR DE VISITAS ---
-    const loadVisitors = async () => {
-        try {
-            const res = await fetch('api.php?action=get_visitors');
-            const data = await res.json();
-            const counterEl = document.getElementById('visitCounter');
-            if (counterEl && data.visitor_count !== undefined) {
-                counterEl.innerText = Number(data.visitor_count).toLocaleString('pt-BR');
-            }
-        } catch(e) {
-            console.error('Erro ao buscar contador de visitas', e);
-        }
-    };    // --- LÓGICA DE SERVIDORES ---
+    }    // --- LÓGICA DE SERVIDORES ---
     const loadServers = async () => {
         const res = await fetch('api.php?action=list_servers');
         const servers = await res.json();
@@ -67,11 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateServerFilterCounts(window.allServers);
         applyServerFilters();
         renderContentGrid(window.allServers);
-        
-        const qeSearch = document.getElementById('searchQuickEdit');
-        const qeTerm = qeSearch ? qeSearch.value.toLowerCase() : '';
-        const qeFiltered = qeTerm ? window.allServers.filter(s => s.name.toLowerCase().includes(qeTerm)) : window.allServers;
-        renderQuickEditTable(qeFiltered);
     };
 
     const renderServersGrid = (servers) => {
@@ -87,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const badgeText = srv.status === 'active' ? 'Ativo' : 'Inativo';
             gridSrv.innerHTML += `
                 <div class="card glass-panel" onclick="editServer(${srv.id})" style="aspect-ratio: 1; padding: 0; position: relative; overflow: hidden; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" title="Clique para editar">
-                    ${srv.logo ? '<img src="' + escapeHtml(extractImageUrl(srv.logo)) + '" referrerpolicy="no-referrer" style="width: 100%; height: 100%; object-fit: cover;">' : '<span style="font-size: 3rem;">🖥️</span>'}
+                    ${srv.logo ? '<img src="' + escapeHtml(extractImageUrl(srv.logo)) + '" style="width: 100%; height: 100%; object-fit: cover;">' : '<span style="font-size: 3rem;">🖥️</span>'}
                     
                     <!-- Tarja com o Nome -->
                     <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.8); padding: 6px; text-align: center; font-size: 0.85rem; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-top: 1px solid rgba(255,255,255,0.1);">
@@ -191,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     title="Clique para ver conteúdos de ${escapeHtml(srv.name)} — ${statusLabel}">
 
                     ${srv.logo
-                        ? `<img src="${escapeHtml(extractImageUrl(srv.logo))}" referrerpolicy="no-referrer" style="width:100%; height:100%; object-fit:cover;">`
+                        ? `<img src="${escapeHtml(extractImageUrl(srv.logo))}" style="width:100%; height:100%; object-fit:cover;">`
                         : `<span style="font-size:3rem;">🖥️</span>`}
 
                     <!-- Badge de Status (canto superior esquerdo) -->
@@ -265,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const badgeText = app.status === 'active' ? 'Ativo' : 'Inativo';
             grid.innerHTML += `
                 <div class="card glass-panel" onclick="editApp(${app.id})" style="aspect-ratio: 1; padding: 0; position: relative; overflow: hidden; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" title="Clique para editar">
-                    ${app.logo ? '<img src="' + escapeHtml(extractImageUrl(app.logo)) + '" referrerpolicy="no-referrer" style="width: 100%; height: 100%; object-fit: cover;">' : '<span style="font-size: 3rem;">📱</span>'}
+                    ${app.logo ? '<img src="' + escapeHtml(extractImageUrl(app.logo)) + '" style="width: 100%; height: 100%; object-fit: cover;">' : '<span style="font-size: 3rem;">📱</span>'}
                     
                     <!-- Tarja com o Nome -->
                     <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.8); padding: 6px; text-align: center; font-size: 0.85rem; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-top: 1px solid rgba(255,255,255,0.1);">
@@ -286,17 +255,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Atualiza contadores dos pills de filtro de servidores
     const updateServerFilterCounts = (servers) => {
-        const total    = servers.length;
-        const screens  = servers.filter(s => parseInt(s.screens, 10) >= 2).length;
-        const android  = servers.filter(s => (s.server_type || 'hybrid') === 'android').length;
-        const active   = servers.filter(s => s.status === 'active').length;
-        const inactive = servers.filter(s => s.status === 'inactive').length;
+        const total   = servers.length;
+        const screens = servers.filter(s => parseInt(s.screens, 10) >= 2).length;
+        const android = servers.filter(s => (s.server_type || 'hybrid') === 'android').length;
         const el = (id) => document.getElementById(id);
-        if (el('srvCnt-all'))      el('srvCnt-all').textContent      = total;
-        if (el('srvCnt-screens'))  el('srvCnt-screens').textContent  = screens;
-        if (el('srvCnt-android'))  el('srvCnt-android').textContent  = android;
-        if (el('srvCnt-active'))   el('srvCnt-active').textContent   = active;
-        if (el('srvCnt-inactive')) el('srvCnt-inactive').textContent = inactive;
+        if (el('srvCnt-all'))     el('srvCnt-all').textContent     = total;
+        if (el('srvCnt-screens')) el('srvCnt-screens').textContent = screens;
+        if (el('srvCnt-android')) el('srvCnt-android').textContent = android;
     };
 
     // Aplica filtro ativo + termo de busca
@@ -310,10 +275,6 @@ document.addEventListener('DOMContentLoaded', () => {
             result = result.filter(s => parseInt(s.screens, 10) >= 2);
         } else if (filter === 'android') {
             result = result.filter(s => (s.server_type || 'hybrid') === 'android');
-        } else if (filter === 'active') {
-            result = result.filter(s => s.status === 'active');
-        } else if (filter === 'inactive') {
-            result = result.filter(s => s.status === 'inactive');
         }
 
         // Filtro de texto — pesquisa nome + quantidade de telas (ex: "2 telas", "telas", "3 tela")
@@ -328,18 +289,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Highlight do pill ativo
         const pills = {
-            all:      document.getElementById('srvFilterAll'),
-            active:   document.getElementById('srvFilterActive'),
-            inactive: document.getElementById('srvFilterInactive'),
-            screens:  document.getElementById('srvFilterScreens'),
-            android:  document.getElementById('srvFilterAndroid'),
+            all:     document.getElementById('srvFilterAll'),
+            screens: document.getElementById('srvFilterScreens'),
+            android: document.getElementById('srvFilterAndroid'),
         };
         const outlines = {
-            all:      '2px solid rgba(255,255,255,0.6)',
-            active:   '2px solid #2ecc71',
-            inactive: '2px solid #e74c3c',
-            screens:  '2px solid #a5b4fc',
-            android:  '2px solid #6ee7b7',
+            all:     '2px solid rgba(255,255,255,0.6)',
+            screens: '2px solid #a5b4fc',
+            android: '2px solid #6ee7b7',
         };
         Object.keys(pills).forEach(k => {
             if (pills[k]) pills[k].style.outline = k === filter ? outlines[k] : 'none';
@@ -362,12 +319,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const term = e.target.value.toLowerCase();
         const filtered = window.allServers.filter(s => s.name.toLowerCase().includes(term));
         renderContentGrid(filtered);
-    });
-
-    document.getElementById('searchQuickEdit')?.addEventListener('input', (e) => {
-        const term = e.target.value.toLowerCase();
-        const filtered = window.allServers.filter(s => s.name.toLowerCase().includes(term));
-        renderQuickEditTable(filtered);
     });
 
     document.getElementById('searchServerApps')?.addEventListener('input', (e) => {
@@ -525,7 +476,6 @@ document.addEventListener('DOMContentLoaded', () => {
         await fetch('api.php?action=create_plan', {
             method: 'POST', body: JSON.stringify(data)
         });
-        notifyPortalUpdates();
         document.getElementById('formAddPlan').reset();
         loadPlans(serverId);
     });
@@ -535,7 +485,6 @@ document.addEventListener('DOMContentLoaded', () => {
             await fetch('api.php?action=delete_plan', {
                 method: 'POST', body: JSON.stringify({id: planId})
             });
-            notifyPortalUpdates();
             loadPlans(serverId);
         }
     };
@@ -566,7 +515,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const isChecked = linkedAppIds.includes(String(app.id)) || linkedAppIds.includes(Number(app.id));
             const appLogoUrl = app.logo ? extractImageUrl(app.logo) : '';
             const logoHtml = appLogoUrl 
-                ? `<img src="${escapeHtml(appLogoUrl)}" referrerpolicy="no-referrer" style="width: 50px; height: 50px; border-radius: 12px; object-fit: cover;">` 
+                ? `<img src="${escapeHtml(appLogoUrl)}" style="width: 50px; height: 50px; border-radius: 12px; object-fit: cover;">` 
                 : `<div style="width: 50px; height: 50px; border-radius: 12px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">📱</div>`;
 
             // A lógica de clique altera os estilos visuais da thumbnail dinamicamente
@@ -596,7 +545,6 @@ document.addEventListener('DOMContentLoaded', () => {
             method: 'POST', 
             body: JSON.stringify({ server_id: serverId, app_ids: appIds })
         });
-        notifyPortalUpdates();
         
         closeModal('modalServerApps');
         alert('Apps vinculados com sucesso!');
@@ -732,14 +680,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if(type === 'server') loadServers(); else loadApps();
     };
 
-    const syncChannel = typeof BroadcastChannel !== 'undefined' ? new BroadcastChannel('central_servidores_sync') : null;
-    const notifyPortalUpdates = () => {
-        if (syncChannel) {
-            syncChannel.postMessage({ type: 'data_updated', time: Date.now() });
-        }
-    };
-    window.notifyPortalUpdates = notifyPortalUpdates;
-
     const postData = async (url, data) => {
         try {
             const res = await fetch(url, {
@@ -747,9 +687,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             });
-            const result = await res.json();
-            notifyPortalUpdates();
-            return result;
+            return await res.json();
         } catch(e) { console.error('Erro na requisição', e); }
     };
 
@@ -759,32 +697,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const extractImageUrl = (str) => {
         if (!str) return '';
-        let cleaned = str.replace(/\[\/?\bimg\b\]/gi, '').trim();
-        cleaned = cleaned.replace(/\[\/?img\]/gi, '').trim();
-        
-        if (cleaned.includes('|')) {
-            const parts = cleaned.split('|');
-            for (let part of parts) {
-                const p = part.trim();
-                if (p.startsWith('http') || p.startsWith('assets') || p.startsWith('.')) {
-                    cleaned = p;
-                    break;
-                }
-            }
-        }
-        
-        if (cleaned.includes(' ')) {
-            const parts = cleaned.split(/\s+/);
-            for (let part of parts) {
-                const p = part.trim();
-                if (p.startsWith('http') || p.startsWith('assets') || p.startsWith('.')) {
-                    cleaned = p;
-                    break;
-                }
-            }
-        }
-        
-        return cleaned;
+        return str.replace(/\[\/?\bimg\b\]/gi, '').trim();
     };
 
     // --- LÓGICA DE CONTATOS DE APOIO ---
@@ -901,95 +814,6 @@ document.addEventListener('DOMContentLoaded', () => {
         loadContacts();
     });
 
-    // --- EDIÇÃO RÁPIDA DE SERVIDORES ---
-    const renderQuickEditTable = (servers) => {
-        const tbody = document.getElementById('quickEditTableBody');
-        if (!tbody) return;
-        
-        tbody.innerHTML = '';
-        if (servers.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:2rem; color:var(--text-muted);">Nenhum servidor cadastrado.</td></tr>';
-            return;
-        }
-
-        servers.forEach(srv => {
-            const logoUrl = srv.logo ? extractImageUrl(srv.logo) : '';
-            const logoHtml = logoUrl 
-                ? `<img src="${escapeHtml(logoUrl)}" referrerpolicy="no-referrer" style="width: 40px; height: 40px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">` 
-                : `<div style="width: 40px; height: 40px; border-radius: 8px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">🖥️</div>`;
-
-            tbody.innerHTML += `
-                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; transition: background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.02)'" onmouseout="this.style.background='transparent'">
-                    <td style="padding: 0.75rem 0.5rem; vertical-align: middle;">
-                        <div style="display: flex; justify-content: center; align-items: center;">
-                            ${logoHtml}
-                        </div>
-                    </td>
-                    <td style="padding: 0.75rem 0.5rem; vertical-align: middle;">
-                        <input type="text" id="qe-name-${srv.id}" value="${escapeHtml(srv.name)}" 
-                               style="width: 100%; padding: 0.6rem 0.8rem; border-radius: 8px; border: 1px solid var(--glass-border); background: rgba(0,0,0,0.3); color: white; outline: none; transition: border-color 0.2s;"
-                               onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--glass-border)'">
-                    </td>
-                    <td style="padding: 0.75rem 0.5rem; vertical-align: middle;">
-                        <input type="text" id="qe-logo-${srv.id}" value="${escapeHtml(srv.logo || '')}" placeholder="URL da Logo (png/jpg)"
-                               style="width: 100%; padding: 0.6rem 0.8rem; border-radius: 8px; border: 1px solid var(--glass-border); background: rgba(0,0,0,0.3); color: white; outline: none; transition: border-color 0.2s;"
-                               onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--glass-border)'">
-                    </td>
-                    <td style="padding: 0.75rem 0.5rem; vertical-align: middle;">
-                        <input type="text" id="qe-table-${srv.id}" value="${escapeHtml(srv.table_image_url || '')}" placeholder="URL da Tabela (Imgur, etc.)"
-                               style="width: 100%; padding: 0.6rem 0.8rem; border-radius: 8px; border: 1px solid var(--glass-border); background: rgba(0,0,0,0.3); color: white; outline: none; transition: border-color 0.2s;"
-                               onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--glass-border)'">
-                    </td>
-                    <td style="padding: 0.75rem 0.5rem; vertical-align: middle; text-align: center;">
-                        <button onclick="saveQuickEdit(${srv.id})" class="btn-primary" 
-                                style="padding: 0.5rem 1rem; font-size: 0.85rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(59, 130, 246, 0.2); font-weight: 600;">
-                            Salvar
-                        </button>
-                    </td>
-                </tr>
-            `;
-        });
-    };
-
-    window.saveQuickEdit = async (id) => {
-        const srv = window.allServers.find(s => s.id == id);
-        if (!srv) return;
-
-        const nameInput = document.getElementById(`qe-name-${id}`);
-        const logoInput = document.getElementById(`qe-logo-${id}`);
-        const tableInput = document.getElementById(`qe-table-${id}`);
-
-        if (!nameInput.value.trim()) {
-            alert('O nome do servidor é obrigatório.');
-            return;
-        }
-
-        const payload = {
-            ...srv,
-            name: nameInput.value.trim(),
-            logo: logoInput.value.trim(),
-            table_image_url: tableInput.value.trim()
-        };
-
-        const btn = document.querySelector(`button[onclick="saveQuickEdit(${id})"]`);
-        const originalText = btn.textContent;
-        btn.textContent = 'Gravando...';
-        btn.disabled = true;
-
-        await postData(`api.php?action=update_server`, payload);
-        
-        btn.textContent = 'Salvo! ✓';
-        btn.style.backgroundColor = 'var(--success)';
-        
-        setTimeout(() => {
-            btn.textContent = originalText;
-            btn.style.backgroundColor = '';
-            btn.disabled = false;
-        }, 1500);
-
-        loadServers();
-    };
-
     // Iniciar
     loadAllData();
     loadContacts();
@@ -1038,5 +862,4 @@ document.addEventListener('DOMContentLoaded', () => {
     addClearBtn('searchServers');
     addClearBtn('searchApps');
     addClearBtn('searchContent');
-    addClearBtn('searchQuickEdit');
 });

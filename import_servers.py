@@ -12,39 +12,22 @@ try:
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     
+    count = 0
+    # A coluna principal encontrada foi 'SERVIDORES'
     if 'SERVIDORES' in df.columns:
-        excel_names = set(str(val).strip() for val in df['SERVIDORES'].dropna().unique() if str(val).strip() and str(val).lower() != 'nan')
+        for index, row in df.iterrows():
+            name = str(row['SERVIDORES']).strip()
+            # Ignora linhas vazias
+            if name and name.lower() != 'nan':
+                # Inserir no banco com valores em branco para URL e Logo
+                cursor.execute(
+                    "INSERT INTO servers (name, url, logo, status, description) VALUES (?, ?, ?, ?, ?)",
+                    (name, "http://", "", "active", "")
+                )
+                count += 1
         
-        # Obter servidores atuais no banco
-        cursor.execute("SELECT id, name FROM servers")
-        db_servers = {row[1].strip(): row[0] for row in cursor.fetchall()}
-        db_names = set(db_servers.keys())
-        
-        # Identificar diferenças
-        new_names = excel_names - db_names
-        removed_names = db_names - excel_names
-        
-        # Inserir novos servidores
-        added_count = 0
-        for name in new_names:
-            cursor.execute(
-                "INSERT INTO servers (name, url, logo, status, description) VALUES (?, ?, ?, ?, ?)",
-                (name, "http://", "", "active", "")
-            )
-            added_count += 1
-            print(f"Adicionado: {name}")
-            
-        # Remover servidores que não estão mais na planilha
-        removed_count = 0
-        for name in removed_names:
-            cursor.execute("DELETE FROM servers WHERE id = ?", (db_servers[name],))
-            removed_count += 1
-            print(f"Removido: {name}")
-            
         conn.commit()
-        print(f"\nSincronização concluída com sucesso!")
-        print(f" - Servidores adicionados: {added_count}")
-        print(f" - Servidores removidos: {removed_count}")
+        print(f"Sucesso! {count} servidores foram importados para o sistema.")
     else:
         print("Erro: A coluna 'SERVIDORES' não foi encontrada na planilha.")
         
