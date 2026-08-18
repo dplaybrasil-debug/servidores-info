@@ -6,24 +6,24 @@
  */
 require_once 'db.php';
 
-$pdo = getDB();
+// $pdo já vem do db.php
 
 // Servidores ativos
 $servers = $pdo->query("SELECT * FROM servers WHERE status = 'active' ORDER BY name ASC")->fetchAll(PDO::FETCH_ASSOC);
 
 // Apps ativos
-$apps = $pdo->query("SELECT * FROM apps WHERE status = 'active' ORDER BY name ASC")->fetchAll(PDO::FETCH_ASSOC);
+$apps = $pdo->query("SELECT * FROM partner_apps WHERE status = 'active' ORDER BY name ASC")->fetchAll(PDO::FETCH_ASSOC);
 
 // Contatos
 $contacts = [];
 try {
-    $contacts = $pdo->query("SELECT * FROM contacts ORDER BY id ASC")->fetchAll(PDO::FETCH_ASSOC);
+    $contacts = $pdo->query("SELECT * FROM support_contacts WHERE active = 1 ORDER BY sort_order ASC, id ASC")->fetchAll(PDO::FETCH_ASSOC);
 } catch (Exception $e) { /* tabela pode não existir */ }
 
 // Vínculos app-servidor
 $links = [];
 try {
-    $links = $pdo->query("SELECT * FROM app_server_links")->fetchAll(PDO::FETCH_ASSOC);
+    $links = $pdo->query("SELECT * FROM server_apps")->fetchAll(PDO::FETCH_ASSOC);
 } catch (Exception $e) {}
 
 // Monta o arquivo JS estático
@@ -56,9 +56,3 @@ echo "<p><strong>" . count($servers) . "</strong> servidores</p>";
 echo "<p><strong>" . count($apps) . "</strong> apps</p>";
 echo "<p><strong>" . count($contacts) . "</strong> contatos</p>";
 echo "<p>Arquivo salvo em: <code>data.js</code></p>";
-echo "<hr>";
-echo "<p>Agora execute no PowerShell:</p>";
-echo "<pre>cd \"C:\\Users\\dimil\\Downloads\\Servidores e App Parceiros\"
-git add .
-git commit -m \"update: dados estáticos atualizados\"
-git push origin main</pre>";
