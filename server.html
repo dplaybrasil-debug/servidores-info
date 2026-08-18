@@ -261,6 +261,7 @@
         </div>
     </div>
 
+    <script src="data.js?v=1"></script>
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             const urlParams = new URLSearchParams(window.location.search);
@@ -272,10 +273,32 @@
             }
 
             try {
-                const res = await fetch(`api.php?action=get_server_details&id=${serverId}`);
-                const data = await res.json();
+                let data;
+                try {
+                    // Tenta API PHP (servidor local)
+                    const res = await fetch(`api.php?action=get_server_details&id=${serverId}`);
+                    const contentType = res.headers.get('content-type') || '';
+                    if (res.ok && contentType.includes('application/json')) {
+                        data = await res.json();
+                    } else {
+                        throw new Error('API indisponível');
+                    }
+                } catch(apiErr) {
+                    // Fallback: dados estáticos (GitHub Pages)
+                    console.warn('API indisponível, usando dados estáticos (data.js)', apiErr);
+                    if (window.STATIC_DATA && window.STATIC_DATA.servers) {
+                        data = window.STATIC_DATA.servers.find(s => String(s.id) === String(serverId));
+                        if (data) {
+                            // Montar linked_apps a partir dos vínculos
+                            const links = window.STATIC_DATA.links || [];
+                            const apps = window.STATIC_DATA.apps || [];
+                            const linkedAppIds = links.filter(l => String(l.server_id) === String(serverId)).map(l => l.app_id);
+                            data.linked_apps = apps.filter(a => linkedAppIds.includes(a.id));
+                        }
+                    }
+                }
 
-                if (data.error) {
+                if (!data || data.error) {
                     document.getElementById('loader').innerText = 'Servidor não encontrado ou inativo.';
                     return;
                 }
