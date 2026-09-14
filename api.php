@@ -158,21 +158,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         exit;
     }
     
-    // Rota pública para buscar 1 servidor e seus planos pelo ID
+    // Rota pública para buscar 1 servidor e seus planos pelo ID ou Slug/Nome
     if ($action === 'get_server_details') {
-        $id = $_GET['id'] ?? 0;
-        $stmtSrv = $pdo->prepare("SELECT * FROM servers WHERE id = ?");
-        $stmtSrv->execute([$id]);
-        $server = $stmtSrv->fetch(PDO::FETCH_ASSOC);
+        $id   = intval($_GET['id'] ?? 0);
+        $slug = trim($_GET['slug'] ?? $_GET['s'] ?? $_GET['name'] ?? '');
+
+        if ($id > 0) {
+            $stmtSrv = $pdo->prepare("SELECT * FROM servers WHERE id = ?");
+            $stmtSrv->execute([$id]);
+        } else if (!empty($slug)) {
+            $stmtSrv = $pdo->prepare("SELECT * FROM servers WHERE LOWER(name) = LOWER(?) OR REPLACE(REPLACE(LOWER(name), ' ', '-'), '_', '-') = LOWER(?)");
+            $stmtSrv->execute([$slug, $slug]);
+        } else {
+            $stmtSrv = false;
+        }
+
+        $server = $stmtSrv ? $stmtSrv->fetch(PDO::FETCH_ASSOC) : false;
         
-        if($server) {
+        if ($server) {
+            $srvId = $server['id'];
             $stmtPlans = $pdo->prepare("SELECT * FROM server_plans WHERE server_id = ?");
-            $stmtPlans->execute([$id]);
+            $stmtPlans->execute([$srvId]);
             $server['plans'] = $stmtPlans->fetchAll(PDO::FETCH_ASSOC);
             
             // Busca Apps vinculados
             $stmtApps = $pdo->prepare("SELECT a.id, a.name, a.logo FROM partner_apps a INNER JOIN server_apps sa ON a.id = sa.app_id WHERE sa.server_id = ? AND a.status = 'active' ORDER BY a.name ASC");
-            $stmtApps->execute([$id]);
+            $stmtApps->execute([$srvId]);
             $server['linked_apps'] = $stmtApps->fetchAll(PDO::FETCH_ASSOC);
             
             echo json_encode($server);

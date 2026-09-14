@@ -13,6 +13,26 @@ document.addEventListener('DOMContentLoaded', () => {
         return str.replace(/\[\/?img\]/gi, '').trim();
     };
 
+    const slugify = (str) => {
+        if (!str) return '';
+        return str.toString()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase()
+            .trim()
+            .replace(/[^a-z0-9\s-]/g, '')
+            .replace(/[\s_]+/g, '-')
+            .replace(/^-+|-+$/g, '');
+    };
+
+    const getServerUrl = (srv) => {
+        const slug = slugify(srv.name || '');
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            return `/${slug}`;
+        }
+        return `server.html?s=${slug}`;
+    };
+
     // --- CARREGAMENTO DE DADOS ---
     const loadAllData = async () => {
         try {
@@ -116,6 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
                    </div>`;
 
             const desc = (srv.description || '').trim();
+            const targetUrl = getServerUrl(srv);
 
             const card = document.createElement('div');
             card.style.cssText = `border-radius:14px; overflow:hidden; cursor:pointer;
@@ -125,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
                          display:flex; flex-direction:column; content-visibility:auto;`;
             card.onmouseover = function() { this.style.transform='translateY(-4px)'; this.style.borderColor=tc.border; this.style.boxShadow='0 8px 28px rgba(59,130,246,0.35)'; };
             card.onmouseout = function() { this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.07)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.4)'; };
-            card.onclick = function() { window.location.href=`server.html?id=${srv.id}`; };
+            card.onclick = function() { window.location.href = targetUrl; };
 
             card.innerHTML = `
                 <!-- Imagem / Logo -->
@@ -147,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${desc ? `<div style="font-size:0.75rem; color:rgba(160,170,190,0.85); line-height:1.35;
                                           overflow:hidden; display:-webkit-box; -webkit-line-clamp:2;
                                           -webkit-box-orient:vertical;">${escapeHtml(desc)}</div>` : ''}
-                    <a href="server.html?id=${srv.id}"
+                    <a href="${targetUrl}"
                        onclick="event.stopPropagation();"
                        style="display:inline-flex; align-items:center; gap:4px; margin-top:auto; padding-top:4px;
                               font-size:0.75rem; color:rgba(96,165,250,0.9); text-decoration:none;
@@ -199,9 +220,17 @@ document.addEventListener('DOMContentLoaded', () => {
         grid.appendChild(fragment);
     };
 
-    // --- HELPER DE CLIQUES ---
-    window.openServerInfo = (id) => {
-        window.location.href = `server.html?id=${id}`;
+    window.openServerInfo = (idOrSrv) => {
+        if (typeof idOrSrv === 'object' && idOrSrv.name) {
+            window.location.href = getServerUrl(idOrSrv);
+        } else {
+            const srv = activeServers.find(s => String(s.id) === String(idOrSrv));
+            if (srv) {
+                window.location.href = getServerUrl(srv);
+            } else {
+                window.location.href = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') ? `/${idOrSrv}` : `server.html?s=${idOrSrv}`;
+            }
+        }
     };
 
     window.openAppInfo = async (id) => {

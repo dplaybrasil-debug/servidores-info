@@ -9,5 +9,5 @@ echo   Acesse o portal em: http://localhost:8000/index.html
 echo   Acesse o admin em:  http://localhost:8000/admin.php
 echo.
 echo ==========================================
-"%~dp0php\php.exe" -S 0.0.0.0:8000
+"%~dp0php\php.exe" -S 0.0.0.0:8000 router.php
 pause

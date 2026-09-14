@@ -263,11 +263,31 @@
 
     <script src="data.js?v=1"></script>
     <script>
+        const slugify = (str) => {
+            if (!str) return '';
+            return str.toString()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .toLowerCase()
+                .trim()
+                .replace(/[^a-z0-9\s-]/g, '')
+                .replace(/[\s_]+/g, '-')
+                .replace(/^-+|-+$/g, '');
+        };
+
         document.addEventListener('DOMContentLoaded', async () => {
             const urlParams = new URLSearchParams(window.location.search);
-            const serverId = urlParams.get('id');
+            const serverId  = urlParams.get('id');
+            let   serverSlug = urlParams.get('slug') || urlParams.get('s') || urlParams.get('name');
 
-            if (!serverId) {
+            if (!serverId && !serverSlug) {
+                const pathName = decodeURIComponent(window.location.pathname.replace(/^\//, '').replace(/\.html$/, ''));
+                if (pathName && pathName !== 'server' && pathName !== 'index') {
+                    serverSlug = pathName;
+                }
+            }
+
+            if (!serverId && !serverSlug) {
                 document.getElementById('loader').innerText = 'Servidor não encontrado.';
                 return;
             }
@@ -276,7 +296,11 @@
                 let data;
                 try {
                     // Tenta API PHP (servidor local)
-                    const res = await fetch(`api.php?action=get_server_details&id=${serverId}`);
+                    const fetchUrl = serverId 
+                        ? `api.php?action=get_server_details&id=${serverId}`
+                        : `api.php?action=get_server_details&slug=${encodeURIComponent(serverSlug)}`;
+
+                    const res = await fetch(fetchUrl);
                     const contentType = res.headers.get('content-type') || '';
                     if (res.ok && contentType.includes('application/json')) {
                         data = await res.json();
@@ -287,12 +311,18 @@
                     // Fallback: dados estáticos (GitHub Pages)
                     console.warn('API indisponível, usando dados estáticos (data.js)', apiErr);
                     if (window.STATIC_DATA && window.STATIC_DATA.servers) {
-                        data = window.STATIC_DATA.servers.find(s => String(s.id) === String(serverId));
+                        if (serverId) {
+                            data = window.STATIC_DATA.servers.find(s => String(s.id) === String(serverId));
+                        } else if (serverSlug) {
+                            const targetSlug = slugify(serverSlug);
+                            data = window.STATIC_DATA.servers.find(s => slugify(s.name) === targetSlug || s.name.toLowerCase() === serverSlug.toLowerCase());
+                        }
+
                         if (data) {
                             // Montar linked_apps a partir dos vínculos
                             const links = window.STATIC_DATA.links || [];
                             const apps = window.STATIC_DATA.apps || [];
-                            const linkedAppIds = links.filter(l => String(l.server_id) === String(serverId)).map(l => l.app_id);
+                            const linkedAppIds = links.filter(l => String(l.server_id) === String(data.id)).map(l => l.app_id);
                             data.linked_apps = apps.filter(a => linkedAppIds.includes(a.id));
                         }
                     }
@@ -301,6 +331,15 @@
                 if (!data || data.error) {
                     document.getElementById('loader').innerText = 'Servidor não encontrado ou inativo.';
                     return;
+                }
+
+                // Atualizar título da página e URL amigável
+                document.title = `${data.name} — Central de Servidores`;
+                const cleanSlug = slugify(data.name);
+                if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                    if (window.location.pathname !== '/' + cleanSlug) {
+                        history.replaceState(null, '', '/' + cleanSlug);
+                    }
                 }
 
                 // Renderizar Dados
