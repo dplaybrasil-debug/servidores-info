@@ -539,20 +539,23 @@
         // Funções do Modal da Tabela
         function handleTableImgLoad(img) {
             const loader = document.getElementById('tableImgLoader');
+            const err = document.getElementById('tableImgError');
             if (loader) loader.style.display = 'none';
+            if (err) err.style.display = 'none';
             img.style.display = 'block';
         }
 
         function handleTableImgError(img) {
             const loader = document.getElementById('tableImgLoader');
-            if (loader) loader.style.display = 'none';
-
             if (img.dataset.rawUrl && !img.dataset.proxyAttempted && !img.src.includes('wsrv.nl')) {
                 img.dataset.proxyAttempted = 'true';
+                img.style.display = 'none';
+                if (loader) loader.style.display = 'block';
                 img.src = 'https://wsrv.nl/?url=' + encodeURIComponent(img.dataset.rawUrl);
                 return;
             }
 
+            if (loader) loader.style.display = 'none';
             img.style.display = 'none';
             const err = document.getElementById('tableImgError');
             if (err) err.style.display = 'block';
@@ -564,20 +567,32 @@
             const loader = document.getElementById('tableImgLoader');
             const err = document.getElementById('tableImgError');
 
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+
             if (err) err.style.display = 'none';
 
             if (img && img.dataset.rawUrl) {
-                if (!img.complete || img.naturalWidth === 0) {
+                if (!img.src || img.src === window.location.href) {
+                    const cleanUrl = getCleanImageUrl(img.dataset.rawUrl);
+                    img.src = cleanUrl;
+                }
+
+                if (img.complete) {
+                    if (loader) loader.style.display = 'none';
+                    if (img.naturalWidth > 0) {
+                        img.style.display = 'block';
+                    } else {
+                        img.style.display = 'block';
+                        if (!img.dataset.proxyAttempted) {
+                            handleTableImgError(img);
+                        }
+                    }
+                } else {
                     img.style.display = 'none';
                     if (loader) loader.style.display = 'block';
-                } else {
-                    if (loader) loader.style.display = 'none';
-                    img.style.display = 'block';
                 }
             }
-
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
         }
 
         function closeTableModal() {
