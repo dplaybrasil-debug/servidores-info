@@ -1,11 +1,11 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-09-14 04:15:49
+ * Gerado em: 2026-09-14 04:20:44
  * NÃO edite manualmente. Regenere via: php generate_data.php
  */
 window.STATIC_DATA = {
-    version:     "20260914-0415",
-    generated_at: "2026-09-14 04:15:49",
+    version:     "20260914-0420",
+    generated_at: "2026-09-14 04:20:44",
     servers:     [
     {
         "id": 102,
@@ -954,7 +954,7 @@ window.STATIC_DATA = {
         "channels": 1139,
         "created_at": "2026-04-27 06:09:59",
         "logo": "https:\/\/i.ibb.co\/HDmq67zy\/NEW-LIVE.png",
-        "table_image_url": "assets\/tabelas\/tabela-52-new-live.jpg",
+        "table_image_url": "assets\/tabelas\/NEW LIVE.jpg",
         "updated_at": "2026-06-21 05:20:43",
         "screens": 1,
         "panel_url": "",
