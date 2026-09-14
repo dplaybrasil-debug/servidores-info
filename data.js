@@ -1,11 +1,11 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-09-14 04:09:09
+ * Gerado em: 2026-09-14 04:11:34
  * NÃO edite manualmente. Regenere via: php generate_data.php
  */
 window.STATIC_DATA = {
-    version:     "20260914-0409",
-    generated_at: "2026-09-14 04:09:09",
+    version:     "20260914-0411",
+    generated_at: "2026-09-14 04:11:34",
     servers:     [
     {
         "id": 102,
@@ -288,7 +288,7 @@ window.STATIC_DATA = {
         "channels": 1532,
         "created_at": "2026-06-06 05:00:16",
         "logo": "https:\/\/i.ibb.co\/ns9g0tx5\/brasil-tv.jpg",
-        "table_image_url": "assets\/tabelas\/BRASIL TV.jpg",
+        "table_image_url": "assets\/tabelas\/BRASIL-TV.jpg",
         "updated_at": "2026-06-21 04:42:43",
         "screens": 2,
         "panel_url": "",
@@ -1782,7 +1782,7 @@ window.STATIC_DATA = {
         "channels": 0,
         "created_at": "2026-04-27 06:09:59",
         "logo": "https:\/\/i.ibb.co\/PzQtqmSS\/VAPTY-PLAY.png",
-        "table_image_url": "assets\/tabelas\/VAPTY PLAY.jpg",
+        "table_image_url": "assets\/tabelas\/VAPTY-PLAY.jpg",
         "updated_at": "2026-04-27 10:54:54",
         "screens": 1,
         "panel_url": "",
