@@ -131,8 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 <!-- Imagem / Logo -->
                 <div style="position:relative; width:100%; height:130px; overflow:hidden; background:#0d1117; flex-shrink:0;">
                     ${logoUrl
-                        ? `<img src="${escapeHtml(logoUrl)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" alt="${escapeHtml(srv.name)}" onerror="this.onerror=null; this.parentElement.innerHTML='<div style=\\'width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:3rem;\\'>🖥️</div>';" style="width:100%; height:100%; object-fit:cover; display:block;">`
-                        : `<div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:3rem;">🖥️</div>`}
+                        ? `<img src="${escapeHtml(logoUrl)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" alt="${escapeHtml(srv.name)}" onerror="this.style.display='none';" style="width:100%; height:100%; object-fit:cover; display:block;">`
+                        : `<div style="width:100%; height:100%; background:linear-gradient(135deg, rgba(124,58,237,0.15), rgba(6,182,212,0.15));"></div>`}
                     ${typeBadge}
                     ${screensBadge}
                 </div>
@@ -291,8 +291,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         <!-- Imagem / Logo -->
                         <div style="position:relative; width:100%; height:130px; overflow:hidden; background:#0d1117; flex-shrink:0;">
                             ${itemLogo
-                                ? `<img src="${escapeHtml(itemLogo)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" alt="${escapeHtml(item.name)}" onerror="this.onerror=null; this.parentElement.innerHTML='<div style=\\'width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:3rem;\\'>🖥️</div>';" style="width:100%; height:100%; object-fit:cover; display:block;">`
-                                : `<div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:3rem;">🖥️</div>`}
+                                ? `<img src="${escapeHtml(itemLogo)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" alt="${escapeHtml(item.name)}" onerror="this.style.display='none';" style="width:100%; height:100%; object-fit:cover; display:block;">`
+                                : `<div style="width:100%; height:100%; background:linear-gradient(135deg, rgba(124,58,237,0.15), rgba(6,182,212,0.15));"></div>`}
                         </div>
 
                         <!-- Info Panel -->

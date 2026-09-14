@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const badgeText = srv.status === 'active' ? 'Ativo' : 'Inativo';
             gridSrv.innerHTML += `
                 <div class="card glass-panel" onclick="editServer(${srv.id})" style="aspect-ratio: 1; padding: 0; position: relative; overflow: hidden; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" title="Clique para editar">
-                    ${srv.logo ? '<img src="' + escapeHtml(extractImageUrl(srv.logo)) + '" style="width: 100%; height: 100%; object-fit: cover;">' : '<span style="font-size: 3rem;">🖥️</span>'}
+                    ${srv.logo ? '<img src="' + escapeHtml(extractImageUrl(srv.logo)) + '" style="width: 100%; height: 100%; object-fit: cover;">' : '<div style="width:100%; height:100%; background:linear-gradient(135deg, rgba(124,58,237,0.15), rgba(6,182,212,0.15));"></div>'}
                     
                     <!-- Tarja com o Nome -->
                     <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.8); padding: 6px; text-align: center; font-size: 0.85rem; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-top: 1px solid rgba(255,255,255,0.1);">
@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     ${srv.logo
                         ? `<img src="${escapeHtml(extractImageUrl(srv.logo))}" style="width:100%; height:100%; object-fit:cover;">`
-                        : `<span style="font-size:3rem;">🖥️</span>`}
+                        : `<div style="width:100%; height:100%; background:linear-gradient(135deg, rgba(124,58,237,0.15), rgba(6,182,212,0.15));"></div>`}
 
                     <!-- Badge de Status (canto superior esquerdo) -->
                     <div style="position:absolute; top:5px; left:5px; font-size:0.9rem;

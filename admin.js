@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <td class="td-app-name">
                         ${logoUrl
                             ? `<img class="table-logo" src="${logoUrl}" alt="${escapeHtml(app.name)}" referrerpolicy="no-referrer">`
-                            : `<div class="table-logo" style="display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🖥️</div>`}
+                            : `<div class="table-logo" style="display:flex;align-items:center;justify-content:center;font-size:1.2rem;">📱</div>`}
                         <span>${escapeHtml(app.name)}</span>
                     </td>
                     <td><div style="display:flex; flex-wrap:wrap; gap:3px;">${categoryTags}</div></td>

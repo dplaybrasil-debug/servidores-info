@@ -54,7 +54,7 @@
                             </button>
                             <button id="srvFilterScreens" onclick="filterServers('screens')"
                                 style="display:flex; align-items:center; gap:0.4rem; padding:0.35rem 0.9rem; border-radius:20px; border:none; cursor:pointer; font-size:0.82rem; font-weight:600; background:rgba(99,102,241,0.15); color:#a5b4fc; outline:none; transition:all 0.2s;">
-                                🖥️ +1 Tela <span id="srvCnt-screens" style="background:rgba(99,102,241,0.25); padding:1px 7px; border-radius:10px;">0</span>
+                                📺 +1 Tela <span id="srvCnt-screens" style="background:rgba(99,102,241,0.25); padding:1px 7px; border-radius:10px;">0</span>
                             </button>
                             <button id="srvFilterAndroid" onclick="filterServers('android')"
                                 style="display:flex; align-items:center; gap:0.4rem; padding:0.35rem 0.9rem; border-radius:20px; border:none; cursor:pointer; font-size:0.82rem; font-weight:600; background:rgba(52,211,153,0.15); color:#6ee7b7; outline:none; transition:all 0.2s;">
