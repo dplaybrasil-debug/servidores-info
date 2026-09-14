@@ -268,7 +268,12 @@
                 <p style="margin: 0; color: #aaa;">Carregando tabela de valores...</p>
             </div>
 
-            <img id="tableImg" src="" alt="Tabela de Valores" style="max-width: 100%; max-height: 85vh; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); user-select: none; -webkit-user-drag: none; display: none;" decoding="async" referrerpolicy="no-referrer" oncontextmenu="return false;" draggable="false" onload="handleTableImgLoad(this)" onerror="handleTableImgError(this)">
+            <!-- Wrapper da Imagem com Marca d'Água Protegida -->
+            <div id="tableImgWrapper" style="position: relative; max-width: 100%; max-height: 85vh; border-radius: 16px; overflow: hidden; display: none; align-items: center; justify-content: center; box-shadow: 0 10px 40px rgba(0,0,0,0.8);">
+                <img id="tableImg" src="" alt="Tabela de Valores" style="max-width: 100%; max-height: 85vh; border-radius: 16px; user-select: none; -webkit-user-drag: none; display: block;" decoding="async" referrerpolicy="no-referrer" oncontextmenu="return false;" draggable="false" onload="handleTableImgLoad(this)" onerror="handleTableImgError(this)">
+                <!-- Marca d'água Repetida Protegendo a Tabela -->
+                <div id="tableWatermark" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.16; z-index: 10; background-image: url('assets/logo-central-v2.png'); background-repeat: repeat; background-size: 180px;"></div>
+            </div>
             
             <div id="tableImgError" style="display: none; color: #ff6b6b; padding: 2rem; background: rgba(20,20,20,0.9); border-radius: 16px; text-align: center; border: 1px solid rgba(255,107,107,0.3); max-width: 400px;">
                 <p style="font-size: 1.2rem; margin-bottom: 0.5rem; font-weight: bold;">⚠️ Não foi possível carregar a tabela</p>
@@ -540,23 +545,25 @@
         function handleTableImgLoad(img) {
             const loader = document.getElementById('tableImgLoader');
             const err = document.getElementById('tableImgError');
+            const wrapper = document.getElementById('tableImgWrapper');
             if (loader) loader.style.display = 'none';
             if (err) err.style.display = 'none';
-            img.style.display = 'block';
+            if (wrapper) wrapper.style.display = 'inline-flex';
         }
 
         function handleTableImgError(img) {
             const loader = document.getElementById('tableImgLoader');
+            const wrapper = document.getElementById('tableImgWrapper');
             if (img.dataset.rawUrl && !img.dataset.proxyAttempted && !img.src.includes('wsrv.nl')) {
                 img.dataset.proxyAttempted = 'true';
-                img.style.display = 'none';
+                if (wrapper) wrapper.style.display = 'none';
                 if (loader) loader.style.display = 'block';
                 img.src = 'https://wsrv.nl/?url=' + encodeURIComponent(img.dataset.rawUrl);
                 return;
             }
 
             if (loader) loader.style.display = 'none';
-            img.style.display = 'none';
+            if (wrapper) wrapper.style.display = 'none';
             const err = document.getElementById('tableImgError');
             if (err) err.style.display = 'block';
         }
@@ -564,6 +571,7 @@
         function openTableModal() {
             const modal = document.getElementById('modalTable');
             const img = document.getElementById('tableImg');
+            const wrapper = document.getElementById('tableImgWrapper');
             const loader = document.getElementById('tableImgLoader');
             const err = document.getElementById('tableImgError');
 
@@ -581,15 +589,15 @@
                 if (img.complete) {
                     if (loader) loader.style.display = 'none';
                     if (img.naturalWidth > 0) {
-                        img.style.display = 'block';
+                        if (wrapper) wrapper.style.display = 'inline-flex';
                     } else {
-                        img.style.display = 'block';
+                        if (wrapper) wrapper.style.display = 'inline-flex';
                         if (!img.dataset.proxyAttempted) {
                             handleTableImgError(img);
                         }
                     }
                 } else {
-                    img.style.display = 'none';
+                    if (wrapper) wrapper.style.display = 'none';
                     if (loader) loader.style.display = 'block';
                 }
             }
