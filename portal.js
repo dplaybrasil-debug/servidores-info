@@ -28,8 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
             activeApps = apps.filter(a => a.status === 'active');
 
             // Atualiza Contadores nas Abas
-            document.getElementById('btnServidores').innerText = `Servidores (${activeServers.length})`;
-            document.getElementById('btnApps').innerText = `Apps Parceiros (${activeApps.length})`;
+            const btnSrv = document.getElementById('btnServidores');
+            if (btnSrv) btnSrv.innerText = `Servidores (${activeServers.length})`;
+            const btnApp = document.getElementById('btnApps');
+            if (btnApp) btnApp.innerText = `Apps Parceiros (${activeApps.length})`;
 
             // Atualiza contadores dos pills
             updatePublicFilterCounts();
@@ -49,8 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 activeServers = (window.STATIC_DATA.servers || []).filter(s => s.status === 'active');
                 activeApps    = (window.STATIC_DATA.apps    || []).filter(a => a.status === 'active');
 
-                document.getElementById('btnServidores').innerText = `Servidores (${activeServers.length})`;
-                document.getElementById('btnApps').innerText = `Apps Parceiros (${activeApps.length})`;
+                const btnSrv = document.getElementById('btnServidores');
+                if (btnSrv) btnSrv.innerText = `Servidores (${activeServers.length})`;
+                const btnApp = document.getElementById('btnApps');
+                if (btnApp) btnApp.innerText = `Apps Parceiros (${activeApps.length})`;
 
                 updatePublicFilterCounts();
                 renderServers(activeServers);
@@ -65,17 +69,20 @@ document.addEventListener('DOMContentLoaded', () => {
             // Nenhum dado disponível
             console.error('Nenhum dado disponível:', e);
             const errorHtml = '<div style="color: var(--danger); text-align: center; width: 100%; grid-column: 1 / -1; padding: 2rem; background: rgba(0,0,0,0.5); border-radius: 12px;"><h3>Erro de Conexão</h3><p>As informações não puderam ser carregadas.</p><p>Se você abriu este arquivo dando dois cliques (file:///), ele não vai funcionar. Você precisa acessar pelo endereço: <b>http://localhost:8000/index.html</b></p><p style="font-size:0.8rem; margin-top:1rem; opacity:0.7;">Detalhe técnico: ' + e.message + '</p></div>';
-            document.getElementById('publicServersGrid').innerHTML = errorHtml;
-            document.getElementById('publicAppsGrid').innerHTML = errorHtml;
+            const gridSrv = document.getElementById('publicServersGrid');
+            if (gridSrv) gridSrv.innerHTML = errorHtml;
+            const gridApp = document.getElementById('publicAppsGrid');
+            if (gridApp) gridApp.innerHTML = errorHtml;
         }
     };
 
-    // --- RENDERIZAÇÃO ---
+    // --- RENDERIZAÇÃO DE SERVIDORES ---
     const renderServers = (serversList) => {
         const grid = document.getElementById('publicServersGrid');
+        if (!grid) return;
         grid.innerHTML = '';
-        if(serversList.length === 0) {
-            grid.innerHTML = '<p style="color: white;">Nenhum servidor disponível no momento.</p>';
+        if(!serversList || serversList.length === 0) {
+            grid.innerHTML = '<p style="color: white; grid-column: 1 / -1; text-align: center; padding: 2rem;">Nenhum servidor disponível no momento.</p>';
             return;
         }
 
@@ -86,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
             android: { label: 'Android',  emoji: '🤖', color: 'rgba(52,211,153,0.92)',  border: 'rgba(52,211,153,0.6)' },
         };
 
+        const fragment = document.createDocumentFragment();
         serversList.forEach(srv => {
             const logoUrl = extractImageUrl(srv.logo);
             const screens = parseInt(srv.screens, 10) || 1;
@@ -109,73 +117,86 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const desc = (srv.description || '').trim();
 
-            grid.innerHTML += `
-                <div style="border-radius:14px; overflow:hidden; cursor:pointer;
-                             background:rgba(20,25,40,0.85); border:2px solid rgba(255,255,255,0.07);
-                             box-shadow:0 4px 15px rgba(0,0,0,0.4);
-                             transition:transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-                             display:flex; flex-direction:column;"
-                     onmouseover="this.style.transform='translateY(-4px)'; this.style.borderColor='${tc.border}'; this.style.boxShadow='0 8px 28px rgba(59,130,246,0.35)';"
-                     onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.07)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.4)';"
-                     onclick="window.location.href='server.html?id=${srv.id}'">
+            const card = document.createElement('div');
+            card.style.cssText = `border-radius:14px; overflow:hidden; cursor:pointer;
+                         background:rgba(20,25,40,0.85); border:2px solid rgba(255,255,255,0.07);
+                         box-shadow:0 4px 15px rgba(0,0,0,0.4);
+                         transition:transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+                         display:flex; flex-direction:column; content-visibility:auto;`;
+            card.onmouseover = function() { this.style.transform='translateY(-4px)'; this.style.borderColor=tc.border; this.style.boxShadow='0 8px 28px rgba(59,130,246,0.35)'; };
+            card.onmouseout = function() { this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.07)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.4)'; };
+            card.onclick = function() { window.location.href=`server.html?id=${srv.id}`; };
 
-                    <!-- Imagem / Logo -->
-                    <div style="position:relative; width:100%; height:130px; overflow:hidden; background:#0d1117; flex-shrink:0;">
-                        ${logoUrl
-                            ? `<img src="${escapeHtml(logoUrl)}" style="width:100%; height:100%; object-fit:cover; display:block;">`
-                            : `<div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:3rem;">🖥️</div>`}
-                        ${typeBadge}
-                        ${screensBadge}
-                    </div>
+            card.innerHTML = `
+                <!-- Imagem / Logo -->
+                <div style="position:relative; width:100%; height:130px; overflow:hidden; background:#0d1117; flex-shrink:0;">
+                    ${logoUrl
+                        ? `<img src="${escapeHtml(logoUrl)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" alt="${escapeHtml(srv.name)}" onerror="this.onerror=null; this.parentElement.innerHTML='<div style=\\'width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:3rem;\\'>🖥️</div>';" style="width:100%; height:100%; object-fit:cover; display:block;">`
+                        : `<div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:3rem;">🖥️</div>`}
+                    ${typeBadge}
+                    ${screensBadge}
+                </div>
 
-                    <!-- Info Panel -->
-                    <div style="padding:10px 12px 11px; display:flex; flex-direction:column; gap:4px; flex:1;">
-                        <div style="font-size:0.88rem; color:white; font-weight:700;
-                                    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"
-                             title="${escapeHtml(srv.name)}">
-                            ${escapeHtml(srv.name)}
-                        </div>
-                        ${desc ? `<div style="font-size:0.75rem; color:rgba(160,170,190,0.85); line-height:1.35;
-                                              overflow:hidden; display:-webkit-box; -webkit-line-clamp:2;
-                                              -webkit-box-orient:vertical;">${escapeHtml(desc)}</div>` : ''}
-                        <a href="server.html?id=${srv.id}"
-                           onclick="event.stopPropagation();"
-                           style="display:inline-flex; align-items:center; gap:4px; margin-top:4px;
-                                  font-size:0.75rem; color:rgba(96,165,250,0.9); text-decoration:none;
-                                  font-weight:600; transition:color 0.2s;"
-                           onmouseover="this.style.color='rgb(147,197,253)'"
-                           onmouseout="this.style.color='rgba(96,165,250,0.9)'">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                            Acessar
-                        </a>
+                <!-- Info Panel -->
+                <div style="padding:10px 12px 11px; display:flex; flex-direction:column; gap:4px; flex:1;">
+                    <div style="font-size:0.88rem; color:white; font-weight:700;
+                                white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"
+                         title="${escapeHtml(srv.name)}">
+                        ${escapeHtml(srv.name)}
                     </div>
+                    ${desc ? `<div style="font-size:0.75rem; color:rgba(160,170,190,0.85); line-height:1.35;
+                                          overflow:hidden; display:-webkit-box; -webkit-line-clamp:2;
+                                          -webkit-box-orient:vertical;">${escapeHtml(desc)}</div>` : ''}
+                    <a href="server.html?id=${srv.id}"
+                       onclick="event.stopPropagation();"
+                       style="display:inline-flex; align-items:center; gap:4px; margin-top:auto; padding-top:4px;
+                              font-size:0.75rem; color:rgba(96,165,250,0.9); text-decoration:none;
+                              font-weight:600; transition:color 0.2s;"
+                       onmouseover="this.style.color='rgb(147,197,253)'"
+                       onmouseout="this.style.color='rgba(96,165,250,0.9)'">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        Acessar
+                    </a>
                 </div>
             `;
+            fragment.appendChild(card);
         });
+        grid.appendChild(fragment);
     };
 
+    // --- RENDERIZAÇÃO DE APPS ---
     const renderApps = (appsList) => {
         const grid = document.getElementById('publicAppsGrid');
+        if (!grid) return;
         grid.innerHTML = '';
-        if(appsList.length === 0) {
-            grid.innerHTML = '<p style="color: white;">Nenhum aplicativo disponível no momento.</p>';
+        if(!appsList || appsList.length === 0) {
+            grid.innerHTML = '<p style="color: white; grid-column: 1 / -1; text-align: center; padding: 2rem;">Nenhum aplicativo disponível no momento.</p>';
             return;
         }
 
+        const fragment = document.createDocumentFragment();
         appsList.forEach(app => {
             const logoUrl = extractImageUrl(app.logo);
+            const card = document.createElement('div');
+            card.className = 'card glass-panel';
+            card.onclick = function() { openAppInfo(app.id); };
+            card.style.cssText = 'aspect-ratio: 1; padding: 0; position: relative; overflow: hidden; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform 0.2s; content-visibility: auto;';
+            card.onmouseover = function() { this.style.transform='scale(1.05)'; };
+            card.onmouseout = function() { this.style.transform='scale(1)'; };
 
-            grid.innerHTML += `
-                <div class="card glass-panel" onclick="openAppInfo(${app.id})" style="aspect-ratio: 1; padding: 0; position: relative; overflow: hidden; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                    ${logoUrl ? '<img src="' + escapeHtml(logoUrl) + '" style="width: 100%; height: 100%; object-fit: cover;">' : '<span style="font-size: 3rem;">📱</span>'}
-                    
-                    <!-- Tarja com o Nome -->
-                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.8); padding: 6px; text-align: center; font-size: 0.85rem; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-top: 1px solid rgba(255,255,255,0.1);">
-                        ${escapeHtml(app.name)}
-                    </div>
+            card.innerHTML = `
+                ${logoUrl 
+                    ? `<img src="${escapeHtml(logoUrl)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" alt="${escapeHtml(app.name)}" onerror="this.onerror=null; this.parentElement.innerHTML='<span style=\\'font-size: 3rem;\\'>📱</span>';" style="width: 100%; height: 100%; object-fit: cover;">` 
+                    : '<span style="font-size: 3rem;">📱</span>'}
+                
+                <!-- Tarja com o Nome -->
+                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.8); padding: 6px; text-align: center; font-size: 0.85rem; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-top: 1px solid rgba(255,255,255,0.1);">
+                    ${escapeHtml(app.name)}
                 </div>
             `;
+            fragment.appendChild(card);
         });
+        grid.appendChild(fragment);
     };
 
     // --- HELPER DE CLIQUES ---
@@ -199,128 +220,157 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- MODAL DE INFORMAÇÕES ---
     window.openInfoModal = (type, name, logo, url, desc, movies, series, channels, linked_items = []) => {
-        document.getElementById('infoTitle').textContent = name;
+        const titleEl = document.getElementById('infoTitle');
+        if (titleEl) titleEl.textContent = name;
         
         // Logo
         const img = document.getElementById('infoLogo');
-        if(logo) {
-            img.src = logo;
-            img.style.display = 'block';
-        } else {
-            img.style.display = 'none';
-            img.src = '';
+        if (img) {
+            img.setAttribute('loading', 'lazy');
+            img.setAttribute('decoding', 'async');
+            img.setAttribute('referrerpolicy', 'no-referrer');
+            if(logo) {
+                img.src = logo;
+                img.style.display = 'block';
+            } else {
+                img.style.display = 'none';
+                img.src = '';
+            }
         }
 
         // Descrição
         const descEl = document.getElementById('infoDesc');
-        if(desc && desc.trim() !== 'undefined' && desc.trim() !== '') {
-            descEl.textContent = desc;
-            descEl.style.display = 'block';
-        } else {
-            descEl.style.display = 'none';
+        if (descEl) {
+            if(desc && desc.trim() !== 'undefined' && desc.trim() !== '') {
+                descEl.textContent = desc;
+                descEl.style.display = 'block';
+            } else {
+                descEl.style.display = 'none';
+            }
         }
 
         // Estatísticas (só para Servidores)
         const statsEl = document.getElementById('infoStatsContainer');
-        if(type === 'server') {
-            document.getElementById('infoMovies').textContent = movies;
-            document.getElementById('infoSeries').textContent = series;
-            document.getElementById('infoChannels').textContent = channels;
-            statsEl.style.display = 'flex';
-        } else {
-            statsEl.style.display = 'none';
+        if (statsEl) {
+            if(type === 'server') {
+                const movEl = document.getElementById('infoMovies');
+                if (movEl) movEl.textContent = movies;
+                const serEl = document.getElementById('infoSeries');
+                if (serEl) serEl.textContent = series;
+                const chEl = document.getElementById('infoChannels');
+                if (chEl) chEl.textContent = channels;
+                statsEl.style.display = 'flex';
+            } else {
+                statsEl.style.display = 'none';
+            }
         }
 
         // Itens Vinculados (Servidores Compatíveis)
         const linkedContainer = document.getElementById('infoLinkedContainer');
         const linkedGrid = document.getElementById('infoLinkedGrid');
         
-        if (type === 'app' && linked_items && linked_items.length > 0) {
-            linkedGrid.innerHTML = '';
-            document.getElementById('infoLinkedTitle').innerHTML = `Servidores Parceiros Compatíveis <span style="background: var(--primary); color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.85rem; font-weight: bold; vertical-align: middle; margin-left: 0.5rem; box-shadow: 0 2px 5px rgba(59, 130, 246, 0.4);">${linked_items.length}</span>`;
-            linked_items.forEach(item => {
-                const itemLogo = extractImageUrl(item.logo);
-                linkedGrid.innerHTML += `
-                <div style="border-radius:14px; overflow:hidden; cursor:pointer; text-align: left;
-                             background:rgba(20,25,40,0.85); border:2px solid rgba(255,255,255,0.07);
-                             box-shadow:0 4px 15px rgba(0,0,0,0.4);
-                             transition:transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-                             display:flex; flex-direction:column;"
-                     onmouseover="this.style.transform='translateY(-4px)'; this.style.borderColor='rgba(59,130,246,0.8)'; this.style.boxShadow='0 8px 28px rgba(59,130,246,0.35)';"
-                     onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.07)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.4)';"
-                     onclick="openServerInfo(${item.id})">
+        if (linkedContainer && linkedGrid) {
+            if (type === 'app' && linked_items && linked_items.length > 0) {
+                linkedGrid.innerHTML = '';
+                const linkedTitleEl = document.getElementById('infoLinkedTitle');
+                if (linkedTitleEl) {
+                    linkedTitleEl.innerHTML = `Servidores Parceiros Compatíveis <span style="background: var(--primary); color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.85rem; font-weight: bold; vertical-align: middle; margin-left: 0.5rem; box-shadow: 0 2px 5px rgba(59, 130, 246, 0.4);">${linked_items.length}</span>`;
+                }
+                linked_items.forEach(item => {
+                    const itemLogo = extractImageUrl(item.logo);
+                    linkedGrid.innerHTML += `
+                    <div style="border-radius:14px; overflow:hidden; cursor:pointer; text-align: left;
+                                 background:rgba(20,25,40,0.85); border:2px solid rgba(255,255,255,0.07);
+                                 box-shadow:0 4px 15px rgba(0,0,0,0.4);
+                                 transition:transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+                                 display:flex; flex-direction:column;"
+                         onmouseover="this.style.transform='translateY(-4px)'; this.style.borderColor='rgba(59,130,246,0.8)'; this.style.boxShadow='0 8px 28px rgba(59,130,246,0.35)';"
+                         onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.07)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.4)';"
+                         onclick="openServerInfo(${item.id})">
 
-                    <!-- Imagem / Logo -->
-                    <div style="position:relative; width:100%; height:130px; overflow:hidden; background:#0d1117; flex-shrink:0;">
-                        ${itemLogo
-                            ? `<img src="${escapeHtml(itemLogo)}" style="width:100%; height:100%; object-fit:cover; display:block;">`
-                            : `<div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:3rem;">🖥️</div>`}
-                    </div>
+                        <!-- Imagem / Logo -->
+                        <div style="position:relative; width:100%; height:130px; overflow:hidden; background:#0d1117; flex-shrink:0;">
+                            ${itemLogo
+                                ? `<img src="${escapeHtml(itemLogo)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" alt="${escapeHtml(item.name)}" onerror="this.onerror=null; this.parentElement.innerHTML='<div style=\\'width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:3rem;\\'>🖥️</div>';" style="width:100%; height:100%; object-fit:cover; display:block;">`
+                                : `<div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:3rem;">🖥️</div>`}
+                        </div>
 
-                    <!-- Info Panel -->
-                    <div style="padding:10px 12px 11px; display:flex; flex-direction:column; gap:4px; flex:1;">
-                        <div style="font-size:0.88rem; color:white; font-weight:700;
-                                    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"
-                             title="${escapeHtml(item.name)}">
-                            ${escapeHtml(item.name)}
-                        </div>
-                        <div style="display:inline-flex; align-items:center; gap:4px; margin-top:4px;
-                                   font-size:0.75rem; color:rgba(96,165,250,0.9); font-weight:600;">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                            Acessar
+                        <!-- Info Panel -->
+                        <div style="padding:10px 12px 11px; display:flex; flex-direction:column; gap:4px; flex:1;">
+                            <div style="font-size:0.88rem; color:white; font-weight:700;
+                                        white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"
+                                 title="${escapeHtml(item.name)}">
+                                ${escapeHtml(item.name)}
+                            </div>
+                            <div style="display:inline-flex; align-items:center; gap:4px; margin-top:4px;
+                                       font-size:0.75rem; color:rgba(96,165,250,0.9); font-weight:600;">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                Acessar
+                            </div>
                         </div>
                     </div>
-                </div>
-                `;
-            });
-            linkedContainer.style.display = 'block';
-        } else {
-            linkedContainer.style.display = 'none';
+                    `;
+                });
+                linkedContainer.style.display = 'block';
+            } else {
+                linkedContainer.style.display = 'none';
+            }
         }
 
         // Botão de Acesso
         const btnLink = document.getElementById('infoLink');
         const noLinkMsg = document.getElementById('noLinkMsg');
         
-        if(url && url.trim() !== 'undefined' && url.trim() !== '') {
-            let finalUrl = url;
-            if(!finalUrl.startsWith('http')) {
-                finalUrl = 'http://' + finalUrl;
+        if (btnLink && noLinkMsg) {
+            if(url && url.trim() !== 'undefined' && url.trim() !== '') {
+                let finalUrl = url;
+                if(!finalUrl.startsWith('http')) {
+                    finalUrl = 'http://' + finalUrl;
+                }
+                btnLink.href = finalUrl;
+                btnLink.style.display = 'inline-block';
+                noLinkMsg.style.display = 'none';
+            } else {
+                btnLink.style.display = 'none';
+                noLinkMsg.style.display = 'block';
             }
-            btnLink.href = finalUrl;
-            btnLink.style.display = 'inline-block';
-            noLinkMsg.style.display = 'none';
-        } else {
-            btnLink.style.display = 'none';
-            noLinkMsg.style.display = 'block';
         }
 
-        document.getElementById('modalInfo').classList.add('active');
+        const modalInfo = document.getElementById('modalInfo');
+        if (modalInfo) modalInfo.classList.add('active');
     };
 
     window.closeModal = (id) => {
-        document.getElementById(id).classList.remove('active');
+        const el = document.getElementById(id);
+        if (el) el.classList.remove('active');
     };
 
     // --- NAVEGAÇÃO DE ABAS ---
     window.switchTab = (tab) => {
         currentTab = tab;
-        document.getElementById('btnServidores').classList.toggle('active', tab === 'servers');
-        document.getElementById('btnApps').classList.toggle('active', tab === 'apps');
-        document.getElementById('btnApoio').classList.toggle('active', tab === 'support');
+        const btnSrv = document.getElementById('btnServidores');
+        if (btnSrv) btnSrv.classList.toggle('active', tab === 'servers');
+        const btnApp = document.getElementById('btnApps');
+        if (btnApp) btnApp.classList.toggle('active', tab === 'apps');
+        const btnApoio = document.getElementById('btnApoio');
+        if (btnApoio) btnApoio.classList.toggle('active', tab === 'support');
 
-        document.getElementById('section-servers').style.display = tab === 'servers' ? 'block' : 'none';
-        document.getElementById('section-apps').style.display   = tab === 'apps'    ? 'block' : 'none';
-        document.getElementById('section-support').style.display = tab === 'support' ? 'block' : 'none';
+        const secSrv = document.getElementById('section-servers');
+        if (secSrv) secSrv.style.display = tab === 'servers' ? 'block' : 'none';
+        const secApp = document.getElementById('section-apps');
+        if (secApp) secApp.style.display = tab === 'apps' ? 'block' : 'none';
+        const secSup = document.getElementById('section-support');
+        if (secSup) secSup.style.display = tab === 'support' ? 'block' : 'none';
 
         // Ocultar busca e pills na aba Apoio
         const searchBox = document.getElementById('searchInput');
         const filterBar = document.getElementById('publicServerFilterBar');
-        if (searchBox) searchBox.style.display = tab === 'support' ? 'none' : 'block';
+        if (searchBox) {
+            searchBox.style.display = tab === 'support' ? 'none' : 'block';
+            searchBox.value = '';
+        }
         if (filterBar) filterBar.style.display  = tab === 'servers'  ? 'flex' : 'none';
 
-        // Limpar pesquisa e filtro ao trocar de aba
-        document.getElementById('searchInput').value = '';
         window._pubSrvFilter = 'all';
         updatePublicFilterHighlight();
         renderServers(activeServers);
@@ -332,11 +382,6 @@ document.addEventListener('DOMContentLoaded', () => {
         whatsapp: '#25D366', telegram: '#2AABEE', email: '#EA4335',
         phone: '#8b5cf6', instagram: '#E1306C', youtube: '#FF0000',
         site: '#3b82f6', other: '#94a3b8'
-    };
-    const contactTypeEmojis = {
-        whatsapp: '📱', telegram: '✈️', email: '📧',
-        phone: '📞', instagram: '📸', youtube: '▶️',
-        site: '🌐', other: '💬'
     };
 
     const loadContacts = async () => {
@@ -357,6 +402,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const renderContacts = (contacts) => {
         const grid = document.getElementById('publicContactsGrid');
+        if (!grid) return;
         grid.innerHTML = '';
 
         if (!contacts || contacts.length === 0) {
@@ -408,9 +454,9 @@ document.addEventListener('DOMContentLoaded', () => {
                              border-radius: 24px; padding: 2.5rem 1.5rem; display: flex; flex-direction: column;
                              align-items: center; text-align: center; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                              box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative; overflow: hidden;"
-                     onmouseover="this.style.transform='translateY(-10px)'; this.style.borderColor='rgba(255,255,255,0.15)'; this.style.boxShadow='0 20px 50px rgba(0,0,0,0.8)';"
-                     onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.05)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.5)';"
-                     onclick="window.open('${escapeHtml(href)}', '_blank')">
+                      onmouseover="this.style.transform='translateY(-10px)'; this.style.borderColor='rgba(255,255,255,0.15)'; this.style.boxShadow='0 20px 50px rgba(0,0,0,0.8)';"
+                      onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.05)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.5)';"
+                      onclick="window.open('${escapeHtml(href)}', '_blank')">
 
                     <div style="color: ${color}; margin-bottom: 2rem; filter: drop-shadow(0 0 10px ${color}44); transition: transform 0.3s;"
                          onmouseover="this.style.transform='scale(1.1)'"
@@ -506,20 +552,19 @@ document.addEventListener('DOMContentLoaded', () => {
         applyPublicServerFilters();
     };
 
-    // --- PESQUISA ---
-    document.getElementById('searchInput').addEventListener('input', () => {
-        const term = (document.getElementById('searchInput').value || '').toLowerCase();
-        if (currentTab === 'servers') {
-            applyPublicServerFilters();
-        } else {
-            const filtered = activeApps.filter(a => a.name.toLowerCase().includes(term));
-            renderApps(filtered);
-        }
-    });
-
-    // Inicia o App
-    loadAllData();
-    loadContacts();
+    // --- PESQUISA COM SUPORTE SEGURO ---
+    const searchInputEl = document.getElementById('searchInput');
+    if (searchInputEl) {
+        searchInputEl.addEventListener('input', () => {
+            const term = (searchInputEl.value || '').toLowerCase();
+            if (currentTab === 'servers') {
+                applyPublicServerFilters();
+            } else {
+                const filtered = activeApps.filter(a => a.name.toLowerCase().includes(term));
+                renderApps(filtered);
+            }
+        });
+    }
 
     // --- BOTÃO × NO CAMPO DE PESQUISA ---
     const addClearBtn = (inputId) => {
@@ -531,8 +576,10 @@ document.addEventListener('DOMContentLoaded', () => {
         input.style.width = '100%';
         input.style.maxWidth = '';
         input.style.paddingRight = '2.5rem';
-        input.parentNode.insertBefore(wrapper, input);
-        wrapper.appendChild(input);
+        if (input.parentNode) {
+            input.parentNode.insertBefore(wrapper, input);
+            wrapper.appendChild(input);
+        }
 
         const btn = document.createElement('button');
         btn.type = 'button';
@@ -560,4 +607,9 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     addClearBtn('searchInput');
+
+    // Inicia o App
+    loadAllData();
+    loadContacts();
 });
+

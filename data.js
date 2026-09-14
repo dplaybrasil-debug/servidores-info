@@ -1,10 +1,12 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-08-18 11:34:54
- * NÃO edite manualmente. Regenere via: http://localhost:8000/export_data.php
+ * Gerado em: 2026-09-14 02:21:29
+ * NÃO edite manualmente. Regenere via: php generate_data.php
  */
 window.STATIC_DATA = {
-    servers:  [
+    version:     "20260914-0221",
+    generated_at: "2026-09-14 02:21:29",
+    servers:     [
     {
         "id": 102,
         "name": "ADAM PLAY",
@@ -1932,7 +1934,7 @@ window.STATIC_DATA = {
         "server_type": "hybrid"
     }
 ],
-    apps:     [
+    apps:        [
     {
         "id": 13,
         "name": "4KIPTV",
@@ -2342,7 +2344,7 @@ window.STATIC_DATA = {
         "created_at": "2026-07-08 14:40:58"
     }
 ],
-    contacts: [
+    contacts:    [
     {
         "id": 6,
         "name": "CANAL OFICIAL",
@@ -2374,7 +2376,7 @@ window.STATIC_DATA = {
         "created_at": "2026-06-25 06:02:13"
     }
 ],
-    links:    [
+    server_apps: [
     {
         "server_id": 102,
         "app_id": 2
@@ -3498,6 +3500,50 @@ window.STATIC_DATA = {
     {
         "server_id": 114,
         "app_id": 41
+    }
+],
+    plans:       [
+    {
+        "id": 1,
+        "server_id": 6,
+        "name": "10 a 59",
+        "screens": "R$ 6",
+        "price": "6"
+    },
+    {
+        "id": 5,
+        "server_id": 102,
+        "name": "10 a 49",
+        "screens": "-",
+        "price": "R$ 8,00"
+    },
+    {
+        "id": 6,
+        "server_id": 102,
+        "name": "50 a 99",
+        "screens": "-",
+        "price": "R$ 7,00"
+    },
+    {
+        "id": 7,
+        "server_id": 102,
+        "name": "100 a 499",
+        "screens": "-",
+        "price": "R$ 6,00"
+    },
+    {
+        "id": 8,
+        "server_id": 102,
+        "name": "500 a 999",
+        "screens": "-",
+        "price": "R$ 5,00"
+    },
+    {
+        "id": 9,
+        "server_id": 102,
+        "name": "1000 a 4999",
+        "screens": "-",
+        "price": "R$ 4,00"
     }
 ]
 };
