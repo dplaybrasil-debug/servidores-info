@@ -1,11 +1,11 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-09-14 04:13:38
+ * Gerado em: 2026-09-14 04:15:49
  * NÃO edite manualmente. Regenere via: php generate_data.php
  */
 window.STATIC_DATA = {
-    version:     "20260914-0413",
-    generated_at: "2026-09-14 04:13:38",
+    version:     "20260914-0415",
+    generated_at: "2026-09-14 04:15:49",
     servers:     [
     {
         "id": 102,
@@ -90,7 +90,7 @@ window.STATIC_DATA = {
         "channels": 2528,
         "created_at": "2026-04-27 06:09:59",
         "logo": "https:\/\/i.ibb.co\/hRP12mgZ\/Aplha-Stremin.png",
-        "table_image_url": "assets\/tabelas\/tabela-6-alpha-streming.jpg",
+        "table_image_url": "assets\/tabelas\/ALPHA STREAMING.jpg",
         "updated_at": "2026-06-21 04:06:38",
         "screens": 1,
         "panel_url": "",
@@ -162,7 +162,7 @@ window.STATIC_DATA = {
         "channels": 0,
         "created_at": "2026-06-14 20:59:02",
         "logo": "https:\/\/i.ibb.co\/5hyvBkD6\/AZONIX-PLAY.png",
-        "table_image_url": "assets\/tabelas\/tabela-135-azonix-plat.jpg",
+        "table_image_url": "assets\/tabelas\/AZONIX PLAY.jpg",
         "updated_at": null,
         "screens": 1,
         "panel_url": "",
@@ -288,7 +288,7 @@ window.STATIC_DATA = {
         "channels": 1532,
         "created_at": "2026-06-06 05:00:16",
         "logo": "https:\/\/i.ibb.co\/ns9g0tx5\/brasil-tv.jpg",
-        "table_image_url": "assets\/tabelas\/BRASIL-TV.jpg",
+        "table_image_url": "assets\/tabelas\/BRASIL TV.jpg",
         "updated_at": "2026-06-21 04:42:43",
         "screens": 2,
         "panel_url": "",
@@ -378,7 +378,7 @@ window.STATIC_DATA = {
         "channels": 0,
         "created_at": "2026-04-27 06:09:59",
         "logo": "https:\/\/i.ibb.co\/whCjWQzy\/BEEST-TV-CLIENTE-TV.png",
-        "table_image_url": "assets\/tabelas\/tabela-12-cliente-tv-beest-tv.jpg",
+        "table_image_url": "assets\/tabelas\/CLIENTE TV e BEESTV.jpg",
         "updated_at": "2026-06-06 04:52:19",
         "screens": 1,
         "panel_url": "",
@@ -576,7 +576,7 @@ window.STATIC_DATA = {
         "channels": 1100,
         "created_at": "2026-04-27 06:09:59",
         "logo": "https:\/\/i.ibb.co\/JwJR8t4p\/FIRE-TV-BLACK.png",
-        "table_image_url": "https:\/\/wsrv.nl\/?url=https%3A%2F%2Fi.imgur.com%2Fr1SFejM.jpeg",
+        "table_image_url": "assets\/tabelas\/FIRE-BLACK.jpg",
         "updated_at": "2026-06-21 05:00:08",
         "screens": 2,
         "panel_url": "",
@@ -1278,7 +1278,7 @@ window.STATIC_DATA = {
         "channels": 0,
         "created_at": "2026-04-27 06:09:59",
         "logo": "https:\/\/wsrv.nl\/?url=https%3A%2F%2Fi.imgur.com%2FiWZLRKn.png",
-        "table_image_url": "assets\/tabelas\/FAST.jpg",
+        "table_image_url": "assets\/tabelas\/PLAYFAST.jpg",
         "updated_at": "2026-06-06 04:55:06",
         "screens": 1,
         "panel_url": "",
@@ -1854,7 +1854,7 @@ window.STATIC_DATA = {
         "channels": 1564,
         "created_at": "2026-06-06 05:00:16",
         "logo": "https:\/\/i.ibb.co\/jvW9Z62q\/YELLOW-BOX.png",
-        "table_image_url": "assets\/tabelas\/tabela-123-yellow-box.jpg",
+        "table_image_url": "assets\/tabelas\/YELOW BOX.jpg",
         "updated_at": "2026-06-21 06:46:17",
         "screens": 1,
         "panel_url": "",
