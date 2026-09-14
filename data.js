@@ -1,11 +1,11 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-09-14 04:25:06
+ * Gerado em: 2026-09-14 17:16:39
  * NÃO edite manualmente. Regenere via: php generate_data.php
  */
 window.STATIC_DATA = {
-    version:     "20260914-0425",
-    generated_at: "2026-09-14 04:25:06",
+    version:     "20260914-1716",
+    generated_at: "2026-09-14 17:16:39",
     servers:     [
     {
         "id": 102,
@@ -576,7 +576,7 @@ window.STATIC_DATA = {
         "channels": 1100,
         "created_at": "2026-04-27 06:09:59",
         "logo": "https:\/\/i.ibb.co\/JwJR8t4p\/FIRE-TV-BLACK.png",
-        "table_image_url": "",
+        "table_image_url": "assets\/tabelas\/FIRE-BLACK.jpg",
         "updated_at": "2026-06-21 05:00:08",
         "screens": 2,
         "panel_url": "",
@@ -1632,13 +1632,13 @@ window.STATIC_DATA = {
         "name": "TR4",
         "url": "http:\/\/",
         "status": "active",
-        "description": "",
+        "description": "Detalhes sobre aplicativos da parceria no painel !",
         "movies": 37504,
         "series": 14571,
         "channels": 1899,
         "created_at": "2026-04-27 06:09:59",
         "logo": "https:\/\/i.ibb.co\/RT0jjmjC\/TR4.png",
-        "table_image_url": "",
+        "table_image_url": "assets\/tabelas\/TR4.jpeg",
         "updated_at": "2026-06-21 06:34:19",
         "screens": 1,
         "panel_url": "",
@@ -3500,6 +3500,14 @@ window.STATIC_DATA = {
     {
         "server_id": 114,
         "app_id": 41
+    },
+    {
+        "server_id": 86,
+        "app_id": 11
+    },
+    {
+        "server_id": 86,
+        "app_id": 40
     }
 ],
     plans:       [
