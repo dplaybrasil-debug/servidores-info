@@ -166,3 +166,14 @@ body {
 .form-group input, .form-group select, .form-group textarea { width: 100%; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); color: white; padding: 0.75rem; border-radius: 8px; }
 .form-group input:focus { outline: none; border-color: var(--primary); }
 .modal-actions { display: flex; justify-content: flex-end; gap: 1rem; margin-top: 2rem; }
+
+/* Otimizações de Carregamento de Imagens e Renderização */
+.card, .public-server-card, .apps-grid > div {
+    content-visibility: auto;
+    contain-intrinsic-size: 180px;
+}
+
+img[loading="lazy"] {
+    will-change: opacity;
+}
+
