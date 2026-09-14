@@ -324,13 +324,17 @@
                     const res = await fetch(fetchUrl);
                     const contentType = res.headers.get('content-type') || '';
                     if (res.ok && contentType.includes('application/json')) {
-                        data = await res.json();
-                    } else {
-                        throw new Error('API indisponível');
+                        const resJson = await res.json();
+                        if (resJson && !resJson.error) {
+                            data = resJson;
+                        }
                     }
                 } catch(apiErr) {
-                    // Fallback: dados estáticos (GitHub Pages)
-                    console.warn('API indisponível, usando dados estáticos (data.js)', apiErr);
+                    console.warn('API indisponível, tentando dados estáticos', apiErr);
+                }
+
+                if (!data) {
+                    // Fallback: dados estáticos (GitHub Pages ou API sem resultado)
                     if (window.STATIC_DATA && window.STATIC_DATA.servers) {
                         if (serverId) {
                             data = window.STATIC_DATA.servers.find(s => String(s.id) === String(serverId));
@@ -341,7 +345,7 @@
 
                         if (data) {
                             // Montar linked_apps a partir dos vínculos
-                            const links = window.STATIC_DATA.links || [];
+                            const links = window.STATIC_DATA.server_apps || window.STATIC_DATA.links || [];
                             const apps = window.STATIC_DATA.apps || [];
                             const linkedAppIds = links.filter(l => String(l.server_id) === String(data.id)).map(l => l.app_id);
                             data.linked_apps = apps.filter(a => linkedAppIds.includes(a.id));

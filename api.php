@@ -163,17 +163,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $id   = intval($_GET['id'] ?? 0);
         $slug = trim($_GET['slug'] ?? $_GET['s'] ?? $_GET['name'] ?? '');
 
+        $server = false;
+
         if ($id > 0) {
             $stmtSrv = $pdo->prepare("SELECT * FROM servers WHERE id = ?");
             $stmtSrv->execute([$id]);
+            $server = $stmtSrv->fetch(PDO::FETCH_ASSOC);
         } else if (!empty($slug)) {
-            $stmtSrv = $pdo->prepare("SELECT * FROM servers WHERE LOWER(name) = LOWER(?) OR REPLACE(REPLACE(LOWER(name), ' ', '-'), '_', '-') = LOWER(?)");
-            $stmtSrv->execute([$slug, $slug]);
-        } else {
-            $stmtSrv = false;
-        }
+            $apiSlugify = function($str) {
+                if (!$str) return '';
+                $str = iconv('utf-8', 'us-ascii//TRANSLIT', $str);
+                $str = strtolower($str);
+                $str = preg_replace('/[^a-z0-9\s-]/', '', $str);
+                $str = preg_replace('/[\s_]+/', '-', $str);
+                return trim($str, '-');
+            };
 
-        $server = $stmtSrv ? $stmtSrv->fetch(PDO::FETCH_ASSOC) : false;
+            $targetSlug = $apiSlugify($slug);
+            $stmtAll = $pdo->query("SELECT * FROM servers");
+            $allServers = $stmtAll->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach ($allServers as $s) {
+                if ($apiSlugify($s['name']) === $targetSlug || strtolower(trim($s['name'])) === strtolower(trim($slug))) {
+                    $server = $s;
+                    break;
+                }
+            }
+        }
         
         if ($server) {
             $srvId = $server['id'];

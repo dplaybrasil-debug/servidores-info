@@ -1,11 +1,11 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-09-14 04:20:44
+ * Gerado em: 2026-09-14 04:25:06
  * NÃO edite manualmente. Regenere via: php generate_data.php
  */
 window.STATIC_DATA = {
-    version:     "20260914-0420",
-    generated_at: "2026-09-14 04:20:44",
+    version:     "20260914-0425",
+    generated_at: "2026-09-14 04:25:06",
     servers:     [
     {
         "id": 102,
@@ -288,7 +288,7 @@ window.STATIC_DATA = {
         "channels": 1532,
         "created_at": "2026-06-06 05:00:16",
         "logo": "https:\/\/i.ibb.co\/ns9g0tx5\/brasil-tv.jpg",
-        "table_image_url": "assets\/tabelas\/BRASIL TV.jpg",
+        "table_image_url": "assets\/tabelas\/BRASIL + TV.jpg",
         "updated_at": "2026-06-21 04:42:43",
         "screens": 2,
         "panel_url": "",
@@ -567,7 +567,7 @@ window.STATIC_DATA = {
     },
     {
         "id": 33,
-        "name": "FIRE TV | BLACK",
+        "name": "FIRE TV - BLACK",
         "url": "http:\/\/",
         "status": "active",
         "description": "",
@@ -576,7 +576,7 @@ window.STATIC_DATA = {
         "channels": 1100,
         "created_at": "2026-04-27 06:09:59",
         "logo": "https:\/\/i.ibb.co\/JwJR8t4p\/FIRE-TV-BLACK.png",
-        "table_image_url": "assets\/tabelas\/FIRE-BLACK.jpg",
+        "table_image_url": "",
         "updated_at": "2026-06-21 05:00:08",
         "screens": 2,
         "panel_url": "",
