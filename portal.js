@@ -10,7 +10,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const extractImageUrl = (str) => {
         if (!str) return '';
-        return str.replace(/\[\/?img\]/gi, '').trim();
+        let clean = str.replace(/\[\/?img\]/gi, '').trim();
+        if (!clean) return '';
+        if (clean.startsWith('//')) clean = 'https:' + clean;
+        if (clean.includes('imgur.com')) {
+            return 'https://wsrv.nl/?url=' + encodeURIComponent(clean);
+        }
+        return clean;
     };
 
     const slugify = (str) => {

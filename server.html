@@ -262,7 +262,14 @@
     <div id="modalTable" onclick="closeTableModal()" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); z-index: 100000; justify-content: center; align-items: center; padding: 1rem; backdrop-filter: blur(10px);">
         <div onclick="event.stopPropagation()" style="position: relative; max-width: 95vw; max-height: 95vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
             <button onclick="closeTableModal()" aria-label="Fechar Tabela" style="position: absolute; top: -45px; right: 0; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; font-size: 1.8rem; cursor: pointer; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s; z-index: 10;" onmouseover="this.style.background='var(--primary)'; this.style.borderColor='var(--primary)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'; this.style.borderColor='rgba(255,255,255,0.3)'">&times;</button>
-            <img id="tableImg" src="" alt="Tabela de Valores" style="max-width: 100%; max-height: 85vh; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); user-select: none; -webkit-user-drag: none;" loading="eager" decoding="async" referrerpolicy="no-referrer" oncontextmenu="return false;" draggable="false" onerror="this.style.display='none'; document.getElementById('tableImgError').style.display='block';">
+            
+            <div id="tableImgLoader" style="display: none; color: white; font-size: 1.1rem; padding: 2rem; text-align: center;">
+                <div style="display: inline-block; width: 40px; height: 40px; border: 4px solid rgba(255,255,255,0.2); border-top-color: var(--primary); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 1rem;"></div>
+                <p style="margin: 0; color: #aaa;">Carregando tabela de valores...</p>
+            </div>
+
+            <img id="tableImg" src="" alt="Tabela de Valores" style="max-width: 100%; max-height: 85vh; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); user-select: none; -webkit-user-drag: none; display: none;" decoding="async" referrerpolicy="no-referrer" oncontextmenu="return false;" draggable="false" onload="handleTableImgLoad(this)" onerror="handleTableImgError(this)">
+            
             <div id="tableImgError" style="display: none; color: #ff6b6b; padding: 2rem; background: rgba(20,20,20,0.9); border-radius: 16px; text-align: center; border: 1px solid rgba(255,107,107,0.3); max-width: 400px;">
                 <p style="font-size: 1.2rem; margin-bottom: 0.5rem; font-weight: bold;">⚠️ Não foi possível carregar a tabela</p>
                 <p style="font-size: 0.9rem; color: #ccc;">A imagem da tabela pode estar temporariamente indisponível ou o link expirou.</p>
@@ -452,21 +459,35 @@
                 }
 
                 // Logo
-                let logoUrl = data.logo ? data.logo.replace(/\[\/?img\]/gi, '').trim() : '';
-                if (logoUrl) {
-                    document.getElementById('sLogo').src = logoUrl;
-                    document.getElementById('sLogo').style.display = 'block';
+                let rawLogo = data.logo ? data.logo.replace(/\[\/?img\]/gi, '').trim() : '';
+                if (rawLogo) {
+                    const logoEl = document.getElementById('sLogo');
+                    logoEl.src = getCleanImageUrl(rawLogo);
+                    logoEl.onerror = function() {
+                        if (!this.dataset.proxyAttempted && !this.src.includes('wsrv.nl')) {
+                            this.dataset.proxyAttempted = 'true';
+                            this.src = 'https://wsrv.nl/?url=' + encodeURIComponent(rawLogo);
+                        } else {
+                            this.style.display = 'none';
+                            document.getElementById('sNoLogo').style.display = 'block';
+                        }
+                    };
+                    logoEl.onload = function() {
+                        this.style.display = 'block';
+                    };
                 } else {
                     document.getElementById('sNoLogo').style.display = 'block';
                 }
 
                 // Tabela em Imagem
                 if (data.table_image_url && data.table_image_url.trim() !== '') {
-                    const cleanTableUrl = data.table_image_url.replace(/\[\/?img\]/gi, '').trim();
-                    if (cleanTableUrl) {
+                    const rawTableUrl = data.table_image_url.replace(/\[\/?img\]/gi, '').trim();
+                    if (rawTableUrl) {
+                        const cleanTableUrl = getCleanImageUrl(rawTableUrl);
                         const tableImgEl = document.getElementById('tableImg');
+                        tableImgEl.dataset.rawUrl = rawTableUrl;
+                        tableImgEl.dataset.proxyAttempted = cleanTableUrl.includes('wsrv.nl') ? 'true' : '';
                         tableImgEl.src = cleanTableUrl;
-                        tableImgEl.style.display = 'block';
                         document.getElementById('tableContainer').style.display = 'block';
                     }
                 }
@@ -477,9 +498,10 @@
                     document.querySelector('#appsCard h3').innerHTML = `Aplicativos Parceiros <span style="background: var(--primary); color: white; padding: 4px 12px; border-radius: 20px; font-size: 1rem; vertical-align: middle; margin-left: 0.5rem; box-shadow: 0 4px 10px rgba(59, 130, 246, 0.4);">${data.linked_apps.length}</span>`;
                     
                     data.linked_apps.forEach(app => {
-                        const appLogoUrl = app.logo ? app.logo.replace(/\[\/?img\]/gi, '').trim() : '';
-                        const logoHtml = appLogoUrl 
-                            ? `<img src="${appLogoUrl}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'app-logo\\'>📱</div>';" class="app-logo">` 
+                        const rawAppLogo = app.logo ? app.logo.replace(/\[\/?img\]/gi, '').trim() : '';
+                        const cleanAppLogo = getCleanImageUrl(rawAppLogo);
+                        const logoHtml = cleanAppLogo 
+                            ? `<img src="${cleanAppLogo}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="if(!this.dataset.proxied){this.dataset.proxied='1';this.src='https://wsrv.nl/?url='+encodeURIComponent('${rawAppLogo}');}else{this.onerror=null;this.parentElement.innerHTML='<div class=\\'app-logo\\'>📱</div>';}" class="app-logo">` 
                             : `<div class="app-logo">📱</div>`;
                             
                         appsContainer.innerHTML += `
@@ -502,22 +524,67 @@
             }
         });
 
+        // Helper global de tratamento de URLs
+        function getCleanImageUrl(url) {
+            if (!url) return '';
+            let clean = url.replace(/\[\/?img\]/gi, '').trim();
+            if (!clean) return '';
+            if (clean.startsWith('//')) clean = 'https:' + clean;
+            if (clean.includes('imgur.com')) {
+                return 'https://wsrv.nl/?url=' + encodeURIComponent(clean);
+            }
+            return clean;
+        }
+
         // Funções do Modal da Tabela
+        function handleTableImgLoad(img) {
+            const loader = document.getElementById('tableImgLoader');
+            if (loader) loader.style.display = 'none';
+            img.style.display = 'block';
+        }
+
+        function handleTableImgError(img) {
+            const loader = document.getElementById('tableImgLoader');
+            if (loader) loader.style.display = 'none';
+
+            if (img.dataset.rawUrl && !img.dataset.proxyAttempted && !img.src.includes('wsrv.nl')) {
+                img.dataset.proxyAttempted = 'true';
+                img.src = 'https://wsrv.nl/?url=' + encodeURIComponent(img.dataset.rawUrl);
+                return;
+            }
+
+            img.style.display = 'none';
+            const err = document.getElementById('tableImgError');
+            if (err) err.style.display = 'block';
+        }
+
         function openTableModal() {
             const modal = document.getElementById('modalTable');
             const img = document.getElementById('tableImg');
+            const loader = document.getElementById('tableImgLoader');
             const err = document.getElementById('tableImgError');
-            if (img && err) {
-                img.style.display = 'block';
-                err.style.display = 'none';
+
+            if (err) err.style.display = 'none';
+
+            if (img && img.dataset.rawUrl) {
+                if (!img.complete || img.naturalWidth === 0) {
+                    img.style.display = 'none';
+                    if (loader) loader.style.display = 'block';
+                } else {
+                    if (loader) loader.style.display = 'none';
+                    img.style.display = 'block';
+                }
             }
+
             modal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
+
         function closeTableModal() {
             document.getElementById('modalTable').style.display = 'none';
             document.body.style.overflow = '';
         }
+
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeTableModal();
         });
