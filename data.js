@@ -1,11 +1,11 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-09-15 02:40:24
+ * Gerado em: 2026-09-15 02:41:23
  * NÃO edite manualmente. Regenere via: php generate_data.php
  */
 window.STATIC_DATA = {
-    version:     "20260915-0240",
-    generated_at: "2026-09-15 02:40:24",
+    version:     "20260915-0241",
+    generated_at: "2026-09-15 02:41:23",
     servers:     [
     {
         "id": 102,
@@ -161,7 +161,7 @@ window.STATIC_DATA = {
         "series": 0,
         "channels": 0,
         "created_at": "2026-06-14 20:59:02",
-        "logo": "https:\/\/i.ibb.co\/5hyvBkD6\/AZONIX-PLAY.png",
+        "logo": "assets\/logos\/logo-135-azonix-plat.png",
         "table_image_url": "assets\/tabelas\/AZONIX PLAY.jpg",
         "updated_at": null,
         "screens": 1,
@@ -755,7 +755,7 @@ window.STATIC_DATA = {
         "series": 0,
         "channels": 0,
         "created_at": "2026-06-11 14:47:55",
-        "logo": "https:\/\/i.ibb.co\/tMkQzLJ1\/INFINITE.png",
+        "logo": "assets\/logos\/logo-134-infinite.png",
         "table_image_url": "assets\/tabelas\/INFINITE.jpg",
         "updated_at": null,
         "screens": 1,
@@ -1349,7 +1349,7 @@ window.STATIC_DATA = {
         "series": 0,
         "channels": 0,
         "created_at": "2026-08-17 15:16:44",
-        "logo": "https:\/\/i.ibb.co\/YTWKTdMD\/RAZOR-S-1.png",
+        "logo": "assets\/logos\/logo-138-razor-s.png",
         "table_image_url": "",
         "updated_at": "2026-08-17 15:18:00",
         "screens": 1,
@@ -1367,7 +1367,7 @@ window.STATIC_DATA = {
         "series": 0,
         "channels": 0,
         "created_at": "2026-06-18 03:48:20",
-        "logo": "https:\/\/i.ibb.co\/PGmLFzs7\/RED-PLAY.png",
+        "logo": "assets\/logos\/logo-136-red-play.png",
         "table_image_url": "assets\/tabelas\/REDPLAY.jpg",
         "updated_at": null,
         "screens": 2,
@@ -1889,7 +1889,7 @@ window.STATIC_DATA = {
         "series": 0,
         "channels": 0,
         "created_at": "2026-06-19 03:01:46",
-        "logo": "https:\/\/i.ibb.co\/BKdnKS2v\/ZAPPY.png",
+        "logo": "assets\/logos\/logo-137-zappy.png",
         "table_image_url": "assets\/tabelas\/ZAPPY.jpg",
         "updated_at": null,
         "screens": 1,
