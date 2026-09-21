@@ -280,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Filtro de texto — pesquisa nome + quantidade de telas (ex: "2 telas", "telas", "3 tela")
         if (term) result = result.filter(s => {
             const sc = parseInt(s.screens, 10) || 1;
-            const telaLabel = `${sc} tela${sc >= 2 ? 's' : ''}`;
+            const telaLabel = `${sc} tela${sc >= 2 ? 's multi tela multitela mult tela' : ''}`;
             const searchable = `${s.name} ${telaLabel}`.toLowerCase();
             return searchable.includes(term);
         });

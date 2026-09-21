@@ -531,11 +531,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const updatePublicFilterCounts = () => {
         const total   = activeServers.length;
+        const screens = activeServers.filter(s => parseInt(s.screens, 10) >= 2).length;
         const hybrid  = activeServers.filter(s => (s.server_type || 'hybrid') === 'hybrid').length;
         const iptv    = activeServers.filter(s => (s.server_type || 'hybrid') === 'iptv').length;
         const android = activeServers.filter(s => (s.server_type || 'hybrid') === 'android').length;
         const el = (id) => document.getElementById(id);
         if (el('pubSrvCnt-all'))     el('pubSrvCnt-all').textContent     = total;
+        if (el('pubSrvCnt-screens')) el('pubSrvCnt-screens').textContent = screens;
         if (el('pubSrvCnt-hybrid'))  el('pubSrvCnt-hybrid').textContent  = hybrid;
         if (el('pubSrvCnt-iptv'))    el('pubSrvCnt-iptv').textContent    = iptv;
         if (el('pubSrvCnt-android')) el('pubSrvCnt-android').textContent = android;
@@ -546,12 +548,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const f = window._pubSrvFilter || 'all';
         const pills = {
             all:     document.getElementById('pubSrvFilterAll'),
+            screens: document.getElementById('pubSrvFilterScreens'),
             hybrid:  document.getElementById('pubSrvFilterHybrid'),
             iptv:    document.getElementById('pubSrvFilterIptv'),
             android: document.getElementById('pubSrvFilterAndroid'),
         };
         const outlines = {
             all:     '2px solid rgba(255,255,255,0.6)',
+            screens: '2px solid #93c5fd',
             hybrid:  '2px solid #fde68a',
             iptv:    '2px solid #a5b4fc',
             android: '2px solid #6ee7b7',
@@ -566,13 +570,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const filter = window._pubSrvFilter || 'all';
         let result   = activeServers;
 
-        if (filter === 'hybrid' || filter === 'iptv' || filter === 'android') {
+        if (filter === 'screens') {
+            result = result.filter(s => parseInt(s.screens, 10) >= 2);
+        } else if (filter === 'hybrid' || filter === 'iptv' || filter === 'android') {
             result = result.filter(s => (s.server_type || 'hybrid') === filter);
         }
 
         if (term) result = result.filter(s => {
             const sc = parseInt(s.screens, 10) || 1;
-            const telaLabel = `${sc} tela${sc >= 2 ? 's' : ''}`;
+            const telaLabel = `${sc} tela${sc >= 2 ? 's multi tela multitela mult tela' : ''}`;
             const typeLabels = { hybrid: 'híbrido p2p iptv', iptv: 'iptv', android: 'android' };
             const typeLabel  = typeLabels[s.server_type || 'hybrid'] || '';
             return `${s.name} ${telaLabel} ${typeLabel}`.toLowerCase().includes(term);
