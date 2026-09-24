@@ -394,6 +394,10 @@ document.addEventListener('DOMContentLoaded', () => {
     window.openNewServerModal = () => {
         document.getElementById('formServer').reset();
         document.getElementById('srvId').value = '';
+        if(document.getElementById('srvLogoFileInput')) document.getElementById('srvLogoFileInput').value = '';
+        const statusEl = document.getElementById('srvLogoUploadStatus');
+        if (statusEl) statusEl.textContent = '';
+        updateSrvLogoPreview('');
         document.querySelector('#modalServer h2').textContent = 'Adicionar Servidor';
         document.getElementById('srvPanelUrl').value = '';
         document.getElementById('srvAppStoreUrl').value = '';
@@ -416,6 +420,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('srvScreens').value = srv.screens || 1;
         document.getElementById('srvType').value = srv.server_type || 'hybrid';
         document.getElementById('srvDesc').value = srv.description || '';
+        if(document.getElementById('srvLogoFileInput')) document.getElementById('srvLogoFileInput').value = '';
+        const statusEl = document.getElementById('srvLogoUploadStatus');
+        if (statusEl) statusEl.textContent = '';
+        updateSrvLogoPreview(srv.logo || '');
         document.querySelector('#modalServer h2').textContent = 'Editar Servidor';
         document.getElementById('btnDeleteServer').style.display = 'block';
         document.getElementById('btnManageApps').style.display = 'inline-block';
@@ -553,6 +561,10 @@ document.addEventListener('DOMContentLoaded', () => {
     window.openNewAppModal = () => {
         document.getElementById('formApp').reset();
         if(document.getElementById('appId')) document.getElementById('appId').value = '';
+        if(document.getElementById('appLogoFileInput')) document.getElementById('appLogoFileInput').value = '';
+        const statusEl = document.getElementById('appLogoUploadStatus');
+        if (statusEl) statusEl.textContent = '';
+        updateAppLogoPreview('');
         document.querySelector('#modalApp h2').textContent = 'Adicionar App Parceiro';
         document.getElementById('btnDeleteApp').style.display = 'none';
         openModal('modalApp');
@@ -572,6 +584,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('appUrl').value = app.url;
         document.getElementById('appLogo').value = app.logo || '';
         document.getElementById('appStatus').value = app.status;
+        if(document.getElementById('appLogoFileInput')) document.getElementById('appLogoFileInput').value = '';
+        const statusEl = document.getElementById('appLogoUploadStatus');
+        if (statusEl) statusEl.textContent = '';
+        updateAppLogoPreview(app.logo || '');
         document.querySelector('#modalApp h2').textContent = 'Editar App Parceiro';
         document.getElementById('btnDeleteApp').style.display = 'block';
         openModal('modalApp');
@@ -858,6 +874,151 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.style.display = input.value.length > 0 ? 'block' : 'none';
         });
     };
+
+    // --- UPLOAD E PREVIEW DE IMAGENS DE APPS E SERVIDORES ---
+    const updateAppLogoPreview = (path) => {
+        const previewBox  = document.getElementById('appLogoPreviewBox');
+        const previewImg  = document.getElementById('appLogoPreviewImg');
+        const previewPath = document.getElementById('appLogoPreviewPath');
+        const previewText = document.getElementById('appLogoPreviewText');
+        if (!previewBox || !previewImg) return;
+
+        const clean = (path || '').trim();
+        if (clean) {
+            previewImg.src = extractImageUrl(clean);
+            if (previewPath) previewPath.textContent = clean;
+            if (previewText) {
+                previewText.textContent = clean.startsWith('assets/apps/') ? '✓ Salvo em assets/apps/' : '✓ Imagem definida';
+            }
+            previewBox.style.display = 'flex';
+        } else {
+            previewBox.style.display = 'none';
+        }
+    };
+
+    const updateSrvLogoPreview = (path) => {
+        const previewBox  = document.getElementById('srvLogoPreviewBox');
+        const previewImg  = document.getElementById('srvLogoPreviewImg');
+        const previewPath = document.getElementById('srvLogoPreviewPath');
+        const previewText = document.getElementById('srvLogoPreviewText');
+        if (!previewBox || !previewImg) return;
+
+        const clean = (path || '').trim();
+        if (clean) {
+            previewImg.src = extractImageUrl(clean);
+            if (previewPath) previewPath.textContent = clean;
+            if (previewText) {
+                previewText.textContent = clean.startsWith('assets/logos/') ? '✓ Salvo em assets/logos/' : '✓ Imagem definida';
+            }
+            previewBox.style.display = 'flex';
+        } else {
+            previewBox.style.display = 'none';
+        }
+    };
+
+    // Listeners do Logo do App
+    document.getElementById('btnChooseAppLogo')?.addEventListener('click', () => {
+        document.getElementById('appLogoFileInput')?.click();
+    });
+
+    document.getElementById('appLogoFileInput')?.addEventListener('change', async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const statusEl = document.getElementById('appLogoUploadStatus');
+        if (statusEl) {
+            statusEl.textContent = '⏳ Salvando em assets/apps...';
+            statusEl.style.color = '#38bdf8';
+        }
+
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('app_name', document.getElementById('appName')?.value || '');
+        const appId = document.getElementById('appId')?.value || '';
+        if (appId) formData.append('app_id', appId);
+
+        try {
+            const res = await fetch('api.php?action=upload_app_logo', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await res.json();
+            if (result.success) {
+                document.getElementById('appLogo').value = result.path;
+                if (statusEl) {
+                    statusEl.textContent = '✅ Salvo na pasta assets/apps!';
+                    statusEl.style.color = '#10b981';
+                }
+                updateAppLogoPreview(result.path);
+            } else {
+                if (statusEl) {
+                    statusEl.textContent = '❌ ' + (result.error || 'Erro no envio');
+                    statusEl.style.color = '#ef4444';
+                }
+            }
+        } catch (err) {
+            if (statusEl) {
+                statusEl.textContent = '❌ Falha ao enviar imagem.';
+                statusEl.style.color = '#ef4444';
+            }
+        }
+    });
+
+    document.getElementById('appLogo')?.addEventListener('input', (e) => {
+        updateAppLogoPreview(e.target.value);
+    });
+
+    // Listeners do Logo do Servidor
+    document.getElementById('btnChooseSrvLogo')?.addEventListener('click', () => {
+        document.getElementById('srvLogoFileInput')?.click();
+    });
+
+    document.getElementById('srvLogoFileInput')?.addEventListener('change', async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const statusEl = document.getElementById('srvLogoUploadStatus');
+        if (statusEl) {
+            statusEl.textContent = '⏳ Salvando em assets/logos...';
+            statusEl.style.color = '#38bdf8';
+        }
+
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('server_name', document.getElementById('srvName')?.value || '');
+        const srvId = document.getElementById('srvId')?.value || '';
+        if (srvId) formData.append('server_id', srvId);
+
+        try {
+            const res = await fetch('api.php?action=upload_server_logo', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await res.json();
+            if (result.success) {
+                document.getElementById('srvLogo').value = result.path;
+                if (statusEl) {
+                    statusEl.textContent = '✅ Salvo na pasta assets/logos!';
+                    statusEl.style.color = '#10b981';
+                }
+                updateSrvLogoPreview(result.path);
+            } else {
+                if (statusEl) {
+                    statusEl.textContent = '❌ ' + (result.error || 'Erro no envio');
+                    statusEl.style.color = '#ef4444';
+                }
+            }
+        } catch (err) {
+            if (statusEl) {
+                statusEl.textContent = '❌ Falha ao enviar logo.';
+                statusEl.style.color = '#ef4444';
+            }
+        }
+    });
+
+    document.getElementById('srvLogo')?.addEventListener('input', (e) => {
+        updateSrvLogoPreview(e.target.value);
+    });
 
     addClearBtn('searchServers');
     addClearBtn('searchApps');

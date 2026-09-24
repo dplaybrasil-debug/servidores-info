@@ -4,7 +4,140 @@ require 'db.php';
 
 $action = $_GET['action'] ?? '';
 
+function safeSlug($str) {
+    if (!$str) return '';
+    $trans = @iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $str);
+    if ($trans === false) {
+        $trans = preg_replace('/[áàãâä]/ui', 'a', $str);
+        $trans = preg_replace('/[éèêë]/ui', 'e', $trans);
+        $trans = preg_replace('/[íìîï]/ui', 'i', $trans);
+        $trans = preg_replace('/[óòõôö]/ui', 'o', $trans);
+        $trans = preg_replace('/[úùûü]/ui', 'u', $trans);
+        $trans = preg_replace('/[ç]/ui', 'c', $trans);
+    }
+    $slug = strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $trans));
+    return trim($slug, '-');
+}
+
+function regenerateDataJs($pdo) {
+    try {
+        $servers = $pdo->query("SELECT * FROM servers WHERE status = 'active' ORDER BY name ASC")->fetchAll(PDO::FETCH_ASSOC);
+        $apps = $pdo->query("SELECT * FROM partner_apps WHERE status = 'active' ORDER BY name ASC")->fetchAll(PDO::FETCH_ASSOC);
+        $contacts = [];
+        try {
+            $contacts = $pdo->query("SELECT * FROM support_contacts WHERE active = 1 ORDER BY sort_order ASC, id ASC")->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {}
+        $server_apps = [];
+        try {
+            $server_apps = $pdo->query("SELECT server_id, app_id FROM server_apps")->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {}
+        $plans = [];
+        try {
+            $plans = $pdo->query("SELECT * FROM server_plans ORDER BY server_id ASC, id ASC")->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {}
+
+        $json_servers     = json_encode($servers,     JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        $json_apps        = json_encode($apps,        JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        $json_contacts    = json_encode($contacts,    JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        $json_server_apps = json_encode($server_apps, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        $json_plans       = json_encode($plans,       JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        $generated_at     = date('Y-m-d H:i:s');
+        $version          = date('Ymd-Hi');
+
+        $content = "/**\n * data.js — Dados estáticos exportados automaticamente.\n * Gerado em: {$generated_at}\n * NÃO edite manualmente. Regenere via: php generate_data.php\n */\nwindow.STATIC_DATA = {\n    version:     \"{$version}\",\n    generated_at: \"{$generated_at}\",\n    servers:     {$json_servers},\n    apps:        {$json_apps},\n    contacts:    {$json_contacts},\n    server_apps: {$json_server_apps},\n    plans:       {$json_plans}\n};\n";
+
+        file_put_contents(__DIR__ . '/data.js', $content);
+    } catch (Exception $e) {}
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // --- UPLOADS DE ARQUIVOS (MULTIPART) ---
+    if ($action === 'upload_app_logo') {
+        if (!isset($_FILES['file']) || $_FILES['file']['error'] !== UPLOAD_ERR_OK) {
+            $code = $_FILES['file']['error'] ?? 'no_file';
+            echo json_encode(['success' => false, 'error' => "Erro no recebimento da imagem ($code)."]);
+            exit;
+        }
+
+        $file = $_FILES['file'];
+        $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+        $allowed = ['png', 'jpg', 'jpeg', 'webp', 'gif', 'svg'];
+        if (!in_array($ext, $allowed)) {
+            echo json_encode(['success' => false, 'error' => 'Formato não suportado. Por favor, envie uma imagem PNG, JPG, WEBP, GIF ou SVG.']);
+            exit;
+        }
+
+        $appName = trim($_POST['app_name'] ?? '');
+        $appId = intval($_POST['app_id'] ?? 0);
+
+        $sourceText = !empty($appName) ? $appName : pathinfo($file['name'], PATHINFO_FILENAME);
+        $slug = safeSlug($sourceText);
+        if (empty($slug)) {
+            $slug = 'app';
+        }
+
+        $prefix = $appId > 0 ? "app-{$appId}-" : "app-";
+        $fileName = $prefix . $slug . '.' . $ext;
+
+        $targetDir = __DIR__ . '/assets/apps';
+        if (!is_dir($targetDir)) {
+            mkdir($targetDir, 0777, true);
+        }
+
+        $targetPath = $targetDir . '/' . $fileName;
+
+        if (move_uploaded_file($file['tmp_name'], $targetPath)) {
+            $relativePath = 'assets/apps/' . $fileName;
+            echo json_encode(['success' => true, 'path' => $relativePath, 'filename' => $fileName]);
+        } else {
+            echo json_encode(['success' => false, 'error' => 'Falha ao salvar imagem na pasta assets/apps/.']);
+        }
+        exit;
+    }
+
+    if ($action === 'upload_server_logo') {
+        if (!isset($_FILES['file']) || $_FILES['file']['error'] !== UPLOAD_ERR_OK) {
+            $code = $_FILES['file']['error'] ?? 'no_file';
+            echo json_encode(['success' => false, 'error' => "Erro no recebimento da imagem ($code)."]);
+            exit;
+        }
+
+        $file = $_FILES['file'];
+        $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+        $allowed = ['png', 'jpg', 'jpeg', 'webp', 'gif', 'svg'];
+        if (!in_array($ext, $allowed)) {
+            echo json_encode(['success' => false, 'error' => 'Formato não suportado. Envie PNG, JPG, WEBP, GIF ou SVG.']);
+            exit;
+        }
+
+        $srvName = trim($_POST['server_name'] ?? '');
+        $srvId = intval($_POST['server_id'] ?? 0);
+
+        $sourceText = !empty($srvName) ? $srvName : pathinfo($file['name'], PATHINFO_FILENAME);
+        $slug = safeSlug($sourceText);
+        if (empty($slug)) {
+            $slug = 'server';
+        }
+
+        $prefix = $srvId > 0 ? "logo-{$srvId}-" : "logo-";
+        $fileName = $prefix . $slug . '.' . $ext;
+
+        $targetDir = __DIR__ . '/assets/logos';
+        if (!is_dir($targetDir)) {
+            mkdir($targetDir, 0777, true);
+        }
+
+        $targetPath = $targetDir . '/' . $fileName;
+
+        if (move_uploaded_file($file['tmp_name'], $targetPath)) {
+            $relativePath = 'assets/logos/' . $fileName;
+            echo json_encode(['success' => true, 'path' => $relativePath, 'filename' => $fileName]);
+        } else {
+            echo json_encode(['success' => false, 'error' => 'Falha ao salvar imagem na pasta assets/logos/.']);
+        }
+        exit;
+    }
+
     $data = json_decode(file_get_contents('php://input'), true);
     
     // --- SERVIDORES ---
@@ -82,6 +215,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($action === 'update_app') {
         $stmt = $pdo->prepare("UPDATE partner_apps SET name = ?, url = ?, logo = ?, status = ? WHERE id = ?");
         $stmt->execute([$data['name'], $data['url'], $data['logo'] ?? '', $data['status'], $data['id']]);
+        regenerateDataJs($pdo);
         echo json_encode(['success' => true]);
         exit;
     }
@@ -89,13 +223,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($action === 'create_app') {
         $stmt = $pdo->prepare("INSERT INTO partner_apps (name, url, logo, status) VALUES (?, ?, ?, ?)");
         $stmt->execute([$data['name'], $data['url'], $data['logo'], $data['status']]);
-        echo json_encode(['success' => true, 'id' => $pdo->lastInsertId()]);
+        $newId = $pdo->lastInsertId();
+        regenerateDataJs($pdo);
+        echo json_encode(['success' => true, 'id' => $newId]);
         exit;
     }
 
     if ($action === 'delete_app') {
         $stmt = $pdo->prepare("DELETE FROM partner_apps WHERE id = ?");
         $stmt->execute([$data['id']]);
+        regenerateDataJs($pdo);
         echo json_encode(['success' => true]);
         exit;
     }
@@ -103,6 +240,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($action === 'toggle_app_status') {
         $stmt = $pdo->prepare("UPDATE partner_apps SET status = ? WHERE id = ?");
         $stmt->execute([$data['status'], $data['id']]);
+        regenerateDataJs($pdo);
         echo json_encode(['success' => true]);
         exit;
     }

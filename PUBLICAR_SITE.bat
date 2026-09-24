@@ -23,7 +23,7 @@ echo.
 
 :: 2. Commit no Git
 echo [2/3] Fazendo commit no Git...
-git add data.js index.html style.css portal.js server.html admin.php script.js
+git add -A
 git commit -m "chore: publicar atualizacoes do site"
 if %errorlevel% neq 0 (
     echo.

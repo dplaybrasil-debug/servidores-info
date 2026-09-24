@@ -1,11 +1,11 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-09-21 23:28:31
+ * Gerado em: 2026-09-24 02:32:01
  * NÃO edite manualmente. Regenere via: php generate_data.php
  */
 window.STATIC_DATA = {
-    version:     "20260921-2328",
-    generated_at: "2026-09-21 23:28:31",
+    version:     "20260924-0232",
+    generated_at: "2026-09-24 02:32:01",
     servers:     [
     {
         "id": 102,
@@ -1955,7 +1955,7 @@ window.STATIC_DATA = {
         "id": 17,
         "name": "BIG PLAYER",
         "url": "",
-        "logo": "assets\/apps\/app-17-big-player.jpg",
+        "logo": "assets\/apps\/app-17-big-player.png",
         "status": "active",
         "created_at": "2026-04-27 07:06:32"
     },
@@ -1968,12 +1968,28 @@ window.STATIC_DATA = {
         "created_at": "2026-04-27 07:05:40"
     },
     {
+        "id": 56,
+        "name": "BOX LITE",
+        "url": "",
+        "logo": "assets\/apps\/app-box-lite.jpg",
+        "status": "active",
+        "created_at": "2026-09-23 15:08:22"
+    },
+    {
         "id": 45,
         "name": "BOX PLAYER",
         "url": "",
         "logo": "assets\/apps\/app-45-box-player.jpg",
         "status": "active",
         "created_at": "2026-04-27 18:04:14"
+    },
+    {
+        "id": 57,
+        "name": "BOX PRIME",
+        "url": "",
+        "logo": "assets\/apps\/app-box-prime.jpg",
+        "status": "active",
+        "created_at": "2026-09-23 15:08:48"
     },
     {
         "id": 22,
@@ -1998,6 +2014,14 @@ window.STATIC_DATA = {
         "logo": "assets\/apps\/app-23-dream-streming.jpg",
         "status": "active",
         "created_at": "2026-04-27 07:08:46"
+    },
+    {
+        "id": 55,
+        "name": "DUPLEX MAX",
+        "url": "",
+        "logo": "assets\/apps\/app-duplex-max.png",
+        "status": "active",
+        "created_at": "2026-09-23 15:07:26"
     },
     {
         "id": 24,
@@ -2238,6 +2262,14 @@ window.STATIC_DATA = {
         "logo": "assets\/apps\/app-18-quick-player.jpg",
         "status": "active",
         "created_at": "2026-04-27 07:06:32"
+    },
+    {
+        "id": 54,
+        "name": "QUICK PLUS",
+        "url": "",
+        "logo": "assets\/apps\/app-quick-plus.jpeg",
+        "status": "active",
+        "created_at": "2026-09-23 14:19:05"
     },
     {
         "id": 20,
@@ -2934,26 +2966,6 @@ window.STATIC_DATA = {
         "app_id": 40
     },
     {
-        "server_id": 71,
-        "app_id": 2
-    },
-    {
-        "server_id": 71,
-        "app_id": 4
-    },
-    {
-        "server_id": 71,
-        "app_id": 5
-    },
-    {
-        "server_id": 71,
-        "app_id": 11
-    },
-    {
-        "server_id": 71,
-        "app_id": 49
-    },
-    {
         "server_id": 93,
         "app_id": 2
     },
@@ -3508,6 +3520,50 @@ window.STATIC_DATA = {
     {
         "server_id": 86,
         "app_id": 40
+    },
+    {
+        "server_id": 71,
+        "app_id": 2
+    },
+    {
+        "server_id": 71,
+        "app_id": 17
+    },
+    {
+        "server_id": 71,
+        "app_id": 4
+    },
+    {
+        "server_id": 71,
+        "app_id": 5
+    },
+    {
+        "server_id": 71,
+        "app_id": 28
+    },
+    {
+        "server_id": 71,
+        "app_id": 11
+    },
+    {
+        "server_id": 71,
+        "app_id": 49
+    },
+    {
+        "server_id": 71,
+        "app_id": 19
+    },
+    {
+        "server_id": 71,
+        "app_id": 18
+    },
+    {
+        "server_id": 71,
+        "app_id": 54
+    },
+    {
+        "server_id": 71,
+        "app_id": 20
     }
 ],
     plans:       [

@@ -148,7 +148,26 @@
                 <input type="hidden" id="srvId">
                 <div class="form-group"><label>Nome</label><input type="text" id="srvName" required></div>
                 <div class="form-group"><label>URL (Opcional)</label><input type="text" id="srvUrl"></div>
-                <div class="form-group"><label>URL da Imagem/Logo (Opcional)</label><input type="text" id="srvLogo"></div>
+                <div class="form-group">
+                    <label>Logo do Servidor</label>
+                    <div style="display: flex; gap: 0.75rem; align-items: center; margin-bottom: 0.6rem; flex-wrap: wrap;">
+                        <input type="file" id="srvLogoFileInput" accept="image/*" style="display: none;">
+                        <button type="button" class="btn-secondary" id="btnChooseSrvLogo" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 0.9rem; font-size: 0.85rem; cursor: pointer; border-radius: 6px; border: 1px solid var(--glass-border); background: rgba(255,255,255,0.08); color: white;">
+                            📁 Escolher do Computador
+                        </button>
+                        <span id="srvLogoUploadStatus" style="font-size: 0.82rem; font-weight: 500;"></span>
+                    </div>
+
+                    <div id="srvLogoPreviewBox" style="display: none; align-items: center; gap: 0.8rem; margin-bottom: 0.6rem; padding: 0.6rem 0.8rem; background: rgba(0,0,0,0.35); border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                        <img id="srvLogoPreviewImg" src="" alt="Preview" style="width: 48px; height: 48px; object-fit: cover; border-radius: 8px; background: #0b0f19; box-shadow: 0 2px 8px rgba(0,0,0,0.5);">
+                        <div style="display: flex; flex-direction: column; gap: 2px; overflow: hidden; flex: 1;">
+                            <span id="srvLogoPreviewText" style="font-size: 0.82rem; color: #10b981; font-weight: 600;">✓ Salvo em assets/logos/</span>
+                            <span id="srvLogoPreviewPath" style="font-size: 0.74rem; color: var(--text-muted); text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"></span>
+                        </div>
+                    </div>
+
+                    <input type="text" id="srvLogo" placeholder="assets/logos/exemplo.png ou clique em Escolher do Computador">
+                </div>
                 <div class="form-group"><label>Imagem da Tabela de Preços (Link Imgur ou similar)</label><input type="text" id="srvTableImg" placeholder="https://..."></div>
                 <div class="form-group"><label>Status</label>
                     <select id="srvStatus">
@@ -199,7 +218,27 @@
             <form id="formApp">
                 <div class="form-group"><label>Nome do App</label><input type="text" id="appName" required></div>
                 <div class="form-group"><label>Link de Download / URL (Opcional)</label><input type="text" id="appUrl"></div>
-                <div class="form-group"><label>URL da Imagem/Logo (Opcional)</label><input type="text" id="appLogo"></div>
+                <div class="form-group">
+                    <label>Imagem / Logo do App</label>
+                    
+                    <div style="display: flex; gap: 0.75rem; align-items: center; margin-bottom: 0.6rem; flex-wrap: wrap;">
+                        <input type="file" id="appLogoFileInput" accept="image/*" style="display: none;">
+                        <button type="button" class="btn-secondary" id="btnChooseAppLogo" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 0.9rem; font-size: 0.85rem; cursor: pointer; border-radius: 6px; border: 1px solid var(--glass-border); background: rgba(255,255,255,0.08); color: white;">
+                            📁 Escolher do Computador
+                        </button>
+                        <span id="appLogoUploadStatus" style="font-size: 0.82rem; font-weight: 500;"></span>
+                    </div>
+
+                    <div id="appLogoPreviewBox" style="display: none; align-items: center; gap: 0.8rem; margin-bottom: 0.6rem; padding: 0.6rem 0.8rem; background: rgba(0,0,0,0.35); border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                        <img id="appLogoPreviewImg" src="" alt="Preview" style="width: 48px; height: 48px; object-fit: cover; border-radius: 8px; background: #0b0f19; box-shadow: 0 2px 8px rgba(0,0,0,0.5);">
+                        <div style="display: flex; flex-direction: column; gap: 2px; overflow: hidden; flex: 1;">
+                            <span id="appLogoPreviewText" style="font-size: 0.82rem; color: #10b981; font-weight: 600;">✓ Salvo em assets/apps/</span>
+                            <span id="appLogoPreviewPath" style="font-size: 0.74rem; color: var(--text-muted); text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"></span>
+                        </div>
+                    </div>
+
+                    <input type="text" id="appLogo" placeholder="assets/apps/exemplo.png ou clique em Escolher do Computador">
+                </div>
                 <div class="form-group"><label>Status</label>
                     <select id="appStatus">
                         <option value="active">Ativo</option>
@@ -371,7 +410,7 @@
         </div>
     </div>
 
-    <script src="script.js?v=24"></script>
+    <script src="script.js?v=25"></script>
 
 </body>
 </html>
