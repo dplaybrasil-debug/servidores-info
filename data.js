@@ -1,11 +1,11 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-09-24 02:32:01
+ * Gerado em: 2026-09-30 17:30:21
  * NÃO edite manualmente. Regenere via: php generate_data.php
  */
 window.STATIC_DATA = {
-    version:     "20260924-0232",
-    generated_at: "2026-09-24 02:32:01",
+    version:     "20260930-1730",
+    generated_at: "2026-09-30 17:30:21",
     servers:     [
     {
         "id": 102,
@@ -1277,7 +1277,7 @@ window.STATIC_DATA = {
         "series": 0,
         "channels": 0,
         "created_at": "2026-04-27 06:09:59",
-        "logo": "https:\/\/wsrv.nl\/?url=https%3A%2F%2Fi.imgur.com%2FiWZLRKn.png",
+        "logo": "assets\/logos\/logo-34-play-fast.jpg",
         "table_image_url": "assets\/tabelas\/PLAYFAST.jpg",
         "updated_at": "2026-06-06 04:55:06",
         "screens": 1,
@@ -1439,7 +1439,7 @@ window.STATIC_DATA = {
         "series": 0,
         "channels": 0,
         "created_at": "2026-04-27 06:09:59",
-        "logo": "",
+        "logo": "assets\/logos\/logo-58-shazan-play.jpg",
         "table_image_url": "assets\/tabelas\/SHAZAN PLAY.jpg",
         "updated_at": null,
         "screens": 2,
@@ -2342,14 +2342,6 @@ window.STATIC_DATA = {
         "logo": "assets\/apps\/app-38-vertu-play.png",
         "status": "active",
         "created_at": "2026-04-27 07:14:15"
-    },
-    {
-        "id": 50,
-        "name": "VIPER PLAYER",
-        "url": "",
-        "logo": "assets\/apps\/app-50-viper-player.png",
-        "status": "active",
-        "created_at": "2026-05-02 23:30:33"
     },
     {
         "id": 40,
@@ -3386,46 +3378,6 @@ window.STATIC_DATA = {
         "app_id": 11
     },
     {
-        "server_id": 6,
-        "app_id": 2
-    },
-    {
-        "server_id": 6,
-        "app_id": 17
-    },
-    {
-        "server_id": 6,
-        "app_id": 3
-    },
-    {
-        "server_id": 6,
-        "app_id": 43
-    },
-    {
-        "server_id": 6,
-        "app_id": 11
-    },
-    {
-        "server_id": 6,
-        "app_id": 51
-    },
-    {
-        "server_id": 6,
-        "app_id": 19
-    },
-    {
-        "server_id": 6,
-        "app_id": 18
-    },
-    {
-        "server_id": 6,
-        "app_id": 20
-    },
-    {
-        "server_id": 6,
-        "app_id": 36
-    },
-    {
         "server_id": 59,
         "app_id": 3
     },
@@ -3564,6 +3516,62 @@ window.STATIC_DATA = {
     {
         "server_id": 71,
         "app_id": 20
+    },
+    {
+        "server_id": 6,
+        "app_id": 2
+    },
+    {
+        "server_id": 6,
+        "app_id": 17
+    },
+    {
+        "server_id": 6,
+        "app_id": 3
+    },
+    {
+        "server_id": 6,
+        "app_id": 43
+    },
+    {
+        "server_id": 6,
+        "app_id": 42
+    },
+    {
+        "server_id": 6,
+        "app_id": 4
+    },
+    {
+        "server_id": 6,
+        "app_id": 53
+    },
+    {
+        "server_id": 6,
+        "app_id": 5
+    },
+    {
+        "server_id": 6,
+        "app_id": 11
+    },
+    {
+        "server_id": 6,
+        "app_id": 51
+    },
+    {
+        "server_id": 6,
+        "app_id": 19
+    },
+    {
+        "server_id": 6,
+        "app_id": 18
+    },
+    {
+        "server_id": 6,
+        "app_id": 20
+    },
+    {
+        "server_id": 6,
+        "app_id": 36
     }
 ],
     plans:       [

@@ -356,7 +356,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         
         if($app) {
             // Busca Servidores vinculados
-            $stmtSrv = $pdo->prepare("SELECT s.id, s.name, s.logo FROM servers s INNER JOIN server_apps sa ON s.id = sa.server_id WHERE sa.app_id = ? AND s.status = 'active' ORDER BY s.name ASC");
+            $stmtSrv = $pdo->prepare("SELECT s.id, s.name, s.logo, s.screens, s.server_type FROM servers s INNER JOIN server_apps sa ON s.id = sa.server_id WHERE sa.app_id = ? AND s.status = 'active' ORDER BY s.name ASC");
             $stmtSrv->execute([$id]);
             $app['linked_servers'] = $stmtSrv->fetchAll(PDO::FETCH_ASSOC);
             

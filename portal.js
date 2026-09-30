@@ -2,6 +2,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let activeServers = [];
     let activeApps = [];
     let currentTab = 'servers';
+    let isApiAvailable = false;
+
+    // Configurações de tipo de servidor
+    const typeConfig = {
+        hybrid:  { label: 'Híbrido',  emoji: '🔀', color: 'rgba(251,191,36,0.92)',  border: 'rgba(251,191,36,0.6)' },
+        iptv:    { label: 'IPTV',     emoji: '📡', color: 'rgba(99,102,241,0.92)',  border: 'rgba(99,102,241,0.6)' },
+        android: { label: 'Android',  emoji: '🤖', color: 'rgba(52,211,153,0.92)',  border: 'rgba(52,211,153,0.6)' },
+    };
 
     // --- FUNÇÕES DE LIMPEZA E FORMATAÇÃO ---
     const escapeHtml = (str) => {
@@ -39,6 +47,27 @@ document.addEventListener('DOMContentLoaded', () => {
         return `server.html?s=${slug}`;
     };
 
+    // Helper para obter servidores vinculados a um app via dados estáticos (STATIC_DATA)
+    const getLinkedServersForApp = (appId) => {
+        const staticLinks = (window.STATIC_DATA && Array.isArray(window.STATIC_DATA.server_apps))
+            ? window.STATIC_DATA.server_apps
+            : [];
+
+        const linkedServerIds = new Set(
+            staticLinks
+                .filter(link => String(link.app_id) === String(appId))
+                .map(link => String(link.server_id))
+        );
+
+        const pool = (activeServers && activeServers.length > 0)
+            ? activeServers
+            : (window.STATIC_DATA && window.STATIC_DATA.servers ? window.STATIC_DATA.servers : []);
+
+        return pool
+            .filter(s => s.status === 'active' && linkedServerIds.has(String(s.id)))
+            .sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+    };
+
     // --- CARREGAMENTO DE DADOS ---
     const loadAllData = async () => {
         try {
@@ -52,6 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const resApp = await fetch('api.php?action=list_apps');
             const apps = await resApp.json();
             activeApps = apps.filter(a => a.status === 'active');
+            isApiAvailable = true;
 
             // Atualiza Contadores nas Abas
             const btnSrv = document.getElementById('btnServidores');
@@ -72,6 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch(e) {
             // --- FALLBACK: Dados estáticos (GitHub Pages) ---
+            isApiAvailable = false;
             console.warn('API indisponível, usando dados estáticos (data.js)', e);
             if (window.STATIC_DATA) {
                 activeServers = (window.STATIC_DATA.servers || []).filter(s => s.status === 'active');
@@ -111,13 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
             grid.innerHTML = '<p style="color: white; grid-column: 1 / -1; text-align: center; padding: 2rem;">Nenhum servidor disponível no momento.</p>';
             return;
         }
-
-        // Configurações de tipo de servidor
-        const typeConfig = {
-            hybrid:  { label: 'Híbrido',  emoji: '🔀', color: 'rgba(251,191,36,0.92)',  border: 'rgba(251,191,36,0.6)' },
-            iptv:    { label: 'IPTV',     emoji: '📡', color: 'rgba(99,102,241,0.92)',  border: 'rgba(99,102,241,0.6)' },
-            android: { label: 'Android',  emoji: '🤖', color: 'rgba(52,211,153,0.92)',  border: 'rgba(52,211,153,0.6)' },
-        };
 
         const fragment = document.createDocumentFragment();
         serversList.forEach(srv => {
@@ -227,10 +251,11 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.openServerInfo = (idOrSrv) => {
-        if (typeof idOrSrv === 'object' && idOrSrv.name) {
+        if (typeof idOrSrv === 'object' && idOrSrv !== null && idOrSrv.name) {
             window.location.href = getServerUrl(idOrSrv);
         } else {
-            const srv = activeServers.find(s => String(s.id) === String(idOrSrv));
+            const srv = activeServers.find(s => String(s.id) === String(idOrSrv))
+                || (window.STATIC_DATA?.servers || []).find(s => String(s.id) === String(idOrSrv));
             if (srv) {
                 window.location.href = getServerUrl(srv);
             } else {
@@ -240,16 +265,31 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.openAppInfo = async (id) => {
-        const app = activeApps.find(a => a.id == id);
+        const app = activeApps.find(a => String(a.id) === String(id))
+            || (window.STATIC_DATA?.apps || []).find(a => String(a.id) === String(id));
         if(!app) return;
         
+        // Se não houver API ativa (ex: GitHub Pages / central-servidores.com), usa direto os dados locais
+        if (!isApiAvailable) {
+            const linkedServers = getLinkedServersForApp(id);
+            openInfoModal('app', app.name, extractImageUrl(app.logo), app.url, app.description || '', 0, 0, 0, linkedServers);
+            return;
+        }
+
         try {
             const res = await fetch(`api.php?action=get_app_details&id=${id}`);
+            if (!res.ok) throw new Error('API indisponível');
             const data = await res.json();
             
-            openInfoModal('app', data.name, extractImageUrl(data.logo), data.url, '', 0, 0, 0, data.linked_servers || []);
+            const linkedServers = (data.linked_servers && data.linked_servers.length > 0)
+                ? data.linked_servers
+                : getLinkedServersForApp(id);
+
+            openInfoModal('app', data.name || app.name, extractImageUrl(data.logo || app.logo), data.url || app.url, data.description || app.description || '', 0, 0, 0, linkedServers);
         } catch(e) {
-            console.error('Erro ao buscar detalhes do app', e);
+            console.warn('Fallback para dados estáticos em openAppInfo:', e);
+            const linkedServers = getLinkedServersForApp(id);
+            openInfoModal('app', app.name, extractImageUrl(app.logo), app.url, app.description || '', 0, 0, 0, linkedServers);
         }
     };
 
@@ -305,48 +345,81 @@ document.addEventListener('DOMContentLoaded', () => {
         const linkedGrid = document.getElementById('infoLinkedGrid');
         
         if (linkedContainer && linkedGrid) {
-            if (type === 'app' && linked_items && linked_items.length > 0) {
+            if (type === 'app') {
                 linkedGrid.innerHTML = '';
                 const linkedTitleEl = document.getElementById('infoLinkedTitle');
-                if (linkedTitleEl) {
-                    linkedTitleEl.innerHTML = `Servidores Parceiros Compatíveis <span style="background: var(--primary); color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.85rem; font-weight: bold; vertical-align: middle; margin-left: 0.5rem; box-shadow: 0 2px 5px rgba(59, 130, 246, 0.4);">${linked_items.length}</span>`;
+                
+                if (linked_items && linked_items.length > 0) {
+                    if (linkedTitleEl) {
+                        linkedTitleEl.innerHTML = `Servidores Parceiros Compatíveis <span style="background: var(--primary); color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.85rem; font-weight: bold; vertical-align: middle; margin-left: 0.5rem; box-shadow: 0 2px 5px rgba(59, 130, 246, 0.4);">${linked_items.length}</span>`;
+                    }
+                    const fragment = document.createDocumentFragment();
+                    linked_items.forEach(item => {
+                        const itemLogo = extractImageUrl(item.logo);
+                        const screens = parseInt(item.screens, 10) || 1;
+                        const screensBadge = screens >= 2
+                            ? `<div style="position:absolute; top:7px; right:7px; background:rgba(59,130,246,0.92);
+                                          color:white; font-size:0.65rem; font-weight:700; padding:2px 7px;
+                                          border-radius:10px; z-index:2; backdrop-filter:blur(4px);
+                                          border:1px solid rgba(255,255,255,0.25);">
+                                   📺 ${screens} telas
+                               </div>`
+                            : '';
+
+                        const srvType = item.server_type || 'hybrid';
+                        const tc = typeConfig[srvType] || typeConfig.hybrid;
+                        const typeBadge = `<div style="position:absolute; top:7px; left:7px; background:${tc.color};
+                                          color:white; font-size:0.65rem; font-weight:700; padding:2px 7px;
+                                          border-radius:10px; z-index:2; backdrop-filter:blur(4px);
+                                          border:1px solid rgba(255,255,255,0.25);">
+                                   ${tc.emoji} ${tc.label}
+                               </div>`;
+
+                        const card = document.createElement('div');
+                        card.style.cssText = `border-radius:14px; overflow:hidden; cursor:pointer; text-align: left;
+                                     background:rgba(20,25,40,0.85); border:2px solid rgba(255,255,255,0.07);
+                                     box-shadow:0 4px 15px rgba(0,0,0,0.4);
+                                     transition:transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+                                     display:flex; flex-direction:column;`;
+                        card.onmouseover = function() { this.style.transform='translateY(-4px)'; this.style.borderColor=tc.border; this.style.boxShadow='0 8px 28px rgba(59,130,246,0.35)'; };
+                        card.onmouseout = function() { this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.07)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.4)'; };
+                        card.onclick = function() { openServerInfo(item); };
+
+                        card.innerHTML = `
+                            <!-- Imagem / Logo -->
+                            <div style="position:relative; width:100%; height:130px; overflow:hidden; background:#0d1117; flex-shrink:0;">
+                                ${itemLogo
+                                    ? `<img src="${escapeHtml(itemLogo)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" alt="${escapeHtml(item.name)}" onerror="this.style.display='none';" style="width:100%; height:100%; object-fit:cover; display:block;">`
+                                    : `<div style="width:100%; height:100%; background:linear-gradient(135deg, rgba(124,58,237,0.15), rgba(6,182,212,0.15));"></div>`}
+                                ${typeBadge}
+                                ${screensBadge}
+                            </div>
+
+                            <!-- Info Panel -->
+                            <div style="padding:10px 12px 11px; display:flex; flex-direction:column; gap:4px; flex:1;">
+                                <div style="font-size:0.88rem; color:white; font-weight:700;
+                                            white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"
+                                     title="${escapeHtml(item.name)}">
+                                    ${escapeHtml(item.name)}
+                                </div>
+                                <div style="display:inline-flex; align-items:center; gap:4px; margin-top:auto; padding-top:4px;
+                                           font-size:0.75rem; color:rgba(96,165,250,0.9); font-weight:600;">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                    Acessar
+                                </div>
+                            </div>
+                        `;
+                        fragment.appendChild(card);
+                    });
+                    linkedGrid.appendChild(fragment);
+                    linkedContainer.style.display = 'block';
+                } else {
+                    if (linkedTitleEl) {
+                        linkedTitleEl.innerHTML = `Servidores Parceiros Compatíveis <span style="background: rgba(255,255,255,0.2); color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.85rem; font-weight: bold; vertical-align: middle; margin-left: 0.5rem;">0</span>`;
+                    }
+                    linkedGrid.innerHTML = '<p style="color: rgba(255,255,255,0.6); grid-column: 1 / -1; text-align: center; padding: 1.5rem;">Nenhum servidor parceiro vinculado a este aplicativo no momento.</p>';
+                    linkedContainer.style.display = 'block';
                 }
-                linked_items.forEach(item => {
-                    const itemLogo = extractImageUrl(item.logo);
-                    linkedGrid.innerHTML += `
-                    <div style="border-radius:14px; overflow:hidden; cursor:pointer; text-align: left;
-                                 background:rgba(20,25,40,0.85); border:2px solid rgba(255,255,255,0.07);
-                                 box-shadow:0 4px 15px rgba(0,0,0,0.4);
-                                 transition:transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-                                 display:flex; flex-direction:column;"
-                         onmouseover="this.style.transform='translateY(-4px)'; this.style.borderColor='rgba(59,130,246,0.8)'; this.style.boxShadow='0 8px 28px rgba(59,130,246,0.35)';"
-                         onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.07)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.4)';"
-                         onclick="openServerInfo(${item.id})">
-
-                        <!-- Imagem / Logo -->
-                        <div style="position:relative; width:100%; height:130px; overflow:hidden; background:#0d1117; flex-shrink:0;">
-                            ${itemLogo
-                                ? `<img src="${escapeHtml(itemLogo)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" alt="${escapeHtml(item.name)}" onerror="this.style.display='none';" style="width:100%; height:100%; object-fit:cover; display:block;">`
-                                : `<div style="width:100%; height:100%; background:linear-gradient(135deg, rgba(124,58,237,0.15), rgba(6,182,212,0.15));"></div>`}
-                        </div>
-
-                        <!-- Info Panel -->
-                        <div style="padding:10px 12px 11px; display:flex; flex-direction:column; gap:4px; flex:1;">
-                            <div style="font-size:0.88rem; color:white; font-weight:700;
-                                        white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"
-                                 title="${escapeHtml(item.name)}">
-                                ${escapeHtml(item.name)}
-                            </div>
-                            <div style="display:inline-flex; align-items:center; gap:4px; margin-top:4px;
-                                       font-size:0.75rem; color:rgba(96,165,250,0.9); font-weight:600;">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                                Acessar
-                            </div>
-                        </div>
-                    </div>
-                    `;
-                });
-                linkedContainer.style.display = 'block';
             } else {
                 linkedContainer.style.display = 'none';
             }
@@ -576,13 +649,32 @@ document.addEventListener('DOMContentLoaded', () => {
             result = result.filter(s => (s.server_type || 'hybrid') === filter);
         }
 
-        if (term) result = result.filter(s => {
-            const sc = parseInt(s.screens, 10) || 1;
-            const telaLabel = `${sc} tela${sc >= 2 ? 's multi tela multitela mult tela' : ''}`;
-            const typeLabels = { hybrid: 'híbrido p2p iptv', iptv: 'iptv', android: 'android' };
-            const typeLabel  = typeLabels[s.server_type || 'hybrid'] || '';
-            return `${s.name} ${telaLabel} ${typeLabel}`.toLowerCase().includes(term);
-        });
+        if (term) {
+            // Mapeia nomes de apps vinculados a cada servidor para permitir busca por app
+            const serverAppNames = {};
+            if (window.STATIC_DATA && Array.isArray(window.STATIC_DATA.server_apps)) {
+                const appNameMap = {};
+                const appList = (activeApps.length > 0 ? activeApps : (window.STATIC_DATA.apps || []));
+                appList.forEach(a => { appNameMap[String(a.id)] = a.name; });
+
+                window.STATIC_DATA.server_apps.forEach(sa => {
+                    const sId = String(sa.server_id);
+                    const appName = appNameMap[String(sa.app_id)];
+                    if (appName) {
+                        serverAppNames[sId] = (serverAppNames[sId] || '') + ' ' + appName;
+                    }
+                });
+            }
+
+            result = result.filter(s => {
+                const sc = parseInt(s.screens, 10) || 1;
+                const telaLabel = `${sc} tela${sc >= 2 ? 's multi tela multitela mult tela' : ''}`;
+                const typeLabels = { hybrid: 'híbrido p2p iptv', iptv: 'iptv', android: 'android' };
+                const typeLabel  = typeLabels[s.server_type || 'hybrid'] || '';
+                const appsLabel  = serverAppNames[String(s.id)] || '';
+                return `${s.name} ${telaLabel} ${typeLabel} ${appsLabel}`.toLowerCase().includes(term);
+            });
+        }
 
         renderServers(result);
     };
