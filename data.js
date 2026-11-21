@@ -1,16 +1,15 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-11-21 14:01:20
+ * Gerado em: 2026-11-21 14:15:13
  * NÃO edite manualmente. Regenere via: php generate_data.php
  */
 window.STATIC_DATA = {
-    version:     "20261121-1401",
-    generated_at: "2026-11-21 14:01:20",
+    version:     "20261121-1415",
+    generated_at: "2026-11-21 14:15:13",
     servers:     [
     {
         "id": 102,
         "name": "ADAM PLAY",
-        "url": "",
         "status": "active",
         "description": "",
         "movies": 49918,
@@ -21,14 +20,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/ADAM PLAY.png",
         "updated_at": "2026-06-21 04:12:06",
         "screens": 2,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 5,
         "name": "ALL PLAY",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -39,14 +35,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/ALL-PLAYER-PLUS.jpg",
         "updated_at": "2026-06-06 04:48:47",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 7,
         "name": "ALPHA PLAY",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -57,14 +50,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/ALPHAPLAY.jpg",
         "updated_at": "2026-06-09 16:08:37",
         "screens": 2,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "android"
     },
     {
         "id": 8,
         "name": "ALPHA SERVER",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 32992,
@@ -75,14 +65,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/ALPHA SERVER.jpg",
         "updated_at": "2026-06-21 04:29:17",
         "screens": 2,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 6,
         "name": "ALPHA STREMING",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 24349,
@@ -93,14 +80,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/ALPHA STREAMING.jpg",
         "updated_at": "2026-06-21 04:06:38",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 9,
         "name": "AREA PLAY",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -111,14 +95,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/AREA PLAY.jpg",
         "updated_at": "2026-06-06 04:50:07",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 10,
         "name": "ATMOS",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -129,14 +110,11 @@ window.STATIC_DATA = {
         "table_image_url": "https:\/\/wsrv.nl\/?url=https%3A%2F%2Fi.imgur.com%2F8uYjJDl.jpeg",
         "updated_at": "2026-06-06 04:50:16",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 129,
         "name": "AURA TV +",
-        "url": "",
         "status": "active",
         "description": "",
         "movies": 51311,
@@ -147,14 +125,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/AURA TV.jpg",
         "updated_at": "2026-06-21 04:31:27",
         "screens": 2,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 135,
         "name": "AZONIX PLAT",
-        "url": "",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -165,14 +140,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/AZONIX PLAY.jpg",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "iptv"
     },
     {
         "id": 11,
         "name": "BABU TV",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 19971,
@@ -183,14 +155,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/BABU TV.jpg",
         "updated_at": "2026-06-21 04:33:59",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 116,
         "name": "BIT SYSTEM",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -201,14 +170,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/BIT SYSTEM.jpg",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 14,
         "name": "BLACK",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 17528,
@@ -219,14 +185,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/FIRE-BLACK.jpg",
         "updated_at": "2026-06-21 04:35:54",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 15,
         "name": "BLADE",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 16619,
@@ -237,14 +200,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/BLADE.jpg",
         "updated_at": "2026-06-21 04:37:26",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 16,
         "name": "BLAZE",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 23931,
@@ -255,14 +215,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": "2026-06-21 04:39:19",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 17,
         "name": "BR PRO VIP",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 19450,
@@ -273,14 +230,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/BRPRO VIP.jpg",
         "updated_at": "2026-06-21 04:40:54",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 115,
         "name": "BRASIL + TV",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 54274,
@@ -291,14 +245,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/BRASIL + TV.jpg",
         "updated_at": "2026-06-21 04:42:43",
         "screens": 2,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 19,
         "name": "BYTE",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -309,14 +260,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/BYTE.jpg",
         "updated_at": "2026-06-06 04:52:50",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 20,
         "name": "CENTRAL | FIVE  P2BRAZ",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 20681,
@@ -327,14 +275,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/CENTRAL FIVE P2BRAZ.jpg",
         "updated_at": "2026-06-21 04:45:43",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 126,
         "name": "CINE MAX",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -345,14 +290,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": null,
         "screens": 1,
-        "panel_url": null,
-        "app_store_url": null,
         "server_type": "hybrid"
     },
     {
         "id": 22,
         "name": "CINE PULSE",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 27733,
@@ -363,14 +305,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": "2026-06-21 04:48:46",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 12,
         "name": "CLIENTE TV | BEEST TV",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -381,14 +320,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/CLIENTE TV e BEESTV.jpg",
         "updated_at": "2026-06-06 04:52:19",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 23,
         "name": "CLOUD PLAY",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -399,14 +335,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/CLOUD PLAY.jpg",
         "updated_at": "2026-06-06 04:53:00",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 24,
         "name": "CLUB TV",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 40260,
@@ -417,14 +350,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/CLUB TV.jpg",
         "updated_at": "2026-06-21 04:50:36",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 119,
         "name": "CONECT PLAY",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -435,14 +365,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": null,
         "screens": 1,
-        "panel_url": null,
-        "app_store_url": null,
         "server_type": "hybrid"
     },
     {
         "id": 26,
         "name": "DIGITAL TV",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -453,14 +380,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/DIGITAL TV.jpg",
         "updated_at": "2026-06-06 04:53:20",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 27,
         "name": "DIGITAL+",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -471,14 +395,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/DIGITAL PLUS.jpg",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 29,
         "name": "E3 PLAY",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -489,14 +410,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/E3 PLAY.jpg",
         "updated_at": "2026-06-06 04:53:32",
         "screens": 2,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 30,
         "name": "EASY PLAY",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -507,14 +425,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/EASY PLAY.jpg",
         "updated_at": "2026-06-06 04:53:42",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 31,
         "name": "ELITE",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 5290,
@@ -525,14 +440,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/ELITE.jpg",
         "updated_at": "2026-06-21 04:54:21",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 32,
         "name": "EPIC",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 25477,
@@ -543,14 +455,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": "2026-06-21 04:57:41",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 28,
         "name": "FAST",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -561,14 +470,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/FAST.jpg",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 33,
         "name": "FIRE TV - BLACK",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 20533,
@@ -579,14 +485,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/FIRE-BLACK.jpg",
         "updated_at": "2026-06-21 05:00:08",
         "screens": 2,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 50,
         "name": "FUSION",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -597,14 +500,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/FUSION STREAMING.jpg",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 35,
         "name": "FUSION STREAMING",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 13963,
@@ -615,14 +515,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/FUSION STREAMING.jpg",
         "updated_at": "2026-06-21 05:01:56",
         "screens": 2,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 36,
         "name": "GENIAL PLAY",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 18152,
@@ -633,14 +530,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/GENIAL PLAY.jpg",
         "updated_at": "2026-06-21 05:03:28",
         "screens": 2,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 37,
         "name": "GLOBAL SERVER",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -651,14 +545,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": "2026-04-27 14:59:43",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 131,
         "name": "GOGOTV",
-        "url": "",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -669,14 +560,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "android"
     },
     {
         "id": 38,
         "name": "GP SUPER",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -687,14 +575,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": "2026-04-27 15:01:34",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 125,
         "name": "H2MAX",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -705,14 +590,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": null,
         "screens": 1,
-        "panel_url": null,
-        "app_store_url": null,
         "server_type": "hybrid"
     },
     {
         "id": 39,
         "name": "HORIZON",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -723,14 +605,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/HORIZON.jpg",
         "updated_at": "2026-04-27 10:52:47",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 42,
         "name": "HPLAY",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 17476,
@@ -741,14 +620,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": "2026-06-21 05:05:36",
         "screens": 2,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 142,
         "name": "INBOX TV",
-        "url": "",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -759,14 +635,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 134,
         "name": "INFINITE",
-        "url": "",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -777,14 +650,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/INFINITE.jpg",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 121,
         "name": "INFINITE PLAY",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -795,14 +665,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/INFINITE.jpg",
         "updated_at": null,
         "screens": 1,
-        "panel_url": null,
-        "app_store_url": null,
         "server_type": "hybrid"
     },
     {
         "id": 141,
         "name": "IPRO PLAYER",
-        "url": "",
         "status": "active",
         "description": "",
         "movies": 17856,
@@ -813,14 +680,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/tabela-141-ipro-player.jpg",
         "updated_at": "2026-11-21 13:17:54",
         "screens": 2,
-        "panel_url": "https:\/\/iprostreaming.sigma.st\/",
-        "app_store_url": "",
         "server_type": "iptv"
     },
     {
         "id": 45,
         "name": "IZA PLAY",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -831,14 +695,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 113,
         "name": "Invictus Serve",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -849,14 +710,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": null,
         "screens": 1,
-        "panel_url": null,
-        "app_store_url": null,
         "server_type": "hybrid"
     },
     {
         "id": 46,
         "name": "LAST PLAY",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 16498,
@@ -867,14 +725,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/LAST PLAY.jpg",
         "updated_at": "2026-06-21 05:12:44",
         "screens": 2,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 132,
         "name": "LEGACY",
-        "url": "",
         "status": "active",
         "description": "",
         "movies": 23973,
@@ -885,14 +740,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": "2026-06-21 05:14:07",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 47,
         "name": "LIVE 21",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 1894,
@@ -903,14 +755,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/LIVE21.jpg",
         "updated_at": "2026-06-06 04:54:36",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 48,
         "name": "LTC LIVE STREMING",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 35176,
@@ -921,14 +770,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": "2026-06-21 05:17:32",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 114,
         "name": "MUNDO GF",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 25290,
@@ -939,14 +785,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/MUNDO GF.jpg",
         "updated_at": "2026-08-17 15:26:34",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 84,
         "name": "NATV | TOP TV",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -957,14 +800,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/NA-TV-TOPTV.jpg",
         "updated_at": "2026-06-06 04:55:24",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 128,
         "name": "NEON",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -975,14 +815,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 52,
         "name": "NEW LIVE",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 13210,
@@ -993,14 +830,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/NEW LIVE.jpg",
         "updated_at": "2026-06-21 05:20:43",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 130,
         "name": "NEW ONE",
-        "url": "",
         "status": "active",
         "description": "",
         "movies": 46321,
@@ -1011,14 +845,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/NEWONE.jpg",
         "updated_at": "2026-06-21 05:26:20",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 53,
         "name": "NEXUS PLUS",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1029,14 +860,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/NEXUS PLUS.png",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 54,
         "name": "NINETY TV",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 23954,
@@ -1047,14 +875,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/NINETY.jpg",
         "updated_at": "2026-06-21 05:27:32",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 140,
         "name": "NINJA PLAYER",
-        "url": "",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1065,14 +890,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": null,
         "screens": 2,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 56,
         "name": "NOW",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 23046,
@@ -1083,14 +905,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/NOW.jpg",
         "updated_at": "2026-06-21 05:29:11",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "iptv"
     },
     {
         "id": 57,
         "name": "NPTV ( OFFICE )",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 23253,
@@ -1101,14 +920,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": "2026-06-21 05:30:30",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 127,
         "name": "OPERA",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1119,14 +935,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/OPERA.jpg",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 41,
         "name": "P2BOX +",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1137,14 +950,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/P2BOX.jpg",
         "updated_at": "2026-06-06 04:54:13",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 60,
         "name": "P2CINE",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 20817,
@@ -1155,14 +965,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/P2CINE.jpg",
         "updated_at": "2026-06-21 05:32:06",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 61,
         "name": "P2FAST",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 35176,
@@ -1173,14 +980,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/FAST.jpg",
         "updated_at": "2026-06-21 05:41:04",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 55,
         "name": "P2HYBRION",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1191,14 +995,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 62,
         "name": "P2IMPERIAL",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 17106,
@@ -1209,14 +1010,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/IMPERIAL.jpg",
         "updated_at": "2026-06-21 05:43:37",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 59,
         "name": "P2PLAYER",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 41304,
@@ -1227,14 +1025,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/P2PLAYER TUBARAO.jpg",
         "updated_at": "2026-06-21 05:46:19",
         "screens": 2,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 64,
         "name": "P2SERVER",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1245,14 +1040,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/P2SERVER.jpg",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 65,
         "name": "P2SPEED",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 41237,
@@ -1263,14 +1055,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/P2SPEED.jpg",
         "updated_at": "2026-06-21 05:47:31",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 66,
         "name": "P2X",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1281,14 +1070,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 67,
         "name": "PAZ TV",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 16809,
@@ -1299,14 +1085,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/PAZ TV.png",
         "updated_at": "2026-06-21 05:51:20",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 68,
         "name": "PIXEL PLAY",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1317,14 +1100,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/PIXEL PLAY.jpg",
         "updated_at": null,
         "screens": 2,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "android"
     },
     {
         "id": 34,
         "name": "PLAY FAST",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1335,14 +1115,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/PLAYFAST.jpg",
         "updated_at": "2026-06-06 04:55:06",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 70,
         "name": "PLAY ON",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1353,14 +1130,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 71,
         "name": "POWER PLAY",
-        "url": "http:\/\/",
         "status": "active",
         "description": "servidor de extrema qualidade",
         "movies": 22736,
@@ -1371,14 +1145,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/POWER PLAY.jpg",
         "updated_at": "2026-06-21 06:00:17",
         "screens": 2,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 124,
         "name": "PRIME SERVERS",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1389,14 +1160,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/PRIME SERVERS.jpg",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 139,
         "name": "PULSE PLAY",
-        "url": "",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1407,14 +1175,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "iptv"
     },
     {
         "id": 138,
         "name": "RAZOR`S",
-        "url": "",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1425,14 +1190,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": "2026-08-17 15:18:00",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 136,
         "name": "RED PLAY",
-        "url": "",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1443,14 +1205,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/REDPLAY.jpg",
         "updated_at": null,
         "screens": 2,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "android"
     },
     {
         "id": 117,
         "name": "RED WAVE",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1461,14 +1220,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 73,
         "name": "RUSH",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1479,14 +1235,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 74,
         "name": "SEVEN",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 17773,
@@ -1497,14 +1250,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/SEVEN.jpg",
         "updated_at": "2026-06-21 06:03:54",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 58,
         "name": "SHAZAN PLAY",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1515,14 +1265,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/SHAZAN PLAY.jpg",
         "updated_at": null,
         "screens": 2,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 75,
         "name": "SPARK",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 19681,
@@ -1533,14 +1280,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/SPARK.jpg",
         "updated_at": "2026-06-21 06:15:27",
         "screens": 2,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 76,
         "name": "SPY PLUS",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1551,14 +1295,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 77,
         "name": "SSTV",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1569,14 +1310,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": "2026-04-27 10:43:17",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 78,
         "name": "SUPER MAIS PRO",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 13210,
@@ -1587,14 +1325,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": "2026-06-21 06:16:19",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 79,
         "name": "SUPERCINE",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 18757,
@@ -1605,14 +1340,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": "2026-06-21 06:30:39",
         "screens": 2,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 120,
         "name": "SUPREMO ( ZEUS )",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 29290,
@@ -1623,14 +1355,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/ZEUS.jpg",
         "updated_at": "2026-06-21 06:32:49",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 81,
         "name": "SYNCRON ( RED WAVE )",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1641,14 +1370,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/SYNCRON.jpg",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 82,
         "name": "THE BEST",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1659,14 +1385,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/THE BEST.jpg",
         "updated_at": "2026-05-26 04:00:14",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 83,
         "name": "THUNDER",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1677,14 +1400,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 95,
         "name": "TOURO BOX",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1695,14 +1415,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 86,
         "name": "TR4",
-        "url": "http:\/\/",
         "status": "active",
         "description": "Detalhes sobre aplicativos da parceria no painel !",
         "movies": 37504,
@@ -1713,14 +1430,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/TR4.jpeg",
         "updated_at": "2026-06-21 06:34:19",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 87,
         "name": "TRINITY",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1731,14 +1445,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 133,
         "name": "TRYON TV",
-        "url": "",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1749,14 +1460,11 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 122,
         "name": "TV+ EXPRESS",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1767,14 +1475,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/TV EXPRESS.jpg",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 88,
         "name": "TVS",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 19748,
@@ -1785,14 +1490,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/TVS.jpg",
         "updated_at": "2026-06-21 06:39:19",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 63,
         "name": "UFO PLAY",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1803,14 +1505,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/UFOPLAY.jpg",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 89,
         "name": "UNIPLAY",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1821,14 +1520,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/UNIPLAY.jpg",
         "updated_at": "2026-06-06 04:55:33",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 90,
         "name": "UNITV",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1839,14 +1535,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/UNITV.jpg",
         "updated_at": "2026-06-06 04:55:42",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "android"
     },
     {
         "id": 91,
         "name": "VAPTY PLAY",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1857,14 +1550,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/VAPTY-PLAY.jpg",
         "updated_at": "2026-04-27 10:54:54",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 101,
         "name": "VORTEX",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 31172,
@@ -1875,14 +1565,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/VORTEX.jpg",
         "updated_at": "2026-06-21 06:44:37",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 92,
         "name": "WAREZ",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1893,14 +1580,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/WAREZ.jpg",
         "updated_at": "2026-06-06 04:55:56",
         "screens": 3,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 118,
         "name": "X3",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1911,14 +1595,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/X3-IPTV.jpg",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 123,
         "name": "YELLOW BOX",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 37412,
@@ -1929,14 +1610,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/YELOW BOX.jpg",
         "updated_at": "2026-06-21 06:46:17",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 98,
         "name": "YOU CINE",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1947,14 +1625,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/YOUCINE.jpg",
         "updated_at": "2026-06-06 04:52:02",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 137,
         "name": "ZAPPY",
-        "url": "",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -1965,14 +1640,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/ZAPPY.jpg",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "android"
     },
     {
         "id": 99,
         "name": "ZEUS",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 29290,
@@ -1983,14 +1655,11 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/ZEUS.jpg",
         "updated_at": "2026-06-21 06:33:03",
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     },
     {
         "id": 100,
         "name": "ZOOMPLAY",
-        "url": "http:\/\/",
         "status": "active",
         "description": "",
         "movies": 0,
@@ -2001,8 +1670,6 @@ window.STATIC_DATA = {
         "table_image_url": "",
         "updated_at": null,
         "screens": 1,
-        "panel_url": "",
-        "app_store_url": "",
         "server_type": "hybrid"
     }
 ],
@@ -2010,7 +1677,6 @@ window.STATIC_DATA = {
     {
         "id": 69,
         "name": " REDCINE",
-        "url": "",
         "logo": "assets\/apps\/app-redcine.png",
         "status": "active",
         "created_at": "2026-11-21 13:43:43"
@@ -2018,7 +1684,6 @@ window.STATIC_DATA = {
     {
         "id": 13,
         "name": "4KIPTV",
-        "url": "",
         "logo": "assets\/apps\/app-13-4kiptv.png",
         "status": "active",
         "created_at": "2026-04-27 07:05:40"
@@ -2026,7 +1691,6 @@ window.STATIC_DATA = {
     {
         "id": 2,
         "name": "ASSIST PLUS",
-        "url": "",
         "logo": "assets\/apps\/app-2-assist-plus.png",
         "status": "active",
         "created_at": "2026-04-27 07:05:40"
@@ -2034,7 +1698,6 @@ window.STATIC_DATA = {
     {
         "id": 17,
         "name": "BIG PLAYER",
-        "url": "",
         "logo": "assets\/apps\/app-17-big-player.png",
         "status": "active",
         "created_at": "2026-04-27 07:06:32"
@@ -2042,7 +1705,6 @@ window.STATIC_DATA = {
     {
         "id": 3,
         "name": "BLESSED PLAYER",
-        "url": "",
         "logo": "assets\/apps\/app-3-blessed-player.png",
         "status": "active",
         "created_at": "2026-04-27 07:05:40"
@@ -2050,7 +1712,6 @@ window.STATIC_DATA = {
     {
         "id": 60,
         "name": "BOLT",
-        "url": "",
         "logo": "assets\/apps\/app-60-bolt.jpeg",
         "status": "active",
         "created_at": "2026-10-08 18:51:40"
@@ -2058,7 +1719,6 @@ window.STATIC_DATA = {
     {
         "id": 56,
         "name": "BOX LITE",
-        "url": "",
         "logo": "assets\/apps\/app-box-lite.jpg",
         "status": "active",
         "created_at": "2026-09-23 15:08:22"
@@ -2066,7 +1726,6 @@ window.STATIC_DATA = {
     {
         "id": 45,
         "name": "BOX PLAYER",
-        "url": "",
         "logo": "assets\/apps\/app-45-box-player.jpg",
         "status": "active",
         "created_at": "2026-04-27 18:04:14"
@@ -2074,7 +1733,6 @@ window.STATIC_DATA = {
     {
         "id": 57,
         "name": "BOX PRIME",
-        "url": "",
         "logo": "assets\/apps\/app-box-prime.jpg",
         "status": "active",
         "created_at": "2026-09-23 15:08:48"
@@ -2082,7 +1740,6 @@ window.STATIC_DATA = {
     {
         "id": 22,
         "name": "BRASIL IPTV",
-        "url": "",
         "logo": "assets\/apps\/app-22-brasil-iptv.png",
         "status": "active",
         "created_at": "2026-04-27 07:08:28"
@@ -2090,7 +1747,6 @@ window.STATIC_DATA = {
     {
         "id": 65,
         "name": "CLASSE PLAY",
-        "url": "",
         "logo": "assets\/apps\/app-classe-play.jpg",
         "status": "active",
         "created_at": "2026-10-12 17:18:34"
@@ -2098,7 +1754,6 @@ window.STATIC_DATA = {
     {
         "id": 21,
         "name": "CORE PLAYER",
-        "url": "",
         "logo": "assets\/apps\/app-21-core-player.png",
         "status": "active",
         "created_at": "2026-04-27 07:07:55"
@@ -2106,7 +1761,6 @@ window.STATIC_DATA = {
     {
         "id": 64,
         "name": "CÓRTEX PLAYER",
-        "url": "",
         "logo": "assets\/apps\/app-c-ortex-player.png",
         "status": "active",
         "created_at": "2026-10-12 17:10:57"
@@ -2114,7 +1768,6 @@ window.STATIC_DATA = {
     {
         "id": 23,
         "name": "DREAM STREMING",
-        "url": "",
         "logo": "assets\/apps\/app-23-dream-streming.jpg",
         "status": "active",
         "created_at": "2026-04-27 07:08:46"
@@ -2122,7 +1775,6 @@ window.STATIC_DATA = {
     {
         "id": 55,
         "name": "DUPLEX MAX",
-        "url": "",
         "logo": "assets\/apps\/app-duplex-max.png",
         "status": "active",
         "created_at": "2026-09-23 15:07:26"
@@ -2130,7 +1782,6 @@ window.STATIC_DATA = {
     {
         "id": 24,
         "name": "EASY PLAYER",
-        "url": "",
         "logo": "assets\/apps\/app-24-easy-player.png",
         "status": "active",
         "created_at": "2026-04-27 07:08:56"
@@ -2138,7 +1789,6 @@ window.STATIC_DATA = {
     {
         "id": 43,
         "name": "EPIC PLAY",
-        "url": "",
         "logo": "assets\/apps\/app-43-epic-play.png",
         "status": "active",
         "created_at": "2026-04-27 08:21:56"
@@ -2146,7 +1796,6 @@ window.STATIC_DATA = {
     {
         "id": 67,
         "name": "FAST PLAYER",
-        "url": "",
         "logo": "assets\/apps\/app-fast-player.jpg",
         "status": "active",
         "created_at": "2026-10-12 17:30:01"
@@ -2154,7 +1803,6 @@ window.STATIC_DATA = {
     {
         "id": 25,
         "name": "FLEX PLAY",
-        "url": "",
         "logo": "assets\/apps\/app-25-flex-play.png",
         "status": "active",
         "created_at": "2026-04-27 07:09:07"
@@ -2162,7 +1810,6 @@ window.STATIC_DATA = {
     {
         "id": 42,
         "name": "FOCOX PLAY",
-        "url": "",
         "logo": "assets\/apps\/app-42-focox-play.png",
         "status": "active",
         "created_at": "2026-04-27 07:15:43"
@@ -2170,7 +1817,6 @@ window.STATIC_DATA = {
     {
         "id": 58,
         "name": "FOX PLAYER",
-        "url": "",
         "logo": "assets\/apps\/app-fox-player.png",
         "status": "active",
         "created_at": "2026-10-01 16:45:02"
@@ -2178,7 +1824,6 @@ window.STATIC_DATA = {
     {
         "id": 4,
         "name": "FUN PLAY",
-        "url": "",
         "logo": "assets\/apps\/app-4-fun-play.jpg",
         "status": "active",
         "created_at": "2026-04-27 07:05:40"
@@ -2186,7 +1831,6 @@ window.STATIC_DATA = {
     {
         "id": 53,
         "name": "GTV",
-        "url": "",
         "logo": "assets\/apps\/app-53-gtv.png",
         "status": "active",
         "created_at": "2026-08-17 15:24:57"
@@ -2194,7 +1838,6 @@ window.STATIC_DATA = {
     {
         "id": 26,
         "name": "HD PLAYER ",
-        "url": "",
         "logo": "assets\/apps\/app-26-hd-player.png",
         "status": "active",
         "created_at": "2026-04-27 07:09:36"
@@ -2202,7 +1845,6 @@ window.STATIC_DATA = {
     {
         "id": 66,
         "name": "IBO SMARTERS",
-        "url": "",
         "logo": "assets\/apps\/app-ibo-smarters.jpeg",
         "status": "active",
         "created_at": "2026-10-12 17:26:08"
@@ -2210,7 +1852,6 @@ window.STATIC_DATA = {
     {
         "id": 6,
         "name": "IPLAYER",
-        "url": "",
         "logo": "assets\/apps\/app-6-iplayer.png",
         "status": "active",
         "created_at": "2026-04-27 07:05:40"
@@ -2218,7 +1859,6 @@ window.STATIC_DATA = {
     {
         "id": 8,
         "name": "IPTV PLAYER IO",
-        "url": "",
         "logo": "assets\/apps\/app-8-iptv-player-io.png",
         "status": "active",
         "created_at": "2026-04-27 07:05:40"
@@ -2226,7 +1866,6 @@ window.STATIC_DATA = {
     {
         "id": 27,
         "name": "IPTV PLUS",
-        "url": "",
         "logo": "assets\/apps\/app-27-iptv-plus.png",
         "status": "active",
         "created_at": "2026-04-27 07:10:33"
@@ -2234,7 +1873,6 @@ window.STATIC_DATA = {
     {
         "id": 7,
         "name": "IPTV PRO",
-        "url": "",
         "logo": "assets\/apps\/app-7-iptv-pro.png",
         "status": "active",
         "created_at": "2026-04-27 07:05:40"
@@ -2242,7 +1880,6 @@ window.STATIC_DATA = {
     {
         "id": 63,
         "name": "KAYROS PLAYER",
-        "url": "",
         "logo": "assets\/apps\/app-kayros-player.jpeg",
         "status": "active",
         "created_at": "2026-10-12 15:26:40"
@@ -2250,7 +1887,6 @@ window.STATIC_DATA = {
     {
         "id": 5,
         "name": "LAZER PLAY",
-        "url": "",
         "logo": "assets\/apps\/app-5-lazer-play.png",
         "status": "active",
         "created_at": "2026-04-27 07:05:40"
@@ -2258,7 +1894,6 @@ window.STATIC_DATA = {
     {
         "id": 29,
         "name": "LOTUS ",
-        "url": "",
         "logo": "assets\/apps\/app-29-lotus.png",
         "status": "active",
         "created_at": "2026-04-27 07:11:20"
@@ -2266,7 +1901,6 @@ window.STATIC_DATA = {
     {
         "id": 28,
         "name": "MAGIC PLAYER",
-        "url": "",
         "logo": "assets\/apps\/app-28-magic-player.jpg",
         "status": "active",
         "created_at": "2026-04-27 07:11:01"
@@ -2274,7 +1908,6 @@ window.STATIC_DATA = {
     {
         "id": 9,
         "name": "MAX PLAYER",
-        "url": "",
         "logo": "assets\/apps\/app-9-max-player.png",
         "status": "active",
         "created_at": "2026-04-27 07:05:40"
@@ -2282,7 +1915,6 @@ window.STATIC_DATA = {
     {
         "id": 61,
         "name": "MAX+",
-        "url": "",
         "logo": "assets\/apps\/app-61-max.png",
         "status": "active",
         "created_at": "2026-10-08 19:06:59"
@@ -2290,7 +1922,6 @@ window.STATIC_DATA = {
     {
         "id": 30,
         "name": "META PLAYER",
-        "url": "",
         "logo": "assets\/apps\/app-30-meta-player.jpg",
         "status": "active",
         "created_at": "2026-04-27 07:11:43"
@@ -2298,7 +1929,6 @@ window.STATIC_DATA = {
     {
         "id": 31,
         "name": "NINJA PLAYER",
-        "url": "",
         "logo": "assets\/apps\/app-31-ninja-player.png",
         "status": "active",
         "created_at": "2026-04-27 07:11:59"
@@ -2306,7 +1936,6 @@ window.STATIC_DATA = {
     {
         "id": 46,
         "name": "NOMA APP",
-        "url": "",
         "logo": "assets\/apps\/app-46-noma-app.png",
         "status": "active",
         "created_at": "2026-04-27 18:06:01"
@@ -2314,7 +1943,6 @@ window.STATIC_DATA = {
     {
         "id": 70,
         "name": "NUVTV",
-        "url": "",
         "logo": "assets\/apps\/app-nuvtv.png",
         "status": "active",
         "created_at": "2026-11-21 13:46:57"
@@ -2322,7 +1950,6 @@ window.STATIC_DATA = {
     {
         "id": 32,
         "name": "OS PLAYER",
-        "url": "",
         "logo": "assets\/apps\/app-32-os-player.png",
         "status": "active",
         "created_at": "2026-04-27 07:12:11"
@@ -2330,7 +1957,6 @@ window.STATIC_DATA = {
     {
         "id": 10,
         "name": "OTT PLAYER",
-        "url": "",
         "logo": "https:\/\/i.ibb.co\/KjGzyhPk\/ottplayer.png",
         "status": "active",
         "created_at": "2026-04-27 07:05:40"
@@ -2338,7 +1964,6 @@ window.STATIC_DATA = {
     {
         "id": 48,
         "name": "P2SPEED",
-        "url": "",
         "logo": "assets\/apps\/app-48-p2speed.jpg",
         "status": "active",
         "created_at": "2026-04-28 03:14:37"
@@ -2346,7 +1971,6 @@ window.STATIC_DATA = {
     {
         "id": 16,
         "name": "PLAY BOX",
-        "url": "",
         "logo": "assets\/apps\/app-16-play-box.png",
         "status": "active",
         "created_at": "2026-04-27 07:06:32"
@@ -2354,7 +1978,6 @@ window.STATIC_DATA = {
     {
         "id": 44,
         "name": "PLAY IPTV",
-        "url": "",
         "logo": "assets\/apps\/app-44-play-iptv.png",
         "status": "active",
         "created_at": "2026-04-27 11:18:49"
@@ -2362,7 +1985,6 @@ window.STATIC_DATA = {
     {
         "id": 11,
         "name": "PLAY SIM",
-        "url": "",
         "logo": "assets\/apps\/app-11-play-sim.png",
         "status": "active",
         "created_at": "2026-04-27 07:05:40"
@@ -2370,7 +1992,6 @@ window.STATIC_DATA = {
     {
         "id": 49,
         "name": "POWER PIXEL",
-        "url": "",
         "logo": "assets\/apps\/app-49-power-pixel.png",
         "status": "active",
         "created_at": "2026-04-28 03:19:00"
@@ -2378,7 +1999,6 @@ window.STATIC_DATA = {
     {
         "id": 51,
         "name": "POWER PLAY",
-        "url": "",
         "logo": "assets\/apps\/app-51-power-play.png",
         "status": "active",
         "created_at": "2026-06-13 21:38:08"
@@ -2386,7 +2006,6 @@ window.STATIC_DATA = {
     {
         "id": 33,
         "name": "PRIME IPTV",
-        "url": "",
         "logo": "assets\/apps\/app-33-prime-iptv.png",
         "status": "active",
         "created_at": "2026-04-27 07:12:51"
@@ -2394,7 +2013,6 @@ window.STATIC_DATA = {
     {
         "id": 34,
         "name": "PRO PLAYER",
-        "url": "",
         "logo": "assets\/apps\/app-34-pro-player.png",
         "status": "active",
         "created_at": "2026-04-27 07:13:02"
@@ -2402,7 +2020,6 @@ window.STATIC_DATA = {
     {
         "id": 19,
         "name": "QPLAYER",
-        "url": "",
         "logo": "assets\/apps\/app-19-qplayer.png",
         "status": "active",
         "created_at": "2026-04-27 07:06:32"
@@ -2410,7 +2027,6 @@ window.STATIC_DATA = {
     {
         "id": 18,
         "name": "QUICK PLAYER",
-        "url": "",
         "logo": "assets\/apps\/app-18-quick-player.jpg",
         "status": "active",
         "created_at": "2026-04-27 07:06:32"
@@ -2418,7 +2034,6 @@ window.STATIC_DATA = {
     {
         "id": 54,
         "name": "QUICK PLUS",
-        "url": "",
         "logo": "assets\/apps\/app-54-quick-plus.png",
         "status": "active",
         "created_at": "2026-09-23 14:19:05"
@@ -2426,7 +2041,6 @@ window.STATIC_DATA = {
     {
         "id": 20,
         "name": "QUICK PRO",
-        "url": "",
         "logo": "assets\/apps\/app-20-quick-pro.png",
         "status": "active",
         "created_at": "2026-04-27 07:06:32"
@@ -2434,7 +2048,6 @@ window.STATIC_DATA = {
     {
         "id": 59,
         "name": "REAL PLAY",
-        "url": "",
         "logo": "assets\/apps\/app-59-real-play.jpeg",
         "status": "active",
         "created_at": "2026-10-08 18:49:10"
@@ -2442,7 +2055,6 @@ window.STATIC_DATA = {
     {
         "id": 62,
         "name": "RX PURPLE",
-        "url": "",
         "logo": "assets\/apps\/app-rx-purple.png",
         "status": "active",
         "created_at": "2026-10-12 15:25:43"
@@ -2450,7 +2062,6 @@ window.STATIC_DATA = {
     {
         "id": 35,
         "name": "SEE PLAY",
-        "url": "",
         "logo": "assets\/apps\/app-35-see-play.png",
         "status": "active",
         "created_at": "2026-04-27 07:13:29"
@@ -2458,7 +2069,6 @@ window.STATIC_DATA = {
     {
         "id": 14,
         "name": "STAR IPTV",
-        "url": "",
         "logo": "assets\/apps\/app-14-star-iptv.jpg",
         "status": "active",
         "created_at": "2026-04-27 07:05:40"
@@ -2466,7 +2076,6 @@ window.STATIC_DATA = {
     {
         "id": 36,
         "name": "SUPER PLAY",
-        "url": "",
         "logo": "assets\/apps\/app-36-super-play.png",
         "status": "active",
         "created_at": "2026-04-27 07:13:49"
@@ -2474,7 +2083,6 @@ window.STATIC_DATA = {
     {
         "id": 68,
         "name": "SW4 TV",
-        "url": "",
         "logo": "assets\/apps\/app-sw4-tv.jpeg",
         "status": "active",
         "created_at": "2026-10-12 19:49:11"
@@ -2482,7 +2090,6 @@ window.STATIC_DATA = {
     {
         "id": 15,
         "name": "TIVI PLAYER",
-        "url": "",
         "logo": "assets\/apps\/app-15-tivi-player.jpg",
         "status": "active",
         "created_at": "2026-04-27 07:05:40"
@@ -2490,7 +2097,6 @@ window.STATIC_DATA = {
     {
         "id": 39,
         "name": "TV VISION",
-        "url": "",
         "logo": "assets\/apps\/app-39-tv-vision.png",
         "status": "active",
         "created_at": "2026-04-27 07:14:37"
@@ -2498,7 +2104,6 @@ window.STATIC_DATA = {
     {
         "id": 37,
         "name": "ULTRA PLAY",
-        "url": "",
         "logo": "assets\/apps\/app-37-ultra-play.png",
         "status": "active",
         "created_at": "2026-04-27 07:14:04"
@@ -2506,7 +2111,6 @@ window.STATIC_DATA = {
     {
         "id": 47,
         "name": "UTM PRO",
-        "url": "",
         "logo": "assets\/apps\/app-47-utm-pro.jpg",
         "status": "active",
         "created_at": "2026-04-28 03:05:03"
@@ -2514,7 +2118,6 @@ window.STATIC_DATA = {
     {
         "id": 38,
         "name": "VERTU PLAY",
-        "url": "",
         "logo": "assets\/apps\/app-38-vertu-play.png",
         "status": "active",
         "created_at": "2026-04-27 07:14:15"
@@ -2522,7 +2125,6 @@ window.STATIC_DATA = {
     {
         "id": 40,
         "name": "VIZZION PLAY",
-        "url": "",
         "logo": "assets\/apps\/app-40-vizzion-play.png",
         "status": "active",
         "created_at": "2026-04-27 07:14:50"
@@ -2530,7 +2132,6 @@ window.STATIC_DATA = {
     {
         "id": 41,
         "name": "X-CLOUD",
-        "url": "\t",
         "logo": "assets\/apps\/app-41-x-cloud.png",
         "status": "active",
         "created_at": "2026-04-27 07:15:00"
@@ -2538,7 +2139,6 @@ window.STATIC_DATA = {
     {
         "id": 52,
         "name": "ZUXO PLAY",
-        "url": "",
         "logo": "assets\/apps\/app-52-zuxo-play.png",
         "status": "active",
         "created_at": "2026-07-08 14:40:58"

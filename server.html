@@ -226,12 +226,6 @@
                 <div class="stat-box"><h4>Séries</h4><span id="sSeries">0</span></div>
             </div>
 
-            <!-- Botões de Ação (Painel e Loja) -->
-            <div id="actionButtonsRow" style="display: none; gap: 1rem; margin-top: 1.5rem; width: 100%; justify-content: center; flex-wrap: wrap;">
-                <a href="#" id="sPanelBtn" class="btn-access" style="flex: 1; min-width: 200px; max-width: 320px; background: #2ecc71; padding: 0.8rem; font-size: 1.05rem; display: none; align-items: center; justify-content: center; gap: 0.6rem; box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);" target="_blank">Acessar o Painel 🚀</a>
-                <a href="#" id="sStoreBtn" class="btn-access" style="flex: 1; min-width: 200px; max-width: 320px; background: #3498db; padding: 0.8rem; font-size: 1.05rem; display: none; align-items: center; justify-content: center; gap: 0.6rem; box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);" target="_blank">Loja Aplicativos 📥</a>
-            </div>
-
             <!-- Badge de Telas Simultâneas -->
             <div id="screensInfo" style="display:none; margin-top: 1.5rem; text-align:center;">
                 <span style="display:inline-flex; align-items:center; gap:0.5rem; background:rgba(59,130,246,0.15);
@@ -282,7 +276,7 @@
         </div>
     </div>
 
-    <script src="data.js?v=20261121_1"></script>
+    <script src="data.js?v=20261121_2"></script>
     <script>
         const slugify = (str) => {
             if (!str) return '';
@@ -395,33 +389,6 @@
                     document.getElementById('sScreens').innerText = screensCount;
                     document.getElementById('screensInfo').style.display = 'block';
                 }
-
-                // Botões de Ação (Painel e Loja)
-                const panelUrl = data.panel_url || '';
-                const storeUrl = data.app_store_url || '';
-                const panelBtn = document.getElementById('sPanelBtn');
-                const storeBtn = document.getElementById('sStoreBtn');
-                const btnRow = document.getElementById('actionButtonsRow');
-
-                let showRow = false;
-
-                if (panelUrl && panelUrl.trim() !== '') {
-                    panelBtn.href = panelUrl;
-                    panelBtn.style.display = 'flex';
-                    showRow = true;
-                } else {
-                    panelBtn.style.display = 'none';
-                }
-
-                if (storeUrl && storeUrl.trim() !== '') {
-                    storeBtn.href = storeUrl;
-                    storeBtn.style.display = 'flex';
-                    showRow = true;
-                } else {
-                    storeBtn.style.display = 'none';
-                }
-
-                btnRow.style.display = showRow ? 'flex' : 'none';
 
                 // Data de Atualização (Badge de Cor)
                 const updatedAt = data.updated_at || data.created_at;

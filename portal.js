@@ -198,16 +198,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${desc ? `<div style="font-size:0.75rem; color:rgba(160,170,190,0.85); line-height:1.35;
                                           overflow:hidden; display:-webkit-box; -webkit-line-clamp:2;
                                           -webkit-box-orient:vertical;">${escapeHtml(desc)}</div>` : ''}
-                    <a href="${targetUrl}"
-                       onclick="event.stopPropagation();"
-                       style="display:inline-flex; align-items:center; gap:4px; margin-top:auto; padding-top:4px;
-                              font-size:0.75rem; color:rgba(96,165,250,0.9); text-decoration:none;
-                              font-weight:600; transition:color 0.2s;"
-                       onmouseover="this.style.color='rgb(147,197,253)'"
-                       onmouseout="this.style.color='rgba(96,165,250,0.9)'">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                        Acessar
-                    </a>
+                    <div style="display:inline-flex; align-items:center; gap:4px; margin-top:auto; padding-top:4px;
+                               font-size:0.75rem; color:rgba(96,165,250,0.9); font-weight:600;">
+                        <span>👁️ Ver Detalhes</span>
+                    </div>
                 </div>
             `;
             fragment.appendChild(card);
@@ -404,8 +398,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <div style="display:inline-flex; align-items:center; gap:4px; margin-top:auto; padding-top:4px;
                                            font-size:0.75rem; color:rgba(96,165,250,0.9); font-weight:600;">
-                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                                    Acessar
+                                    <span>👁️ Ver Detalhes</span>
                                 </div>
                             </div>
                         `;
@@ -425,24 +418,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Botão de Acesso
         const btnLink = document.getElementById('infoLink');
         const noLinkMsg = document.getElementById('noLinkMsg');
-        
-        if (btnLink && noLinkMsg) {
-            if(url && url.trim() !== 'undefined' && url.trim() !== '') {
-                let finalUrl = url;
-                if(!finalUrl.startsWith('http')) {
-                    finalUrl = 'http://' + finalUrl;
-                }
-                btnLink.href = finalUrl;
-                btnLink.style.display = 'inline-block';
-                noLinkMsg.style.display = 'none';
-            } else {
-                btnLink.style.display = 'none';
-                noLinkMsg.style.display = 'block';
-            }
-        }
+        if (btnLink) btnLink.style.display = 'none';
+        if (noLinkMsg) noLinkMsg.style.display = 'none';
 
         const modalInfo = document.getElementById('modalInfo');
         if (modalInfo) modalInfo.classList.add('active');

@@ -31,6 +31,17 @@ try {
     $plans = $pdo->query("SELECT * FROM server_plans ORDER BY server_id ASC, id ASC")->fetchAll(PDO::FETCH_ASSOC);
 } catch (Exception $e) {}
 
+// Oculta links sensíveis (painel, loja, url externa) do arquivo público data.js
+foreach ($servers as &$s) {
+    unset($s['panel_url'], $s['app_store_url'], $s['url']);
+}
+unset($s);
+
+foreach ($apps as &$a) {
+    unset($a['url']);
+}
+unset($a);
+
 // Monta o arquivo JS estático
 $json_servers     = json_encode($servers,     JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 $json_apps        = json_encode($apps,        JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
