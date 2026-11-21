@@ -395,9 +395,13 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('formServer').reset();
         document.getElementById('srvId').value = '';
         if(document.getElementById('srvLogoFileInput')) document.getElementById('srvLogoFileInput').value = '';
+        if(document.getElementById('srvTableFileInput')) document.getElementById('srvTableFileInput').value = '';
         const statusEl = document.getElementById('srvLogoUploadStatus');
         if (statusEl) statusEl.textContent = '';
+        const statusTableEl = document.getElementById('srvTableUploadStatus');
+        if (statusTableEl) statusTableEl.textContent = '';
         updateSrvLogoPreview('');
+        updateSrvTablePreview('');
         document.querySelector('#modalServer h2').textContent = 'Adicionar Servidor';
         document.getElementById('srvPanelUrl').value = '';
         document.getElementById('srvAppStoreUrl').value = '';
@@ -421,9 +425,13 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('srvType').value = srv.server_type || 'hybrid';
         document.getElementById('srvDesc').value = srv.description || '';
         if(document.getElementById('srvLogoFileInput')) document.getElementById('srvLogoFileInput').value = '';
+        if(document.getElementById('srvTableFileInput')) document.getElementById('srvTableFileInput').value = '';
         const statusEl = document.getElementById('srvLogoUploadStatus');
         if (statusEl) statusEl.textContent = '';
+        const statusTableEl = document.getElementById('srvTableUploadStatus');
+        if (statusTableEl) statusTableEl.textContent = '';
         updateSrvLogoPreview(srv.logo || '');
+        updateSrvTablePreview(srv.table_image_url || '');
         document.querySelector('#modalServer h2').textContent = 'Editar Servidor';
         document.getElementById('btnDeleteServer').style.display = 'block';
         document.getElementById('btnManageApps').style.display = 'inline-block';
@@ -916,6 +924,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    const updateSrvTablePreview = (path) => {
+        const previewBox  = document.getElementById('srvTablePreviewBox');
+        const previewImg  = document.getElementById('srvTablePreviewImg');
+        const previewPath = document.getElementById('srvTablePreviewPath');
+        const previewText = document.getElementById('srvTablePreviewText');
+        if (!previewBox || !previewImg) return;
+
+        const clean = (path || '').trim();
+        if (clean) {
+            previewImg.src = extractImageUrl(clean);
+            if (previewPath) previewPath.textContent = clean;
+            if (previewText) {
+                previewText.textContent = clean.startsWith('assets/tabelas/') ? '✓ Salvo em assets/tabelas/' : '✓ Imagem definida';
+            }
+            previewBox.style.display = 'flex';
+        } else {
+            previewBox.style.display = 'none';
+        }
+    };
+
     // Listeners do Logo do App
     document.getElementById('btnChooseAppLogo')?.addEventListener('click', () => {
         document.getElementById('appLogoFileInput')?.click();
@@ -1018,6 +1046,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('srvLogo')?.addEventListener('input', (e) => {
         updateSrvLogoPreview(e.target.value);
+    });
+
+    // Listeners da Tabela de Preços do Servidor
+    document.getElementById('btnChooseSrvTable')?.addEventListener('click', () => {
+        document.getElementById('srvTableFileInput')?.click();
+    });
+
+    document.getElementById('srvTableFileInput')?.addEventListener('change', async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const statusEl = document.getElementById('srvTableUploadStatus');
+        if (statusEl) {
+            statusEl.textContent = '⏳ Salvando em assets/tabelas...';
+            statusEl.style.color = '#38bdf8';
+        }
+
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('server_name', document.getElementById('srvName')?.value || '');
+        const srvId = document.getElementById('srvId')?.value || '';
+        if (srvId) formData.append('server_id', srvId);
+
+        try {
+            const res = await fetch('api.php?action=upload_server_table', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await res.json();
+            if (result.success) {
+                document.getElementById('srvTableImg').value = result.path;
+                if (statusEl) {
+                    statusEl.textContent = '✅ Salvo na pasta assets/tabelas!';
+                    statusEl.style.color = '#10b981';
+                }
+                updateSrvTablePreview(result.path);
+            } else {
+                if (statusEl) {
+                    statusEl.textContent = '❌ ' + (result.error || 'Erro no envio');
+                    statusEl.style.color = '#ef4444';
+                }
+            }
+        } catch (err) {
+            if (statusEl) {
+                statusEl.textContent = '❌ Falha ao enviar tabela.';
+                statusEl.style.color = '#ef4444';
+            }
+        }
+    });
+
+    document.getElementById('srvTableImg')?.addEventListener('input', (e) => {
+        updateSrvTablePreview(e.target.value);
     });
 
     addClearBtn('searchServers');

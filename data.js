@@ -1,11 +1,11 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-09-30 17:30:21
+ * Gerado em: 2026-11-21 14:01:20
  * NÃO edite manualmente. Regenere via: php generate_data.php
  */
 window.STATIC_DATA = {
-    version:     "20260930-1730",
-    generated_at: "2026-09-30 17:30:21",
+    version:     "20261121-1401",
+    generated_at: "2026-11-21 14:01:20",
     servers:     [
     {
         "id": 102,
@@ -488,7 +488,7 @@ window.STATIC_DATA = {
         "logo": "assets\/logos\/logo-29-e3-play.png",
         "table_image_url": "assets\/tabelas\/E3 PLAY.jpg",
         "updated_at": "2026-06-06 04:53:32",
-        "screens": 1,
+        "screens": 2,
         "panel_url": "",
         "app_store_url": "",
         "server_type": "hybrid"
@@ -746,6 +746,24 @@ window.STATIC_DATA = {
         "server_type": "hybrid"
     },
     {
+        "id": 142,
+        "name": "INBOX TV",
+        "url": "",
+        "status": "active",
+        "description": "",
+        "movies": 0,
+        "series": 0,
+        "channels": 0,
+        "created_at": "2026-11-21 13:26:47",
+        "logo": "assets\/logos\/logo-inbox-tv.jpg",
+        "table_image_url": "",
+        "updated_at": null,
+        "screens": 1,
+        "panel_url": "",
+        "app_store_url": "",
+        "server_type": "hybrid"
+    },
+    {
         "id": 134,
         "name": "INFINITE",
         "url": "",
@@ -780,6 +798,24 @@ window.STATIC_DATA = {
         "panel_url": null,
         "app_store_url": null,
         "server_type": "hybrid"
+    },
+    {
+        "id": 141,
+        "name": "IPRO PLAYER",
+        "url": "",
+        "status": "active",
+        "description": "",
+        "movies": 17856,
+        "series": 10049,
+        "channels": 1492,
+        "created_at": "2026-11-21 12:57:29",
+        "logo": "assets\/logos\/logo-ipro-player.jpg",
+        "table_image_url": "assets\/tabelas\/tabela-141-ipro-player.jpg",
+        "updated_at": "2026-11-21 13:17:54",
+        "screens": 2,
+        "panel_url": "https:\/\/iprostreaming.sigma.st\/",
+        "app_store_url": "",
+        "server_type": "iptv"
     },
     {
         "id": 45,
@@ -1011,6 +1047,24 @@ window.STATIC_DATA = {
         "table_image_url": "assets\/tabelas\/NINETY.jpg",
         "updated_at": "2026-06-21 05:27:32",
         "screens": 1,
+        "panel_url": "",
+        "app_store_url": "",
+        "server_type": "hybrid"
+    },
+    {
+        "id": 140,
+        "name": "NINJA PLAYER",
+        "url": "",
+        "status": "active",
+        "description": "",
+        "movies": 0,
+        "series": 0,
+        "channels": 0,
+        "created_at": "2026-11-10 17:08:49",
+        "logo": "assets\/logos\/logo-ninja-player.png",
+        "table_image_url": "",
+        "updated_at": null,
+        "screens": 2,
         "panel_url": "",
         "app_store_url": "",
         "server_type": "hybrid"
@@ -1338,6 +1392,24 @@ window.STATIC_DATA = {
         "panel_url": "",
         "app_store_url": "",
         "server_type": "hybrid"
+    },
+    {
+        "id": 139,
+        "name": "PULSE PLAY",
+        "url": "",
+        "status": "active",
+        "description": "",
+        "movies": 0,
+        "series": 0,
+        "channels": 0,
+        "created_at": "2026-11-08 22:30:03",
+        "logo": "assets\/logos\/logo-pulse-play.jpeg",
+        "table_image_url": "",
+        "updated_at": null,
+        "screens": 1,
+        "panel_url": "",
+        "app_store_url": "",
+        "server_type": "iptv"
     },
     {
         "id": 138,
@@ -1936,6 +2008,14 @@ window.STATIC_DATA = {
 ],
     apps:        [
     {
+        "id": 69,
+        "name": " REDCINE",
+        "url": "",
+        "logo": "assets\/apps\/app-redcine.png",
+        "status": "active",
+        "created_at": "2026-11-21 13:43:43"
+    },
+    {
         "id": 13,
         "name": "4KIPTV",
         "url": "",
@@ -1966,6 +2046,14 @@ window.STATIC_DATA = {
         "logo": "assets\/apps\/app-3-blessed-player.png",
         "status": "active",
         "created_at": "2026-04-27 07:05:40"
+    },
+    {
+        "id": 60,
+        "name": "BOLT",
+        "url": "",
+        "logo": "assets\/apps\/app-60-bolt.jpeg",
+        "status": "active",
+        "created_at": "2026-10-08 18:51:40"
     },
     {
         "id": 56,
@@ -2000,12 +2088,28 @@ window.STATIC_DATA = {
         "created_at": "2026-04-27 07:08:28"
     },
     {
+        "id": 65,
+        "name": "CLASSE PLAY",
+        "url": "",
+        "logo": "assets\/apps\/app-classe-play.jpg",
+        "status": "active",
+        "created_at": "2026-10-12 17:18:34"
+    },
+    {
         "id": 21,
         "name": "CORE PLAYER",
         "url": "",
         "logo": "assets\/apps\/app-21-core-player.png",
         "status": "active",
         "created_at": "2026-04-27 07:07:55"
+    },
+    {
+        "id": 64,
+        "name": "CÓRTEX PLAYER",
+        "url": "",
+        "logo": "assets\/apps\/app-c-ortex-player.png",
+        "status": "active",
+        "created_at": "2026-10-12 17:10:57"
     },
     {
         "id": 23,
@@ -2040,6 +2144,14 @@ window.STATIC_DATA = {
         "created_at": "2026-04-27 08:21:56"
     },
     {
+        "id": 67,
+        "name": "FAST PLAYER",
+        "url": "",
+        "logo": "assets\/apps\/app-fast-player.jpg",
+        "status": "active",
+        "created_at": "2026-10-12 17:30:01"
+    },
+    {
         "id": 25,
         "name": "FLEX PLAY",
         "url": "",
@@ -2054,6 +2166,14 @@ window.STATIC_DATA = {
         "logo": "assets\/apps\/app-42-focox-play.png",
         "status": "active",
         "created_at": "2026-04-27 07:15:43"
+    },
+    {
+        "id": 58,
+        "name": "FOX PLAYER",
+        "url": "",
+        "logo": "assets\/apps\/app-fox-player.png",
+        "status": "active",
+        "created_at": "2026-10-01 16:45:02"
     },
     {
         "id": 4,
@@ -2078,6 +2198,14 @@ window.STATIC_DATA = {
         "logo": "assets\/apps\/app-26-hd-player.png",
         "status": "active",
         "created_at": "2026-04-27 07:09:36"
+    },
+    {
+        "id": 66,
+        "name": "IBO SMARTERS",
+        "url": "",
+        "logo": "assets\/apps\/app-ibo-smarters.jpeg",
+        "status": "active",
+        "created_at": "2026-10-12 17:26:08"
     },
     {
         "id": 6,
@@ -2112,6 +2240,14 @@ window.STATIC_DATA = {
         "created_at": "2026-04-27 07:05:40"
     },
     {
+        "id": 63,
+        "name": "KAYROS PLAYER",
+        "url": "",
+        "logo": "assets\/apps\/app-kayros-player.jpeg",
+        "status": "active",
+        "created_at": "2026-10-12 15:26:40"
+    },
+    {
         "id": 5,
         "name": "LAZER PLAY",
         "url": "",
@@ -2144,6 +2280,14 @@ window.STATIC_DATA = {
         "created_at": "2026-04-27 07:05:40"
     },
     {
+        "id": 61,
+        "name": "MAX+",
+        "url": "",
+        "logo": "assets\/apps\/app-61-max.png",
+        "status": "active",
+        "created_at": "2026-10-08 19:06:59"
+    },
+    {
         "id": 30,
         "name": "META PLAYER",
         "url": "",
@@ -2166,6 +2310,14 @@ window.STATIC_DATA = {
         "logo": "assets\/apps\/app-46-noma-app.png",
         "status": "active",
         "created_at": "2026-04-27 18:06:01"
+    },
+    {
+        "id": 70,
+        "name": "NUVTV",
+        "url": "",
+        "logo": "assets\/apps\/app-nuvtv.png",
+        "status": "active",
+        "created_at": "2026-11-21 13:46:57"
     },
     {
         "id": 32,
@@ -2251,7 +2403,7 @@ window.STATIC_DATA = {
         "id": 19,
         "name": "QPLAYER",
         "url": "",
-        "logo": "https:\/\/i.ibb.co\/v4cxZHMy\/QPLAY.png",
+        "logo": "assets\/apps\/app-19-qplayer.png",
         "status": "active",
         "created_at": "2026-04-27 07:06:32"
     },
@@ -2267,7 +2419,7 @@ window.STATIC_DATA = {
         "id": 54,
         "name": "QUICK PLUS",
         "url": "",
-        "logo": "assets\/apps\/app-quick-plus.jpeg",
+        "logo": "assets\/apps\/app-54-quick-plus.png",
         "status": "active",
         "created_at": "2026-09-23 14:19:05"
     },
@@ -2278,6 +2430,22 @@ window.STATIC_DATA = {
         "logo": "assets\/apps\/app-20-quick-pro.png",
         "status": "active",
         "created_at": "2026-04-27 07:06:32"
+    },
+    {
+        "id": 59,
+        "name": "REAL PLAY",
+        "url": "",
+        "logo": "assets\/apps\/app-59-real-play.jpeg",
+        "status": "active",
+        "created_at": "2026-10-08 18:49:10"
+    },
+    {
+        "id": 62,
+        "name": "RX PURPLE",
+        "url": "",
+        "logo": "assets\/apps\/app-rx-purple.png",
+        "status": "active",
+        "created_at": "2026-10-12 15:25:43"
     },
     {
         "id": 35,
@@ -2302,6 +2470,14 @@ window.STATIC_DATA = {
         "logo": "assets\/apps\/app-36-super-play.png",
         "status": "active",
         "created_at": "2026-04-27 07:13:49"
+    },
+    {
+        "id": 68,
+        "name": "SW4 TV",
+        "url": "",
+        "logo": "assets\/apps\/app-sw4-tv.jpeg",
+        "status": "active",
+        "created_at": "2026-10-12 19:49:11"
     },
     {
         "id": 15,
@@ -2642,34 +2818,6 @@ window.STATIC_DATA = {
         "app_id": 40
     },
     {
-        "server_id": 16,
-        "app_id": 2
-    },
-    {
-        "server_id": 16,
-        "app_id": 3
-    },
-    {
-        "server_id": 16,
-        "app_id": 4
-    },
-    {
-        "server_id": 16,
-        "app_id": 5
-    },
-    {
-        "server_id": 16,
-        "app_id": 9
-    },
-    {
-        "server_id": 16,
-        "app_id": 11
-    },
-    {
-        "server_id": 16,
-        "app_id": 41
-    },
-    {
         "server_id": 17,
         "app_id": 2
     },
@@ -2688,14 +2836,6 @@ window.STATIC_DATA = {
     {
         "server_id": 24,
         "app_id": 23
-    },
-    {
-        "server_id": 22,
-        "app_id": 2
-    },
-    {
-        "server_id": 22,
-        "app_id": 11
     },
     {
         "server_id": 32,
@@ -2930,22 +3070,6 @@ window.STATIC_DATA = {
         "app_id": 47
     },
     {
-        "server_id": 60,
-        "app_id": 2
-    },
-    {
-        "server_id": 60,
-        "app_id": 4
-    },
-    {
-        "server_id": 60,
-        "app_id": 5
-    },
-    {
-        "server_id": 60,
-        "app_id": 11
-    },
-    {
         "server_id": 62,
         "app_id": 5
     },
@@ -2976,14 +3100,6 @@ window.STATIC_DATA = {
     {
         "server_id": 93,
         "app_id": 40
-    },
-    {
-        "server_id": 75,
-        "app_id": 4
-    },
-    {
-        "server_id": 75,
-        "app_id": 5
     },
     {
         "server_id": 78,
@@ -3075,26 +3191,6 @@ window.STATIC_DATA = {
     },
     {
         "server_id": 8,
-        "app_id": 11
-    },
-    {
-        "server_id": 42,
-        "app_id": 2
-    },
-    {
-        "server_id": 42,
-        "app_id": 22
-    },
-    {
-        "server_id": 42,
-        "app_id": 25
-    },
-    {
-        "server_id": 42,
-        "app_id": 26
-    },
-    {
-        "server_id": 42,
         "app_id": 11
     },
     {
@@ -3202,18 +3298,6 @@ window.STATIC_DATA = {
         "app_id": 41
     },
     {
-        "server_id": 56,
-        "app_id": 2
-    },
-    {
-        "server_id": 56,
-        "app_id": 3
-    },
-    {
-        "server_id": 56,
-        "app_id": 11
-    },
-    {
         "server_id": 123,
         "app_id": 2
     },
@@ -3270,142 +3354,6 @@ window.STATIC_DATA = {
         "app_id": 20
     },
     {
-        "server_id": 129,
-        "app_id": 13
-    },
-    {
-        "server_id": 129,
-        "app_id": 2
-    },
-    {
-        "server_id": 129,
-        "app_id": 3
-    },
-    {
-        "server_id": 129,
-        "app_id": 45
-    },
-    {
-        "server_id": 129,
-        "app_id": 21
-    },
-    {
-        "server_id": 129,
-        "app_id": 4
-    },
-    {
-        "server_id": 129,
-        "app_id": 26
-    },
-    {
-        "server_id": 129,
-        "app_id": 6
-    },
-    {
-        "server_id": 129,
-        "app_id": 8
-    },
-    {
-        "server_id": 129,
-        "app_id": 7
-    },
-    {
-        "server_id": 129,
-        "app_id": 5
-    },
-    {
-        "server_id": 129,
-        "app_id": 28
-    },
-    {
-        "server_id": 129,
-        "app_id": 46
-    },
-    {
-        "server_id": 129,
-        "app_id": 10
-    },
-    {
-        "server_id": 129,
-        "app_id": 11
-    },
-    {
-        "server_id": 129,
-        "app_id": 34
-    },
-    {
-        "server_id": 129,
-        "app_id": 14
-    },
-    {
-        "server_id": 129,
-        "app_id": 15
-    },
-    {
-        "server_id": 129,
-        "app_id": 40
-    },
-    {
-        "server_id": 129,
-        "app_id": 41
-    },
-    {
-        "server_id": 101,
-        "app_id": 2
-    },
-    {
-        "server_id": 101,
-        "app_id": 3
-    },
-    {
-        "server_id": 101,
-        "app_id": 42
-    },
-    {
-        "server_id": 101,
-        "app_id": 4
-    },
-    {
-        "server_id": 101,
-        "app_id": 5
-    },
-    {
-        "server_id": 101,
-        "app_id": 9
-    },
-    {
-        "server_id": 101,
-        "app_id": 11
-    },
-    {
-        "server_id": 59,
-        "app_id": 3
-    },
-    {
-        "server_id": 59,
-        "app_id": 5
-    },
-    {
-        "server_id": 59,
-        "app_id": 29
-    },
-    {
-        "server_id": 59,
-        "app_id": 9
-    },
-    {
-        "server_id": 59,
-        "app_id": 47
-    },
-    {
-        "server_id": 59,
-        "app_id": 40
-    },
-    {
-        "server_id": 59,
-        "app_id": 52
-    },
-    {
         "server_id": 138,
         "app_id": 2
     },
@@ -3438,84 +3386,12 @@ window.STATIC_DATA = {
         "app_id": 20
     },
     {
-        "server_id": 114,
-        "app_id": 17
-    },
-    {
-        "server_id": 114,
-        "app_id": 53
-    },
-    {
-        "server_id": 114,
-        "app_id": 19
-    },
-    {
-        "server_id": 114,
-        "app_id": 18
-    },
-    {
-        "server_id": 114,
-        "app_id": 20
-    },
-    {
-        "server_id": 114,
-        "app_id": 37
-    },
-    {
-        "server_id": 114,
-        "app_id": 41
-    },
-    {
         "server_id": 86,
         "app_id": 11
     },
     {
         "server_id": 86,
         "app_id": 40
-    },
-    {
-        "server_id": 71,
-        "app_id": 2
-    },
-    {
-        "server_id": 71,
-        "app_id": 17
-    },
-    {
-        "server_id": 71,
-        "app_id": 4
-    },
-    {
-        "server_id": 71,
-        "app_id": 5
-    },
-    {
-        "server_id": 71,
-        "app_id": 28
-    },
-    {
-        "server_id": 71,
-        "app_id": 11
-    },
-    {
-        "server_id": 71,
-        "app_id": 49
-    },
-    {
-        "server_id": 71,
-        "app_id": 19
-    },
-    {
-        "server_id": 71,
-        "app_id": 18
-    },
-    {
-        "server_id": 71,
-        "app_id": 54
-    },
-    {
-        "server_id": 71,
-        "app_id": 20
     },
     {
         "server_id": 6,
@@ -3572,6 +3448,330 @@ window.STATIC_DATA = {
     {
         "server_id": 6,
         "app_id": 36
+    },
+    {
+        "server_id": 75,
+        "app_id": 58
+    },
+    {
+        "server_id": 75,
+        "app_id": 29
+    },
+    {
+        "server_id": 89,
+        "app_id": 33
+    },
+    {
+        "server_id": 60,
+        "app_id": 2
+    },
+    {
+        "server_id": 60,
+        "app_id": 5
+    },
+    {
+        "server_id": 22,
+        "app_id": 2
+    },
+    {
+        "server_id": 22,
+        "app_id": 11
+    },
+    {
+        "server_id": 35,
+        "app_id": 29
+    },
+    {
+        "server_id": 35,
+        "app_id": 59
+    },
+    {
+        "server_id": 35,
+        "app_id": 52
+    },
+    {
+        "server_id": 92,
+        "app_id": 26
+    },
+    {
+        "server_id": 114,
+        "app_id": 17
+    },
+    {
+        "server_id": 114,
+        "app_id": 60
+    },
+    {
+        "server_id": 114,
+        "app_id": 53
+    },
+    {
+        "server_id": 114,
+        "app_id": 19
+    },
+    {
+        "server_id": 114,
+        "app_id": 18
+    },
+    {
+        "server_id": 114,
+        "app_id": 20
+    },
+    {
+        "server_id": 114,
+        "app_id": 37
+    },
+    {
+        "server_id": 114,
+        "app_id": 41
+    },
+    {
+        "server_id": 88,
+        "app_id": 47
+    },
+    {
+        "server_id": 129,
+        "app_id": 17
+    },
+    {
+        "server_id": 129,
+        "app_id": 60
+    },
+    {
+        "server_id": 129,
+        "app_id": 65
+    },
+    {
+        "server_id": 129,
+        "app_id": 64
+    },
+    {
+        "server_id": 129,
+        "app_id": 67
+    },
+    {
+        "server_id": 129,
+        "app_id": 53
+    },
+    {
+        "server_id": 129,
+        "app_id": 26
+    },
+    {
+        "server_id": 129,
+        "app_id": 66
+    },
+    {
+        "server_id": 129,
+        "app_id": 63
+    },
+    {
+        "server_id": 129,
+        "app_id": 29
+    },
+    {
+        "server_id": 129,
+        "app_id": 9
+    },
+    {
+        "server_id": 129,
+        "app_id": 61
+    },
+    {
+        "server_id": 129,
+        "app_id": 46
+    },
+    {
+        "server_id": 129,
+        "app_id": 19
+    },
+    {
+        "server_id": 129,
+        "app_id": 18
+    },
+    {
+        "server_id": 129,
+        "app_id": 54
+    },
+    {
+        "server_id": 129,
+        "app_id": 20
+    },
+    {
+        "server_id": 129,
+        "app_id": 59
+    },
+    {
+        "server_id": 129,
+        "app_id": 62
+    },
+    {
+        "server_id": 129,
+        "app_id": 52
+    },
+    {
+        "server_id": 16,
+        "app_id": 29
+    },
+    {
+        "server_id": 16,
+        "app_id": 9
+    },
+    {
+        "server_id": 16,
+        "app_id": 62
+    },
+    {
+        "server_id": 16,
+        "app_id": 68
+    },
+    {
+        "server_id": 16,
+        "app_id": 52
+    },
+    {
+        "server_id": 42,
+        "app_id": 22
+    },
+    {
+        "server_id": 42,
+        "app_id": 25
+    },
+    {
+        "server_id": 42,
+        "app_id": 58
+    },
+    {
+        "server_id": 42,
+        "app_id": 26
+    },
+    {
+        "server_id": 101,
+        "app_id": 29
+    },
+    {
+        "server_id": 101,
+        "app_id": 9
+    },
+    {
+        "server_id": 101,
+        "app_id": 61
+    },
+    {
+        "server_id": 101,
+        "app_id": 62
+    },
+    {
+        "server_id": 71,
+        "app_id": 2
+    },
+    {
+        "server_id": 71,
+        "app_id": 17
+    },
+    {
+        "server_id": 71,
+        "app_id": 4
+    },
+    {
+        "server_id": 71,
+        "app_id": 5
+    },
+    {
+        "server_id": 71,
+        "app_id": 28
+    },
+    {
+        "server_id": 71,
+        "app_id": 11
+    },
+    {
+        "server_id": 71,
+        "app_id": 49
+    },
+    {
+        "server_id": 71,
+        "app_id": 19
+    },
+    {
+        "server_id": 71,
+        "app_id": 18
+    },
+    {
+        "server_id": 71,
+        "app_id": 54
+    },
+    {
+        "server_id": 71,
+        "app_id": 20
+    },
+    {
+        "server_id": 71,
+        "app_id": 52
+    },
+    {
+        "server_id": 130,
+        "app_id": 47
+    },
+    {
+        "server_id": 59,
+        "app_id": 65
+    },
+    {
+        "server_id": 59,
+        "app_id": 64
+    },
+    {
+        "server_id": 59,
+        "app_id": 29
+    },
+    {
+        "server_id": 59,
+        "app_id": 52
+    },
+    {
+        "server_id": 120,
+        "app_id": 60
+    },
+    {
+        "server_id": 120,
+        "app_id": 52
+    },
+    {
+        "server_id": 139,
+        "app_id": 63
+    },
+    {
+        "server_id": 139,
+        "app_id": 29
+    },
+    {
+        "server_id": 139,
+        "app_id": 46
+    },
+    {
+        "server_id": 56,
+        "app_id": 29
+    },
+    {
+        "server_id": 140,
+        "app_id": 29
+    },
+    {
+        "server_id": 141,
+        "app_id": 69
+    },
+    {
+        "server_id": 141,
+        "app_id": 65
+    },
+    {
+        "server_id": 141,
+        "app_id": 29
+    },
+    {
+        "server_id": 141,
+        "app_id": 70
     }
 ],
     plans:       [

@@ -138,6 +138,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
+    if ($action === 'upload_server_table') {
+        if (!isset($_FILES['file']) || $_FILES['file']['error'] !== UPLOAD_ERR_OK) {
+            $code = $_FILES['file']['error'] ?? 'no_file';
+            echo json_encode(['success' => false, 'error' => "Erro no recebimento da imagem ($code)."]);
+            exit;
+        }
+
+        $file = $_FILES['file'];
+        $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+        $allowed = ['png', 'jpg', 'jpeg', 'webp', 'gif', 'svg'];
+        if (!in_array($ext, $allowed)) {
+            echo json_encode(['success' => false, 'error' => 'Formato não suportado. Envie PNG, JPG, WEBP, GIF ou SVG.']);
+            exit;
+        }
+
+        $srvName = trim($_POST['server_name'] ?? '');
+        $srvId = intval($_POST['server_id'] ?? 0);
+
+        $sourceText = !empty($srvName) ? $srvName : pathinfo($file['name'], PATHINFO_FILENAME);
+        $slug = safeSlug($sourceText);
+        if (empty($slug)) {
+            $slug = 'tabela';
+        }
+
+        $prefix = $srvId > 0 ? "tabela-{$srvId}-" : "tabela-";
+        $fileName = $prefix . $slug . '.' . $ext;
+
+        $targetDir = __DIR__ . '/assets/tabelas';
+        if (!is_dir($targetDir)) {
+            mkdir($targetDir, 0777, true);
+        }
+
+        $targetPath = $targetDir . '/' . $fileName;
+
+        if (move_uploaded_file($file['tmp_name'], $targetPath)) {
+            $relativePath = 'assets/tabelas/' . $fileName;
+            echo json_encode(['success' => true, 'path' => $relativePath, 'filename' => $fileName]);
+        } else {
+            echo json_encode(['success' => false, 'error' => 'Falha ao salvar imagem na pasta assets/tabelas/.']);
+        }
+        exit;
+    }
+
     $data = json_decode(file_get_contents('php://input'), true);
     
     // --- SERVIDORES ---

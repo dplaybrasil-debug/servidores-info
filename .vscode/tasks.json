@@ -1,0 +1,47 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Central de Servidores (Porta 8000)",
+      "type": "shell",
+      "command": "cmd.exe /c INICIAR_SERVIDOR.bat",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "Servidores"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Editor de Listas (Porta 8080)",
+      "type": "shell",
+      "command": "cmd.exe /c \"C:\\Users\\dimil\\Downloads\\Editor-de-Listas\\INICIAR.bat\"",
+      "options": {
+        "cwd": "C:\\Users\\dimil\\Downloads\\Editor-de-Listas"
+      },
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "Servidores"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Iniciar Todos os Servidores Automaticamente",
+      "dependsOn": [
+        "Central de Servidores (Porta 8000)",
+        "Editor de Listas (Porta 8080)"
+      ],
+      "dependsOrder": "parallel",
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "problemMatcher": []
+    }
+  ]
+}
