@@ -1,11 +1,11 @@
 /**
  * data.js — Dados estáticos exportados automaticamente.
- * Gerado em: 2026-11-21 14:15:13
+ * Gerado em: 2026-11-23 18:43:35
  * NÃO edite manualmente. Regenere via: php generate_data.php
  */
 window.STATIC_DATA = {
-    version:     "20261121-1415",
-    generated_at: "2026-11-21 14:15:13",
+    version:     "20261123-1843",
+    generated_at: "2026-11-23 18:43:35",
     servers:     [
     {
         "id": 102,
@@ -1682,6 +1682,13 @@ window.STATIC_DATA = {
         "created_at": "2026-11-21 13:43:43"
     },
     {
+        "id": 77,
+        "name": "2TPLAY",
+        "logo": "assets\/apps\/app-77-2tplay.png",
+        "status": "active",
+        "created_at": "2026-11-23 18:13:17"
+    },
+    {
         "id": 13,
         "name": "4KIPTV",
         "logo": "assets\/apps\/app-13-4kiptv.png",
@@ -1696,6 +1703,13 @@ window.STATIC_DATA = {
         "created_at": "2026-04-27 07:05:40"
     },
     {
+        "id": 74,
+        "name": "ASSIST PRO",
+        "logo": "",
+        "status": "active",
+        "created_at": "2026-11-23 14:07:14"
+    },
+    {
         "id": 17,
         "name": "BIG PLAYER",
         "logo": "assets\/apps\/app-17-big-player.png",
@@ -1708,6 +1722,13 @@ window.STATIC_DATA = {
         "logo": "assets\/apps\/app-3-blessed-player.png",
         "status": "active",
         "created_at": "2026-04-27 07:05:40"
+    },
+    {
+        "id": 76,
+        "name": "BLUVOX PLAYER",
+        "logo": "assets\/apps\/app-76-bluvox-player.jpg",
+        "status": "active",
+        "created_at": "2026-11-23 14:07:40"
     },
     {
         "id": 60,
@@ -1808,6 +1829,13 @@ window.STATIC_DATA = {
         "created_at": "2026-04-27 07:09:07"
     },
     {
+        "id": 73,
+        "name": "FOCO X PLAY PRO",
+        "logo": "",
+        "status": "active",
+        "created_at": "2026-11-23 14:07:06"
+    },
+    {
         "id": 42,
         "name": "FOCOX PLAY",
         "logo": "assets\/apps\/app-42-focox-play.png",
@@ -1827,6 +1855,13 @@ window.STATIC_DATA = {
         "logo": "assets\/apps\/app-4-fun-play.jpg",
         "status": "active",
         "created_at": "2026-04-27 07:05:40"
+    },
+    {
+        "id": 72,
+        "name": "FUN PLAY PRO",
+        "logo": "",
+        "status": "active",
+        "created_at": "2026-11-23 14:06:59"
     },
     {
         "id": 53,
@@ -1892,11 +1927,32 @@ window.STATIC_DATA = {
         "created_at": "2026-04-27 07:05:40"
     },
     {
+        "id": 80,
+        "name": "LIVE GOOD",
+        "logo": "assets\/apps\/app-live-good.png",
+        "status": "active",
+        "created_at": "2026-11-23 18:35:40"
+    },
+    {
         "id": 29,
         "name": "LOTUS ",
         "logo": "assets\/apps\/app-29-lotus.png",
         "status": "active",
         "created_at": "2026-04-27 07:11:20"
+    },
+    {
+        "id": 78,
+        "name": "LUMA PLAY",
+        "logo": "assets\/apps\/app-luma-play.png",
+        "status": "active",
+        "created_at": "2026-11-23 18:17:59"
+    },
+    {
+        "id": 71,
+        "name": "LUMIO PLPAY",
+        "logo": "assets\/apps\/app-71-lumio-plpay.png",
+        "status": "active",
+        "created_at": "2026-11-23 14:06:55"
     },
     {
         "id": 28,
@@ -1946,6 +2002,13 @@ window.STATIC_DATA = {
         "logo": "assets\/apps\/app-nuvtv.png",
         "status": "active",
         "created_at": "2026-11-21 13:46:57"
+    },
+    {
+        "id": 75,
+        "name": "ORION PLAY",
+        "logo": "",
+        "status": "active",
+        "created_at": "2026-11-23 14:07:33"
     },
     {
         "id": 32,
@@ -2058,6 +2121,13 @@ window.STATIC_DATA = {
         "logo": "assets\/apps\/app-rx-purple.png",
         "status": "active",
         "created_at": "2026-10-12 15:25:43"
+    },
+    {
+        "id": 79,
+        "name": "S.A PLAYER",
+        "logo": "assets\/apps\/app-79-s-a-player.png",
+        "status": "active",
+        "created_at": "2026-11-23 18:19:44"
     },
     {
         "id": 35,
@@ -2462,22 +2532,6 @@ window.STATIC_DATA = {
         "app_id": 12
     },
     {
-        "server_id": 33,
-        "app_id": 42
-    },
-    {
-        "server_id": 33,
-        "app_id": 4
-    },
-    {
-        "server_id": 33,
-        "app_id": 5
-    },
-    {
-        "server_id": 33,
-        "app_id": 41
-    },
-    {
         "server_id": 36,
         "app_id": 13
     },
@@ -2608,26 +2662,6 @@ window.STATIC_DATA = {
     {
         "server_id": 103,
         "app_id": 46
-    },
-    {
-        "server_id": 48,
-        "app_id": 2
-    },
-    {
-        "server_id": 48,
-        "app_id": 4
-    },
-    {
-        "server_id": 48,
-        "app_id": 5
-    },
-    {
-        "server_id": 48,
-        "app_id": 29
-    },
-    {
-        "server_id": 48,
-        "app_id": 11
     },
     {
         "server_id": 104,
@@ -2994,62 +3028,6 @@ window.STATIC_DATA = {
         "app_id": 40
     },
     {
-        "server_id": 6,
-        "app_id": 2
-    },
-    {
-        "server_id": 6,
-        "app_id": 17
-    },
-    {
-        "server_id": 6,
-        "app_id": 3
-    },
-    {
-        "server_id": 6,
-        "app_id": 43
-    },
-    {
-        "server_id": 6,
-        "app_id": 42
-    },
-    {
-        "server_id": 6,
-        "app_id": 4
-    },
-    {
-        "server_id": 6,
-        "app_id": 53
-    },
-    {
-        "server_id": 6,
-        "app_id": 5
-    },
-    {
-        "server_id": 6,
-        "app_id": 11
-    },
-    {
-        "server_id": 6,
-        "app_id": 51
-    },
-    {
-        "server_id": 6,
-        "app_id": 19
-    },
-    {
-        "server_id": 6,
-        "app_id": 18
-    },
-    {
-        "server_id": 6,
-        "app_id": 20
-    },
-    {
-        "server_id": 6,
-        "app_id": 36
-    },
-    {
         "server_id": 75,
         "app_id": 58
     },
@@ -3128,86 +3106,6 @@ window.STATIC_DATA = {
     {
         "server_id": 88,
         "app_id": 47
-    },
-    {
-        "server_id": 129,
-        "app_id": 17
-    },
-    {
-        "server_id": 129,
-        "app_id": 60
-    },
-    {
-        "server_id": 129,
-        "app_id": 65
-    },
-    {
-        "server_id": 129,
-        "app_id": 64
-    },
-    {
-        "server_id": 129,
-        "app_id": 67
-    },
-    {
-        "server_id": 129,
-        "app_id": 53
-    },
-    {
-        "server_id": 129,
-        "app_id": 26
-    },
-    {
-        "server_id": 129,
-        "app_id": 66
-    },
-    {
-        "server_id": 129,
-        "app_id": 63
-    },
-    {
-        "server_id": 129,
-        "app_id": 29
-    },
-    {
-        "server_id": 129,
-        "app_id": 9
-    },
-    {
-        "server_id": 129,
-        "app_id": 61
-    },
-    {
-        "server_id": 129,
-        "app_id": 46
-    },
-    {
-        "server_id": 129,
-        "app_id": 19
-    },
-    {
-        "server_id": 129,
-        "app_id": 18
-    },
-    {
-        "server_id": 129,
-        "app_id": 54
-    },
-    {
-        "server_id": 129,
-        "app_id": 20
-    },
-    {
-        "server_id": 129,
-        "app_id": 59
-    },
-    {
-        "server_id": 129,
-        "app_id": 62
-    },
-    {
-        "server_id": 129,
-        "app_id": 52
     },
     {
         "server_id": 16,
@@ -3372,6 +3270,170 @@ window.STATIC_DATA = {
     {
         "server_id": 141,
         "app_id": 70
+    },
+    {
+        "server_id": 129,
+        "app_id": 17
+    },
+    {
+        "server_id": 129,
+        "app_id": 60
+    },
+    {
+        "server_id": 129,
+        "app_id": 65
+    },
+    {
+        "server_id": 129,
+        "app_id": 64
+    },
+    {
+        "server_id": 129,
+        "app_id": 67
+    },
+    {
+        "server_id": 129,
+        "app_id": 58
+    },
+    {
+        "server_id": 129,
+        "app_id": 53
+    },
+    {
+        "server_id": 129,
+        "app_id": 26
+    },
+    {
+        "server_id": 129,
+        "app_id": 66
+    },
+    {
+        "server_id": 129,
+        "app_id": 63
+    },
+    {
+        "server_id": 129,
+        "app_id": 29
+    },
+    {
+        "server_id": 129,
+        "app_id": 9
+    },
+    {
+        "server_id": 129,
+        "app_id": 61
+    },
+    {
+        "server_id": 129,
+        "app_id": 46
+    },
+    {
+        "server_id": 129,
+        "app_id": 19
+    },
+    {
+        "server_id": 129,
+        "app_id": 18
+    },
+    {
+        "server_id": 129,
+        "app_id": 54
+    },
+    {
+        "server_id": 129,
+        "app_id": 20
+    },
+    {
+        "server_id": 129,
+        "app_id": 59
+    },
+    {
+        "server_id": 129,
+        "app_id": 62
+    },
+    {
+        "server_id": 129,
+        "app_id": 52
+    },
+    {
+        "server_id": 6,
+        "app_id": 17
+    },
+    {
+        "server_id": 6,
+        "app_id": 3
+    },
+    {
+        "server_id": 6,
+        "app_id": 60
+    },
+    {
+        "server_id": 6,
+        "app_id": 65
+    },
+    {
+        "server_id": 6,
+        "app_id": 53
+    },
+    {
+        "server_id": 6,
+        "app_id": 66
+    },
+    {
+        "server_id": 6,
+        "app_id": 29
+    },
+    {
+        "server_id": 6,
+        "app_id": 19
+    },
+    {
+        "server_id": 6,
+        "app_id": 18
+    },
+    {
+        "server_id": 6,
+        "app_id": 54
+    },
+    {
+        "server_id": 6,
+        "app_id": 20
+    },
+    {
+        "server_id": 6,
+        "app_id": 59
+    },
+    {
+        "server_id": 6,
+        "app_id": 62
+    },
+    {
+        "server_id": 6,
+        "app_id": 79
+    },
+    {
+        "server_id": 6,
+        "app_id": 52
+    },
+    {
+        "server_id": 48,
+        "app_id": 76
+    },
+    {
+        "server_id": 48,
+        "app_id": 63
+    },
+    {
+        "server_id": 48,
+        "app_id": 80
+    },
+    {
+        "server_id": 48,
+        "app_id": 29
+    },
+    {
+        "server_id": 48,
+        "app_id": 62
     }
 ],
     plans:       [
