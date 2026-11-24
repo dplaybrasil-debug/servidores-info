@@ -47,17 +47,33 @@ function regenerateDataJs($pdo) {
         }
         unset($a);
 
-        $json_servers     = json_encode($servers,     JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-        $json_apps        = json_encode($apps,        JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-        $json_contacts    = json_encode($contacts,    JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-        $json_server_apps = json_encode($server_apps, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-        $json_plans       = json_encode($plans,       JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-        $generated_at     = date('Y-m-d H:i:s');
-        $version          = date('Ymd-Hi');
+        $generated_at = date('Y-m-d H:i:s');
+        $version      = date('Ymd_His');
 
-        $content = "/**\n * data.js — Dados estáticos exportados automaticamente.\n * Gerado em: {$generated_at}\n * NÃO edite manualmente. Regenere via: php generate_data.php\n */\nwindow.STATIC_DATA = {\n    version:     \"{$version}\",\n    generated_at: \"{$generated_at}\",\n    servers:     {$json_servers},\n    apps:        {$json_apps},\n    contacts:    {$json_contacts},\n    server_apps: {$json_server_apps},\n    plans:       {$json_plans}\n};\n";
+        $dataArray = [
+            'version'      => $version,
+            'generated_at' => $generated_at,
+            'servers'      => $servers,
+            'apps'         => $apps,
+            'contacts'     => $contacts,
+            'server_apps'  => $server_apps,
+            'plans'        => $plans
+        ];
 
+        $jsonData = json_encode($dataArray, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        file_put_contents(__DIR__ . '/data.json', $jsonData);
+
+        $content = "/**\n * data.js — Dados estáticos exportados automaticamente.\n * Gerado em: {$generated_at}\n * NÃO edite manualmente. Regenere via: php generate_data.php\n */\nwindow.STATIC_DATA = {$jsonData};\n";
         file_put_contents(__DIR__ . '/data.js', $content);
+
+        foreach (['index.html', 'server.html'] as $file) {
+            $filePath = __DIR__ . '/' . $file;
+            if (file_exists($filePath)) {
+                $html = file_get_contents($filePath);
+                $html = preg_replace('/((?:data\.js|portal\.js|style\.css)\?v=)[^"\'\s>]+/i', '${1}' . $version, $html);
+                file_put_contents($filePath, $html);
+            }
+        }
     } catch (Exception $e) {}
 }
 

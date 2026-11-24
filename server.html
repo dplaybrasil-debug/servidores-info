@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Detalhes do Servidor</title>
     <!-- Preconnect & DNS Prefetch para CDNs de Imagens (ImgBB / Imgur) -->
     <link rel="preconnect" href="https://i.ibb.co" crossorigin>
@@ -10,7 +13,7 @@
     <link rel="preconnect" href="https://i.imgur.com" crossorigin>
     <link rel="dns-prefetch" href="https://i.imgur.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=20261124_122807">
     <style>
         body {
             background-color: var(--bg-color);
@@ -276,7 +279,7 @@
         </div>
     </div>
 
-    <script src="data.js?v=20261121_2"></script>
+    <script src="data.js?v=20261124_122807"></script>
     <script>
         const slugify = (str) => {
             if (!str) return '';
@@ -328,7 +331,19 @@
                 }
 
                 if (!data) {
-                    // Fallback: dados estáticos (GitHub Pages ou API sem resultado)
+                    // Fallback: busca data.json sempre fresco (anti-cache) no GitHub Pages
+                    try {
+                        const resJson = await fetch('data.json?t=' + Date.now(), { cache: 'no-store' });
+                        if (resJson.ok) {
+                            const freshData = await resJson.json();
+                            if (freshData && freshData.servers) {
+                                window.STATIC_DATA = freshData;
+                            }
+                        }
+                    } catch(err) {
+                        console.warn('Falha ao buscar data.json fresco:', err);
+                    }
+
                     if (window.STATIC_DATA && window.STATIC_DATA.servers) {
                         if (serverId) {
                             data = window.STATIC_DATA.servers.find(s => String(s.id) === String(serverId));

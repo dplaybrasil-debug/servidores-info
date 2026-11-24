@@ -1,7 +1,8 @@
 <?php
 /**
  * generate_data.php
- * Gera o arquivo data.js com TODOS os dados estáticos do banco SQLite.
+ * Gera os arquivos data.js e data.json com TODOS os dados estáticos do banco SQLite
+ * e atualiza automaticamente os parâmetros de versão anti-cache em index.html e server.html.
  * Uso: .\php\php.exe generate_data.php
  */
 $pdo = new PDO('sqlite:' . __DIR__ . '/database.sqlite');
@@ -31,7 +32,7 @@ try {
     $plans = $pdo->query("SELECT * FROM server_plans ORDER BY server_id ASC, id ASC")->fetchAll(PDO::FETCH_ASSOC);
 } catch (Exception $e) {}
 
-// Oculta links sensíveis (painel, loja, url externa) do arquivo público data.js
+// Oculta links sensíveis (painel, loja, url externa) do arquivo público data.js/data.json
 foreach ($servers as &$s) {
     unset($s['panel_url'], $s['app_store_url'], $s['url']);
 }
@@ -42,40 +43,49 @@ foreach ($apps as &$a) {
 }
 unset($a);
 
-// Monta o arquivo JS estático
-$json_servers     = json_encode($servers,     JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-$json_apps        = json_encode($apps,        JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-$json_contacts    = json_encode($contacts,    JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-$json_server_apps = json_encode($server_apps, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-$json_plans       = json_encode($plans,       JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-$generated_at     = date('Y-m-d H:i:s');
+$generated_at = date('Y-m-d H:i:s');
+$version      = date('Ymd_His');
 
-// Versão única baseada no timestamp (ex: "20260623-1432")
-$version = date('Ymd-Hi');
+$dataArray = [
+    'version'      => $version,
+    'generated_at' => $generated_at,
+    'servers'      => $servers,
+    'apps'         => $apps,
+    'contacts'     => $contacts,
+    'server_apps'  => $server_apps,
+    'plans'        => $plans
+];
 
-$content = <<<JS
+$jsonData = json_encode($dataArray, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+
+// 1. Salva data.json
+file_put_contents(__DIR__ . '/data.json', $jsonData);
+
+// 2. Salva data.js
+$jsContent = <<<JS
 /**
  * data.js — Dados estáticos exportados automaticamente.
  * Gerado em: {$generated_at}
  * NÃO edite manualmente. Regenere via: php generate_data.php
  */
-window.STATIC_DATA = {
-    version:     "{$version}",
-    generated_at: "{$generated_at}",
-    servers:     {$json_servers},
-    apps:        {$json_apps},
-    contacts:    {$json_contacts},
-    server_apps: {$json_server_apps},
-    plans:       {$json_plans}
-};
+window.STATIC_DATA = {$jsonData};
 JS;
+file_put_contents(__DIR__ . '/data.js', $jsContent);
 
-$output_path = __DIR__ . '/data.js';
-file_put_contents($output_path, $content);
+// 3. Atualiza a versão anti-cache nos arquivos HTML
+foreach (['index.html', 'server.html'] as $file) {
+    $filePath = __DIR__ . '/' . $file;
+    if (file_exists($filePath)) {
+        $html = file_get_contents($filePath);
+        $html = preg_replace('/((?:data\.js|portal\.js|style\.css)\?v=)[^"\'\s>]+/i', '${1}' . $version, $html);
+        file_put_contents($filePath, $html);
+    }
+}
 
-echo "✅ data.js gerado com sucesso!\n";
+echo "✅ data.js e data.json gerados com sucesso! (Versão: {$version})\n";
 echo "   " . count($servers) . " servidores\n";
 echo "   " . count($apps) . " apps\n";
 echo "   " . count($contacts) . " contatos\n";
 echo "   " . count($server_apps) . " vínculos servidor-app\n";
 echo "   " . count($plans) . " planos\n";
+echo "   Arquivos index.html e server.html sincronizados com a versão {$version}!\n";

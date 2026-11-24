@@ -103,7 +103,21 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch(e) {
             // --- FALLBACK: Dados estáticos (GitHub Pages) ---
             isApiAvailable = false;
-            console.warn('API indisponível, usando dados estáticos (data.js)', e);
+            console.warn('API indisponível, buscando dados estáticos sempre frescos...', e);
+
+            // Busca data.json em tempo real com anti-cache para garantir dados sempre atualizados sem precisar de Ctrl+F5
+            try {
+                const resJson = await fetch('data.json?t=' + Date.now(), { cache: 'no-store' });
+                if (resJson.ok) {
+                    const freshData = await resJson.json();
+                    if (freshData && freshData.servers) {
+                        window.STATIC_DATA = freshData;
+                    }
+                }
+            } catch(fetchErr) {
+                console.warn('Falha ao obter data.json fresco, utilizando fallback do script data.js:', fetchErr);
+            }
+
             if (window.STATIC_DATA) {
                 activeServers = (window.STATIC_DATA.servers || []).filter(s => s.status === 'active');
                 activeApps    = (window.STATIC_DATA.apps    || []).filter(a => a.status === 'active');
@@ -116,6 +130,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 updatePublicFilterCounts();
                 renderServers(activeServers);
                 renderApps(activeApps);
+
+                // Se houver contatos no STATIC_DATA, garante que sejam renderizados
+                if (window.STATIC_DATA.contacts) {
+                    renderContacts(window.STATIC_DATA.contacts);
+                }
 
                 const urlParams = new URLSearchParams(window.location.search);
                 if (urlParams.get('tab') === 'support' || urlParams.get('page') === 'support') {
@@ -478,7 +497,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const contacts = await res.json();
             renderContacts(contacts);
         } catch(e) {
-            // Fallback estático
+            // Se STATIC_DATA ainda não tiver contatos carregados, busca data.json fresco
+            if (!window.STATIC_DATA || !window.STATIC_DATA.contacts) {
+                try {
+                    const resJson = await fetch('data.json?t=' + Date.now(), { cache: 'no-store' });
+                    if (resJson.ok) {
+                        const freshData = await resJson.json();
+                        if (freshData) window.STATIC_DATA = freshData;
+                    }
+                } catch(err) {}
+            }
             if (window.STATIC_DATA && window.STATIC_DATA.contacts) {
                 renderContacts(window.STATIC_DATA.contacts);
             } else {
